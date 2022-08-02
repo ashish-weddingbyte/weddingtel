@@ -43,14 +43,14 @@
                         <div class="section-title my-4 text-center">
                             @if(Session::has('message'))
                                 <div class="alert {{session('class')}}">
-                                    {{session('message')}}
+                                    <span>{{session('message')}}</sapn>
                                 </div>
                             @endif
                             <h3>Log in to your account</h3>
                             <p>Not a member yet? <a href="{{url('/register') }}">Join now</a></p>                       
                         </div> 
                         
-                        <div class="login-form mb-5">
+                        <div class="login-form mb-4">
 
                             <form class="my-5"  action="{{ url('login') }}" method="post"  id="login-form-e">
                                 @csrf
@@ -64,11 +64,15 @@
                                         
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Password" type="password" name="password" id="password" value="{{ old('password') }}">
-                                        @error('password')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <div class="password-eye">
+                                            <input class="form-control" placeholder="Password" type="password" name="password" id="password" value="{{ old('password') }}">
+                                            <span data-toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                            @error('password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
+                                    
                                 </div>
                                 
                                 <div class="form-group">
@@ -79,7 +83,12 @@
                             </form>
                         </div>
 
-                        <div class="section-title mt-5 text-center">
+                        <div class=" section-title text-center">
+                            <a href="{{ url('/forget-password') }}">Forgot your password?</a>
+                        </div>
+                        <hr>
+
+                        <div class="section-title mt-4 text-center">
                             <h3>Are you a vendor?</h3>
                             <a href="#" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
                         </div>

@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('planning_tools', function (Blueprint $table) {
+        Schema::create('budget_expenses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->enum('is_checklist', ['0', '1'])->default('1');
-            $table->enum('is_guestlist', ['0', '1'])->default('1');
-            $table->enum('is_budget', ['0', '1'])->default('1');
-            $table->enum('is_vendor_manager', ['0', '1'])->default('1');
-            $table->enum('is_real_weading', ['0', '1'])->default('0');
+            $table->foreignId('budget_category_id');
+            $table->string('expense_name');
+            $table->integer('estimated_cost');
+            $table->integer('paid');
+            $table->integer('pending');
+            $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('planning_tools');
+        Schema::dropIfExists('budget_expenses');
     }
 };

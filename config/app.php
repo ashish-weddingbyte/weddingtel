@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -210,7 +210,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
-        "otp_helper"   =>  App\Helpers\otp_helper::class
+        "otp_helper"   =>  App\Helpers\otp_helper::class,
+        "tools_helper"   =>  App\Helpers\tools_helper::class
     ])->toArray(),
 
 ];

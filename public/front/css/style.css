@@ -3737,6 +3737,7 @@ header .btn {
 }
 .vendor-listing-wrap .content {
   padding: 1.5rem;
+  word-break: break-word;
 }
 .vendor-listing-wrap .content a {
   color: #121212;
@@ -5370,6 +5371,22 @@ header .btn {
   margin-right: 50px;
 }
 
+.password-eye{
+  position: relative;
+}
+.password-eye span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
 /* ---- 9.14 login end -----*/
 
 /*------------------------------------------*/
@@ -6610,9 +6627,9 @@ footer .widget-listing li {
   .select2-container--form-light .select2-dropdown {
     left: 15px;
   }
-  .content{
+  /* .content{
     height: 120px;
-  }
+  } */
   .login-section{
     margin-left: 5px;
     margin-right: 5px;

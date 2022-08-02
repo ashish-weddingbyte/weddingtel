@@ -8,11 +8,11 @@
 <!--  Page Breadcrumbs Start -->
 <section class="breadcrumbs-page">
     <div class="container">
-        <h1>Login Bride/Groom</h1>
+        <h1>Forget Password</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href=""><i class="fa fa-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">Login Bride/Groom</li>
+                <li class="breadcrumb-item active" aria-current="page">Forget Password</li>
             </ol>
         </nav>
     </div>
@@ -31,27 +31,20 @@
                 </div>
                 <div class="col-md-12 col-lg-7">
                     <div class="p-4">
-                        <?php 
-                            $from = Request::segment(2);
-                        ?>
-                        
-                        <div class=" section-title text-right">
-                            <a href="{{ url('/login/e') }}">Login With Email <i class="fa fa-envelope-o" ></i></a>
-                        </div>
                         
                         <div class="section-title my-4 text-center">
                             @if(Session::has('message'))
                                 <div class="alert {{session('class')}}">
-                                    {{session('message')}}
+                                    <span>{{session('message')}}</sapn>
                                 </div>
                             @endif
-                            <h3>Log in to your account</h3>
-                            <p>Not a member yet? <a href="{{url('/register') }}">Join now</a></p>                       
+                            <h3>Reset Password</h3>
+                            <p>Enter your Registred Mobile for OTP to reset your password.</p>                       
                         </div> 
-                        
-                        <div class="login-form mb-5">
 
-                            <form class="my-5" action="{{ url('login') }}" method="post"  id="login-form-o">
+                        <div class="login-form mb-4">
+
+                            <form class="my-5" action="{{ url('forget-password') }}" method="post"  id="login-form-o">
                                 @csrf
                                 
                                 <div class="mobile-section">
@@ -64,13 +57,18 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <input type="hidden" name="login-type" id="login-type" value="{{ $from ? $from : 'o' }}">
                                     <button type="submit" class="btn btn-default btn-block">Login</button>
                                 </div>
                             </form>
                         </div>
 
-                        <div class="section-title mt-5 text-center">
+                        <div class="section-title my-4 text-center">
+                            <h3>Log in to your account</h3>
+                            <p><a href="{{url('/login') }}">Login</a></p>                       
+                        </div> 
+                        <hr>
+                        
+                        <div class="section-title mt-4 text-center">
                             <h3>Are you a vendor?</h3>
                             <a href="#" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
                         </div>

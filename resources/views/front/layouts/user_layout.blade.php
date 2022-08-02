@@ -16,6 +16,8 @@
         <meta name="keywords" content="bride, business, couple, directory, groom, listing, login, map, marketing, realwedding, registration, rsvp, vendor, wedding, wedding planner">
         <meta name="author" content="wp-organic">
         <meta name="MobileOptimized" content="320" />
+
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         
         <!-- Titles
         ================================================== -->
@@ -45,9 +47,7 @@
         
         <!-- Dashbaord Main Style -->
         <link href="{{ asset('front/css/dashboard.css') }}" rel="stylesheet">
-        
-
-        
+                
     </head>
     <!-- end head -->
     <!--body start-->
@@ -176,8 +176,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact-us.html">Contact Us</a>
-                       </li>
-                        <li class="nav-item dropdown user-profile">
+                        </li>
+                        <!-- <li class="nav-item dropdown user-profile">
                             <a class="nav-link" href="index.html" id="dropdown04" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false"><img src="{{ asset('front/images/dashboard/avatar_img.jpg') }}" alt="">
                                 <i class="fa fa-angle-down"></i>
@@ -196,7 +196,7 @@
                                 <li><a class="dropdown-item" href="javascript:">Wedding Website</a></li>            
                                 <li><a class="dropdown-item" href="javascript:">Logout</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                     <!-- Main Navigation End -->
                 </div>
@@ -209,47 +209,46 @@
     <main>
         <aside class="offcanvas-collapse">
             <div class="avatar-wrap">
-                <img src="{{ asset('front/images/dashboard/avatar_img.jpg') }}" alt="">
-                <h3>Hitesh Mahavar</h3>                
+                <?php
+                    $user_id = Session::get('user_id');
+                    $user = App\Models\User::find($user_id);
+                    $details = App\Models\UserDetail::where('user_id',$user_id)->first();
+                ?>
+                @if($details->profile)
+                    <img src="{{ asset('storage/upload/user/profile/'.$details->profile) }}" alt="">
+                @else
+                    <img src="{{ asset('front/default_image/default_groom.png') }}" alt="">
+                @endif
+                
+                <h3>{{  ucwords($user->name) }}</h3>                
             </div>
             <div class="sidebar-nav">
                 <ul class="list-unstyled">
-                    <li class="active">
-                        <a href="couple-dashboard.html"><i class="weddingdir_heart_ring"></i> Dashboard</a>
+                    <li class="{{ (request()->segment(2) == 'dashboard') ? 'active' : '' }}">
+                        <a href="{{ url('/tools/dashboard') }}"><i class="weddingdir_heart_ring"></i> Dashboard</a>
                     </li>
-                    <li>
-                        <a href="couple-dashboard-todo-list.html"><i class="weddingdir_checklist"></i> Checklist</a>
+                    <li class="{{ (request()->segment(2) == 'checklist') ? 'active' : '' }}">
+                        <a href="{{ url('/tools/checklist') }}"><i class="weddingdir_checklist"></i> Checklist</a>
                     </li>
-                    <li>
-                        <a href="couple-dashboard-vendor-manager.html"><i class="weddingdir_vendor_manager"></i> Vendor Manager</a>
+                    <li class="{{ (request()->segment(2) == 'vendors') ? 'active' : '' }}">
+                        <a href="{{ url('/tools/vendors') }}"><i class="weddingdir_vendor_manager"></i> Vendor Manager</a>
                     </li>
-                    <li>
-                        <a href="couple-dashboard-guest-manager.html"><i class="weddingdir_guestlist"></i> Guest List</a>
+                    <li class="{{ (request()->segment(2) == 'guestlist') ? 'active' : '' }}">
+                        <a href="{{ url('/tools/guestlist') }}"><i class="weddingdir_guestlist"></i> Guest List</a>
                     </li>
-                    <li>
-                        <a href="couple-dashboard-budget.html"><i class="weddingdir_budget"></i> Budget</a>
+                    <li class="{{ (request()->segment(2) == 'budget') ? 'active' : '' }}">
+                        <a href="{{ url('/tools/budget') }}"><i class="weddingdir_budget"></i> Budget</a>
                     </li>
-                    <li>
-                        <a href="couple-dashboard-realwedding.html"><i class="weddingdir_dove"></i> RealWedding</a>
+                    <li class="{{ (request()->segment(2) == 'real-wedding') ? 'active' : '' }}">
+                        <a href="{{ url('/tools/real-wedding') }}"><i class="weddingdir_dove"></i> RealWedding</a>
                     </li>
-                    <li>
-                        <a href="javascript:"><i class="weddingdir_seating_chart"></i> Seating Chart</a>
+                    
+                    <li class="{{ (request()->segment(2) == 'profile') ? 'active' : '' }}">
+                        <a href="{{ url('/tools/profile') }}"><i class="weddingdir_my_profile"></i> My Profile</a>
                     </li>
+                    
                     <li>
-                        <a href="javascript:"><i class="weddingdir_love_gift"></i> Registry</a>
-                    </li>
-                    <li>
-                        <a href="javascript:"><i class="weddingdir_chat"></i> Chat</a>
-                    </li>
-                    <li>
-                        <a href="couple-dashboard-profile.html"><i class="weddingdir_my_profile"></i> My Profile</a>
-                    </li>
-                    <li>
-                        <a href="javascript:"><i class="weddingdir_websote_demo"></i> Wedding Website</a>
-                    </li>
-
-                    <li>
-                        <a href="javascript:"><i class="weddingdir_logout"></i> Logout</a>
+                        <a href="{{ url('logout') }}"><i class="weddingdir_logout"></i> Logout</a>
                     </li>
                 </ul>
             </div>
@@ -374,6 +373,25 @@
     <script src="{{ asset('front/library/countdown/js/jquery.countdown.min.js') }}"></script>
     <script src="{{ asset('front/library/perfect-scrollbars/perfect-scrollbar.min.js') }}"></script>    
     <script src="{{ asset('front/js/dashboard.js') }}"></script>
+    <script src="{{ asset('front/js/custom.js') }}"></script>
+    
+    @switch(request()->segment(2))
+        @case('checklist')
+           
+            @break
+    
+        @case('budget')
+            <script src="{{ asset('front/library/apex-chart/apexcharts.js') }}"></script>
+            <script src="{{ asset('front/library/apex-chart/chart-data.js') }}"></script>
+            @break
+
+        @case('real-wedding')
+            <script src="{{ asset('front/library/summernote/summernote-bs4.min.js') }}"></script>
+            @break
+    
+        @default
+            
+    @endswitch
 
 </body>
 

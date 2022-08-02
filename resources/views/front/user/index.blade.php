@@ -205,7 +205,7 @@
     */ ?>
 
     <!-- Top Wedding Vendors Start -->
-    <section class="wide-tb-120">
+    <section class="wide-tb-80">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Top Category</h1>
@@ -213,149 +213,31 @@
             </div>
             <div class="row row-cols-2 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
 
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-listing-wrap">                                    
-                        <div class="vendor-img">
-                            <div class="overlay-box">
-                                <a href="listing-singular.html" class="btn btn-default btn-rounded btn-sm">View Details</a> 
+                @if($categories)
+                    @foreach($categories as $category)
+                        
+                        <div class="col">
+                            <div class="vendor-listing-wrap">                                    
+                                <div class="vendor-img">
+                                    <div class="overlay-box">
+                                        <a href="{{ url('/vendors/all/'.$category->category_url) }}" class="btn btn-default btn-rounded btn-sm">View Details</a> 
+                                    </div>
+                                    <div class="vendor-icon">
+                                        @if($category->icon)
+                                            {!! $category->icon !!} 
+                                        @else
+                                            <i class="fa fa-life-ring"></i>
+                                        @endif
+                                    </div>
+                                    <a href="{{ url('/vendors/all/'.$category->category_url) }}"><img src="{{ asset('front/default_image/default_category.jpg')}}" alt=""></a>
+                                </div>
+                                <div class="content">
+                                    <h3><a href="{{ url('/vendors/all/'.$category->category_url) }}">{{ ucwords($category->category_name) }}</a></h3>
+                                </div>                               
                             </div>
-                            <div class="vendor-icon"><i class="weddingdir_camera_alt"></i></div>
-                            <a href="listing-singular.html"><img src="{{ asset('front/images/vendors/vendor_img_1.jpg')}}" alt=""></a>
                         </div>
-                        <div class="content">
-                            <h3><a href="listing-singular.html">Photographer</a></h3>
-                            <i class="fa fa-map-marker"></i> Ahmedabad, India
-                        </div>                               
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
-
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-listing-wrap">                                    
-                        <div class="vendor-img">
-                            <div class="overlay-box">
-                                <a href="listing-singular.html" class="btn btn-default btn-rounded btn-sm">View Details</a> 
-                            </div>
-                            <div class="vendor-icon"><i class="weddingdir_venue"></i></div>
-                            <a href="listing-singular.html"><img src="{{ asset('front/images/vendors/vendor_img_2.jpg')}}" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <h3><a href="listing-singular.html">Venue & Hall</a></h3>
-                            <i class="fa fa-map-marker"></i> Surat, India    
-                        </div>                               
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
-
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-listing-wrap">                                    
-                        <div class="vendor-img">
-                            <div class="overlay-box">
-                                <a href="listing-singular.html" class="btn btn-default btn-rounded btn-sm">View Details</a> 
-                            </div>
-                            <div class="vendor-icon"><i class="weddingdir_flowers"></i></div>
-                            <a href="listing-singular.html"><img src="{{ asset('front/images/vendors/vendor_img_10.jpg')}}" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <h3><a href="listing-singular.html">Florist</a></h3>
-                            <i class="fa fa-map-marker"></i> Rajkot, India
-                        </div>                               
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
-
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-listing-wrap">                                    
-                        <div class="vendor-img">
-                            <div class="overlay-box">
-                                <a href="listing-singular.html" class="btn btn-default btn-rounded btn-sm">View Details</a> 
-                            </div>
-                            <div class="vendor-icon"><i class="weddingdir_cake_stand"></i></div>
-                            <a href="listing-singular.html"><img src="{{ asset('front/images/vendors/vendor_img_11.jpg')}}" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <h3><a href="listing-singular.html">Wedding Cake</a></h3>
-                            <i class="fa fa-map-marker"></i> Valsad, India
-                        </div>                               
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
-
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-listing-wrap">                                    
-                        <div class="vendor-img">
-                            <div class="overlay-box">
-                                <a href="listing-singular.html" class="btn btn-default btn-rounded btn-sm">View Details</a> 
-                            </div>
-                            <div class="vendor-icon"><i class="weddingdir_fashion"></i></div>
-                            <a href="listing-singular.html"><img src="{{ asset('front/images/vendors/vendor_img_12.jpg')}}" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <h3><a href="listing-singular.html">Fashion</a></h3>
-                            <i class="fa fa-map-marker"></i> Mumbai, India
-                        </div>                               
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
-
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-listing-wrap">                                    
-                        <div class="vendor-img">
-                            <div class="overlay-box">
-                                <a href="listing-singular.html" class="btn btn-default btn-rounded btn-sm">View Details</a> 
-                            </div>
-                            <div class="vendor-icon"><i class="weddingdir_music"></i></div>
-                            <a href="listing-singular.html"><img src="{{ asset('front/images/vendors/vendor_img_13.jpg')}}" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <h3><a href="listing-singular.html">Music & DJ</a></h3>
-                            <i class="fa fa-map-marker"></i> Baroda, India
-                        </div>                               
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
-
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-listing-wrap">                                    
-                        <div class="vendor-img">
-                            <div class="overlay-box">
-                                <a href="listing-singular.html" class="btn btn-default btn-rounded btn-sm">View Details</a> 
-                            </div>
-                            <div class="vendor-icon"><i class="weddingdir_music"></i></div>
-                            <a href="listing-singular.html"><img src="{{ asset('front/images/vendors/vendor_img_13.jpg')}}" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <h3><a href="listing-singular.html">Music & DJ</a></h3>
-                            <i class="fa fa-map-marker"></i> Baroda, India
-                        </div>                               
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
-
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-listing-wrap">                                    
-                        <div class="vendor-img">
-                            <div class="overlay-box">
-                                <a href="listing-singular.html" class="btn btn-default btn-rounded btn-sm">View Details</a> 
-                            </div>
-                            <div class="vendor-icon"><i class="weddingdir_music"></i></div>
-                            <a href="listing-singular.html"><img src="{{ asset('front/images/vendors/vendor_img_13.jpg')}}" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <h3><a href="listing-singular.html">Music & DJ</a></h3>
-                            <i class="fa fa-map-marker"></i> Baroda, India
-                        </div>                               
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
+                    @endforeach
+                @endif
 
             </div>
         </div>
@@ -608,7 +490,7 @@
 
 
     <!-- Top Wedding Listings Start -->
-    <section class="wide-tb-120 floral-bg bg-light-gray">
+    <section class="wide-tb-80 floral-bg bg-light-gray">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Top Featured Vendors</h1>
@@ -895,7 +777,7 @@
 
 
     <!-- Latest News & Updates Start -->
-    <section class="wide-tb-120 ">
+    <section class="wide-tb-80 ">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Latest Blogs</h1>
@@ -1090,7 +972,7 @@
 
 
     <!-- Celebraty Wedding Start -->
-    <section class="wide-tb-90 ">
+    <section class="wide-tb-80 ">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Celebrity wedding</h1>
@@ -1171,7 +1053,7 @@
 
 
     <!-- Popular locations Start -->
-    <section class="wide-tb-120 bg-light-gray ">
+    <section class="wide-tb-80 bg-light-gray ">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Popular City</h1>
@@ -1262,7 +1144,7 @@
 
 
         <!-- Real Wedding Start -->
-        <section class="wide-tb-120 ">
+        <section class="wide-tb-80 ">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Real Wedding</h1>
@@ -1411,7 +1293,7 @@
 
 
     <!-- Customer Feedback Start -->
-    <section class="wide-tb-90 ">
+    <section class="wide-tb-80 ">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Testimonials</h1>
@@ -1621,7 +1503,7 @@
 
 
     <!-- Wedding Plannign  Start -->
-    <section class="wide-tb-120">
+    <section class="wide-tb-80">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Wedding Planning Tool</h1>

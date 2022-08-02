@@ -39,14 +39,14 @@
                         ?>
                         @if($from == 'r')
                             <div class="text-right section-title">
-                                <a href="{{ url('/login') }}">Skip & Login With Email <i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
+                                <a href="{{ url('/login/e') }}">Skip & Login With Email <i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
                             </div>
                         @endif
 
                         <div class="section-title my-4 text-center">
                             @if(Session::has('message'))
                                 <div class="alert {{session('class')}}">
-                                    <p>{{session('message')}}</p>
+                                    <span>{{session('message')}}</sapn>
                                 </div>
                             @endif
                             <h3>Verify OTP</h3>
@@ -64,6 +64,9 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <!-- <div class="text-right section-title">
+                                    <p id="otp_timer"></p>
+                                </div> -->
 
                                 <div class="form-group">
                                     <input type="hidden" name="from" value="{{ $from }}">

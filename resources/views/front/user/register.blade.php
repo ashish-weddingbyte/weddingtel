@@ -34,7 +34,7 @@
                         <div class="section-title my-4 text-center">
                             @if(Session::has('message'))
                                 <div class="alert {{session('class')}}">
-                                    {{session('message')}}
+                                    <span>{{session('message')}}</sapn>
                                 </div>
                             @endif
                             <h3>Sign up with your email</h3>
@@ -58,10 +58,14 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" type="password" name="password" id="password" value="{{ old('password') }}">
-                                    @error('password')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+
+                                    <div class="password-eye">
+                                        <input class="form-control" placeholder="Password" type="password" name="password" id="password" value="{{ old('password') }}">
+                                        <span data-toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                        @error('password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Mobile" type="number" name="mobile" id="mobile" value="{{ old('mobile') }}">
@@ -91,9 +95,8 @@
                                     @enderror
                                 </div>
 
-
                                 <div class="form-group">
-                                    <input type="text" class="form-control datepicker" placeholder="Event Date" name="event" id="event" value="{{ old('event') }}">
+                                    <input type="text" placeholder="Event Date" class="form-control" name="event" id="event"  data-toggle="datepicker" value="{{ old('event') }}" >
                                     @error('event')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

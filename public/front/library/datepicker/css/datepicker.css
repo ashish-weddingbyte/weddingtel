@@ -54,7 +54,7 @@
 
 .datepicker-top-left,
 .datepicker-top-right {
-  border-top-color: #39f;
+  border-top-color: #fc2779;
 }
 
 .datepicker-top-left::before,
@@ -68,7 +68,7 @@
 
 .datepicker-top-left::before,
 .datepicker-top-right::before {
-  border-bottom-color: #39f;
+  border-bottom-color: #fc2779;
 }
 
 .datepicker-top-left::after,
@@ -79,7 +79,7 @@
 
 .datepicker-bottom-left,
 .datepicker-bottom-right {
-  border-bottom-color: #39f;
+  border-bottom-color: #fc2779;
 }
 
 .datepicker-bottom-left::before,
@@ -93,7 +93,7 @@
 
 .datepicker-bottom-left::before,
 .datepicker-bottom-right::before {
-  border-top-color: #39f;
+  border-top-color: #fc2779;
 }
 
 .datepicker-bottom-left::after,
@@ -157,7 +157,7 @@
 
 .datepicker-panel > ul > li.picked,
 .datepicker-panel > ul > li.picked:hover {
-  color: #39f;
+  color: #fc2779;
 }
 
 .datepicker-panel > ul > li.disabled,

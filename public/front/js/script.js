@@ -17,7 +17,8 @@
             if ($('.datepicker').length) {
 
                 $( ".datepicker" ).datepicker({
-                    altField: "#idTourDateDetailsHidden"
+                    autoHide: true,
+                    zIndex: 2048,
                 });
             }
         },
@@ -544,8 +545,8 @@
             if( $('[data-toggle="datepicker"]').length ){
 
                 $('[data-toggle="datepicker"]').datepicker({
-                autoHide: true,
-                zIndex: 2048,
+                    autoHide: true,
+                    zIndex: 2048,
                 });
             }
         },
@@ -653,6 +654,24 @@
             }
         },
 
+        toggle_password: function () {
+
+            if ($('.toggle-password').length) {
+    
+                $(".toggle-password").click(function () {
+    
+                    $(this).toggleClass("fa-eye fa-eye-slash");
+                    var input = $($(this).attr("data-toggle"));
+                    if (input.attr("type") == "password") {
+                        input.attr("type", "text");
+                    } else {
+                        input.attr("type", "password");
+                    }
+                });
+    
+            }
+        },
+
         initializ: function () {
 
             this.select_dark();
@@ -688,6 +707,7 @@
             this.tab_scrolling( '#write-review-form' );
             this.listing_singular_map();
             this.listing_singular_map_streetview();
+            this.toggle_password();
         }
 
     }

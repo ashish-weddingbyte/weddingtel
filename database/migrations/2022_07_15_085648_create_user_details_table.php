@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('profile')->nullable();
             $table->enum('type', ['bride','groom'])->nullable();
             $table->string('partner_name')->nullable();
+            $table->string('partner_profile')->nullable();
+            $table->string('wedding_address')->nullable();
+            $table->string('cover_image')->nullable();
             $table->foreignId('partner_id')->nullable();
             $table->timestamps();
         });

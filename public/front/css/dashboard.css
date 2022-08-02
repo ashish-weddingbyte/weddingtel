@@ -446,19 +446,19 @@ i[class*="weddingdir_"] {
     align-items: center;
 }
 .action-links i{
-    color: #ee8c00;
+    color: #fc2779;
     padding-left: 0.4rem;
     font-size: 1.25rem;
     transition: all 400ms ease-in-out 0s;
 }
 .action-links:hover, .action-links:hover i {
-    color: #00abac;
+    color: #fc2779;
 }
 .action-links.edit i{
     color: #fc2779;
 }
 .action-links.edit:hover i{
-    color: #ee8c00;
+    color: #fc2779;
 }
 /* Table Styles */
 .table .thead-light th {
@@ -874,11 +874,11 @@ main::after{
 .avatar-wrap img{
     border: 4px solid #FFF;
     border-radius: 50%;
-    margin-bottom: 1rem;
+    width:100px;
 }
 .avatar-wrap h3{
     color: #fc2779;
-    font-weight: 600;
+    font-weight: 800;
 }
 .offcanvas-collapse .sidebar-nav{
     overflow-y: auto;
@@ -1001,15 +1001,15 @@ main::after{
 }
 .btn-default:hover,
 .btn-default:hover:enabled {
-    color: #fff;
-    background-color: #d47c00;
-    border-color: #d47c00;
+    color: #fc2779;
+    background-color: #fff;
+    border-color: #fc2779;
 }
 .btn-default.focus,
 .btn-default:focus {
-    color: #fff;
-    background-color: #d47c00;
-    border-color: #d47c00;
+    color: #fc2779;
+    background-color: #fff;
+    border-color: #fc2779;
     box-shadow: none;
 }
 .btn-default:not(:disabled):not(.disabled).active,
@@ -1029,23 +1029,23 @@ main::after{
     border-color: #fc2779;
 }
 .btn-primary:hover {
-    color: #fff;
-    background-color: #009091;
-    border-color: #009091;
+    color: #fc2779;
+    background-color: #fff;
+    border-color: #fc2779;
 }
 .btn-primary.focus,
 .btn-primary:focus {
-    color: #fff;
-    background-color: #009091;
-    border-color: #009091;
-    box-shadow: 0 0 0 1px rgb(45, 132, 131);
+    color: #fc2779;
+    background-color: #fff;
+    border-color: #fc2779;
+    box-shadow: 0 0 0 1px rgb(252, 39, 121);
 }
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
 .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #009091;
-    border-color: #009091;
+    background-color: #fc2779;
+    border-color: #fc2779;
     box-shadow: none !important;
 }
 
@@ -1142,14 +1142,14 @@ main::after{
 }
 .btn-info:hover {
     color: #fff;
-    background-color: #fc2779;
-    border-color: #fc2779;
+    background-color: #18a2b9;
+    border-color: #18a2b9;
 }
 .btn-info.focus,
 .btn-info:focus {
     color: #fff;
-    background-color: #fc2779;
-    border-color: #fc2779;
+    background-color: #18a2b9;
+    border-color: #18a2b9;
     box-shadow: 0 0 0 1px rgb(238, 184, 22);
 }
 
@@ -1239,15 +1239,15 @@ main::after{
     border-color: #fc2779;
 }
 .btn-outline-default:hover {
-    color: #d47c00;
+    color: #fc2779;
     background-color: transparent;
-    border-color: #d47c00;
+    border-color: #fc2779;
 }
 .btn-outline-default.focus,
 .btn-outline-default:focus {
     color: #ff9285;
     background-color: transparent;
-    border-color: #d47c00;
+    border-color: #fc2779;
     box-shadow: 0 0 0 1px rgb(255, 159, 139);
 }
 
@@ -1260,19 +1260,19 @@ main::after{
     border-color: #fc2779;
 }
 .btn-outline-primary:hover {
-    color: #009091;
+    color: #fc2779;
     background-color: transparent;
-    border-color: #009091;
+    border-color: #fc2779;
 }
 .btn-outline-primary.focus,
 .btn-outline-primary:focus,
 .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
 .show > .btn-outline-primary.dropdown-toggle:focus {
-    color: #009091;
+    color: #fc2779;
     background-color: transparent;
-    border-color: #009091;
-    box-shadow: 0 0 0 1px rgb(0, 189, 167);
+    border-color: #fc2779;
+    box-shadow: 0 0 0 1px rgb(252, 39, 121);
 }
 
 /*--- btn outline secondary --*/
@@ -1467,13 +1467,13 @@ main::after{
     color: #fc2779;
 }
 .btn-link-default:hover {
-    color: #d47c00;
+    color: #fc2779;
 }
 .btn-link-primary {
     color: #fc2779;
 }
 .btn-link-primary:hover {
-    color: #009091;
+    color: #fc2779;
 }
 .btn-link-secondary {
     color: #4b4645;
@@ -2082,7 +2082,7 @@ header .btn {
 }
 .theme-tabbing-vertical .nav-link.active,
 .theme-tabbing-vertical .show > .nav-link {
-    color: #f39108;
+    color: #fc2779;
     background-color: transparent;
 }
 .horizontal-tab-second {
@@ -2103,9 +2103,9 @@ header .btn {
 }
 .horizontal-tab-second .nav-link.active,
 .horizontal-tab-second .show > .nav-link {
-    color: #f39108;
+    color: #fc2779;
     background-color: transparent;
-    border-bottom: 3px solid #f39108;
+    border-bottom: 3px solid #fc2779;
 }
 /*---- 6.2 Tabbing End ---*/
   
@@ -2207,13 +2207,13 @@ header .btn {
     box-shadow: none;
 }
 .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
-    border-color: #f39108;
+    border-color: #fc2779;
 }
 .custom-control-input:checked ~ .custom-control-label::before,
 .custom-control-input:not(:disabled):active ~ .custom-control-label::before {
     color: #fff;
-    border-color: #f29008;
-    background-color: #f29008;
+    border-color: #fc2779;
+    background-color: #fc2779;
 }
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
     background-image: none;
@@ -2306,7 +2306,7 @@ header .btn {
 .form-light
 .custom-control-input:focus:not(:checked)
 ~ .custom-control-label::before {
-    border-color: #f39108;
+    border-color: #fc2779;
 }
 .form-light .custom-control-input:checked ~ .custom-control-label::before,
 .form-light
@@ -2683,7 +2683,7 @@ bottom:120%; */
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    color: #f39108;
+    color: #fc2779;
 }
 
 .ui-datepicker-prev:before {
@@ -2795,6 +2795,21 @@ a.ui-button:active,
     justify-content: center;
     font-size: 1.25rem;
 }
+
+.custom-user-name {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    min-width: 100px;
+    background: #e3f5f5;
+    color: #7dcccd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
 .custom-file{
     position: absolute;
     width: 30px;
@@ -2852,8 +2867,6 @@ a.ui-button:active,
     top: 0;
     right: 0;
     height: 100%;
-    background: #fc2779;
-    color: #FFF;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3465,7 +3478,7 @@ a.ui-button:active,
 .etimated-cost .icon{
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: #dcdcdc;
+    color: #fc2779;
     display: block;
 }
 .cost-price{
@@ -3484,7 +3497,7 @@ a.ui-button:active,
 }
 .budget-tab.theme-tabbing-vertical .nav-link i{
     font-size: 1.5rem;
-    color: #fc2779;
+    color: #dedede;
     padding-right: 0.9rem;
 }
 .budget-tab.theme-tabbing-vertical .nav-link.active i{
@@ -3498,7 +3511,7 @@ a.ui-button:active,
     align-items: center;
     color: #FFF;
     font-size: 2rem;
-    background: #00abac;
+    background: #fc2779;
     border-top-left-radius: 7px;
     margin-right: 15px;
 }
@@ -4202,7 +4215,7 @@ a.ui-button:active,
     margin-top: 11px;
 }
 .review-option .count .bar-filled {
-    background: #f39108;
+    background: #fc2779;
     height: 6px;
     border-radius: 5px;
 }
