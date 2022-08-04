@@ -345,7 +345,7 @@
         this.checkbox_select();
         this.reviews_tabbing_wrap_scroll();
         this.summernote( '#summernote' );
-        
+        this.select_multiple();
     }
 
     }

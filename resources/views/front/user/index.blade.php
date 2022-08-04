@@ -55,167 +55,19 @@
 
 <main id="body-content">
 
-    <?php /*
-    <!-- Most Popular Categories Start -->
-    <section class="wide-tb-100 bg-light-gray" >
-        <div class="container">
-            <div class="section-title text-center">
-                <h1>Most Popular Categories</h1>
-                <p>Excepteur sint occaecat cupidatat non proident sunt</p>
-            </div>
-            <div class="owl-carousel owl-theme dots-black" id="slider-categories">                        
-                <!-- Most Popular Categories -->
-                <div class="item">
-                    <div class="popular-categories">
-                        <img src="{{ asset('front/images/categories/categories_1.jpg')}}" alt="">
-                        <div class="content-wrap">
-                            <div class="content">
-                                <div class="mt-auto d-flex align-items-center w-100 justify-content-between">
-                                    <div class="catlinks">
-                                        <a href="listing-singular.html">
-                                            <h3>Venues & Halls</h3> 
-                                        </a>
-                                        <a href="listing-singular.html">
-                                            <span class="count-listings">12 Listings</span>
-                                        </a>                                            
-                                    </div>
-                                    <a href="listing-singular.html" class="icon">
-                                        <i class="weddingdir_venue"></i>
-                                    </a>
-                                </div>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
-                <!-- Most Popular Categories -->
-
-                <!-- Most Popular Categories -->
-                <div class="item">
-                    <div class="popular-categories">
-                        <img src="{{ asset('front/images/categories/categories_2.jpg')}}" alt="">
-                        <div class="content-wrap">
-                            <div class="content">
-                                <div class="mt-auto d-flex align-items-center w-100 justify-content-between">
-                                    <div class="catlinks">
-                                        <a href="listing-singular.html">
-                                            <h3>Photography</h3>
-                                        </a>
-                                        <a href="listing-singular.html">
-                                            <span class="count-listings">32 Listings</span>
-                                        </a>                                            
-                                    </div>
-                                    <a href="listing-singular.html" class="icon">
-                                        <i class="weddingdir_camera"></i>
-                                    </a>
-                                </div>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
-                <!-- Most Popular Categories -->
-
-                <!-- Most Popular Categories -->
-                <div class="item">
-                    <div class="popular-categories">
-                        <img src="{{ asset('front/images/categories/categories_3.jpg')}}" alt="">
-                        <div class="content-wrap">
-                            <div class="content">
-                                <div class="mt-auto d-flex align-items-center w-100 justify-content-between">
-                                    <div class="catlinks">
-                                        <a href="listing-singular.html"><h3>Wedding Cakes</h3></a>
-                                        <a href="listing-singular.html"><span class="count-listings">10 Listings</span></a>
-                                    </div>
-                                    <a href="listing-singular.html" class="icon">
-                                        <i class="weddingdir_cake"></i>
-                                    </a>
-                                </div>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
-                <!-- Most Popular Categories -->
-
-                <!-- Most Popular Categories -->
-                <div class="item">
-                    <div class="popular-categories">
-                        <img src="{{ asset('front/images/categories/categories_4.jpg')}}" alt="">
-                        <div class="content-wrap">
-                            <div class="content">
-                                <div class="mt-auto d-flex align-items-center w-100 justify-content-between">
-                                    <div class="catlinks">
-                                        <a href="listing-singular.html"><h3>Music</h3></a>
-                                        <a href="listing-singular.html"><span class="count-listings">10 Listings</span></a>
-                                    </div>
-                                    <a href="listing-singular.html" class="icon">
-                                        <i class="weddingdir_music"></i>
-                                    </a>
-                                </div>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
-                <!-- Most Popular Categories -->
-
-                <!-- Most Popular Categories -->
-                <div class="item">
-                    <div class="popular-categories">
-                        <img src="{{ asset('front/images/categories/categories_5.jpg')}}" alt="">
-                        <div class="content-wrap">
-                            <div class="content">
-                                <div class="mt-auto d-flex align-items-center w-100 justify-content-between">
-                                    <div class="catlinks">
-                                        <a href="listing-singular.html"><h3>Bridal Fashion</h3></a>
-                                        <a href="listing-singular.html"><span class="count-listings">10 Listings</span></a>
-                                    </div>
-                                    <a href="listing-singular.html" class="icon">
-                                        <i class="weddingdir_fashion"></i>
-                                    </a>                                        
-                                </div>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
-                <!-- Most Popular Categories -->
-
-                <!-- Most Popular Categories -->
-                <div class="item">
-                    <div class="popular-categories">
-                        <img src="{{ asset('front/images/categories/categories_6.jpg')}}" alt="">
-                        <div class="content-wrap">
-                            <div class="content">
-                                <div class="mt-auto d-flex align-items-center w-100 justify-content-between">
-                                    <div class="catlinks">
-                                        <a href="listing-singular.html"><h3>Wedding Pheras</h3></a>
-                                        <a href="listing-singular.html"><span class="count-listings">10 Listings</span></a>
-                                    </div>
-                                    <a href="listing-singular.html" class="icon">
-                                        <i class="weddingdir_pheras"></i>
-                                    </a>
-                                </div>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
-                <!-- Most Popular Categories -->
-            </div>
-        </div>
-    </section>
-    <!-- Most Popular Categories End -->
-
-    */ ?>
 
     <!-- Top Wedding Vendors Start -->
-    <section class="wide-tb-80">
+    <section class="wide-tb-50">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Top Category</h1>
-                <p>Excepteur sint occaecat cupidatat non proident sunt</p>
             </div>
             <div class="row row-cols-2 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
 
                 @if($categories)
                     @foreach($categories as $category)
                         
+
                         <div class="col">
                             <div class="vendor-listing-wrap">                                    
                                 <div class="vendor-img">
@@ -245,12 +97,11 @@
     <!-- Top Wedding Vendors End -->
 
     
-   <!-- Top Wedding Vendors Start -->
-   <section class="wide-tb-30 ">
+    <!-- Top Wedding Vendors Start -->
+    <section class="wide-tb-30 ">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Top Vendors</h1>
-                <p>Excepteur sint occaecat cupidatat non proident sunt</p>
             </div>
             <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
 
@@ -490,11 +341,10 @@
 
 
     <!-- Top Wedding Listings Start -->
-    <section class="wide-tb-80 floral-bg bg-light-gray">
+    <section class="wide-tb-50 floral-bg bg-light-gray">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Top Featured Vendors</h1>
-                <p>Excepteur sint occaecat cupidatat non proident sunt</p>
             </div>
             <div class="owl-carousel owl-theme dots-black" id="home-slider-listing">                        
                 <!-- Wedding List -->
@@ -777,11 +627,10 @@
 
 
     <!-- Latest News & Updates Start -->
-    <section class="wide-tb-80 ">
+    <section class="wide-tb-50 ">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Latest Blogs</h1>
-                <p>Excepteur sint occaecat cupidatat non proident sunt</p>
             </div>
 
             <div class="row">
@@ -906,77 +755,13 @@
     </section>
     <!-- Callout Style Main End -->
 
-    <?php /*
-    <!-- Why Choose Start -->
-    <section class="wide-tb-90">
-        <div class="container">
-            <div class="section-title text-center">
-                <h1>Why Choose Wedding Dir</h1>
-                <p>Excepteur sint occaecat cupidatat non proident sunt</p>
-            </div>            
-            <div class="row">
-                <!-- Why Choose Icons -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="icon-box-style-2">
-                        <i class="weddingdir_heart_hand"></i>
-                        <h4>15 Years Experience</h4 >
-                        <p>Sed ut perspiciatis und omnis iste natus errors sit.</p>
-                        <a href="javascript:" class="btn btn-link btn-link-secondary">Read more</a>
-                    </div>
-                </div>
-                <!-- Why Choose Icons -->
-
-                <!-- Why Choose Icons -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="icon-box-style-2">
-                        <i class="weddingdir_shopping_bag_heart"></i>
-                        <h4>350,000 Vendors</h4 >
-                        <p>Sed ut perspiciatis und omnis iste natus errors sit.</p>
-                        <a href="javascript:" class="btn btn-link btn-link-secondary">Read more</a>
-                    </div>
-                </div>
-                <!-- Why Choose Icons -->
-
-                <!-- Spacer For Medium -->
-                <div class="w-100 d-none d-md-block d-lg-none spacer-30"></div>
-                <!-- Spacer For Medium -->
-
-                <!-- Why Choose Icons -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="icon-box-style-2">
-                        <i class="weddingdir_heart_envelope"></i>
-                        <h4>Trusted Services</h4 >
-                        <p>Sed ut perspiciatis und omnis iste natus errors sit.</p>
-                        <a href="javascript:" class="btn btn-link btn-link-secondary">Read more</a>
-                    </div>
-                </div>
-                <!-- Why Choose Icons -->
-
-                <!-- Why Choose Icons -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="icon-box-style-2">
-                        <i class="weddingdir_heart_ring"></i>
-                        <h4>25K Real Weddings</h4 >
-                        <p>Sed ut perspiciatis und omnis iste natus errors sit.</p>
-                        <a href="javascript:" class="btn btn-link btn-link-secondary">Read more</a>
-                    </div>
-                </div>
-                <!-- Why Choose Icons -->
-            </div>
-        </div>
-    </section>
-    <!-- Why Choose End -->
-
-    */ ?>
-
 
 
     <!-- Celebraty Wedding Start -->
-    <section class="wide-tb-80 ">
+    <section class="wide-tb-50 ">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Celebrity wedding</h1>
-                <p>Excepteur sint occaecat cupidatat non proident sunt</p>
             </div>            
             <div class="row">
                 
@@ -1053,11 +838,10 @@
 
 
     <!-- Popular locations Start -->
-    <section class="wide-tb-80 bg-light-gray ">
+    <section class="wide-tb-50 bg-light-gray ">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Popular City</h1>
-                <p>Excepteur sint occaecat cupidatat non proident sunt</p>
             </div>
             <div class="row">
                 <!-- Popular Locations Alternate -->
@@ -1143,12 +927,11 @@
     <!-- Popular locations End -->
 
 
-        <!-- Real Wedding Start -->
-        <section class="wide-tb-80 ">
+    <!-- Real Wedding Start -->
+    <section class="wide-tb-50 ">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Real Wedding</h1>
-                <p>Excepteur sint occaecat cupidatat non proident sunt</p>
             </div>
             <div class="row">
                 <!-- Real Wedding Stories -->
@@ -1293,11 +1076,10 @@
 
 
     <!-- Customer Feedback Start -->
-    <section class="wide-tb-80 ">
+    <section class="wide-tb-50 ">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Testimonials</h1>
-                <p>Excepteur sint occaecat cupidatat non proident sunt</p>
             </div>            
             <div class="owl-carousel owl-theme dots-black" id="slider-feedback">                        
                 <!-- Customer Testimonials -->
@@ -1365,11 +1147,10 @@
     <!-- Customer Feedback End -->
 
     <!-- Wedding Fashion Gallery Start -->
-    <section class="wide-tb-90 bg-light-gray">
+    <section class="wide-tb-50 bg-light-gray">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Wedding Fashion Gallery</h1>
-                <p>Excepteur sint occaecat cupidatat non proident sunt</p>
             </div>         
             
             <div class="row">
@@ -1503,11 +1284,10 @@
 
 
     <!-- Wedding Plannign  Start -->
-    <section class="wide-tb-80">
+    <section class="wide-tb-50">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Wedding Planning Tool</h1>
-                <p>Excepteur sint occaecat cupidatat non proident sunt</p>
             </div>            
             <div class="row">
                 <!-- Features Icons -->
@@ -1550,7 +1330,7 @@
                 <div class="col-lg-4 col-xl-2 text-center col-6">
                     <div class="why-choose-icons">
                         <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_heart_ring"></i>
+                            <i class="weddingdir_bell"></i>
                         </div>
                         <h4>Check List</h4>
                         <!-- <a href="javascript:" class="circle-arrow"><i class="fa fa-angle-right"></i></a> -->
@@ -1562,9 +1342,9 @@
                 <div class="col-lg-4 col-xl-2 text-center col-6">
                     <div class="why-choose-icons">
                         <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_bell"></i>
+                            <i class="weddingdir_heart_ring"></i>
                         </div>
-                        <h4>Vendor Manger</h4>
+                        <h4>Real Weddings</h4>
                         <!-- <a href="javascript:" class="circle-arrow"><i class="fa fa-angle-right"></i></a> -->
                     </div>
                 </div>
@@ -1574,9 +1354,9 @@
                 <div class="col-lg-4 col-xl-2 text-center col-6">
                     <div class="why-choose-icons">
                         <div class="icon-big-cirlce mx-auto">
-                            <i class="fa fa-shopping-bag"></i>
+                            <i class="weddingdir_shopping_bag_heart"></i>
                         </div>
-                        <h4>RSVP</h4>
+                        <h4>Vendors</h4>
                         <!-- <a href="javascript:" class="circle-arrow"><i class="fa fa-angle-right"></i></a> -->
                     </div>
                 </div>

@@ -113,23 +113,23 @@
             }
         },
         bootstrap_menu: function () {
-            if ($('.dropdown-menu a.dropdown-toggle-mob').length) {
+            // if ($('.dropdown-menu a.dropdown-toggle-mob').length) {
 
-                // Dropdown Menu For Mobile
-                $('.dropdown-menu a.dropdown-toggle-mob').on('click', function (e) {
-                    if (!$(this).next().hasClass('show')) {
-                        $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
-                    }
-                    var $subMenu = $(this).next(".dropdown-menu");
-                    $subMenu.toggleClass('show');
+            //     // Dropdown Menu For Mobile
+            //     $('.dropdown-menu a.dropdown-toggle-mob').on('click', function (e) {
+            //         if (!$(this).next().hasClass('show')) {
+            //             $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+            //         }
+            //         var $subMenu = $(this).next(".dropdown-menu");
+            //         $subMenu.toggleClass('show');
 
-                    $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
-                        $('.dropdown-submenu .show').removeClass("show");
-                    });
+            //         $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
+            //             $('.dropdown-submenu .show').removeClass("show");
+            //         });
 
-                    return false;
-                });
-            }
+            //         return false;
+            //     });
+            // }
         },
 
         header_anim: function () {

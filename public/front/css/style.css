@@ -1615,7 +1615,7 @@ header .btn {
     transition: all 0.15s linear;
   }
   header.header-anim.fixed .navbar {
-    padding: 0.5rem;
+    padding: 0px;
     box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.09);
 
     -webkit-transition: all 0.15s linear;
@@ -1748,7 +1748,7 @@ header .btn {
   height: 50px;
 }
 .navbar {
-  padding: 0 0.5rem;
+  padding: 0px;
   background: #fff;
 
   -webkit-transition: all 0.15s linear;
@@ -6105,6 +6105,14 @@ footer .widget-listing li {
   .map-container #map-holder {
     height: 500px;
   }
+
+  .megamenu {
+    position: absolute ;
+    width: 80%;
+    left: 10%;
+    right: 10%;
+    padding: 15px;
+  }
 }
 
 /* ------------------------------------------------------------------------ */
@@ -6145,6 +6153,14 @@ footer .widget-listing li {
     height: 475px !important;
     min-height: 475px !important;
   }
+
+  .megamenu {
+    position: absolute ;
+    width: 80%;
+    left: 10%;
+    right: 10%;
+    padding: 15px;
+  }
 }
 
 /* ------------------------------------------------------------------------ */
@@ -6168,6 +6184,13 @@ footer .widget-listing li {
   .navbar-expand-md .navbar-nav .nav-link,
   .navbar-expand-lg .navbar-nav .nav-link {
     padding: 0.6rem 0.3rem;
+  }
+  .megamenu {
+    position: absolute ;
+    width: 80%;
+    left: 10%;
+    right: 10%;
+    padding: 15px;
   }
 }
 /* ------------------------------------------------------------------------ */
@@ -6311,6 +6334,10 @@ footer .widget-listing li {
   }
   .anchor-fake {
     top: -85px;
+  }
+  .megamenu {
+    position: static !important;
+    width: 100%;
   }
 }
 
@@ -6479,6 +6506,10 @@ footer .widget-listing li {
   .controls {
     padding-top: 1rem;
   }
+  .megamenu {
+    position: static !important;
+    width: 100%;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767.99px) {
@@ -6487,6 +6518,10 @@ footer .widget-listing li {
     flex: 1 1 50%;
     max-width: 50%;
     margin-bottom: 1.5rem;
+  }
+  .megamenu {
+    position: static !important;
+    width: 100%;
   }
 }
 
@@ -6598,6 +6633,10 @@ footer .widget-listing li {
   .reviews-media .heading .col-auto {
     padding: 0 !important;
   }
+  .megamenu {
+    position: static !important;
+    width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -6614,10 +6653,14 @@ footer .widget-listing li {
   .vendor-wrap-alt .content .vendor-heading h3 {
     margin-bottom: 1rem;
   }
+  .megamenu {
+    position: static !important;
+    width: 100%;
+  }
 }
 @media (max-width: 430px) {
   header .btn {
-    display: none;
+    display: block;
   }
   .select2-container {
     z-index: 9;
@@ -6634,12 +6677,21 @@ footer .widget-listing li {
     margin-left: 5px;
     margin-right: 5px;
   }
+  .megamenu {
+    position: static !important;
+    width: 100%;
+  }
 }
 @media (max-width: 320px) {
   
   .select2-container {
     z-index: 9;
     width: 100% !important;
+  }
+
+  .megamenu {
+    position: static !important;
+    width: 100%;
   }
   
 }
@@ -6709,13 +6761,7 @@ footer .widget-listing li {
 	position: static;
 }
 
-.megamenu {
-	position: absolute !important;
-	width: 80%;
-	left: 10%;
-	right: 10%;
-	padding: 15px;
-}
+
 
 #ui-datepicker-div{
   z-index: 99 !important;

@@ -44,6 +44,9 @@
         <link href="{{ asset('front/library/datepicker/css/datepicker.css') }}" rel="stylesheet">
         <link href="{{ asset('front/library/owlcarousel/css/owl.carousel.min.css') }}" rel="stylesheet">
         <link href="{{ asset('front/library/perfect-scrollbars/perfect-scrollbar.css') }}" rel="stylesheet">
+
+        <!-- Page Level Styles -->
+        <link href="{{ asset('front/library/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
         
         <!-- Dashbaord Main Style -->
         <link href="{{ asset('front/css/dashboard.css') }}" rel="stylesheet">
@@ -371,9 +374,11 @@
     <script src="{{ asset('front/library/isotope-layout/isotope.pkgd.min.js') }}"></script> 
     <script src="{{ asset('front/library/datepicker/js/datepicker.js') }}"></script> 
     <script src="{{ asset('front/library/countdown/js/jquery.countdown.min.js') }}"></script>
-    <script src="{{ asset('front/library/perfect-scrollbars/perfect-scrollbar.min.js') }}"></script>    
+    <script src="{{ asset('front/library/perfect-scrollbars/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('front/library/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('front/js/dashboard.js') }}"></script>
     <script src="{{ asset('front/js/custom.js') }}"></script>
+
     
     @switch(request()->segment(2))
         @case('checklist')
@@ -381,14 +386,10 @@
             @break
     
         @case('budget')
-            <script src="{{ asset('front/library/apex-chart/apexcharts.js') }}"></script>
-            <script src="{{ asset('front/library/apex-chart/chart-data.js') }}"></script>
+            
             @break
 
-        @case('real-wedding')
-            <script src="{{ asset('front/library/summernote/summernote-bs4.min.js') }}"></script>
-            @break
-    
+        
         @default
             
     @endswitch

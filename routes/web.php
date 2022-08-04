@@ -54,6 +54,7 @@ Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], functio
     
     // real wedding pages
     Route::get('/real-wedding',[RealWeddingController::class, 'index']);
+    Route::post('/real-wedding/update',[RealWeddingController::class, 'update']);
 
     // profile pages 
     Route::get('/profile',[ProfileController::class, 'profile']);
