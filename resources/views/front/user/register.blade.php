@@ -62,10 +62,10 @@
                                     <div class="password-eye">
                                         <input class="form-control" placeholder="Password" type="password" name="password" id="password" value="{{ old('password') }}">
                                         <span data-toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                                        @error('password')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
                                     </div>
+                                    @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Mobile" type="number" name="mobile" id="mobile" value="{{ old('mobile') }}">

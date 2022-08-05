@@ -1667,7 +1667,7 @@ header .btn {
   padding: 0.8rem 1rem;
 }
 .top-bar-stripe .social-icons a:hover {
-  color: #fc2779;
+  color: #fff;
 }
 /*---- Header Top Bar End ---*/
 
@@ -1809,7 +1809,7 @@ header .btn {
 .navbar .dropdown-menu a,
 .navbar .dropdown-menu li > a {
   font-size: 0.85rem;
-  padding: 16px 15px;
+  padding: 10px;
   text-transform: capitalize;
   color: #565656;
   border-bottom: 1px solid #f0f0f0;

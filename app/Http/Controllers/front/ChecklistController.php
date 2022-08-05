@@ -14,9 +14,9 @@ use tools_helper;
 class ChecklistController extends Controller
 {
     
-    public function __construct(){
-        $this->middleware('is_session');
-    }
+    // public function __construct(){
+    //     $this->middleware('is_session');
+    // }
 
     public function checklist(){
 
@@ -108,4 +108,19 @@ class ChecklistController extends Controller
         
         return response()->json(['status' => $checklist->status]);
     }
+
+
+
+
+
+
+    /**===========================API Code================================================= */
+
+
+    public function all_checklist_api(Request $request){
+        return Checklist::all();
+    }
+
+
+
 }

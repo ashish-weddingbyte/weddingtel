@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 use App\Models\Guest;
-
+use Validator;
 
 class GuestContoller extends Controller
 {

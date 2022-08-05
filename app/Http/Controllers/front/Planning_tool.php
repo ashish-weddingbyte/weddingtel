@@ -13,13 +13,14 @@ use App\Models\UserDetail;
 use App\Models\Guest;
 use App\Models\Category;
 use App\Models\Budget;
+use Validator;
 
 class Planning_tool extends Controller
 {
 
-    public function __construct(){
-        $this->middleware('is_session');
-    }
+    // public function __construct(){
+    //     $this->middleware('is_session');
+    // }
 
     public function dashboard(){
         
@@ -45,5 +46,6 @@ class Planning_tool extends Controller
 
         return view('front.user.dashboard',$data);
     }
+
 
 }

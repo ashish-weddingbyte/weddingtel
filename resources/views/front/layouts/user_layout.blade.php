@@ -35,7 +35,7 @@
         <!-- <link href="assets/css/base.css" rel="stylesheet"> -->
         <link href="{{ asset('front/library/animate/animate.min.css') }}" rel="stylesheet">
         <link href="{{ asset('front/library/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('front/library/bootstrap/css/bootstrap-dropdownhover.min.css') }}" rel="stylesheet">
+        
         <link href="{{ asset('front/library/select2/css/select2.min.css') }}" rel="stylesheet">
         <link href="{{ asset('front/library/animate/animate.min.css') }}" rel="stylesheet">
         <link href="{{ asset('front/library/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
@@ -65,148 +65,7 @@
     <!-- end preloader -->
 
     <!--  WeddingDir top -->
-    <header class="fixed-top header-anim">    
-        <!-- Main Navigation Start -->
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid text-nowrap bdr-nav px-0">
-                <a href="javascript:" class="sidebar-toggle mobile" data-toggle="offcanvas">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <div class="d-flex mx-auto align-items-center">                    
-                    <a class="navbar-brand" href="index.html">
-                        <img src="{{ asset('front/images/logo.png') }}" alt="">
-                    </a> 
-                    <a href="javascript:" class="sidebar-toggle desktop" data-toggle="offcanvas">
-                        <i class="fa fa-bars"></i>
-                    </a>                   
-                </div>
-                <!-- Toggle Button Start -->
-                <button class="navbar-toggler x collapsed" type="button" data-toggle="offcanvas-mobile"
-                    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                
-                <!-- Toggle Button End -->
-    
-                <!-- Topbar Request Quote End -->
-    
-                <div class="collapse navbar-collapse offcanvas-collapse-mobile" id="navbarCollapse" data-hover="dropdown"
-                    data-animations="slideInUp slideInUp slideInUp slideInUp">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle-mob" href="index.html" id="dropdown03" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Home <i class="fa fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu dropdownhover-bottom" aria-labelledby="dropdown03">
-                                <li><a class="dropdown-item" href="index.html">Home page 1</a></li>
-                                <li><a class="dropdown-item" href="index-2.html">Home page 2</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle-mob" href="index.html" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages <i class="fa fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu dropdownhover-bottom">                                
-                                <li><a class="dropdown-item" href="about-us.html">About Us</a></li>                                
-                                <li><a class="dropdown-item" href="pricing.html">Pricing Table</a></li>
-                                <li><a class="dropdown-item" href="team-page.html">Meet Our Team</a></li>
-                                <li><a class="dropdown-item" href="error-404.html">404 Error Page</a></li>
-                                <li><a class="dropdown-item" href="faq.html">FAQ's</a></li>
-                                <li><a class="dropdown-item" href="typography.html">Typography</a></li>                                
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle-mob" href="index.html" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog <i class="fa fa-chevron-down"></i></a>    
-                            <ul class="dropdown-menu dropdownhover-bottom">
-                                <li><a class="dropdown-item" href="blog.html">Blog</a></li>
-                                <li><a class="dropdown-item" href="blog-details.html">Blog Details</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle-mob" href="index.html" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listing <i class="fa fa-chevron-down"></i></a>    
-                            <ul class="dropdown-menu dropdownhover-bottom">
-                                <li><a class="dropdown-item" href="right-side-map-listing.html">Right Side Map Listing</a></li>
-                                <li><a class="dropdown-item" href="search-result-page.html">Search Result Page</a></li>
-                                <li><a class="dropdown-item" href="listing-singular.html">Listing Singular</a></li>
-                                <li><a class="dropdown-item" href="vendor-singular.html">Vendor Singular</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle-mob" href="index.html" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Real Wedding <i class="fa fa-chevron-down"></i></a>    
-                            <ul class="dropdown-menu dropdownhover-bottom">
-                                <li><a class="dropdown-item" href="real-wedding.html">Real Wedding</a></li>
-                                <li><a class="dropdown-item" href="real-wedding-details.html">Real Wedding Details</a></li>
-                                <li><a class="dropdown-item" href="couple-website.html">Couple Website</a></li>
-                            </ul>
-                        </li>                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle-mob" href="index.html" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User Panel <i class="fa fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu dropdownhover-bottom dropdown-menu-right">
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle-mob dropdown-item dropdown-toggle-click" href="#" id="navbarDropdown" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Couple Dashboard <i class="fa fa-chevron-right"></i></a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a href="couple-dashboard.html">Dashboard</a></li>
-                                        <li><a href="couple-dashboard-todo-list.html">Checklist</a></li>
-                                        <li><a href="couple-dashboard-vendor-manager.html">Vendor Manager</a></li>
-                                        <li><a href="couple-dashboard-guest-manager.html">Guest List</a></li>
-                                        <li><a href="couple-dashboard-budget.html">Budget</a></li>
-                                        <li><a href="couple-dashboard-realwedding.html">RealWedding</a></li>
-                                        <li><a href="javascript:">Seating Chart</a></li>
-                                        <li><a href="javascript:">Registry</a></li>
-                                        <li><a href="javascript:">Chat</a></li>
-                                        <li><a href="couple-dashboard-profile.html">My Profile</a></li>
-                                        <li><a href="javascript:">Wedding Website</a></li>            
-                                        <li><a href="javascript:">Logout</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle-mob dropdown-item dropdown-toggle-click" href="#" id="navbarDropdown_vendor" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vendor Dashboard <i class="fa fa-chevron-right"></i></a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown_vendor">
-                                        <li><a href="vendor-dashboard.html">Dashboard</a></li>
-                                        <li><a href="vendor-dashboard-listing.html">My Listing</a></li>
-                                        <li><a href="vendor-dashboard-pricing.html">Pricing Table</a></li>
-                                        <li><a href="vendor-dashboard-quote.html">Request Quote</a></li>
-                                        <li><a href="vendor-dashboard-reviews.html">Reviews</a></li>
-                                        <li><a href="vendor-dashboard-invoice.html">Invoice</a></li>
-                                        <li><a href="javascript:">Chat</a></li>
-                                        <li><a href="vendor-dashboard-profile.html">My Profile</a></li>
-                                        <li><a href="javascript:">Logout</a></li>
-                                    </ul>
-                                </li>                                
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact-us.html">Contact Us</a>
-                        </li>
-                        <!-- <li class="nav-item dropdown user-profile">
-                            <a class="nav-link" href="index.html" id="dropdown04" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img src="{{ asset('front/images/dashboard/avatar_img.jpg') }}" alt="">
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdownhover-bottom dropdown-menu-right" aria-labelledby="dropdown04">
-                                <li><a class="dropdown-item" href="couple-dashboard.html">Dashboard</a></li>
-                                <li><a class="dropdown-item" href="couple-dashboard-todo-list.html">Checklist</a></li>
-                                <li><a class="dropdown-item" href="couple-dashboard-vendor-manager.html">Vendor Manager</a></li>
-                                <li><a class="dropdown-item" href="couple-dashboard-guest-manager.html">Guest List</a></li>
-                                <li><a class="dropdown-item" href="couple-dashboard-budget.html">Budget</a></li>
-                                <li><a class="dropdown-item" href="couple-dashboard-realwedding.html">RealWedding</a></li>
-                                <li><a class="dropdown-item" href="javascript:">Seating Chart</a></li>
-                                <li><a class="dropdown-item" href="javascript:">Registry</a></li>
-                                <li><a class="dropdown-item" href="javascript:">Chat</a></li>
-                                <li><a class="dropdown-item" href="couple-dashboard-profile.html">My Profile</a></li>
-                                <li><a class="dropdown-item" href="javascript:">Wedding Website</a></li>            
-                                <li><a class="dropdown-item" href="javascript:">Logout</a></li>
-                            </ul>
-                        </li> -->
-                    </ul>
-                    <!-- Main Navigation End -->
-                </div>
-            </div>
-        </nav>
-        <!-- Main Navigation End -->
-    </header>
+    @include('front.includes.user_header')
     <!--  WeddingDir top -->
 
     <main>
@@ -365,7 +224,6 @@
       ================================================== -->
     <script src="{{ asset('front/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('front/library/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('front/library/bootstrap/js/bootstrap-dropdownhover.min.js') }}"></script>
     <script src="{{ asset('front/library/owlcarousel/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('front/library/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('front/library/jquery-ui/js/jquery-ui.min.js') }}"></script>

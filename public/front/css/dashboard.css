@@ -890,7 +890,7 @@ main::after{
 .navbar-expand-lg .navbar-nav .user-profile .nav-link {
     background-color: #e3f5f5;
     border-radius: 50px;
-    padding: 0 0.8rem 0 0;
+    padding: 12px;
     font-family: "mulisemibold";
     color: #fc2779;
     top: -2px;
@@ -1900,7 +1900,7 @@ header .btn {
 .navbar .dropdown-menu a,
 .navbar .dropdown-menu li > a {
     font-size: 0.85rem;
-    padding: 16px 15px;
+    padding: 10px;
     text-transform: capitalize;
     color: #565656;
     border-bottom: 1px solid #f0f0f0;
@@ -4634,6 +4634,9 @@ footer .widget-listing li {
     .logedin-text{
         display: none;
     }
+    .megamenu{
+        width: 100% !important;
+    }
 }
 
 @media (max-width: 991.99px) {
@@ -4710,6 +4713,9 @@ footer .widget-listing li {
     .wedding-detail-wrap .wedding-details-items .dropdown-menu:before, 
     .wedding-detail-wrap .wedding-details-items .dropdown-menu:after{
         display: none;
+    }
+    .megamenu{
+        width: 100% !important ;
     }
     
 }
@@ -4789,6 +4795,9 @@ footer .widget-listing li {
         margin-right: 0;
         margin-bottom: 0.7rem;
     }
+    .megamenu{
+        width: 100% !important;
+    }
 
 }
 
@@ -4798,6 +4807,9 @@ footer .widget-listing li {
         flex: 1 1 50%;
         max-width: 50%;
         margin-bottom: 1.5rem;
+    }
+    .megamenu{
+        width: 100% !important;
     }
 }
 
@@ -4871,6 +4883,9 @@ footer .widget-listing li {
         width: 50%;
         margin-bottom: 7px;
     }
+    .megamenu{
+        width: 100% !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -4887,6 +4902,9 @@ footer .widget-listing li {
     .vendor-wrap-alt .content .vendor-heading h3 {
         margin-bottom: 1rem;
     }
+    .megamenu{
+        width: 100% !important;
+    }
 }
 @media (max-width: 430px) {
     header .btn {
@@ -4898,6 +4916,9 @@ footer .widget-listing li {
     
     .select2-container--form-light .select2-dropdown {
         left: 15px;
+    }
+    .megamenu{
+        width: 100% !important;
     }
     
 }
@@ -4920,4 +4941,20 @@ footer .widget-listing li {
         font-size: 0.875rem;
     }
 
+    .megamenu{
+        width: 100% !important;
+    }
 }
+
+
+/* added by ashish */
+.megamenu-li {
+	position: static;
+}
+.megamenu {
+    position: absolute ;
+    width: 80%;
+    left: 10%;
+    right: 10%;
+    padding: 15px;
+  }
