@@ -8,11 +8,11 @@
 <!--  Page Breadcrumbs Start -->
 <section class="breadcrumbs-page">
     <div class="container">
-        <h1>Register Bride/Groom</h1>
+        <h1>Register Vendor</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href=""><i class="fa fa-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">Register Bride/Groom</li>
+                <li class="breadcrumb-item active" aria-current="page">Register Vendor</li>
             </ol>
         </nav>
     </div>
@@ -43,7 +43,7 @@
                         
                         <div class="login-form mb-5">
 
-                            <form class="my-5" method="post" action="{{ url('/register') }}" id="register-form">
+                            <form class="my-5" method="post" action="" id="register-form">
                                 @csrf
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Full Name" type="text" name="name" id="name"  value="{{ old('name') }}">
@@ -73,20 +73,6 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                
-                                <!-- <div class="form-group">
-                                    <select class="city" id="city" name="city">
-                                        <option disabled selected>Choose City</option>
-                                        @if(!empty($citys))
-                                            @foreach($citys as $city)
-                                                <option value="{{ $city->city_id }}">{{ $city->city_name }}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                    @error('city')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div> -->
 
                                 <div class="form-group">
                                     <input class="form-control" placeholder="City" type="text" name="city" id="city"  value="{{ old('city') }}">
@@ -95,12 +81,6 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-group">
-                                    <input type="text" placeholder="Event Date" class="form-control" name="event" id="event"  data-toggle="datepicker" value="{{ old('event') }}" >
-                                    @error('event')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
                                 <div class="form-group">
                                     <p>By clicking 'Sign up', I agree to WeddingByte’s Privacy Policy and Terms of Use</p>
                                 </div>

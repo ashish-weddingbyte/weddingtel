@@ -45,6 +45,11 @@ Route::post('/register',[UserController::class,'register']);
 Route::get('vendors/{city}/{category}',[VendorController::class,'all_vendors_of_category']);
 Route::get('vendors/{city}',[VendorController::class,'all_vendors_of_category']);
 
+
+Route::view('/vendor-login','front.vendor.login_with_mobile');
+Route::view('/vendor-register','front.vendor.register');
+Route::get('/vendor-login/{from}',[Login::class,'show_vendor_login']);
+
 // Protected by group middleware 
 // Middleware for user.
 Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], function(){
@@ -96,10 +101,10 @@ Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], functio
     // vendor manager pages
 
     Route::get('/vendors',[VendorController::class, 'vendors']);
-
-
     
 });
+
+
 
 
 Route::get('/logout', function(){

@@ -4,9 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-use App\Http\Controllers\front\UserController;
-use App\Http\Controllers\front\ChecklistController;
-use App\Http\Controllers\login;
+use App\Http\Controllers\API\UserApiController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,14 +17,34 @@ use App\Http\Controllers\login;
 |
 */
 
-Route::post('/register',[UserController::class,'register_api']);
-Route::post('/verify_otp',[UserController::class,'verify_otp_api']);
-
-Route::post('/login_with_email',[login::class,'login_with_email_api']);
-Route::post('/login_with_otp',[login::class,'login_with_otp_api']);
-
-
-//  protected route for logined user.
-// Route::middleware('auth:sanctum')->group( function () {
-//     Route::get('/all_checklists',[ChecklistController::class,'all_checklist_api']);
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
 // });
+
+
+// Route::post('register', [AuthController::class, 'register']);
+// Route::post('login', [AuthController::class, 'login']);
+
+// Route::group(['middleware' => ['auth:sanctum']], function () {
+//     Route::post('profile', [AuthController::class, 'profile']);
+//     Route::post('logout', [AuthController::class, 'logout']);
+//     Route::get('me', function(){
+//         return Auth::id();
+//     });
+// });
+
+
+Route::post('register', [UserApiController::class, 'register']);
+Route::post('login_with_email', [UserApiController::class, 'login_with_email']);
+Route::post('login_with_otp_api', [UserApiController::class, 'login_with_otp_api']);
+
+
+// procted route with ap token.
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::post('verify_otp_api', [UserApiController::class, 'verify_otp_api']);
+
+    Route::post('logout', [UserApiController::class, 'logout']);
+
+    Route::get('profile',[UserApiController::class, 'profile']);
+});

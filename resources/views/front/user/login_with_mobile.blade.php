@@ -46,7 +46,7 @@
                                 </div>
                             @endif
                             <h3>Log in to your account</h3>
-                            <p>Not a member yet? <a href="{{url('/register') }}">Join now</a></p>                       
+                            <p>Not a User yet? <a href="{{url('/register') }}">Join now</a></p>                       
                         </div> 
                         
                         <div class="login-form mb-4">
@@ -76,7 +76,7 @@
                         <hr>
                         <div class="section-title mt-4 text-center">
                             <h3>Are you a vendor?</h3>
-                            <a href="#" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
+                            <a href="{{ url('/vendor-login') }}" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
                         </div>
                     </div>
                 </div>

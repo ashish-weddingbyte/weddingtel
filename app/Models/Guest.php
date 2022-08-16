@@ -9,5 +9,5 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Guest extends Model
 {
-    use HasFactor, HasApiTokens;
+    use HasFactory, HasApiTokens;
 }

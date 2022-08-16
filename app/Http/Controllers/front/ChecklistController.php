@@ -111,16 +111,4 @@ class ChecklistController extends Controller
 
 
 
-
-
-
-    /**===========================API Code================================================= */
-
-
-    public function all_checklist_api(Request $request){
-        return Checklist::all();
-    }
-
-
-
 }

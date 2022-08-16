@@ -8,11 +8,11 @@
 <!--  Page Breadcrumbs Start -->
 <section class="breadcrumbs-page">
     <div class="container">
-        <h1>Login Bride/Groom</h1>
+        <h1>Reset Password</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href=""><i class="fa fa-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">Login Bride/Groom</li>
+                <li class="breadcrumb-item active" aria-current="page">Reset Password</li>
             </ol>
         </nav>
     </div>
@@ -33,64 +33,56 @@
                     <div class="p-4">
                         <?php 
                             $from = Request::segment(2);
+                            $id = Request::segment(3);
                         ?>
-                        
-                        <div class="section-title text-right">
-                            <a href="{{ url('/login/o') }}">Login With OTP <i class="fa fa-mobile"></i></a>
-                        </div>
 
-                        
                         <div class="section-title my-4 text-center">
                             @if(Session::has('message'))
                                 <div class="alert {{session('class')}}">
                                     <span>{{session('message')}}</sapn>
                                 </div>
                             @endif
-                            <h3>Log in to your account</h3>
-                            <p>Not a User yet? <a href="{{url('/register') }}">Join now</a></p>                       
+                            <h3>Reset Password</h3>                      
                         </div> 
                         
                         <div class="login-form mb-4">
 
-                            <form class="my-5"  action="{{ url('login') }}" method="post"  id="login-form-e">
+                            <form class="my-5"  action="{{ url('reset-password') }}" method="post"  id="login-form-e">
                                 @csrf
                                 
                                 <div class="email-section">
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Email ID" type="email" name="email" id="email" value="{{ old('email') }}" >
-                                        @error('email')
+                                        <input class="form-control" placeholder="Password" type="password" name="password" id="password" >
+                                        @error('password')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         
                                     </div>
                                     <div class="form-group">
-                                        <div class="password-eye">
-                                            <input class="form-control" placeholder="Password" type="password" name="password" id="password" value="{{ old('password') }}">
-                                            <span data-toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                                        </div>
-                                        @error('password')
+                                        <input class="form-control" placeholder="Confirm Password" type="password" name="confirm_password" id="confirm_password" >
+                                        @error('confirm_password')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    
                                 </div>
                                 
                                 <div class="form-group">
-                                    <input type="hidden" name="login-type" id="login-type" value="{{ $from }}">
-                                    
+                                    <input type="hidden" name="from" value="{{ $from }}">
+                                    <input type="hidden" name="user_id" value="{{ $id }}">
                                     <button type="submit" class="btn btn-default btn-block">Login</button>
                                 </div>
                             </form>
                         </div>
 
-                        <div class=" section-title text-center">
-                            <a href="{{ url('/forget-password') }}">Forgot your password?</a>
-                        </div>
+                        <div class="section-title my-4 text-center">
+                            <h3>Log in to your account</h3>
+                            <p><a href="{{url('/login') }}">Login</a></p>                       
+                        </div> 
                         <hr>
 
                         <div class="section-title mt-4 text-center">
                             <h3>Are you a vendor?</h3>
-                            <a href="{{ url('/vendor-login') }}" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
+                            <a href="#" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
                         </div>
                     </div>
                 </div>

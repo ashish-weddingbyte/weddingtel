@@ -82,7 +82,7 @@
 
                         <div class="section-title mt-4 text-center">
                             <h3>Are you a vendor?</h3>
-                            <a href="#" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
+                            <a href="{{ url('vendor-login') }}" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
                         </div>
                     </div>
                 </div>

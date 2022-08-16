@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use App\Models\UserDetail;
@@ -127,7 +128,7 @@ class UserController extends Controller
                     return redirect("reset-password/f/".$user_id);
                 }
 
-                if($from  == 'l'){
+                if($from  == 'l' || $from == 'r'){
                     $user = User::find($user_id);
                     Session::put('name', $user->name);
                     Session::put('email', $user->email);
@@ -202,170 +203,5 @@ class UserController extends Controller
             return redirect("reset-password/f/".$id);
         }
     }
-
-
-
-
-    /**================================== API Code ================================*/
-
-
-
-
-
-    public function register_api(Request $request){
-        $validator = Validator::make($request->all(),[
-            'name' => 'required',
-            'email' => 'required|unique:users,email',
-            'password'  =>'required|min:6',
-            'mobile' => 'required|max:10|min:10|unique:users,mobile',
-            'city'  =>  'required',
-            'event' =>  'required|date',
-        ]);
-        
-        if($validator->fails()){
-            $respose = [
-                'status'    =>  "Failed",
-                'message'   =>  $validator->errors()
-            ];
-            return response()->json($respose,401);
-        }
-
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->mobile = $request->input('mobile');
-        $user->status = '0';
-        $user->user_type = 'user';
-
-        
-        if ($user->save()) {
-
-            $token =  $user->createToken('WeddingByte')->plainTextToken;
-
-            $lastId = $user->id;
-
-            $user_details = new UserDetail;
-            $user_details->user_id = $lastId;
-            $user_details->event = date('Y-m-d',strtotime($request->event));
-            $user_details->city  = $request->city;
-            $user_details->save();
-
-
-            // add default checklist
-            tools_helper::add_default_checklist($lastId);
-
-
-            // planning tool info
-            $planning_tool = new Planning_tool;
-            $planning_tool ->user_id= $lastId;
-            $planning_tool->save();
-
-            // add budget of user
-            $budget = new Budget;
-            $budget->user_id = $lastId;
-            $budget->status = '0';
-            $budget->save();
-
-
-            $otp = rand(111111,999999);
-            $message = "Your One Time Password for WeddingByte.com account is $otp.Plase do not share this OTP with anyone.\nThanks";
-            $otp_send_status = otp_helper::send_otp($user->mobile,$message);
-            // $otp_send_status ="";
-
-            if($otp_send_status){
-
-                // send_otp($otp,$message);
-                $otp_model = new Otp;
-                $otp_model->user_id = $lastId;
-                $otp_model->otp = $otp;
-                $otp_model->status = '1';
-                
-                $otp_model->save();
-
-                $respose = [
-                    'status'    =>  "Success",
-                    'message'   =>  "User Register Successfully! Enter OTP to verify Mobile Number.",
-                    'token'     =>  $token
-                ];
-                return response()->json($respose,200);
-            }else{
-                $respose = [
-                    'status'    =>  "Success",
-                    'message'   =>  "User Register Successfully! Somthing Went Wrong in OTP Please Use Email ID/Password to Login.",
-                    'token'     =>  $token
-                ];
-                return response()->json($respose,200);
-            }
-        }else{
-            $respose = [
-                'status'    =>  "Failed",
-                'message'   =>  "Somthing Went Wrong"
-            ];
-            return response()->json($respose,401);
-        }
-    }
-
-
-    public function verify_otp_api(Request $request){
-        $validator = Validator::make($request->all(),[
-            'otp' => 'required|max:6|min:6',
-            'user_id'   =>  'required'
-        ]);
-
-
-        if($validator->fails()){
-            $respose = [
-                'status'    =>  "Failed",
-                'message'   =>  $validator->errors()
-            ];
-            return response()->json($respose,401);
-        }
-        $otp = $request->otp;
-        $user_id = $request->user_id;
-    
-        $otp_details = Otp::where('user_id',$user_id)->first();
-
-        if($otp_details){
-
-            if($otp_details->status == '0'){
-                
-                $respose = [
-                    'status'    =>  "Failed",
-                    'message'   =>  "OTP is Expired!"
-                ];
-                return response()->json($respose,401);
-
-            }else{
-                // otp verified succesfully
-                if($otp == $otp_details->otp){
-
-                    // mark mobile verified
-                    $user_details = UserDetail::where('user_id',$user_id)->first();
-                    $user_details->is_mobile_verified = '1';
-                    $user_details->save();
-
-                    $token =  $user_details->createToken('WeddingByte')->plainTextToken;
-
-                    Session::flash('message', 'Login to Dashboard Successful!');
-                    $respose = [
-                        'status'    =>  "Success",
-                        'message'   =>  "Login to Dashboard Successful!",
-                        'token'     =>  $token
-                    ];
-                    return response()->json($respose,200);
-                    
-                }else{
-                    $respose = [
-                        'status'    =>  "Failed",
-                        'message'   =>  "OTP is Invalid!"
-                    ];
-                    return response()->json($respose,401);
-                }
-            }
-        }
-
-    }
-
 
 }

@@ -8,11 +8,11 @@
 <!--  Page Breadcrumbs Start -->
 <section class="breadcrumbs-page">
     <div class="container">
-        <h1>Login Bride/Groom</h1>
+        <h1>Login Vendor</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href=""><i class="fa fa-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">Login Bride/Groom</li>
+                <li class="breadcrumb-item active" aria-current="page">Login Vendor</li>
             </ol>
         </nav>
     </div>
@@ -46,13 +46,13 @@
                                     <span>{{session('message')}}</sapn>
                                 </div>
                             @endif
-                            <h3>Log in to your account</h3>
-                            <p>Not a User yet? <a href="{{url('/register') }}">Join now</a></p>                       
+                            <h3>Log in to your Vendor account</h3>
+                            <p>Not a member yet? <a href="{{url('/vendor-register') }}">Join now</a></p>                       
                         </div> 
                         
                         <div class="login-form mb-4">
 
-                            <form class="my-5"  action="{{ url('login') }}" method="post"  id="login-form-e">
+                            <form class="my-5"  action="" method="post"  id="login-form-e">
                                 @csrf
                                 
                                 <div class="email-section">
@@ -90,7 +90,7 @@
 
                         <div class="section-title mt-4 text-center">
                             <h3>Are you a vendor?</h3>
-                            <a href="{{ url('/vendor-login') }}" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
+                            <a href="{{ url('vendor-login') }}" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
                         </div>
                     </div>
                 </div>
