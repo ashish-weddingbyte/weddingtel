@@ -269,7 +269,7 @@ class UserApiController extends Controller
 
     // Checklist API functions
 
-    public function checklist(){
+    public function checklist_api(){
 
         $user_id = Auth::id();
 
@@ -288,7 +288,7 @@ class UserApiController extends Controller
         return view('front.user.checklist',$data);
     }
 
-    public function add_checklist(Request $request){
+    public function add_checklist_api(Request $request){
         $request->validate([
             'title' => 'required',
             'date'  =>  'required'
@@ -310,7 +310,7 @@ class UserApiController extends Controller
     }
 
 
-    public function edit_checklist(Request $request){
+    public function edit_checklist_api(Request $request){
         $request->validate([
             'title' => 'required',
             'date'  =>  'required',
@@ -330,7 +330,7 @@ class UserApiController extends Controller
         
     }
 
-    public function delete_checklist(Request $request){
+    public function delete_checklist_api(Request $request){
         $request->validate([
             'task_id'=>  'required'
         ]);
@@ -344,7 +344,7 @@ class UserApiController extends Controller
         
     }
 
-    public function status_of_checklist(Request $request){
+    public function status_of_checklist_api(Request $request){
         $request->validate([
             'id'   =>  'required',
             'status'    =>  'required'
@@ -362,7 +362,7 @@ class UserApiController extends Controller
 
 
     // guestlist api
-    public function guestlist(){
+    public function guestlist_api(){
 
         $user_id = Auth::id();
 
@@ -376,7 +376,7 @@ class UserApiController extends Controller
         return view('front.user.guestlist',$data);
     }
 
-    public function add_guestlist(Request $request){
+    public function add_guestlist_api(Request $request){
         $request->validate([
             'name' => 'required',
             'group'=>  'required'
@@ -409,7 +409,7 @@ class UserApiController extends Controller
         return response()->json(['success' => 'Guest Added Successfully!']);
     }
 
-    public function edit_guestlist(Request $request){
+    public function edit_guestlist_api(Request $request){
         $request->validate([
             'name' => 'required',
             'group'=>  'required'
@@ -441,7 +441,7 @@ class UserApiController extends Controller
         return response()->json(['success' => 'Guest Edit Successfully!']);
     }
 
-    public function delete_guestlist(Request $request){
+    public function delete_guestlist_api(Request $request){
         $request->validate([
             'guest_id'=>  'required'
         ]);
@@ -457,7 +457,7 @@ class UserApiController extends Controller
 
     
     // budget api
-    public function budget(){
+    public function budget_api(){
         $user_id = Auth::id();
         $data['budget'] = Budget::find($user_id);
 
@@ -475,7 +475,7 @@ class UserApiController extends Controller
 
 
 
-    public function add_budget_category(Request $request){
+    public function add_budget_category_api(Request $request){
         $request->validate([
             'category_name' => 'required',
         ]);
@@ -507,7 +507,7 @@ class UserApiController extends Controller
     }
 
 
-    public function edit_budget_category(Request $request){
+    public function edit_budget_category_api(Request $request){
         $request->validate([
             'estimated_cost' => 'required',
             'category_id' => 'required',
@@ -552,7 +552,7 @@ class UserApiController extends Controller
         return response()->json(['success' => 'Budget Category Edit Successfully!']);
     }
 
-    public function delete_budget_category(Request $request){
+    public function delete_budget_category_api(Request $request){
         $request->validate([
             'category_id' => 'required',
         ]);
@@ -588,7 +588,7 @@ class UserApiController extends Controller
 
 
 
-    public function edit_estimated_cost(Request $request){
+    public function edit_estimated_cost_api(Request $request){
         $request->validate([
             'estimated_cost' => 'required'
         ]);
@@ -616,7 +616,7 @@ class UserApiController extends Controller
 
 
 
-    public function add_budget_expense(Request $request){
+    public function add_budget_expense_api(Request $request){
         $request->validate([
             'expense_name' => 'required',
             'estimated_cost' => 'required',
@@ -670,7 +670,7 @@ class UserApiController extends Controller
 
 
 
-    public function edit_budget_expense(Request $request){
+    public function edit_budget_expense_api(Request $request){
         $request->validate([
             'expense_name' => 'required',
             'estimated_cost' => 'required',
@@ -715,7 +715,7 @@ class UserApiController extends Controller
     }
 
 
-    public function delete_budget_expense(Request $request){
+    public function delete_budget_expense_api(Request $request){
         $request->validate([
             'expense_id' => 'required',
             'category_id' => 'required',
@@ -758,7 +758,7 @@ class UserApiController extends Controller
     
 
 
-    public function profile(){
+    public function profile_api(){
 
         $user_id = Auth::id();
         
@@ -770,7 +770,7 @@ class UserApiController extends Controller
     }
 
 
-    public function change_password(Request $request){
+    public function change_password_api(Request $request){
         $request->validate([
             'old_password'  =>'required|min:6',
             'new_password'  =>'required|min:6',
@@ -809,7 +809,7 @@ class UserApiController extends Controller
     }
 
 
-    public function update_details(Request $request){
+    public function update_details_api(Request $request){
         $request->validate([
             'profile'  =>'image|mimes:jpg,png,jpeg|max:1024',
         ]);
@@ -858,7 +858,7 @@ class UserApiController extends Controller
         
     }
 
-    public function wedding_info(Request $request){
+    public function wedding_info_api(Request $request){
         $request->validate([
             'profile'  =>'image|mimes:jpg,png,jpeg|max:1024',
             'partner_profile'  =>'image|mimes:jpg,png,jpeg|max:1024',

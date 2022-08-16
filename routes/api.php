@@ -46,9 +46,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('logout', [UserApiController::class, 'logout']);
 
-    Route::get('profile',[UserApiController::class, 'profile']);
-
-
     // checklist pages api
     Route::get('/checklist',[UserApiController::class, 'checklist_api']);
     Route::post('/checklist/add', [UserApiController::class,'add_checklist_api']);
@@ -58,35 +55,35 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
     // guest pages api
-    Route::get('/guestlist',[UserApiController::class, 'guestlist']);
-    Route::post('/guestlist/add', [UserApiController::class,'add_guestlist']);
-    Route::post('/guestlist/edit/{id}', [UserApiController::class,'edit_guestlist']);
-    Route::post('/guestlist/delete/{id}', [UserApiController::class,'delete_guestlist']);
+    Route::get('/guestlist',[UserApiController::class, 'guestlist_api']);
+    Route::post('/guestlist/add', [UserApiController::class,'add_guestlist_api']);
+    Route::post('/guestlist/edit/{id}', [UserApiController::class,'edit_guestlist_api']);
+    Route::post('/guestlist/delete/{id}', [UserApiController::class,'delete_guestlist_api']);
 
     // budget pages
-    Route::get('/budget',[UserApiController::class, 'budget']);
+    Route::get('/budget',[UserApiController::class, 'budget_api']);
 
-    Route::post('/budget/budget-category/add',[UserApiController::class, 'add_budget_category']);
-    Route::post('/budget/budget-category/edit/{id}',[UserApiController::class, 'edit_budget_category']);
-    Route::post('/budget/budget-category/delete/{id}',[UserApiController::class, 'delete_budget_category']);
-    Route::post('/budget/estimated-cost',[UserApiController::class,'edit_estimated_cost']);
+    Route::post('/budget/budget-category/add',[UserApiController::class, 'add_budget_category_api']);
+    Route::post('/budget/budget-category/edit/{id}',[UserApiController::class, 'edit_budget_category_api']);
+    Route::post('/budget/budget-category/delete/{id}',[UserApiController::class, 'delete_budget_category_api']);
+    Route::post('/budget/estimated-cost',[UserApiController::class,'edit_estimated_cost_api']);
 
-    Route::post('/budget/budget-expense/add',[UserApiController::class, 'add_budget_expense']);
-    Route::post('/budget/budget-expense/edit/{id}',[UserApiController::class, 'edit_budget_expense']);
-    Route::post('/budget/budget-expense/delete/{id}',[UserApiController::class, 'delete_budget_expense']);
+    Route::post('/budget/budget-expense/add',[UserApiController::class, 'add_budget_expense_api']);
+    Route::post('/budget/budget-expense/edit/{id}',[UserApiController::class, 'edit_budget_expense_api']);
+    Route::post('/budget/budget-expense/delete/{id}',[UserApiController::class, 'delete_budget_expense_api']);
 
     // vendors api
-    Route::get('/vendors',[UserApiController::class, 'vendors']);
+    Route::get('/vendors',[UserApiController::class, 'vendors_api']);
 
     // real wedding pages
-    Route::get('/real-wedding',[UserApiController::class, 'index']);
-    Route::post('/real-wedding/update',[UserApiController::class, 'update']);
+    Route::get('/real-wedding',[UserApiController::class, 'index_api']);
+    Route::post('/real-wedding/update',[UserApiController::class, 'update_api']);
 
     // profile pages 
-    Route::get('/profile',[UserApiController::class, 'profile']);
-    Route::post('/profile/change-password',[UserApiController::class,'change_password']);
-    Route::post('/profile/update',[UserApiController::class,'update_details']);
-    Route::post('/profile/wedding-info',[UserApiController::class,'wedding_info']);
+    Route::get('/profile',[UserApiController::class, 'profile_api']);
+    Route::post('/profile/change-password',[UserApiController::class,'change_password_api']);
+    Route::post('/profile/update',[UserApiController::class,'update_details_api']);
+    Route::post('/profile/wedding-info',[UserApiController::class,'wedding_info_api']);
 
 
     Route::post('logout', [UserApiController::class, 'logout']);
