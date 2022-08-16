@@ -14,9 +14,9 @@ use tools_helper;
 class ChecklistController extends Controller
 {
     
-    // public function __construct(){
-    //     $this->middleware('is_session');
-    // }
+    public function __construct(){
+        $this->middleware('is_session');
+    }
 
     public function checklist(){
 
