@@ -43,8 +43,9 @@ Route::post('login_with_otp', [UserApiController::class, 'login_with_otp_api']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('verify_otp', [UserApiController::class, 'verify_otp_api']);
-
     Route::post('logout', [UserApiController::class, 'logout']);
+
+    Route::get('/user_data',[UserApiController::class, 'user_data']);
 
     // checklist pages api
     Route::get('/checklist',[UserApiController::class, 'checklist_api']);
