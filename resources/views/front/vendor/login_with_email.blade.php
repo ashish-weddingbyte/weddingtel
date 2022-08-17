@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row login-section">
                 <div class="col-lg-5  p-0" id="login-image">
-                    <img src="{{ asset('front/images/bg_login.jpg') }}" class="" alt="">                    
+                    <img src="{{ asset('front/images/bg_vendor_login.jpg') }}" class="" alt="">                    
                 </div>
                 <div class="col-md-12 col-lg-7">
                     <div class="p-4">
@@ -36,7 +36,7 @@
                         ?>
                         
                         <div class="section-title text-right">
-                            <a href="{{ url('/login/o') }}">Login With OTP <i class="fa fa-mobile"></i></a>
+                            <a href="{{ url('/vendor-login/o') }}">Login With OTP <i class="fa fa-mobile"></i></a>
                         </div>
 
                         
@@ -52,7 +52,7 @@
                         
                         <div class="login-form mb-4">
 
-                            <form class="my-5"  action="" method="post"  id="login-form-e">
+                            <form class="my-5"  action="{{ url('/vendor-login') }}" method="post"  id="login-form-e">
                                 @csrf
                                 
                                 <div class="email-section">

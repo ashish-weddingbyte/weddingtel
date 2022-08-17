@@ -24,14 +24,14 @@
         },
         
         select_dark: function () {
-        if ($('.form-dark-select').length) {
+            if ($('form-dark-select').length) {
 
-            $('.form-dark-select').select2({
-                width: 'resolve',
-                theme: "form-dark",
-                minimumResultsForSearch: -1
-            });
-        }
+                $('form-dark-select').select2({
+                    width: 'resolve',
+                    theme: "form-dark",
+                    minimumResultsForSearch: -1
+                });
+            }
         },
         
         select_light: function () {

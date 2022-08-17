@@ -48,4 +48,9 @@ class Planning_tool extends Controller
     }
 
 
+    public function vendor_dashboard(){
+        return view('front.vendor.dashboard');
+    }
+
+
 }

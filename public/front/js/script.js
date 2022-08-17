@@ -24,9 +24,9 @@
         },
         
         select_dark: function () {
-            if ($('select').length) {
+            if ($('form-dark-select').length) {
 
-                $('select').select2({
+                $('form-dark-select').select2({
                     width: 'resolve',
                     theme: "form-dark",
                     minimumResultsForSearch: -1
@@ -52,6 +52,17 @@
                     width: 'resolve',
                     theme: "form-light",
                     placeholder: "Choose Vendor Type"
+                });
+            }
+        },
+
+        select_category: function () {
+            if ($('.select-category').length) {
+
+                $('.select-category').select2({
+                    width: 'resolve',
+                    theme: "form-dark",
+                    placeholder: "Choose Category Type"
                 });
             }
         },
@@ -691,7 +702,8 @@
             this.vendor_video();
             this.wedding_listing_single();     
             this.slider_home();
-            this.select_home_1();      
+            this.select_home_1(); 
+            this.select_category();     
             this.select_home_2(); 
             this.slider_catgories();     
             this.home_slider_listing();

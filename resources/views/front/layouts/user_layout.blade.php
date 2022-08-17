@@ -76,7 +76,7 @@
                     $user = App\Models\User::find($user_id);
                     $details = App\Models\UserDetail::where('user_id',$user_id)->first();
                 ?>
-                @if($details->profile)
+                @if($details)
                     <img src="{{ asset('storage/upload/user/profile/'.$details->profile) }}" alt="">
                 @else
                     <img src="{{ asset('front/default_image/default_groom.png') }}" alt="">

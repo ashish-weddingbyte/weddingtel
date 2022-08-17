@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\Otp;
@@ -261,10 +262,6 @@ class UserApiController extends Controller
 
     }
 
-
-    public function logout(){
-
-    }
 
     public function user_data(){
         return Auth::user();
@@ -615,7 +612,7 @@ class UserApiController extends Controller
     public function budget_api(){
         $user_id = Auth::id();
 
-        if($user){
+        if($user_id){
 
             $data['budget'] = Budget::find($user_id);
 
@@ -661,7 +658,7 @@ class UserApiController extends Controller
 
         $user_id = Auth::id();
 
-        if($user){
+        if($user_id){
             $budget_category = new BudgetCategory;
             $budget_category->user_id = $user_id;
             $budget_category->name = $request->category_name;
@@ -674,7 +671,7 @@ class UserApiController extends Controller
             $category_expense = new BudgetCategoryExpense;
             $category_expense->user_id = $user_id;
             $category_expense->budget_category_id = $lastCategoryId;
-            $category_expense->estimated_cost = $request->estimated_cost;
+            $category_expense->estimated_cost = $request->estimated_cost?$request->estimated_cost:0;
             $category_expense->pending = 0;
             $category_expense->final_cost = 0;
             $category_expense->status = '1';
@@ -719,7 +716,7 @@ class UserApiController extends Controller
 
         $user_id = Auth::id();
 
-            if($user_id){
+        if($user_id){
 
             $budget_category = BudgetCategory::find($category_id);
 
@@ -744,6 +741,7 @@ class UserApiController extends Controller
                 $category_expense->status = '1';
                 $category_expense->save();
             }
+            
             $respose = [
                 'status'    =>  true,
                 'message'   =>  "Budget Category Edit Successfully!",
@@ -855,12 +853,12 @@ class UserApiController extends Controller
     }
 
 
-
     public function add_budget_expense_api(Request $request){
         $validator = Validator::make($request->all(),[
             'expense_name' => 'required',
             'estimated_cost' => 'required',
             'amount_paid' => 'required',
+            'category_id'   =>  'required'
         ]);
 
         if($validator->fails()){
@@ -932,7 +930,8 @@ class UserApiController extends Controller
             'expense_name' => 'required',
             'estimated_cost' => 'required',
             'amount_paid' => 'required',
-            'expense_id'    =>  'required'
+            'expense_id'    =>  'required',
+            'category_id'    =>  'required'
         ]);
 
         if($validator->fails()){
@@ -1165,7 +1164,7 @@ class UserApiController extends Controller
 
             if ($request->hasFile('profile')) {
 
-                Storage::delete($detals->profile);
+                // Storage::delete($detals->profile);
                 $image_name  =  $request->file('profile')->getClientOriginalName();
                 $detals->profile = $image_name;
                 $request->file('profile')->storeAs('public/upload/user/profile',$image_name);
@@ -1252,5 +1251,9 @@ class UserApiController extends Controller
             return response()->json($respose,401);
         }
 
+    }
+
+    public function logout(){
+        Auth::user()->tokens()->delete();
     }
 }

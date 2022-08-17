@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row login-section">
                 <div class="col-lg-5  p-0" id="login-image">
-                    <img src="{{ asset('front/images/bg_login.jpg') }}" class="" alt="">                    
+                    <img src="{{ asset('front/images/bg_vendor_login.jpg') }}" class="" alt="">                    
                 </div>
                 <div class="col-md-12 col-lg-7 ">
                     <div class="p-4">
@@ -38,12 +38,12 @@
                                 </div>
                             @endif
                             <h3>Sign up with your email</h3>
-                            <p>Already have an account? <a href="{{url('/login') }}">Login</a></p>                       
+                            <p>Already have an account? <a href="{{url('/vendor-login') }}">Login</a></p>                       
                         </div> 
                         
                         <div class="login-form mb-5">
 
-                            <form class="my-5" method="post" action="" id="register-form">
+                            <form class="my-5" method="post" action="{{ url('/vendor-register') }}" id="register-form">
                                 @csrf
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Full Name" type="text" name="name" id="name"  value="{{ old('name') }}">
@@ -74,6 +74,20 @@
                                     @enderror
                                 </div>
 
+                                <div class="form-group">
+                                    <?php
+                                        $categories = App\Models\Category::all();
+                                    ?>
+                                    <select name="category" id="category" class="form-control">
+                                        <option value="0">Select Category</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{$category->id}}">{{ $category->category_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('category')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="City" type="text" name="city" id="city"  value="{{ old('city') }}">
                                     @error('city')

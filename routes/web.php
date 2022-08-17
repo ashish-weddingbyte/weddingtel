@@ -49,6 +49,11 @@ Route::get('vendors/{city}',[VendorController::class,'all_vendors_of_category'])
 Route::view('/vendor-login','front.vendor.login_with_mobile');
 Route::view('/vendor-register','front.vendor.register');
 Route::get('/vendor-login/{from}',[Login::class,'show_vendor_login']);
+Route::post('/vendor-login',[login::class,'vendor_login']);
+Route::post('/vendor-register',[UserController::class,'vendor_register']);
+
+
+Route::get('/vendor/dashboard',[Planning_tool::class, 'vendor_dashboard']);
 
 // Protected by group middleware 
 // Middleware for user.

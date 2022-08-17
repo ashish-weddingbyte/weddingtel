@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use App\Models\UserDetail;
+use App\Models\VendorDetail;
+use App\Models\SocialLink;
 use App\Models\Otp;
 use App\Models\Planning_tool;
 use App\Models\Budget;
@@ -21,6 +23,7 @@ use Validator;
 class UserController extends Controller
 {
 
+    /**================================== Bride/Groom Code Start Here====================== */
     public function register(Request $request){
         $request->validate([
             'name' => 'required',
@@ -203,5 +206,87 @@ class UserController extends Controller
             return redirect("reset-password/f/".$id);
         }
     }
+
+
+    /**================================== Bride/Groom Code End Here====================== */
+
+
+    /**=======================Vendor Code Start Here =================================== */
+
+    public function vendor_register(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'password'  =>'required|min:6',
+            'mobile' => 'required|max:10|min:10|unique:users,mobile',
+            'category'  =>  'required|not_in:0',
+            'city'  =>  'required',
+        ]);
+    
+        
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->mobile = $request->input('mobile');
+        $user->status = '0';
+        $user->user_type = 'vendor';
+
+        
+        if ($user->save()) {
+            $lastId = $user->id;
+
+            // add vendor details
+            $vendor_details = new VendorDetail;
+            $vendor_details->user_id = $lastId;
+            $vendor_details->category_id = $request->category_id;
+            $vendor_details->city  = $request->city;
+            $vendor_details->save();
+
+
+           
+            // Add Social Links
+            $social = new SocialLink;
+            $social->user_id= $lastId;
+            $social->facebook=Null;
+            $social->youtube=NULL;
+            $social->instagram=Null;
+            $social->twitter=Null;
+            $social->save();
+
+
+
+            $otp = rand(111111,999999);
+            $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Plase do not share this OTP with anyone.\nThanks";
+            $otp_send_status = otp_helper::send_otp($user->mobile,$message);
+            // $otp_send_status ="";
+
+            if($otp_send_status){
+
+                // send_otp($otp,$message);
+                $otp_model = new Otp;
+                $otp_model->user_id = $lastId;
+                $otp_model->otp = $otp;
+                $otp_model->status = '1';
+                
+                $otp_model->save();
+
+                Session::flash('message', 'Vendor Register Successfully! Enter OTP to verify Mobile Number.');
+                Session::flash('class', 'alert-success');
+            }else{
+                Session::flash('message', 'Vendor Register Successfully! Somthing Went Wrong in OTP Please Use Email ID/Password to Login');
+                Session::flash('class', 'alert-danger');
+            }
+
+            // return redirect('otp/r/'.$lastId);
+
+        }else{
+            Session::flash('message', 'Somthing Went Wrong!');
+            Session::flash('class', 'alert-danger');
+            return redirect('register');
+        }
+    }
+
+    /**=======================Vendor Code Start Here =================================== */
 
 }
