@@ -39,7 +39,7 @@
                         ?>
                         @if($from == 'r')
                             <div class="text-right section-title">
-                                <a href="{{ url('/login/e') }}">Skip & Login With Email <i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
+                                <a href="{{ url('/vendor-login/e') }}">Skip & Login With Email <i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
                             </div>
                         @endif
 
@@ -51,12 +51,12 @@
                             @endif
                             <h3>Verify OTP</h3>
                             <p>OTP Send to @if($user->mobile) {{$user->mobile}} @endif</p>
-                            <p>Change Mobile Number  <a href="{{url('/login') }}">Re-Enter</a></p>                       
+                            <p>Change Mobile Number  <a href="{{url('/vendor-login') }}">Re-Enter</a></p>                       
                         </div> 
                         
                         <div class="login-form mb-5">
 
-                            <form class="my-5" method="post" action="{{ url('/verify-otp') }}" id="otp-form">
+                            <form class="my-5" method="post" action="{{ url('/vendor-verify-otp') }}" id="otp-form">
                                 @csrf
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Enter OTP" type="number" name="otp" id="otp" value="{{ old('otp') }}">
@@ -76,9 +76,9 @@
                             </form>
                         </div>
 
-                        <div class="section-title mt-5 text-center">
-                            <h3>Are you a vendor?</h3>
-                            <a href="#" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
+                        <div class="mt-4 text-center">
+                            <h3>Are you a Bride/Groom</h3>
+                            <a href="{{ url('/login') }}" class="btn btn-primary btn-rounded ">User Login</a>                     
                         </div>
                     </div>
                 </div>

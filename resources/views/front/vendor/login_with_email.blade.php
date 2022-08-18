@@ -84,13 +84,13 @@
                         </div>
 
                         <div class=" section-title text-center">
-                            <a href="{{ url('/forget-password') }}">Forgot your password?</a>
+                            <a href="{{ url('/vendor-forget-password') }}">Forgot your password?</a>
                         </div>
                         <hr>
 
-                        <div class="section-title mt-4 text-center">
-                            <h3>Are you a vendor?</h3>
-                            <a href="{{ url('vendor-login') }}" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
+                        <div class="mt-4 text-center">
+                            <h3>Are you a Bride/Groom</h3>
+                            <a href="{{ url('/login') }}" class="btn btn-primary btn-rounded ">User Login</a>                     
                         </div>
                     </div>
                 </div>

@@ -126,7 +126,7 @@ class login extends Controller
             $user_id = $user->id;
 
             $otp = rand(111111,999999);
-            $message = "OTP is $otp";
+            $message = "Your One Time Password for WeddingByte.com Account is $otp. Plase do not share this OTP with anyone.\nThanks";
             
             $otp_send_status = otp_helper::send_otp($user->mobile,$message);
 
@@ -178,51 +178,51 @@ class login extends Controller
         $login_type = $request->input('login-type');
 
         // login with otp
-        // if($login_type  === 'o'){
-        //     $validator = $request->validate([
-        //         'mobile' => 'required|max:10|min:10',
-        //     ]);
+        if($login_type  === 'o'){
+            $validator = $request->validate([
+                'mobile' => 'required|max:10|min:10',
+            ]);
 
-        //     $user = User::where('mobile',$request->mobile)->first();
+            $user = User::where('mobile',$request->mobile)->first();
 
-        //     if(isset($user->id)){
-        //         $user_id = $user->id;
+            if(isset($user->id)){
+                $user_id = $user->id;
 
-        //         $otp = rand(111111,999999);
-        //         $message = "Your One Time Password for WeddingByte.com account is $otp. Plase do not share this OTP with anyone.\nThanks";
-        //         $otp_send_status = otp_helper::send_otp($user->mobile,$message);
+                $otp = rand(111111,999999);
+                $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Plase do not share this OTP with anyone.\nThanks";
+                $otp_send_status = otp_helper::send_otp($user->mobile,$message);
 
-        //         $otp_model = Otp::where('user_id',$user_id)->first();
+                $otp_model = Otp::where('user_id',$user_id)->first();
 
-        //         if(isset($otp_model->id)){
-        //             $otp_model->otp = $otp;
-        //             $otp_model->status = '1';   
-        //             $otp_model->save();
-        //         }else{
-        //             $otp_model = new Otp;
-        //             $otp_model->user_id = $user_id;
-        //             $otp_model->otp = $otp;
-        //             $otp_model->status = '1';
-        //             $otp_model->save();
-        //         }
+                if(isset($otp_model->id)){
+                    $otp_model->otp = $otp;
+                    $otp_model->status = '1';   
+                    $otp_model->save();
+                }else{
+                    $otp_model = new Otp;
+                    $otp_model->user_id = $user_id;
+                    $otp_model->otp = $otp;
+                    $otp_model->status = '1';
+                    $otp_model->save();
+                }
 
-        //         if($otp_send_status){
-        //             Session::flash('message', 'OTP Send Successful to Your Mobile Number!');
-        //             Session::flash('class', 'alert-success');
-        //             return redirect('otp/l/'.$user_id);
-        //         }else{
-        //             Session::flash('message', 'OTP Send Fail! Somthing Went Wrong!');
-        //             Session::flash('class', 'alert-danger');
-        //             return redirect('otp/l/'.$user_id);
-        //         }
+                if($otp_send_status){
+                    Session::flash('message', 'OTP Send Successful to Your Mobile Number!');
+                    Session::flash('class', 'alert-success');
+                    return redirect('vendor-otp/l/'.$user_id);
+                }else{
+                    Session::flash('message', 'OTP Send Fail! Somthing Went Wrong!');
+                    Session::flash('class', 'alert-danger');
+                    return redirect('vendor-otp/l/'.$user_id);
+                }
 
-        //     }else{
-        //         Session::flash('message', 'User Not Register Yet, Please Register First!');
-        //         Session::flash('class', 'alert-danger');
-        //         return redirect('register');
-        //     }
+            }else{
+                Session::flash('message', 'User Not Register Yet, Please Register First!');
+                Session::flash('class', 'alert-danger');
+                return redirect('register');
+            }
 
-        // }
+        }
         
         // login with email
         if($login_type === 'e'){
@@ -261,6 +261,51 @@ class login extends Controller
                 return redirect('/vendor-login/e');
             }
 
+        }
+    }
+
+    public function vendor_forget_password(Request $request){
+        $validator = $request->validate([
+            'mobile' => 'required|max:10|min:10',
+        ]);
+
+        $user = User::where('mobile',$request->mobile)->first();
+
+        if(isset($user->id)){
+            $user_id = $user->id;
+
+            $otp = rand(111111,999999);
+            $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Plase do not share this OTP with anyone.\nThanks";
+            
+            $otp_send_status = otp_helper::send_otp($user->mobile,$message);
+
+            $otp_model = Otp::where('user_id',$user_id)->first();
+
+            if(isset($otp_model->id)){
+                $otp_model->otp = $otp;
+                $otp_model->status = '1';   
+                $otp_model->save();
+            }else{
+                $otp_model = new Otp;
+                $otp_model->user_id = $user_id;
+                $otp_model->otp = $otp;
+                $otp_model->status = '1';
+                $otp_model->save();
+            }
+            if($otp_send_status){
+                Session::flash('message', 'OTP Send Successful to Your Mobile Number!');
+                Session::flash('class', 'alert-success');
+                return redirect('vendor-otp/f/'.$user_id);
+            }else{
+                Session::flash('message', 'OTP Send Fail! Somthing Went Wrong!');
+                Session::flash('class', 'alert-danger');
+                return redirect('vendor-otp/f/'.$user_id);
+            }
+
+        }else{
+            Session::flash('message', 'User Not Register Yet, Please Register First!');
+            Session::flash('class', 'alert-danger');
+            return redirect('vendor-forget-password');
         }
     }
 

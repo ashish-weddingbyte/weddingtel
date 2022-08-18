@@ -278,12 +278,116 @@ class UserController extends Controller
                 Session::flash('class', 'alert-danger');
             }
 
-            // return redirect('otp/r/'.$lastId);
+            return redirect('vendor-otp/r/'.$lastId);
 
         }else{
             Session::flash('message', 'Somthing Went Wrong!');
             Session::flash('class', 'alert-danger');
             return redirect('register');
+        }
+    }
+
+    public function vendor_otp(){
+        return view('front.vendor.verify_otp');
+    }
+
+
+    public function vendor_verify_otp(Request $request){
+        $request->validate([
+            'otp' => 'required|max:6|min:6'
+        ]);
+        $from = $request->from;
+        $otp = $request->otp;
+        $user_id = $request->user_id;
+    
+        $otp_details = Otp::where('user_id',$user_id)->first();
+
+
+        if($otp_details->status == '0'){
+            Session::flash('message', 'OTP is Expired!');
+            Session::flash('class', 'alert-danger');
+            return redirect("otp/$from/$user_id");
+        }else{
+            // otp verified succesfully
+            if($otp == $otp_details->otp){
+
+                if($from == 'f'){
+                    Session::flash('message', 'OTP Matched Successful!, Now You Reset Your Password.');
+                    Session::flash('class', 'alert-success');
+                    return redirect("vendor-reset-password/f/".$user_id);
+                }
+
+                if($from  == 'l' || $from == 'r'){
+                    $user = User::find($user_id);
+                    Session::put('name', $user->name);
+                    Session::put('email', $user->email);
+                    Session::put('user_id', $user_id);
+                    Session::put('user_type', $user->user_type);
+
+                    
+                    //expire otp after register successfully
+                    $otp_details->status = '0';
+                    $otp_details->save();
+
+
+                    //mark user is active
+                    // $user->status = '1';
+                    // $user->save();
+
+                    //mark mobile no is verified
+                    $user_details = VendorDetail::where('user_id',$user_id)->first();
+                    if($user_details->is_mobile_verified == '0'){
+                        $user_details->is_mobile_verified = '1';
+                        $user_details->save();
+                    }
+
+                    Session::flash('message', 'Login to Dashboard Successful!');
+                    Session::flash('class', 'alert-danger');
+                    return redirect("/vendor/dashboard");
+                }
+
+            }else{
+                Session::flash('message', 'OTP is Invalid!');
+                Session::flash('class', 'alert-danger');
+                return redirect("vendor-otp/$from/$user_id");
+            }
+        }
+
+    }
+
+    public function vendor_reset_passord(Request $request){
+        if($request->from != 'f' ){
+            return redirect('/vendor-login');
+        }
+        return view('front.vendor.reset_password');
+
+    }
+
+    public function vendor_change_password(Request $request){
+        $request->validate([
+            'password'  =>'required|min:6',
+            'confirm_password'  =>'required|min:6',
+        ]);
+
+        $id = $request->user_id;
+        $form= $request->from;
+        $password = $request->password;
+        $confirm_password = $request->confirm_password;
+
+        if($password === $confirm_password){
+
+            $user = User::find($id);
+            $user->password = Hash::make($password);
+            $user->save();
+
+            Session::flash('message', 'Password Reset Successfully!');
+            Session::flash('class', 'alert-success');
+            return redirect("vendor-login/e");
+
+        }else{
+            Session::flash('message', 'Password Not Matched!');
+            Session::flash('class', 'alert-danger');
+            return redirect("vendor-reset-password/f/".$id);
         }
     }
 

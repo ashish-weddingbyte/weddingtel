@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('category_id')->nullable();
+            $table->enum('is_email_verified', ['0', '1'])->default('0');
+            $table->enum('is_mobile_verified', ['0', '1'])->default('1');
             $table->string('brandname')->nullable();
             $table->string('city');
             $table->foreignId('city_id')->nullable();

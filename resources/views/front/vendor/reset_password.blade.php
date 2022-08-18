@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row login-section">
                 <div class="col-lg-5  p-0" id="login-image">
-                    <img src="{{ asset('front/images/bg_login.jpg') }}" class="" alt="">                    
+                    <img src="{{ asset('front/images/bg_vendor_login.jpg') }}" class="" alt="">                    
                 </div>
                 <div class="col-md-12 col-lg-7">
                     <div class="p-4">
@@ -47,7 +47,7 @@
                         
                         <div class="login-form mb-4">
 
-                            <form class="my-5"  action="{{ url('reset-password') }}" method="post"  id="login-form-e">
+                            <form class="my-5"  action="{{ url('vendor-reset-password') }}" method="post"  id="login-form-e">
                                 @csrf
                                 
                                 <div class="email-section">
@@ -69,20 +69,20 @@
                                 <div class="form-group">
                                     <input type="hidden" name="from" value="{{ $from }}">
                                     <input type="hidden" name="user_id" value="{{ $id }}">
-                                    <button type="submit" class="btn btn-default btn-block">Login</button>
+                                    <button type="submit" class="btn btn-default btn-block">Change Passowrd</button>
                                 </div>
                             </form>
                         </div>
 
                         <div class="section-title my-4 text-center">
                             <h3>Log in to your account</h3>
-                            <p><a href="{{url('/login') }}">Login</a></p>                       
+                            <p><a href="{{url('/vendor-login') }}">Login</a></p>                       
                         </div> 
                         <hr>
 
-                        <div class="section-title mt-4 text-center">
-                            <h3>Are you a vendor?</h3>
-                            <a href="#" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
+                        <div class="mt-4 text-center">
+                            <h3>Are you a Bride/Groom</h3>
+                            <a href="{{ url('/login') }}" class="btn btn-primary btn-rounded ">User Login</a>                     
                         </div>
                     </div>
                 </div>

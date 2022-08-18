@@ -1,27 +1,26 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+//  common controllers
 use App\Http\Controllers\login;
 use App\Http\Controllers\front\UserController;
-use App\Http\Controllers\front\Planning_tool;
-use App\Http\Controllers\front\ChecklistController;
-use App\Http\Controllers\front\GuestContoller;
-use App\Http\Controllers\front\BudgetController;
-use App\Http\Controllers\front\VendorController;
 use App\Http\Controllers\front\HomeController;
-use App\Http\Controllers\front\ProfileController;
-use App\Http\Controllers\front\RealWeddingController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// user controllers
+use App\Http\Controllers\front\user\Planning_tool;
+use App\Http\Controllers\front\user\ChecklistController;
+use App\Http\Controllers\front\user\GuestContoller;
+use App\Http\Controllers\front\user\BudgetController;
+use App\Http\Controllers\front\user\VendorController;
+use App\Http\Controllers\front\user\ProfileController;
+use App\Http\Controllers\front\user\RealWeddingController;
+
+
+// vendor contollers
+use App\Http\Controllers\front\vendor\Vendors;
+
+
 
 Route::get('/',[HomeController::class, 'home']);
 
@@ -46,14 +45,8 @@ Route::get('vendors/{city}/{category}',[VendorController::class,'all_vendors_of_
 Route::get('vendors/{city}',[VendorController::class,'all_vendors_of_category']);
 
 
-Route::view('/vendor-login','front.vendor.login_with_mobile');
-Route::view('/vendor-register','front.vendor.register');
-Route::get('/vendor-login/{from}',[Login::class,'show_vendor_login']);
-Route::post('/vendor-login',[login::class,'vendor_login']);
-Route::post('/vendor-register',[UserController::class,'vendor_register']);
 
 
-Route::get('/vendor/dashboard',[Planning_tool::class, 'vendor_dashboard']);
 
 // Protected by group middleware 
 // Middleware for user.
@@ -110,15 +103,47 @@ Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], functio
 });
 
 
+Route::view('/vendor-login','front.vendor.login_with_mobile');
+Route::view('/vendor-register','front.vendor.register');
+Route::get('/vendor-login/{from}',[Login::class,'show_vendor_login']);
+Route::post('/vendor-login',[login::class,'vendor_login']);
+Route::post('/vendor-register',[UserController::class,'vendor_register']);
+
+Route::get('/vendor-otp/{from}/{id}',[UserController::class,'vendor_otp']);
+Route::post('/vendor-verify-otp',[UserController::class,'vendor_verify_otp']);
+
+Route::view('/vendor-forget-password','front.vendor.forget_password');
+Route::post('/vendor-forget-password',[login::class,'vendor_forget_password']);
+Route::get('/vendor-reset-password/{from}/{id}',[UserController::class,'vendor_reset_passord']);
+Route::post('/vendor-reset-password',[UserController::class,'vendor_change_password']);
+
+// vendor protected function
+Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], function(){
+
+    Route::get('/dashboard',[Vendors::class, 'dashboard']);
+
+    Route::get('/profile',[Vendors::class, 'profile']);
+    Route::get('/plans',[Vendors::class, 'plans']);
+    Route::get('/request-quote',[Vendors::class, 'request_quote']);
+    Route::get('/review',[Vendors::class, 'review']);
+    Route::get('/leads',[Vendors::class, 'leads']);
 
 
+
+});
+
+
+
+
+
+
+
+
+
+
+
+// logout route
 Route::get('/logout', function(){
     Session::flush();
     return Redirect::to('/');
  });
- 
-
-Route::get('/home',function(){
-   
-    // return view('front.layouts.main_layout1');
-});

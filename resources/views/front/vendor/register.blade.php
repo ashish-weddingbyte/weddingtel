@@ -104,9 +104,9 @@
                             </form>
                         </div>
 
-                        <div class="section-title mt-5 text-center">
-                            <h3>Are you a vendor?</h3>
-                            <a href="{{ url('/vendor-login') }}" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
+                        <div class="mt-4 text-center">
+                            <h3>Are you a Bride/Groom</h3>
+                            <a href="{{ url('/login') }}" class="btn btn-primary btn-rounded ">User Login</a>                     
                         </div>
                     </div>
                 </div>

@@ -11,21 +11,16 @@
         <!-- Vendor Cover Images Section -->
         <div class="card-shadow">
             <div class="card-shadow-body p-0">
-                <div class="vendor-banner-cover">
-                    <i class="fa fa-picture-o"></i>
-                    Upload Banner Cover Images
-                    <span>Best Size 1980 x 400</span>
-                </div>
-                <div class="vendor-profile-img">
+                <div class="vendor-profile-img mt-5">
                     <div class="text">
                         <div class="img-holder">
                             <i class="fa fa-picture-o"></i>
                         </div>
-                        <strong>Upload Brand Image</strong>
+                        <strong>Upload Profile Image</strong>
                         <span>Best image size 250 x 250</span>
                     </div>
                     <div class="vendor-btn">
-                        <a href="vendor-dashboard-profile.html" class="btn btn-outline-white btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+                        <a href="{{ url('/vendor/profile') }}" class="btn btn-outline-white btn-sm"><i class="fa fa-pencil"></i> Edit</a>
                     </div>
                 </div>
             </div>
@@ -124,7 +119,7 @@
             </div>
         </div>
 
-        <div class="card-shadow mt-dashboard mt-5">
+        <!-- <div class="card-shadow mt-dashboard mt-5">
             <div class="card-shadow-header">
                 <div class="dashboard-head">
                     <h3>
@@ -291,7 +286,7 @@
                 </ul>
             </div>
             
-        </div>
+        </div> -->
 
     </div>
 </div>

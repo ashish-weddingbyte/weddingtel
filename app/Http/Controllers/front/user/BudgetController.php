@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\front;
+namespace App\Http\Controllers\front\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class BudgetController extends Controller
 
     public function budget(){
         $user_id = Session::get('user_id');
-        $data['budget'] = Budget::find($user_id);
+        $data['budget'] = Budget::where('user_id', $user_id)->first();
 
         // $data['budget_categories'] = BudgetCategory::where('type','default')->orWhere('user_id',$user_id)->orderBy('id','desc')->get();
 

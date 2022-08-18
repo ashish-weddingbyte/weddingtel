@@ -69,6 +69,7 @@
     <!--  WeddingDir top -->
 
     <main>
+        @if(Session::get('user_type') == 'user')
         <aside class="offcanvas-collapse">
             <div class="avatar-wrap">
                 <?php
@@ -76,7 +77,7 @@
                     $user = App\Models\User::find($user_id);
                     $details = App\Models\UserDetail::where('user_id',$user_id)->first();
                 ?>
-                @if($details)
+                @if($details->profile)
                     <img src="{{ asset('storage/upload/user/profile/'.$details->profile) }}" alt="">
                 @else
                     <img src="{{ asset('front/default_image/default_groom.png') }}" alt="">
@@ -115,6 +116,51 @@
                 </ul>
             </div>
         </aside>
+        @endif
+
+        @if(Session::get('user_type') == 'vendor')
+        <aside class="offcanvas-collapse">
+            <div class="avatar-wrap">
+                <?php
+                    $user_id = Session::get('user_id');
+                    $user = App\Models\User::find($user_id);
+                    $details = App\Models\VendorDetail::where('user_id',$user_id)->first();
+                ?>
+                @if($details->profile_image)
+                    <img src="{{ asset('storage/upload/user/profile/'.$details->profile_image) }}" alt="">
+                @else
+                    <img src="{{ asset('front/default_image/default_vendor.png') }}" alt="">
+                @endif
+                
+                <h3>{{  ucwords($user->name) }}</h3>                
+            </div>
+            <div class="sidebar-nav">
+                <ul class="list-unstyled">
+                    <li class="{{ (request()->segment(2) == 'dashboard') ? 'active' : '' }}">
+                        <a href="{{ url('/vendor/dashboard') }}"><i class="weddingdir_dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="{{ (request()->segment(2) == 'profile') ? 'active' : '' }}">
+                        <a href="{{ url('/vendor/profile') }}"><i class="weddingdir_my_profile"></i> My Profile</a>
+                    </li>
+                    <li class="{{ (request()->segment(2) == 'plans') ? 'active' : '' }}">
+                        <a href="{{ url('/vendor/plans') }}"><i class="weddingdir_pricing_plans"></i> Plans</a>
+                    </li>
+                    <li class="{{ (request()->segment(2) == 'leads') ? 'active' : '' }}">
+                        <a href="{{ url('/vendor/leads') }}"><i class="weddingdir_invoice"></i> Leads</a>
+                    </li>
+                    <li class="{{ (request()->segment(2) == 'request-quote') ? 'active' : '' }}">
+                        <a href="{{ url('/vendor/request-quote') }}"><i class="weddingdir_request_quote"></i> Request Quote</a>
+                    </li>
+                    <li class="{{ (request()->segment(2) == 'review') ? 'active' : '' }}">
+                        <a href="{{ url('/vendor/review') }}"><i class="weddingdir_reviews"></i> Reviews</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('logout') }}"><i class="weddingdir_logout"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        @endif
         <div class="body-content">
             <!-- page content start -->
                 @yield('main-container')

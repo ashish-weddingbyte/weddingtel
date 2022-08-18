@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\front;
+namespace App\Http\Controllers\front\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -18,9 +18,9 @@ use Validator;
 class Planning_tool extends Controller
 {
 
-    // public function __construct(){
-    //     $this->middleware('is_session');
-    // }
+    public function __construct(){
+        $this->middleware('is_session');
+    }
 
     public function dashboard(){
         
@@ -42,15 +42,9 @@ class Planning_tool extends Controller
 
         $data['checklist'] = Checklist::where('user_id',$user_id)->orderBy('added_date', 'ASC')->limit(2)->get();
 
-        $data['budget'] = Budget::find($user_id);
-
+        $data['budget'] = Budget::where('user_id',$user_id)->first();
+        
         return view('front.user.dashboard',$data);
     }
-
-
-    public function vendor_dashboard(){
-        return view('front.vendor.dashboard');
-    }
-
 
 }

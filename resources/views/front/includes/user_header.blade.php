@@ -242,13 +242,11 @@
                         
                         <ul class="dropdown-menu dropdownhover-bottom dropdown-menu-right" aria-labelledby="user-menu">
                             <li><a href="{{ url('tools/dashboard') }}">Dashboard</a></li>
-                            <li><a href="{{ url('tools/dashboard') }}">My Listing</a></li>
-                            <li><a href="{{ url('tools/dashboard') }}">Pricing Table</a></li>
-                            <li><a href="{{ url('tools/dashboard') }}">Request Quote</a></li>
-                            <li><a href="{{ url('tools/dashboard') }}">Reviews</a></li>
-                            <li><a href="{{ url('tools/dashboard') }}">Invoice</a></li>
-                            <li><a href="{{ url('tools/dashboard') }}">Chat</a></li>
-                            <li><a href="{{ url('tools/dashboard') }}">My Profile</a></li>
+                            <li><a href="{{ url('tools/profile') }}">My Profile</a></li>
+                            <li><a href="{{ url('tools/plans') }}">Plans</a></li>
+                            <li><a href="{{ url('tools/leads') }}">Leads</a></li>
+                            <li><a href="{{ url('tools/request-quote') }}">Request Quote</a></li>
+                            <li><a href="{{ url('tools/review') }}">Reviews</a></li>
                             <li><a href="{{ url('/logout') }}">Logout</a></li>
                         </ul>
                         @else
