@@ -55,7 +55,7 @@ class ProfileController extends Controller
                 return redirect("/tools/profile");
                 
             }else{
-                Session::flash('message', 'Old Password is Incorrect!');
+                Session::flash('message', 'Password is Incorrect!');
                 Session::flash('class', 'alert-danger');
                 return redirect('/tools/profile');
             }

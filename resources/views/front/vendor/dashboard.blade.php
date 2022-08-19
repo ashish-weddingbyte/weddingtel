@@ -16,7 +16,7 @@
                         <div class="img-holder">
                             <i class="fa fa-picture-o"></i>
                         </div>
-                        <strong>Upload Profile Image</strong>
+                        <strong>Profile Image</strong>
                         <span>Best image size 250 x 250</span>
                     </div>
                     <div class="vendor-btn">

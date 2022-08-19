@@ -75,7 +75,7 @@
                                                         </div>
                                                         <div class="custom-file-text">
                                                             <div class="head">Upload Profile Image</div>
-                                                            <div>Files must be less than <strong>1mb or (600*600)</strong>, allowed files types are <strong>png/jpg</strong>.</div>
+                                                            <div>Files must be less than <strong>1mb or (600*600)</strong>, allowed files types are <strong>png/jpg/jpeg</strong>.</div>
                                                         </div>
                                                     </div>
                                                 </div>

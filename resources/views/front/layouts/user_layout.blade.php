@@ -143,13 +143,22 @@
                         <a href="{{ url('/vendor/profile') }}"><i class="weddingdir_my_profile"></i> My Profile</a>
                     </li>
                     <li class="{{ (request()->segment(2) == 'plans') ? 'active' : '' }}">
-                        <a href="{{ url('/vendor/plans') }}"><i class="weddingdir_pricing_plans"></i> Plans</a>
+                        <a href="{{ url('/vendor/plans') }}"><i class="fa fa-money" aria-hidden="true"></i> Plans</a>
                     </li>
                     <li class="{{ (request()->segment(2) == 'leads') ? 'active' : '' }}">
-                        <a href="{{ url('/vendor/leads') }}"><i class="weddingdir_invoice"></i> Leads</a>
+                        <a href="{{ url('/vendor/leads') }}"><i class="weddingdir_pricing_plans"></i> Leads</a>
                     </li>
                     <li class="{{ (request()->segment(2) == 'request-quote') ? 'active' : '' }}">
                         <a href="{{ url('/vendor/request-quote') }}"><i class="weddingdir_request_quote"></i> Request Quote</a>
+                    </li>
+                    <li class="{{ (request()->segment(2) == 'wishlist') ? 'active' : '' }}">
+                        <a href="{{ url('/vendor/wishlist') }}"><i class="weddingdir_heart_double"></i> Wishlist</a>
+                    </li>
+                    <li class="{{ (request()->segment(2) == 'invoice') ? 'active' : '' }}">
+                        <a href="{{ url('/vendor/invoice') }}"><i class="weddingdir_invoice"></i> Invoice</a>
+                    </li>
+                    <li class="{{ (request()->segment(2) == 'template') ? 'active' : '' }}">
+                        <a href="{{ url('/vendor/template') }}"><i class="weddingdir_my_listing"></i> Template</a>
                     </li>
                     <li class="{{ (request()->segment(2) == 'review') ? 'active' : '' }}">
                         <a href="{{ url('/vendor/review') }}"><i class="weddingdir_reviews"></i> Reviews</a>

@@ -29,7 +29,18 @@
             </div>
             <!-- Topbar Request Quote Start -->
             <span class="order-lg-last d-inline-flex ml-3">
+            @if( Session::has('user_id') )
+                @if(Session::get('user_type') == 'user')
+                    <a class="btn btn-primary btn-rounded" href="{{ url('tools/dashboard') }}"> {{ Session::get('name') }}</a>
+                @endif
+
+                @if(Session::get('user_type') == 'vendor')
+                    <a class="btn btn-primary btn-rounded" href="{{ url('vendor/dashboard') }}"> {{ Session::get('name') }}</a>
+                @endif
+
+            @else
                 <a class="btn btn-primary btn-rounded" href="{{url('/login')}}"> Login</a>
+            @endif
             </span>
 
             <!-- Toggle Button Start -->
@@ -112,10 +123,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/contact') }}">Contact Us</a>
                     </li>
+                    @if( Session::has('user_id') )
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/logout') }}">Logout</a>
+                    </li>
+                    @endif
                 </ul>
                 <!-- Main Navigation End -->
             </div>
-
 
         </div>
     </nav>

@@ -224,7 +224,7 @@
                     @if( Session::has('user_type') )
                     <li class="nav-item dropdown user-profile">
                         <a class="nav-link" href="{{ url('/') }}" id="user-menu" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false"> {{  Session::get('name'); }} &nbsp;<i class="fa fa-angle-down"></i>
+                            aria-haspopup="true" aria-expanded="false"> {{  Session::get('name') }} &nbsp;<i class="fa fa-angle-down"></i>
                         </a>
                         @if(Session::get('user_type') == 'user')
                         <ul class="dropdown-menu dropdownhover-bottom dropdown-menu-right" aria-labelledby="user-menu">
@@ -241,12 +241,15 @@
                         @elseif(Session::get('user_type') == 'vendor')
                         
                         <ul class="dropdown-menu dropdownhover-bottom dropdown-menu-right" aria-labelledby="user-menu">
-                            <li><a href="{{ url('tools/dashboard') }}">Dashboard</a></li>
-                            <li><a href="{{ url('tools/profile') }}">My Profile</a></li>
-                            <li><a href="{{ url('tools/plans') }}">Plans</a></li>
-                            <li><a href="{{ url('tools/leads') }}">Leads</a></li>
-                            <li><a href="{{ url('tools/request-quote') }}">Request Quote</a></li>
-                            <li><a href="{{ url('tools/review') }}">Reviews</a></li>
+                            <li><a href="{{ url('vendor/dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ url('vendor/profile') }}">My Profile</a></li>
+                            <li><a href="{{ url('vendor/plans') }}">Plans</a></li>
+                            <li><a href="{{ url('vendor/leads') }}">Leads</a></li>
+                            <li><a href="{{ url('vendor/request-quote') }}">Request Quote</a></li>
+                            <li><a href="{{ url('vendor/wishlist') }}">Wishlist</a></li>
+                            <li><a href="{{ url('vendor/invoice') }}">Invoice</a></li>
+                            <li><a href="{{ url('vendor/template') }}">Template</a></li>
+                            <li><a href="{{ url('vendor/review') }}">Reviews</a></li>
                             <li><a href="{{ url('/logout') }}">Logout</a></li>
                         </ul>
                         @else

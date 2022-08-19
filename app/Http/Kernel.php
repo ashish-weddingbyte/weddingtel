@@ -43,12 +43,15 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-
         'AuthUser' => [ 
             \App\Http\Middleware\AuthUser::class,
         ],
         'AuthVendor' => [ 
             \App\Http\Middleware\AuthVendor::class,
+        ],
+
+        'CheckUser' => [ 
+            \App\Http\Middleware\CheckUser::class,
         ],
     ];
 
@@ -71,6 +74,5 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'is_session' => \App\Http\Middleware\is_session::class,
-        'CheckUser' =>  \App\Http\Middleware\CheckUser::class,
     ];
 }

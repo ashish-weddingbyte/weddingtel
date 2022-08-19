@@ -10,9 +10,7 @@ class Vendors extends Controller
     public function dashboard(){
         return view('front.vendor.dashboard');
     }
-    public function profile(){
-        return view('front.vendor.profile');
-    }
+    
 
     public function plans(){
         return view('front.vendor.plans');
@@ -22,10 +20,22 @@ class Vendors extends Controller
         return view('front.vendor.review');
     }
     public function leads(){
-        return view('front.vendor.dashboard');
+        return view('front.vendor.leads');
     }
 
     public function request_quote(){
         return view('front.vendor.request_quote');
+    }
+
+    public function invoice(){
+        return view('front.vendor.invoice');
+    }
+
+    public function template(){
+        return view('front.vendor.template');
+    }
+
+    public function wishlist(){
+        return view('front.vendor.wishlist');
     }
 }

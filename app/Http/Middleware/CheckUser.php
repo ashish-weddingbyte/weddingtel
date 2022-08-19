@@ -27,5 +27,7 @@ class CheckUser
                 return redirect('/tools/dashboard');
             }
         }
+        return $next($request);
+
     }
 }

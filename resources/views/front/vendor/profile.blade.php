@@ -10,6 +10,23 @@
         <!-- Page Heading -->
         <div class="section-title">
             <h2>My Profile</h2>
+            <div class="mt-3">
+                @if(Session::has('message'))
+                    <div class="alert {{session('class')}}">
+                        <span>{{session('message')}}</sapn>
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div> 
         </div>
         <!-- Page Heading -->
 
@@ -37,62 +54,83 @@
                             <div class="card-shadow-header">
                                 <div class="head-simple">
                                     Profile
-                                </div>                                            
+                                </div>                                           
                             </div>
 
                             <div class="card-shadow-body">
-                                <form>
+                                <form action="{{ url('vendor/profile/update') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <div class="custom-file-wrap">
                                                     <div class="custom-file-holder">
-                                                        <i class="fa fa-picture-o"></i>
+                                                        @if($details->profile_image)
+                                                            <div class="avatar-wrap">
+                                                                <img src="{{ asset('storage/upload/vendor/profile/'.$details->profile_image) }}" alt="">
+                                                            </div>
+                                                        @else
+                                                            <i class="fa fa-picture-o"></i>
+                                                        @endif
+                                                        
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFile01">
-                                                            <label class="custom-file-label" for="inputGroupFile01"><i class="fa fa-pencil"></i></label>
+                                                            <input type="file" class="custom-file-input" id="profile" name="profile" aria-describedby="profile">
+                                                            <label class="custom-file-label" for="profile"><i class="fa fa-pencil"></i></label>
                                                         </div>
                                                     </div>
                                                     <div class="custom-file-text">
                                                         <div class="head">Upload Profile Image</div>
-                                                        <div>Files must be less than <strong>4mb</strong>, allowed files types are <strong>png/jpg</strong>.</div>
+                                                        <div>Files must be less than <strong>512KB or (250*250)</strong>, allowed files types are <strong>png/jpg/jpeg</strong>.</div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-dark" name="Name" placeholder="Name">
+                                                <input type="text" class="form-control form-dark" name="name" value="{{ $user->name }}" >
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-dark" name="Name" placeholder="hiteshmahavar22@gmail.com" disabled>
+                                                <input type="text" class="form-control form-dark" name="email" value="{{ $user->email }}" disabled>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-dark" name="Contact_Number" placeholder="Contact Number">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control form-dark" name="Address" placeholder="Address">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <button type="button" class="btn btn-primary btn-rounded">Update Profile</button>
-                                        </div>
-
-                                        
-
-
+                                                <input type="text" class="form-control form-dark" name="mobile" value="{{ $user->mobile }}" disabled>
                                                 
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-dark" name="city" value="{{ $details->city }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="custom-control custom-radio custom-control-inline form-dark">
+                                                    <input type="radio" id="male" name="gender" value="male" {{ ($details->gender == 'male')?'checked':'' }} class="custom-control-input">
+                                                    <label class="custom-control-label" for="male">Male</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="custom-control custom-radio custom-control-inline form-dark">
+                                                    <input type="radio" value="female" id="female" {{ ($details->gender == 'female')?'checked':'' }}  name="gender" class="custom-control-input" >
+                                                    <label class="custom-control-label" for="female">Female</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-12">
+                                            <input type="submit" name="submit" class="btn btn-primary btn-rounded" value="Update Profile">
+                                        </div>
                                     </div>
                                 </form>                                            
                             </div>                                        
@@ -302,39 +340,49 @@
                                 </div>                                            
                             </div>
                             <div class="card-shadow-body">
-                                <form>
+                                <form action="{{ url('vendor/profile/change-password') }}" method="post">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <div class="password-eye">
-                                                    <input id="Old_Password" type="password" class="form-control" name="Old Password" value="Old Password">
-                                                    <span data-toggle="#Old_Password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                                    <input id="old_password" type="password" class="form-control" name="old_password" placeholder="Enter Old Password" value="{{ old('old_password') }}">
+                                                    <span data-toggle="#old_password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                                    @error('old_password')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="password-eye">
-                                                    <input id="New_Password" type="password" class="form-control" name="New_Password" placeholder="New Password">
-                                                    <span data-toggle="#New_Password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                                    <input id="new_password" type="password" class="form-control" name="new_password" placeholder="Enter New Password" value="{{ old('new_password') }}">
+                                                    <span data-toggle="#new_password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                                    @error('new_password')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="password-eye">
-                                                    <input id="Confirm_Password" type="password" class="form-control" name="Confirm_Password" placeholder="Confirm Password">
-                                                    <span data-toggle="#Confirm_Password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                                    <input id="confirm_pasword" type="password" class="form-control" name="confirm_pasword" placeholder="Confirm Password" value="{{ old('confirm_pasword') }}">
+                                                    <span data-toggle="#confirm_pasword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                                    @error('confirm_pasword')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
-                                            <button type="button" class="btn btn-primary btn-rounded">Change Password</button>
+                                            <input type="submit" class="btn btn-primary btn-rounded" name="submit" value="Change Password">
                                         </div>
                                                 
                                     </div>
-                                </form>                                            
+                                </form>                                           
                             </div> 
                         </div>
                     </div>
