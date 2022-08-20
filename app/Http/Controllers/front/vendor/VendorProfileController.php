@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\VendorDetail;
+use App\Models\SocialLink;
 
 class VendorProfileController extends Controller
 {
@@ -23,7 +24,7 @@ class VendorProfileController extends Controller
         
         $data['user'] = User::find($user_id);
         $data['details'] = VendorDetail::where('user_id',$user_id)->first();
-
+        $data['social'] =   SocialLink::where('user_id',$user_id)->first();
         return view('front.vendor.profile',$data);
     }
 
@@ -102,56 +103,154 @@ class VendorProfileController extends Controller
             $detals->save();
         }
 
+        if($request->filled('address')){
+            $detals->address = $request->address;
+            $detals->save();
+        }
+
         Session::flash('message', 'Profile Update Successfully!');
         Session::flash('class', 'alert-success');
         return redirect("/vendor/profile");
         
     }
 
-    // public function wedding_info(Request $request){
-    //     $request->validate([
-    //         'profile'  =>'image|mimes:jpg,png,jpeg|max:1024',
-    //         'partner_profile'  =>'image|mimes:jpg,png,jpeg|max:1024',
-    //     ]);
-
-    //     $user_id = Session::get('user_id');
-
-
-    //     $detals = UserDetail::where('user_id',$user_id)->first();
-
-    //     if($request->filled('event')){
-    //         $detals->event = date('Y-m-d',strtotime($request->event));
-    //         $detals->save();
-    //     }
-
-    //     if ($request->hasFile('profile')) {
-
-    //         $image_name  =  $request->file('profile')->getClientOriginalName();
-    //         $detals->profile = $image_name;
-    //         $request->file('profile')->storeAs('public/upload/user/profile',$image_name);
-    //         $detals->save();
-    //     }
-
-    //     if ($request->hasFile('partner_profile')) {
-
-    //         $image_name  =  $request->file('partner_profile')->getClientOriginalName();
-    //         $detals->partner_profile = $image_name;
-    //         $request->file('partner_profile')->storeAs('public/upload/user/profile',$image_name);
-    //         $detals->save();
-    //     }
-
-
-    //     if($request->filled('wedding_address')){
-    //         $detals->wedding_address = $request->wedding_address;
-    //         $detals->save();
-    //     }
+    public function update_social(Request $request){
 
         
 
-    //     Session::flash('message', 'Profile Update Successfully!');
-    //     Session::flash('class', 'alert-success');
-    //     return redirect("/tools/profile");
-    // }
+
+        $user_id = Session::get('user_id');
+
+        $social_links = SocialLink::where('user_id',$user_id)->first();
+
+        if($social_links){
+            if($request->filled('facebook')){
+                $request->validate([
+                    'facebook'  =>  'url'
+                ]);
+                $social_links->facebook = $request->facebook;
+                $social_links->save();
+            }
+            if($request->filled('twitter')){
+                $request->validate([
+                    'twitter'  =>  'url'
+                ]);
+                $social_links->twitter = $request->twitter;
+                $social_links->save();
+            }
+            if($request->filled('instagram')){
+                $request->validate([
+                    'instagram'  =>  'url'
+                ]);
+                $social_links->instagram = $request->instagram;
+                $social_links->save();
+            }
+            if($request->filled('youtube')){
+                $request->validate([
+                    'youtube'  =>  'url'
+                ]);
+                $social_links->youtube = $request->youtube;
+                $social_links->save();
+            }
+
+            if($request->filled('website')){
+                $request->validate([
+                    'website'  =>  'url'
+                ]);
+                $social_links->website = $request->website;
+                $social_links->save();
+            }
+            Session::flash('message', 'Social Links Update Successfully!');
+            Session::flash('class', 'alert-success');
+            return redirect("/vendor/profile");
+
+        }else{
+            Session::flash('message', 'Somthing Went Wrong!');
+            Session::flash('class', 'alert-danger');
+            return redirect("/vendor/profile");
+        }
+    }
+
+
+    public function update_business_profie(Request $request){
+        
+        $user_id = Session::get('user_id');
+
+
+        $detals = VendorDetail::where('user_id',$user_id)->first();
+
+        if($detals){
+
+            if($request->filled('brandname')){
+                $detals->brandname = $request->brandname;
+                $detals->save();
+            }
+
+            if ($request->hasFile('featured_image')) {
+                $request->validate([
+                    'featured_image'  =>'image|mimes:jpg,png,jpeg|max:1024',
+                ]);
+                Storage::delete('public/upload/vendor/business'.$detals->featured_image);
+                $image_name  =  $request->file('featured_image')->hashName();
+                $detals->featured_image = $image_name;
+                $request->file('featured_image')->storeAs('public/upload/vendor/business',$image_name);
+                $detals->save();
+            }
+
+
+
+            if($request->filled('description')){
+                $detals->description = $request->description;
+                $detals->save();
+            }
+
+            if($request->filled('service_offered')){
+                $detals->service_offered = $request->service_offered;
+                $detals->save();
+            }
+            if($request->filled('business_details')){
+                $detals->business_offered = $request->business_details;
+                $detals->save();
+            }
+            if($request->filled('travelable')){
+                $request->validate([
+                    'travelable'    =>  'not_in:NA'
+                ]);
+                $detals->is_travelable = $request->travelable;
+                $detals->save();
+            }
+            if($request->filled('cancel_policy')){
+                $detals->cancel_policy = $request->cancel_policy;
+                $detals->save();
+            }
+
+            
+            if($request->filled('youtube')){
+                $request->validate([
+                    'youtube'    =>  'url'
+                ]);
+                $detals->youtube = $request->youtube;
+                $detals->save();
+            }
+            if($request->filled('advance_payment')){
+                $request->validate([
+                    'advance_payment'    =>  'not_in:0'
+                ]);
+                $detals->advance_payment = $request->advance_payment;
+                $detals->save();
+            }
+            
+
+            Session::flash('message', 'Profile Update Successfully!');
+            Session::flash('class', 'alert-success');
+            return redirect("/vendor/profile");
+
+        }else{
+            Session::flash('message', 'Somthing Went Wrong!');
+            Session::flash('class', 'alert-danger');
+            return redirect("/vendor/profile");
+        }
+    }
 
     
 }

@@ -217,7 +217,7 @@ class login extends Controller
                 }
 
             }else{
-                Session::flash('message', 'User Not Register Yet, Please Register First!');
+                Session::flash('message', 'Vendor Not Register Yet, Please Register First!');
                 Session::flash('class', 'alert-danger');
                 return redirect('vendor-register');
             }

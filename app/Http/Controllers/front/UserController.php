@@ -31,7 +31,7 @@ class UserController extends Controller
             'password'  =>'required|min:6',
             'mobile' => 'required|max:10|min:10|unique:users,mobile',
             'city'  =>  'required',
-            'event' =>  'required|date',
+            'event' =>  'required|date|after:today',
         ]);
         
         $user = new User;

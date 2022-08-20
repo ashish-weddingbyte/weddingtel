@@ -135,6 +135,8 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
     Route::get('/profile',[VendorProfileController::class, 'profile']);
     Route::post('/profile/update',[VendorProfileController::class, 'update_details']);
     Route::post('/profile/change-password',[VendorProfileController::class,'change_password']);
+    Route::post('/profile/social',[VendorProfileController::class,'update_social']);
+    Route::post('/profile/business',[VendorProfileController::class,'update_business_profie']);
 
 });
 

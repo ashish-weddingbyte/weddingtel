@@ -127,7 +127,7 @@
                     $details = App\Models\VendorDetail::where('user_id',$user_id)->first();
                 ?>
                 @if($details->profile_image)
-                    <img src="{{ asset('storage/upload/user/profile/'.$details->profile_image) }}" alt="">
+                    <img src="{{ asset('storage/upload/vendor/profile/'.$details->profile_image) }}" alt="">
                 @else
                     <img src="{{ asset('front/default_image/default_vendor.png') }}" alt="">
                 @endif

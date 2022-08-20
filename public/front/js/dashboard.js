@@ -326,6 +326,18 @@
         }
     },
 
+    summernote2: function( elm ){
+
+        if( $( elm ).length ){
+
+            $( elm ).summernote({
+                placeholder: 'Write your text here...',
+                tabsize: 2,
+                height: 180
+            });
+        }
+    },
+
     initializ: function () {
         this.menu_link_toggle();
         this.date_picker();
@@ -345,6 +357,7 @@
         this.checkbox_select();
         this.reviews_tabbing_wrap_scroll();
         this.summernote( '#summernote' );
+        this.summernote2( '.summernote' );
         this.select_multiple();
     }
 
