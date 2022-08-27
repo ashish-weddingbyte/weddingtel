@@ -10,34 +10,46 @@
                 <div class="row">
                     <div class="col-xl-10 col-lg-12 mx-auto">
                         <h1>Find the Perfect Wedding Vendor</h1>
-                        <p class="lead txt-white text-center">Search over 360,000 wedding vendors with reviews, pricing, availability and more</p>
-                        <div class="form-bg row no-gutters align-items-center">
-                            <div class="col-12 col-md-5">
-                                <select class="form-light-select theme-combo home-select-1" name="state">
-                                    <option>Choose Vendor Type</option>
-                                    <option value="AL">Vendor Type 1</option>
-                                    <option value="WY">Vendor Type 2</option>
-                                    <option value="WY">Vendor Type 3</option>
-                                    <option value="WY">Vendor Type 4</option>
-                                    <option value="WY">Vendor Type 5</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-5">
-                                <div class="px-2 w-100">
-                                    <select class="form-light-select theme-combo home-select-2" name="state">
-                                        <option>Choose Location</option>
-                                        <option value="AL">Mumbai</option>
-                                        <option value="WY">Goa</option>
-                                        <option value="WY">Surat</option>
-                                        <option value="WY">Delhi</option>
-                                        <option value="WY">Baroda</option>
+                        <p class="lead txt-white text-center">Search over 100,000 wedding vendors with reviews, pricing, availability and more</p>
+                        <form action="{{ url('vendors') }}" method="post">
+                            @csrf
+                            <div class="form-bg row no-gutters align-items-center">
+                                <div class="col-12 col-md-5">
+                                    <select class="form-light-select theme-combo" name="category" >
+                                        <option value='0'>Choose Vendor Type</option>
+                                        <option value="all">All Categories</option>
+                                        @if($categories)
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->category_url }}">{{ $category->category_name }}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
+                                    @error('category')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-12 col-md-5">
+                                    <div class="px-2 w-100">
+                                        <select class="form-light-select theme-combo" name="city">
+                                            <option value='0'>Choose Location</option> 
+                                            <option value="all">All Cities</option>
+                                            @if($cities)   
+                                                @foreach($cities as $city)
+                                                    <option value="{{ $city->city }}">{{ $city->city }}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                        @error('city')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <input type="submit" value="Search Now" class="btn btn-default text-nowrap btn-block" name="search" />
                                 </div>
                             </div>
-                            <div class="col-12 col-md-2">
-                                <a href="right-side-map-listing.html" class="btn btn-default text-nowrap btn-block" >Search Now</a>
-                            </div>
-                        </div>
+                        </form>
                         <!-- <p class="lead txt-white text-center">Or browse featured categories</p>
                         <div class="slider-category">
                             <a href="javascript:"><i class="weddingdir_cake_floor"></i></a>
@@ -67,7 +79,6 @@
                 @if($categories)
                     @foreach($categories as $category)
                         
-
                         <div class="col">
                             <div class="vendor-listing-wrap">                                    
                                 <div class="vendor-img">
@@ -81,7 +92,7 @@
                                             <i class="fa fa-life-ring"></i>
                                         @endif
                                     </div>
-                                    <a href="{{ url('/vendors/all/'.$category->category_url) }}"><img src="{{ asset('front/default_image/default_category.jpg')}}" alt=""></a>
+                                    <a href="{{ url('/vendors/all/'.$category->category_url) }}"><img src="{{ asset('storage/upload/vendor/category/'.$category->image)}}" alt=""></a>
                                 </div>
                                 <div class="content">
                                     <h3><a href="{{ url('/vendors/all/'.$category->category_url) }}">{{ ucwords($category->category_name) }}</a></h3>
@@ -105,233 +116,60 @@
             </div>
             <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
 
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-wrap-alt">
-                        <div class="img">
-                            <img src="{{ asset('front/images/vendors/vendor_img_1.jpg') }}" alt="">
-                            <div class="img-content">
-                                <span class="rating">4.4</span>
-                                <a href="javascript:" class="favorite"><i class="fa fa-heart-o"></i></a>
-                            </div>
-                        </div>
+                @if($top_vendors)
 
-                        <div class="content">
-                            <div class="vendor-heading">
-                                <h3><i class="weddingdir_camera"></i> <a href="javascript:">Photographer</a></h3>
-                                <a href="javascript:" class="btn btn-sm btn-default" data-toggle="modal" data-target="#request_quote">Get A Quote</a>
-                            </div>
-                            <div class="mb-2"><a href="mailto:Info@yourdomain.com" class="btn-link"><i class="fa fa-envelope"></i> Info@yourdomain.com</a></div>
-                            <div><a href="tel:+08-125-852-9966" class="btn-link"><i class="fa fa-phone"></i> +08 125 852 9966</a></div>                                
-                        </div>
-                        <div class="content-footer">
-                            <a class="btn btn-light btn-sm" href="javascript:">Follow Us</a>
-                            <span class="dropdown hover_out">
-                                <a class="btn btn-light btn-sm" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-share-alt"></i> Share
-                                </a>
-                                
-                                <span class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-facebook-f"></i> Facebook</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-twitter"></i> Twitter</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-instagram"></i> Instagram</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-envelope-o"></i> Email</a>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
+                    @foreach($top_vendors as $vendor)
+                        <?php
+                            $image_path = asset('front/default_image/default_featured_image.png');
 
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-wrap-alt">
-                        <div class="img">
-                            <img src="{{ asset('front/images/vendors/vendor_img_2.jpg')}}" alt="">
-                            <div class="img-content">
-                                <span class="rating">4.4</span>
-                                <a href="javascript:" class="favorite"><i class="fa fa-heart-o"></i></a>
-                            </div>
-                        </div>
+                            $verified = vendor_helper::check_verified_vendor($vendor->id);                    
+                            $url = vendor_helper::vendor_profile_url($vendor->id);
+                        ?>
+                        <div class="col ">
+                            <div class="vendor-wrap-alt">
+                                <div class="img">
+                                    <img src="{{ $image_path }}" alt="{{ $vendor->featured_image }}">
+                                    <div class="img-content-top">
+                                        <div class="top">
+                                            <span class="is_top">
+                                                <i class="fa fa-arrow-up"></i>
+                                                <span>Top</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="img-content">
+                                        <span class="rating">1.0</span>
+                                        <a href="javascript:void;" class="favorite"><i class="fa fa-heart-o"></i></a>
+                                    </div>
+                                </div>
 
-                        <div class="content">
-                            <div class="vendor-heading">
-                                <h3><i class="weddingdir_venue"></i> <a href="javascript:">Venue & Hall</a></h3>
-                                <a href="javascript:" class="btn btn-sm btn-default" data-toggle="modal" data-target="#request_quote">Get A Quote</a>
-                            </div>
-                            <div class="mb-2"><a href="mailto:Info@yourdomain.com" class="btn-link"><i class="fa fa-envelope"></i> Info@yourdomain.com</a></div>
-                            <div><a href="tel:+08-125-852-9966" class="btn-link"><i class="fa fa-phone"></i> +08 125 852 9966</a></div>                                
-                        </div>
-                        <div class="content-footer">
-                            <a class="btn btn-light btn-sm" href="javascript:">Follow Us</a>
-                            <span class="dropdown hover_out">
-                                <a class="btn btn-light btn-sm" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-share-alt"></i> Share
-                                </a>
-                                
-                                <span class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-facebook-f"></i> Facebook</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-twitter"></i> Twitter</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-instagram"></i> Instagram</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-envelope-o"></i> Email</a>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
-
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-wrap-alt">
-                        <div class="img">
-                            <img src="{{ asset('front/images/vendors/vendor_img_10.jpg')}}" alt="">
-                            <div class="img-content">
-                                <span class="rating">4.4</span>
-                                <a href="javascript:" class="favorite"><i class="fa fa-heart-o"></i></a>
+                                <div class="content">
+                                    <div class="vendor-heading">
+                                        <h3>
+                                            @if($vendor->icon)
+                                                {!! $vendor->icon !!} 
+                                            @else
+                                                <i class="fa fa-life-ring"></i>
+                                            @endif
+                                            <a href="{{ $url }}">{{ ucwords($vendor->name) }}</a>
+                                        </h3>
+                                        <a href="{{ $url }}" class="btn btn-sm btn-default">Get A Quote</a>
+                                    </div>
+                                    <div class="mb-2">
+                                        <i class="fa fa-list" aria-hidden="true"></i> 
+                                        {{ $vendor->brandname }} {!! ($verified) ? '<span class="verified"><i class="fa fa-check-circle"></i></span>': '' !!}
+                                    </div>
+                                    <div class="mb-2">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                                        {{ ucwords($vendor->city) }}
+                                    </div>
+                                    
+                                </div>
+                               
                             </div>
                         </div>
-
-                        <div class="content">
-                            <div class="vendor-heading">
-                                <h3><i class="weddingdir_flowers"></i> <a href="javascript:">Florist</a></h3>
-                                <a href="javascript:" class="btn btn-sm btn-default" data-toggle="modal" data-target="#request_quote">Get A Quote</a>
-                            </div>
-                            <div class="mb-2"><a href="mailto:Info@yourdomain.com" class="btn-link"><i class="fa fa-envelope"></i> Info@yourdomain.com</a></div>
-                            <div><a href="tel:+08-125-852-9966" class="btn-link"><i class="fa fa-phone"></i> +08 125 852 9966</a></div>                                
-                        </div>
-                        <div class="content-footer">
-                            <a class="btn btn-light btn-sm" href="javascript:">Follow Us</a>
-                            <span class="dropdown hover_out">
-                                <a class="btn btn-light btn-sm" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-share-alt"></i> Share
-                                </a>
-                                
-                                <span class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-facebook-f"></i> Facebook</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-twitter"></i> Twitter</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-instagram"></i> Instagram</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-envelope-o"></i> Email</a>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
-
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-wrap-alt">
-                        <div class="img">
-                            <img src="{{ asset('front/images/vendors/vendor_img_11.jpg')}}" alt="">
-                            <div class="img-content">
-                                <span class="rating">4.4</span>
-                                <a href="javascript:" class="favorite"><i class="fa fa-heart-o"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="content">
-                            <div class="vendor-heading">
-                                <h3><i class="weddingdir_cake_stand"></i> <a href="javascript:">Wedding Cake</a></h3>
-                                <a href="javascript:" class="btn btn-sm btn-default" data-toggle="modal" data-target="#request_quote">Get A Quote</a>
-                            </div>
-                            <div class="mb-2"><a href="mailto:Info@yourdomain.com" class="btn-link"><i class="fa fa-envelope"></i> Info@yourdomain.com</a></div>
-                            <div><a href="tel:+08-125-852-9966" class="btn-link"><i class="fa fa-phone"></i> +08 125 852 9966</a></div>                                
-                        </div>
-                        <div class="content-footer">
-                            <a class="btn btn-light btn-sm" href="javascript:">Follow Us</a>
-                            <span class="dropdown hover_out">
-                                <a class="btn btn-light btn-sm" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-share-alt"></i> Share
-                                </a>
-                                
-                                <span class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-facebook-f"></i> Facebook</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-twitter"></i> Twitter</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-instagram"></i> Instagram</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-envelope-o"></i> Email</a>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
-
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-wrap-alt">
-                        <div class="img">
-                            <img src="{{ asset('front/images/vendors/vendor_img_12.jpg')}}" alt="">
-                            <div class="img-content">
-                                <span class="rating">4.4</span>
-                                <a href="javascript:" class="favorite"><i class="fa fa-heart-o"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="content">
-                            <div class="vendor-heading">
-                                <h3><i class="weddingdir_fashion"></i> <a href="javascript:">Fashion</a></h3>
-                                <a href="javascript:" class="btn btn-sm btn-default" data-toggle="modal" data-target="#request_quote">Get A Quote</a>
-                            </div>
-                            <div class="mb-2"><a href="mailto:Info@yourdomain.com" class="btn-link"><i class="fa fa-envelope"></i> Info@yourdomain.com</a></div>
-                            <div><a href="tel:+08-125-852-9966" class="btn-link"><i class="fa fa-phone"></i> +08 125 852 9966</a></div>                                
-                        </div>
-                        <div class="content-footer">
-                            <a class="btn btn-light btn-sm" href="javascript:">Follow Us</a>
-                            <span class="dropdown hover_out">
-                                <a class="btn btn-light btn-sm" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-share-alt"></i> Share
-                                </a>
-                                
-                                <span class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-facebook-f"></i> Facebook</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-twitter"></i> Twitter</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-instagram"></i> Instagram</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-envelope-o"></i> Email</a>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->
-
-                <!-- Vendor Listing Wrap -->
-                <div class="col">
-                    <div class="vendor-wrap-alt">
-                        <div class="img">
-                            <img src="{{ asset('front/images/vendors/vendor_img_13.jpg')}}" alt="">
-                            <div class="img-content">
-                                <span class="rating">4.4</span>
-                                <a href="javascript:" class="favorite"><i class="fa fa-heart-o"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="content">
-                            <div class="vendor-heading">
-                                <h3><i class="weddingdir_music"></i> <a href="javascript:">Music & DJ</a></h3>
-                                <a href="javascript:" class="btn btn-sm btn-default" data-toggle="modal" data-target="#request_quote">Get A Quote</a>
-                            </div>
-                            <div class="mb-2"><a href="mailto:Info@yourdomain.com" class="btn-link"><i class="fa fa-envelope"></i> Info@yourdomain.com</a></div>
-                            <div><a href="tel:+08-125-852-9966" class="btn-link"><i class="fa fa-phone"></i> +08 125 852 9966</a></div>                                
-                        </div>
-                        <div class="content-footer">
-                            <a class="btn btn-light btn-sm" href="javascript:">Follow Us</a>
-                            <span class="dropdown hover_out">
-                                <a class="btn btn-light btn-sm" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-share-alt"></i> Share
-                                </a>
-                                
-                                <span class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-facebook-f"></i> Facebook</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-twitter"></i> Twitter</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-instagram"></i> Instagram</a>
-                                    <a class="dropdown-item" href="javascript:"><i class="fa fa-envelope-o"></i> Email</a>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Vendor Listing Wrap -->                    
+                    @endforeach
+                @endif
 
             </div>
         </div>
@@ -346,72 +184,37 @@
             <div class="section-title text-center">
                 <h1>Top Featured Vendors</h1>
             </div>
+            @if($featured_vendors)
             <div class="owl-carousel owl-theme dots-black" id="home-slider-listing">                        
-                <!-- Wedding List -->
-                <div class="item">
-                    <div class="wedding-listing">
-                        <div class="img">
-                            <a href="javascript:">
-                                <img src="{{ asset('front/images/weddings/wedding_listing_1.jpg')}}" alt="">                                                    
-                            </a>
-                            <div class="img-content">
-                                <div class="top">
-                                    <span class="price">
-                                        <i class="fa fa-tag"></i>
-                                        <span>$500-$800</span>
-                                    </span>
-                                </div>
-                                <div class="bottom">
-                                    <a class="tags" href="javascript:">
-                                        Fashion
-                                    </a>
-                                    <a class="favorite" href="javascript:">
-                                        <i class="fa fa-heart-o"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="content">
-                            <div class="gap">
-                                <h3><a href="listing-singular.html">Happy Wedding Fashions <span class="verified"><i class="fa fa-check-circle"></i></span></a></h3>
-                                <div><i class="fa fa-map-marker"></i> Surat, Gujrat, India</div>
-                            </div>
-                            <div class="reviews">
-                                <span class="stars">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                    <i class="fa fa-star-o"></i>                                    
-                                </span>
-                                (6 review)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Wedding List -->
+                
+                @foreach($featured_vendors as $vendor)
+                <?php
+                    $image_path = asset('front/default_image/default_featured_image.png');           
+                    $url = vendor_helper::vendor_profile_url($vendor->id);
 
-                <!-- Wedding List -->
+                    $verified = vendor_helper::check_verified_vendor($vendor->id);
+
+                ?>
                 <div class="item">
                     <div class="wedding-listing">
                         <div class="img">
-                            <a href="javascript:">
-                                <img src="{{ asset('front/images/weddings/wedding_listing_2.jpg')}}" alt="">
+                            <a href="{{ $url }}">
+                                <img src="{{ $image_path }}" alt="{{ $vendor->featured_image }}">
                             </a>
                             <div class="img-content">
-                                <div class="top">                                                           
+                                <div class="top">  
                                     <span class="featured">
                                         <i class="fa fa-star"></i>
                                         <span>Featured</span>
                                     </span>
-                                    <span class="price">
+                                    <!-- <span class="price">
                                         <i class="fa fa-tag"></i>
                                         <span>$500-$800</span>
-                                    </span>
+                                    </span> -->
                                 </div>
                                 <div class="bottom">
-                                    <a class="tags" href="javascript:">
-                                        Photography
+                                    <a class="tags" href="{{ $url }}">
+                                        {{ $vendor->category_name }}
                                     </a>
                                     <a class="favorite" href="javascript:">
                                         <i class="fa fa-heart-o"></i>
@@ -421,8 +224,8 @@
                         </div>
                         <div class="content">
                             <div class="gap">
-                                <h3><a href="listing-singular.html">Cool Wed Photography <span class="verified"><i class="fa fa-check-circle"></i></span></a></h3>
-                                <div><i class="fa fa-map-marker"></i> Surat, Gujrat, India</div>
+                                <h3><a href="{{ $url }}">{{ $vendor->name }} ( {{$vendor->brandname }} ) {!! ($verified) ? '<span class="verified"><i class="fa fa-check-circle"></i></span>': '' !!} </a></h3>
+                                <div><i class="fa fa-map-marker"></i> {{ $vendor->city }}</div>
                             </div>
                             <div class="reviews">
                                 <span class="stars">
@@ -437,189 +240,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- Wedding List -->
+                @endforeach
 
-                <!-- Wedding List -->
-                <div class="item">
-                    <div class="wedding-listing">
-                        <div class="img">
-                            <a href="javascript:">
-                                <img src="{{ asset('front/images/weddings/wedding_listing_3.jpg')}}" alt="">
-                            </a>
-                            <div class="img-content">
-                                <div class="top">
-                                    <span class="price">
-                                        <i class="fa fa-tag"></i>
-                                        <span>$500-$800</span>
-                                    </span>
-                                </div>
-                                <div class="bottom">
-                                    <a class="tags" href="javascript:">
-                                        Flora
-                                    </a>
-                                    <a class="favorite" href="javascript:">
-                                        <i class="fa fa-heart-o"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="content">
-                            <div class="gap">
-                                <h3><a href="listing-singular.html">Lotus Wedding Florist <span class="verified"><i class="fa fa-check-circle"></i></span></a></h3>
-                                <div><i class="fa fa-map-marker"></i> Surat, Gujrat, India</div>
-                            </div>
-                            <div class="reviews">
-                                <span class="stars">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                    <i class="fa fa-star-o"></i>                                    
-                                </span>
-                                (6 review)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Wedding List -->
-
-                <!-- Wedding List -->
-                <div class="item">
-                    <div class="wedding-listing">
-                        <div class="img">
-                            <a href="javascript:">
-                                <img src="{{ asset('front/images/weddings/wedding_listing_4.jpg')}}" alt="">                                                    
-                            </a>
-                            <div class="img-content">
-                                <div class="top">
-                                    <span class="price">
-                                        <i class="fa fa-tag"></i>
-                                        <span>$500-$800</span>
-                                    </span>
-                                </div>
-                                <div class="bottom">
-                                    <a class="tags" href="javascript:">
-                                        Fashion
-                                    </a>
-                                    <a class="favorite" href="javascript:">
-                                        <i class="fa fa-heart-o"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="content">
-                            <div class="gap">
-                                <h3><a href="listing-singular.html">Happy Wedding Fashions <span class="verified"><i class="fa fa-check-circle"></i></span></a></h3>
-                                <div><i class="fa fa-map-marker"></i> Surat, Gujrat, India</div>
-                            </div>
-                            <div class="reviews">
-                                <span class="stars">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                    <i class="fa fa-star-o"></i>                                    
-                                </span>
-                                (6 review)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Wedding List -->
-
-                <!-- Wedding List -->
-                <div class="item">
-                    <div class="wedding-listing">
-                        <div class="img">
-                            <a href="javascript:">
-                                <img src="{{ asset('front/images/weddings/wedding_listing_5.jpg')}}" alt="">
-                            </a>
-                            <div class="img-content">
-                                <div class="top">                                                           
-                                    <span class="featured">
-                                        <i class="fa fa-star"></i>
-                                        <span>Featured</span>
-                                    </span>
-                                    <span class="price">
-                                        <i class="fa fa-tag"></i>
-                                        <span>$500-$800</span>
-                                    </span>
-                                </div>
-                                <div class="bottom">
-                                    <a class="tags" href="javascript:">
-                                        Photography
-                                    </a>
-                                    <a class="favorite" href="javascript:">
-                                        <i class="fa fa-heart-o"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="content">
-                            <div class="gap">
-                                <h3><a href="listing-singular.html">Cool Wed Photography <span class="verified"><i class="fa fa-check-circle"></i></span></a></h3>
-                                <div><i class="fa fa-map-marker"></i> Surat, Gujrat, India</div>
-                            </div>
-                            <div class="reviews">
-                                <span class="stars">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                    <i class="fa fa-star-o"></i>                                    
-                                </span>
-                                (6 review)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Wedding List -->
-
-                <!-- Wedding List -->
-                <div class="item">
-                    <div class="wedding-listing">
-                        <div class="img">
-                            <a href="javascript:">
-                                <img src="{{ asset('front/images/weddings/wedding_listing_6.jpg')}}" alt="">
-                            </a>
-                            <div class="img-content">
-                                <div class="top">
-                                    <span class="price">
-                                        <i class="fa fa-tag"></i>
-                                        <span>$500-$800</span>
-                                    </span>
-                                </div>
-                                <div class="bottom">
-                                    <a class="tags" href="javascript:">
-                                        Flora
-                                    </a>
-                                    <a class="favorite" href="javascript:">
-                                        <i class="fa fa-heart-o"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="content">
-                            <div class="gap">
-                                <h3><a href="listing-singular.html">Lotus Wedding Florist <span class="verified"><i class="fa fa-check-circle"></i></span></a></h3>
-                                <div><i class="fa fa-map-marker"></i> Surat, Gujrat, India</div>
-                            </div>
-                            <div class="reviews">
-                                <span class="stars">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                    <i class="fa fa-star-o"></i>                                    
-                                </span>
-                                (6 review)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Wedding List -->
+            @endif
             </div>
         </div>
     </section>
@@ -746,8 +369,8 @@
                         <div class="section-title">
                             <h1>The Best Wedding Vendor Service</h1>                        
                         </div> 
-                        <p class="lead">Sed ut perspiciatis unde omnis iste oluptatem accusantium doloremque laud.</p>
-                        <a href="contact-us.html" class="btn btn-default btn-rounded btn-lg">Contact Us</a>
+                        <p class="lead">Trusted Wedding Services for every Indian Wedding</p>
+                        <a href="{{ url('/contact') }}" class="btn btn-default btn-rounded btn-lg">Contact Us</a>
                     </div>
                 </div>
             </div>
@@ -849,7 +472,10 @@
                     <div class="popular-locations-alternate">                            
                         <div class="overlay-box">
                             <div class="mt-auto">
-                                <h3><a href="right-side-map-listing.html">Mumbai</a> <span>12 Listings</span></h3>
+                                <h3>
+                                    <a href="{{ url('/vendors/mumbai') }}">Mumbai</a> 
+                                    <!-- <span>12 Listings</span> -->
+                                </h3>
                             </div>
                         </div>
                         <img src="{{ asset('front/images/locations/location_img_6.jpg')}}" alt="">
@@ -862,7 +488,7 @@
                     <div class="popular-locations-alternate">
                         <div class="overlay-box">
                             <div class="mt-auto">
-                                <h3><a href="right-side-map-listing.html">Ahmedabad</a> <span>10 Listings</span></h3>
+                                <h3><a href="{{ url('/vendors/ahmedabad') }}">Ahmedabad</a></h3>
                             </div>
                         </div>
                         <img src="{{ asset('front/images/locations/location_img_7.jpg')}}" alt="">
@@ -875,7 +501,7 @@
                     <div class="popular-locations-alternate">
                         <div class="overlay-box">
                             <div class="mt-auto">
-                                <h3><a href="right-side-map-listing.html">Koltaka</a> <span>30 Listings</span></h3>
+                                <h3><a href="{{ url('/vendors/kolkata') }}">Kolkata</a> </h3>
                             </div>
                         </div>
                         <img src="{{ asset('front/images/locations/location_img_8.jpg')}}" alt="">
@@ -888,7 +514,7 @@
                     <div class="popular-locations-alternate">
                         <div class="overlay-box">
                             <div class="mt-auto">
-                                <h3><a href="right-side-map-listing.html">Noida</a> <span>15 Listings</span></h3>
+                                <h3><a href="{{ url('/vendors/noida') }}">Noida</a> </h3>
                             </div>
                         </div>
                         <img src="{{ asset('front/images/locations/location_img_9.jpg') }}" alt="">
@@ -901,7 +527,7 @@
                     <div class="popular-locations-alternate">
                         <div class="overlay-box">
                             <div class="mt-auto">
-                                <h3><a href="right-side-map-listing.html">Delhi</a> <span>25 Listings</span></h3>
+                                <h3><a href="{{ url('/vendors/delhi') }}">Delhi</a> </h3>
                             </div>
                         </div>
                         <img src="{{ asset('front/images/locations/location_img_10.jpg') }}" alt="">
@@ -914,7 +540,7 @@
                     <div class="popular-locations-alternate">
                         <div class="overlay-box">
                             <div class="mt-auto">
-                                <h3><a href="right-side-map-listing.html">Kerala</a> <span>13 Listings</span></h3>
+                                <h3><a href="{{ url('/vendors/kerala') }}">Kerala</a> </h3>
                             </div>
                         </div>
                         <img src="{{ asset('front/images/locations/location_img_11.jpg') }}" alt="">
@@ -1089,34 +715,12 @@
                             <div class="name-wrap">
                                 <img src="{{ asset('front/images/feedback_1.jpg') }}" alt="">
                                 <div class="head">
-                                    <h3>Mark Hunter</h3>
-                                    <div>New York, USA</div>
+                                    <h3>Vikas Arora</h3>
+                                    <div>New Delhi, India</div>
                                 </div>
                                 <div class="icon"><i class="weddingdir_chat"></i></div>
                             </div>
-                            <div class="text">
-                                Sed ut perspiciatis unde omnis iste nat error sit voluptatem accusantium doau dantium totam rem aperiam eaque.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Customer Testimonials -->
-
-                <!-- Customer Testimonials -->
-                <div class="item">
-                    <div class="customer-feedback-alternate">                            
-                        <div class="content">
-                            <div class="name-wrap">
-                                <img src="{{ asset('front/images/feedback_2.jpg')}}" alt="">
-                                <div class="head">
-                                    <h3>Mark Hunter</h3>
-                                    <div>New York, USA</div>
-                                </div>
-                                <div class="icon"><i class="weddingdir_chat"></i></div>
-                            </div>
-                            <div class="text">
-                                Sed ut perspiciatis unde omnis iste nat error sit voluptatem accusantium doau dantium totam rem aperiam eaque.
-                            </div>
+                            <div class="text">This is a very professional managed organisation – everything we experienced at the wedding was exceptional. The staff were all very efficient and polite.</div>
                         </div>
                     </div>
                 </div>
@@ -1129,18 +733,54 @@
                             <div class="name-wrap">
                                 <img src="{{ asset('front/images/feedback_3.jpg')}}" alt="">
                                 <div class="head">
-                                    <h3>Mark Hunter</h3>
-                                    <div>New York, USA</div>
+                                    <h3>Amandeep</h3>
+                                    <div>Mohali, India</div>
                                 </div>
                                 <div class="icon"><i class="weddingdir_chat"></i></div>
                             </div>
-                            <div class="text">
-                                Sed ut perspiciatis unde omnis iste nat error sit voluptatem accusantium doau dantium totam rem aperiam eaque.
-                            </div>
+                            <div class="text">You did a wonderful job for us and we very grateful for the expert input provided by wedding byte in advance for the big day. It was our wonderful day which was made special</div>
                         </div>
                     </div>
                 </div>
                 <!-- Customer Testimonials -->
+
+                <!-- Customer Testimonials -->
+                <div class="item">
+                    <div class="customer-feedback-alternate">                            
+                        <div class="content">
+                            <div class="name-wrap">
+                                <img src="{{ asset('front/images/feedback_2.jpg')}}" alt="">
+                                <div class="head">
+                                    <h3>Rajan</h3>
+                                    <div>Chandigarh, India</div>
+                                </div>
+                                <div class="icon"><i class="weddingdir_chat"></i></div>
+                            </div>
+                            <div class="text">Just wanted to you people at wedding byte , to say thank you so much for all the work you put into our wedding. The whole day went so well and organised and really I couldn’t have asked for a better day! We’ve had so many people commenting on how amazing the wedding was planned .</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Customer Testimonials -->
+
+                <!-- Customer Testimonials -->
+                <div class="item">
+                    <div class="customer-feedback-alternate">                            
+                        <div class="content">
+                            <div class="name-wrap">
+                                <img src="{{ asset('front/images/feedback_3.jpg')}}" alt="">
+                                <div class="head">
+                                    <h3>Bhuvesh Sharma</h3>
+                                    <div>Jaipur, India</div>
+                                </div>
+                                <div class="icon"><i class="weddingdir_chat"></i></div>
+                            </div>
+                            <div class="text">Thank you for your work through the organising of our wedding reception, our guests and we had the most wonderful time. The venue looked simply superb on the wedding day and the staff working at our event were very efficient</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Customer Testimonials -->
+
+                
             </div>
         </div>
     </section>
@@ -1168,7 +808,7 @@
                         <div class="content-wrap">
                             <div class="content">
                                 <h3><a href="javascript:">Allure Bridesmaids </a></h3>
-                                <h5 class="price">Price $300</h5>
+                                <h5 class="price">Price INR 300</h5>
                                 <div class="desciption">
                                     Silhouette Sheath, Neckline V-neck 
                                 </div>
@@ -1193,7 +833,7 @@
                         <div class="content-wrap">
                             <div class="content">
                                 <h3><a href="javascript:">Sorella Veta</a></h3>
-                                <h5 class="price">Price $450</h5>
+                                <h5 class="price">Price INR 450</h5>
                                 <div class="desciption">
                                     Silhouette Sheath, Neckline V-neck 
                                 </div>
@@ -1218,7 +858,7 @@
                         <div class="content-wrap">
                             <div class="content">
                                 <h3><a href="javascript:">Hayley Paige</a></h3>
-                                <h5 class="price">Price $350</h5>
+                                <h5 class="price">Price INR 350</h5>
                                 <div class="desciption">
                                     Silhouette Sheath, Neckline V-neck 
                                 </div>
@@ -1243,7 +883,7 @@
                         <div class="content-wrap">
                             <div class="content">
                                 <h3><a href="javascript:">Maggy Sottero</a></h3>
-                                <h5 class="price">Price $480</h5>
+                                <h5 class="price">Price INR 480</h5>
                                 <div class="desciption">
                                     Silhouette Sheath, Neckline V-neck 
                                 </div>
@@ -1274,8 +914,8 @@
                     <h1 class="mb-md-0 txt-white">Are You Looking For Vendor For Your Wedding</h1>
                 </div>
                 <div class="col-lg-6 text-lg-right mt-lg-0 mt-md-4">
-                    <a href="javascript:" class="btn btn-default btn-rounded btn-lg mr-3 mb-3">Get Started Now</a>
-                    <a href="javascript:" class="btn btn-outline-default btn-rounded btn-lg mb-3">Our Services</a>
+                    <a href="{{ url('/register') }}" class="btn btn-default btn-rounded btn-lg mr-3 mb-3">Get Started Now</a>
+                    <a href="{{ url('/vendors/all') }}" class="btn btn-outline-default btn-rounded btn-lg mb-3">Our Services</a>
                 </div>
             </div>
         </div>
@@ -1291,75 +931,94 @@
             </div>            
             <div class="row">
                 <!-- Features Icons -->
+                
                 <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <div class="why-choose-icons">
-                        <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_budget"></i>
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/budget') }} @endif">
+                        <div class="why-choose-icons">
+                            <div class="icon-big-cirlce mx-auto">
+                                <i class="weddingdir_budget"></i>
+                            </div>
+
+                            <h4>Budget</h4>
                         </div>
-                        <h4>Budget</h4>
-                        <!-- <a href="javascript:" class="circle-arrow"><i class="fa fa-angle-right"></i></a> -->
-                    </div>
+                    </a>
                 </div>
+                
                 <!-- Features Icons -->
 
                 <!-- Features Icons -->
+                
                 <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <div class="why-choose-icons">
-                        <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_calendar_heart"></i>
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/budget') }} @endif">
+                        <div class="why-choose-icons">
+                            <div class="icon-big-cirlce mx-auto">
+                                <i class="weddingdir_calendar_heart"></i>
+                            </div>
+                            <h4>Guest List</h4>
                         </div>
-                        <h4>Guest List</h4>
-                        <!-- <a href="javascript:" class="circle-arrow"><i class="fa fa-angle-right"></i></a> -->
-                    </div>
+                    </a>
                 </div>
+                
                 <!-- Features Icons -->
 
                 <!-- Features Icons -->
+                
                 <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <div class="why-choose-icons">
-                        <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_seating_chart"></i>
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/guestlist') }} @endif">
+                        <div class="why-choose-icons">
+                            <div class="icon-big-cirlce mx-auto">
+                                <i class="weddingdir_seating_chart"></i>
+                            </div>
+                            <h4>Seating Chart</h4>
                         </div>
-                        <h4>Seating Chart</h4>
-                        <!-- <a href="javascript:" class="circle-arrow"><i class="fa fa-angle-right"></i></a> -->
-                    </div>
+                    </a>
                 </div>
+                
                 <!-- Features Icons -->
 
                 <!-- Features Icons -->
+                
                 <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <div class="why-choose-icons">
-                        <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_bell"></i>
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/checklist') }} @endif">
+                        <div class="why-choose-icons">
+                            <div class="icon-big-cirlce mx-auto">
+                                <i class="weddingdir_bell"></i>
+                            </div>
+                            <h4>Check List</h4>
                         </div>
-                        <h4>Check List</h4>
-                        <!-- <a href="javascript:" class="circle-arrow"><i class="fa fa-angle-right"></i></a> -->
-                    </div>
+                    </a>
                 </div>
+                
                 <!-- Features Icons -->
 
                 <!-- Features Icons -->
+                
                 <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <div class="why-choose-icons">
-                        <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_heart_ring"></i>
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/real-wedding') }} @endif">
+                        <div class="why-choose-icons">
+                            <div class="icon-big-cirlce mx-auto">
+                                <i class="weddingdir_heart_ring"></i>
+                            </div>
+                            <h4>Real Weddings</h4>
                         </div>
-                        <h4>Real Weddings</h4>
-                        <!-- <a href="javascript:" class="circle-arrow"><i class="fa fa-angle-right"></i></a> -->
-                    </div>
+                    </a>
                 </div>
+                
                 <!-- Features Icons -->
 
                 <!-- Features Icons -->
+                
                 <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <div class="why-choose-icons">
-                        <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_shopping_bag_heart"></i>
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/vendors') }} @endif">
+                        <div class="why-choose-icons">
+                            <div class="icon-big-cirlce mx-auto">
+                                <i class="weddingdir_shopping_bag_heart"></i>
+                            </div>
+                            <h4>Vendors</h4>
                         </div>
-                        <h4>Vendors</h4>
-                        <!-- <a href="javascript:" class="circle-arrow"><i class="fa fa-angle-right"></i></a> -->
-                    </div>
+                    </a>
                 </div>
+                
                 <!-- Features Icons -->
                 
             </div>

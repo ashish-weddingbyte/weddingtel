@@ -4957,4 +4957,10 @@ footer .widget-listing li {
     left: 10%;
     right: 10%;
     padding: 15px;
-  }
+}
+
+.images-preview-div img
+{
+padding: 10px;
+max-width: 100px;
+}

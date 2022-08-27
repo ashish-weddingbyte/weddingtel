@@ -28,11 +28,11 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->text('description')->nullable();
             $table->enum('is_travelable', ['0','1'])->nullable();
-            $table->string('cancel_policy')->nullable();
+            $table->text('cancel_policy')->nullable();
             $table->enum('advance_payment', ['10','20','30','40','50','60','70','80','90','100'])->nullable();
             $table->string('youtube')->nullable();
             $table->text('service_offered')->nullable();
-            $table->text('business_offered')->nullable();
+            // $table->text('business_offered')->nullable();
             $table->string('starting_price')->nullable();
             $table->integer('listing_order')->nullable();
             $table->enum('is_featured', ['0','1'])->nullable()->default('0');

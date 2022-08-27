@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\DB;
+
+
 //  common controllers
 use App\Http\Controllers\login;
 use App\Http\Controllers\front\UserController;
@@ -23,21 +26,19 @@ use App\Http\Controllers\front\vendor\VendorProfileController;
 
 
 
-
 /**====================================================================================== */
 
 Route::get('/',[HomeController::class, 'home']);
-Route::view('/listing','front.user.listing');
-Route::view('/contact','front.user.contact');
+Route::view('/listing','front.listing');
+Route::view('/contact','front.contact');
 
 
 // vendor pages
-Route::get('vendors/{city}/{category}',[VendorController::class,'all_vendors_of_category']);
-Route::get('vendors/{city}',[VendorController::class,'all_vendors_of_category']);
-
-
-
-
+// Route::get('vendors_data', [UserController::class,'test']);
+Route::get('profile/{name}',[HomeController::class,'profile']);
+Route::get('vendors/{city}/{category}',[HomeController::class,'vendor_list']);
+Route::get('vendors/{city}',[HomeController::class,'vendor_list']);
+Route::post('vendors/',[HomeController::class,'search']);
 
 // Protected Route by Middleware for user(bride/groom).
 Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], function(){
@@ -137,15 +138,10 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
     Route::post('/profile/change-password',[VendorProfileController::class,'change_password']);
     Route::post('/profile/social',[VendorProfileController::class,'update_social']);
     Route::post('/profile/business',[VendorProfileController::class,'update_business_profie']);
+    Route::post('/profile/gallery',[VendorProfileController::class,'gallery']);
+    Route::post('/profile/gallery/{id}',[VendorProfileController::class,'delete_image']);
 
 });
-
-
-
-
-
-
-
 
 
 
@@ -154,4 +150,9 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
 Route::get('/logout', function(){
     Session::flush();
     return Redirect::to('/');
+ });
+
+
+ Route::get('/test', function(){
+    echo  vendor_helper::vendor_profile_url(4586);
  });

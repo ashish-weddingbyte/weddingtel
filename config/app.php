@@ -181,7 +181,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -211,7 +211,9 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         "otp_helper"   =>  App\Helpers\otp_helper::class,
-        "tools_helper"   =>  App\Helpers\tools_helper::class
+        "tools_helper"   =>  App\Helpers\tools_helper::class,
+        "vendor_helper"   =>  App\Helpers\vendor_helper::class,
+        'Image'     => Intervention\Image\Facades\Image::class
     ])->toArray(),
 
 ];

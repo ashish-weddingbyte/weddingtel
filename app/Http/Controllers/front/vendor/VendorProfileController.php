@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\VendorDetail;
 use App\Models\SocialLink;
+use App\Models\MediaGallery;
+
+use Image;
 
 class VendorProfileController extends Controller
 {
@@ -25,6 +28,7 @@ class VendorProfileController extends Controller
         $data['user'] = User::find($user_id);
         $data['details'] = VendorDetail::where('user_id',$user_id)->first();
         $data['social'] =   SocialLink::where('user_id',$user_id)->first();
+        $data['gallery'] =  MediaGallery::where('user_id',$user_id)->where('user_type','vendor')->get();
         return view('front.vendor.profile',$data);
     }
 
@@ -250,6 +254,66 @@ class VendorProfileController extends Controller
             Session::flash('class', 'alert-danger');
             return redirect("/vendor/profile");
         }
+    }
+
+    public function gallery(Request $request){
+        $validateImageData = $request->validate([
+            'gallery' => 'required|max:512',
+            'gallery.*' => 'image|mimes:jpg,png,jpeg|max:512'
+        ]);
+
+        
+        if($request->hasfile('gallery')){
+            $images_count = count( $request->file('gallery') );
+            
+            if($images_count <= 6){
+                foreach($request->file('gallery') as $key => $file)
+                {
+                    $image_name = $file->hashName();
+                    $file->storeAs('public/upload/vendor/gallery',$image_name);
+
+                    $media = new MediaGallery;
+                    $media->user_id = Session::get('user_id');
+                    $media->media_type = 'image';
+                    $media->name = $image_name;
+                    $media->status = '1';
+                    $media->user_type = 'vendor';
+                    $media->save();
+                }
+                Session::flash('message', 'Profile Gallery Update Successfully!');
+                Session::flash('class', 'alert-success');
+                return redirect("/vendor/profile");
+            }else{
+                Session::flash('message', 'Can not upload more than 6 images at once.');
+                Session::flash('class', 'alert-danger');
+                return redirect("/vendor/profile");
+            }
+        }else{
+            Session::flash('message', 'Somthing Went Wrong!');
+            Session::flash('class', 'alert-danger');
+            return redirect("/vendor/profile");
+        }
+    }
+
+
+    public function delete_image(Request $request){
+        $request->validate([
+            'gallery_id'    =>  'required'
+        ]);
+
+        $gallery_id = $request->gallery_id;
+
+        $image = MediaGallery::find($gallery_id);
+
+        Storage::delete('public/upload/vendor/gallery/'.$image->name);
+        $image->delete();
+
+        Session::flash('message', 'Gallery Image Delete Successfully!');
+        Session::flash('class', 'alert-success');
+        
+        return response()->json(['success' => 'Gallery Image Delete Successfully!']);
+
+
     }
 
     

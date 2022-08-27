@@ -22,9 +22,5 @@ class VendorController extends Controller
         return view('front.user.vendors',$data);
     }
 
-
-    public function all_vendors_of_category(){
-        return view('front.user.listing');
-    }
     
 }

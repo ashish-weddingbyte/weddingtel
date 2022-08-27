@@ -90,7 +90,7 @@ class ProfileController extends Controller
 
         if ($request->hasFile('profile')) {
 
-            Storage::delete($detals->profile);
+            Storage::delete('public/upload/user/profile'.$detals->profile);
             $image_name  =  $request->file('profile')->getClientOriginalName();
             $detals->profile = $image_name;
             $request->file('profile')->storeAs('public/upload/user/profile',$image_name);

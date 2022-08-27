@@ -29,7 +29,7 @@
                 $('form-dark-select').select2({
                     width: 'resolve',
                     theme: "form-dark",
-                    minimumResultsForSearch: -1
+                    minimumResultsForSearch: 10
                 });
             }
         },
@@ -39,41 +39,21 @@
 
                 $('.form-light-select').select2({
                     width: 'resolve',
-                    theme: "form-light",
-                    minimumResultsForSearch: -1
+                    // theme: "form-light",
+                    minimumResultsForSearch: 10
                 });
             }
         },
 
-        select_home_1: function () {
-            if ($('.home-select-1').length) {
-
-                $('.home-select-1').select2({
-                    width: 'resolve',
-                    theme: "form-light",
-                    placeholder: "Choose Vendor Type"
-                });
-            }
-        },
+        
 
         select_category: function () {
             if ($('.select-category').length) {
 
                 $('.select-category').select2({
                     width: 'resolve',
-                    theme: "form-dark",
+                    // theme: "form-dark",
                     placeholder: "Choose Category Type"
-                });
-            }
-        },
-
-        select_home_2: function () {
-            if ($('.home-select-2').length) {
-
-                $('.home-select-2').select2({
-                    width: 'resolve',
-                    theme: "form-light",
-                    placeholder: "Choose Location"
                 });
             }
         },
@@ -445,7 +425,7 @@
     
                     loop: true,
                     stagePadding: 0,
-                    margin: 30,
+                    margin: 20,
                     slideBy: 1,
                     autoplay: true,
                     autoplayTimeout: 10000,
@@ -702,15 +682,10 @@
             this.vendor_video();
             this.wedding_listing_single();     
             this.slider_home();
-            this.select_home_1(); 
-            this.select_category();     
-            this.select_home_2(); 
+            this.select_category();      
             this.slider_catgories();     
             this.home_slider_listing();
-            this.select_map_1();
-            this.select_map_2();
-            this.select_map_3();
-            this.select_map_4();
+            
             this.isotope_gallery();
             this.toggle_datepicker();
             this.inline_toggle_datepicker();

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('media_galleries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('event_name')->nullable();
+            $table->enum('media_type', ['image', 'pdf', 'doc', 'video', 'link'])->nullable();
             $table->string('name')->nullable();
             $table->enum('status', ['0', '1'])->default('1');
             $table->enum('user_type', ['vendor','user']); 

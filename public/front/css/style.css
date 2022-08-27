@@ -1378,6 +1378,10 @@ Background Color / Color
   border-bottom-right-radius: 0;
 }
 
+.theme-pagination nav ul {
+  justify-content: center;
+}
+
 /*---- 4.4 Sidebar Nav ---*/
 .sidebar-nav {
   overflow: hidden;
@@ -2658,7 +2662,7 @@ header .btn {
   color: #222222;
 }
 .select2-container.select2-container .select2-selection--single {
-  padding: 0.8rem;
+  padding: 0.5rem;
   height: auto;
   border: 1px solid #acacac;
   border-radius: 5px;
@@ -4130,11 +4134,45 @@ header .btn {
   justify-content: space-between;
   align-items: center;
 }
+.vendor-wrap-alt .img-content-top {
+  position: absolute;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .vendor-wrap-alt .img-content .rating {
   border-radius: 30px;
   background: #fc2779;
   padding: 0.2rem 0.5rem;
   color: #fff;
+}
+.vendor-wrap-alt .img .img-content-top .top .is_top {
+  border-radius: 40px;
+}
+.vendor-wrap-alt .img .img-content-top .top .is_top {
+  background: #fff;
+  padding: 5px 10px 7px 2px;
+  white-space: nowrap;
+  font-size: 0.875rem;
+}
+.vendor-wrap-alt .img .img-content-top .top .is_top i {
+  width: 27px;
+  height: 27px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border-radius: 50%;
+}
+.vendor-wrap-alt .img .img-content-top .top .is_top i {
+  background: #19b453;
+}
+.vendor-wrap-alt .img .img-content-top .top .is_top span {
+  padding: 0 4px;
 }
 .vendor-wrap-alt .img-content .favorite {
   border-radius: 50%;
@@ -4373,18 +4411,24 @@ header .btn {
 }
 .wedding-listing .img .img-content .top .featured,
 .wedding-listing .img .img-content .top .price,
+.wedding-listing .img .img-content .top .is_top,
+.wedding-listing .img .img-content .top .is_verified,
 .wedding-listing .img .img-content .top .tags {
   border-radius: 40px;
 }
 .wedding-listing .img .img-content .top .featured,
-.wedding-listing .img .img-content .top .price {
+.wedding-listing .img .img-content .top .price,
+.wedding-listing .img .img-content .top .is_top,
+.wedding-listing .img .img-content .top .is_verified {
   background: #fff;
   padding: 5px 10px 7px 2px;
   white-space: nowrap;
   font-size: 0.875rem;
 }
 .wedding-listing .img .img-content .top .featured i,
-.wedding-listing .img .img-content .top .price i {
+.wedding-listing .img .img-content .top .price i,
+.wedding-listing .img .img-content .top .is_top i,
+.wedding-listing .img .img-content .top .is_verified i {
   width: 27px;
   height: 27px;
   display: inline-flex;
@@ -4397,13 +4441,24 @@ header .btn {
   margin-right: 6px;
 }
 .wedding-listing .img .img-content .top .featured i {
-  background: #ffc600;
+  background: #19b453;
+}
+.wedding-listing .img .img-content .top  i {
+  margin-bottom: 10px;
 }
 .wedding-listing .img .img-content .top .price i {
   background: #54ba1d;
 }
+.wedding-listing .img .img-content .top .is_top i {
+  background: #fc2779;
+}
+.wedding-listing .img .img-content .top .is_verified i {
+  background: #19b453;
+}
 .wedding-listing .img .img-content .top .featured span,
-.wedding-listing .img .img-content .top .price span {
+.wedding-listing .img .img-content .top .price span,
+.wedding-listing .img .img-content .top .is_top span,
+.wedding-listing .img .img-content .top .is_verified span {
   padding: 0 4px;
 }
 .wedding-listing .img .img-content .bottom .tags {
@@ -6765,4 +6820,14 @@ footer .widget-listing li {
 
 #ui-datepicker-div{
   z-index: 99 !important;
+}
+
+.verified{
+  color: #19b453;
+  margin-left: 5px;
+} 
+
+ul#select2-state-ig-results {
+  overflow: scroll;
+  height: 250px;
 }

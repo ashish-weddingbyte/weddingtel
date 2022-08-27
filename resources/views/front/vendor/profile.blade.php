@@ -39,6 +39,8 @@
                         aria-controls="v-pills-general" aria-selected="true">Profile</a>
                     <a class="nav-link" id="v-pills-vendor-tab" data-toggle="pill" href="#v-pills-vendor" role="tab"
                         aria-controls="v-pills-vendor" aria-selected="false">Business Profile</a>
+                    <a class="nav-link" id="v-pills-gallery-tab" data-toggle="pill" href="#v-pills-gallery" role="tab"
+                        aria-controls="v-pills-gallery" aria-selected="false">Gallery</a>
                     <a class="nav-link" id="v-pills-groom-tab" data-toggle="pill" href="#v-pills-groom" role="tab"
                         aria-controls="v-pills-groom" aria-selected="false">Password Change
                     </a>
@@ -307,6 +309,115 @@
                             </form>                                     
                         </div>
                     </div>
+
+                    <div class="tab-pane fade" id="v-pills-gallery" role="tabpanel" aria-labelledby="v-pills-gallery-tab">
+                        <div class="card-shadow">
+                            <div class="card-shadow-header">
+                                <div class="head-simple">
+                                    Gallery
+                                </div>                                            
+                            </div>
+
+                            
+                            <div class="todo-subhead">
+                                <h3>Gallery Images</h3>
+                            </div>
+                            <div class="px-3 pt-0">
+                                <div class="row">
+
+                                    @if($gallery->count() > 0)
+
+                                        @foreach($gallery as $g)
+
+                                        <div class="col-md-4">
+                                            <div class="dash-categories selected" style="background: url( {{ asset('storage/upload/vendor/gallery/'.$g->name) }} ) no-repeat; background-size: cover;">
+                                                <div class="edit">
+                                                    <a href="{{ asset('storage/upload/vendor/gallery/'.$g->name) }}" data-toggle="modal" data-target="#delete_modal-{{ $g->id }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>                                         
+                                        </div>
+
+
+                                        <!-- Modal for Delete guets -->
+                                        <div class="modal fade" id="delete_modal-{{ $g->id }}" tabindex="-1" aria-labelledby="login_form" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered register-tab">
+                                                <div class="modal-content">
+                                                    <div class="modal-body p-0">
+                                                        <div class="d-flex justify-content-between align-items-center p-3 px-4 bg-light-gray">
+                                                            <h2 class="m-0" >Confirmation</h2>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+
+                                                        
+
+                                                        <div class="card-shadow-body">
+                                                            <form data-action="{{ url('vendor/profile/gallery/'.$g->id) }}" class="submit">
+                                                                <div class="row">
+                                                                    
+                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                        <div class="form-group">
+                                                                            <P class="text-danger">Are you sure, You want to delete this Gallery Image</P>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                        <div class="form-group">
+                                                                            <input type="hidden" name="gallery_id" value="{{ $g->id }}">
+                                                                            <button type="submit" class="btn btn-default">Delete Image</button>
+
+                                                                            <button type="close" data-dismiss="modal" class="btn btn-secondary ">Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
+                                        @endforeach
+                                        
+                                    @else
+                                        <div class="col-md-12 my-5">
+                                            <div class="text-center mb-3">
+                                                <div class="custom-file button-style">
+                                                    <h5>No Gallery Images Found!</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                </div>
+
+                                <form action="{{ url('vendor/profile/gallery') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="text-center mb-3">
+                                        <div class="custom-file button-style">
+                                            <input type="file" class="custom-file-input" id="gallery" aria-describedby="gallery" name='gallery[]' accept=".jpg,.png,.jpeg" multiple>
+                                            <label class="custom-file-label"  for="gallery"><i class="fa fa-plus"></i> Browse Image</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12">
+                                        <h4>Image Preview</h4>
+                                            <div class="images-preview-div"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="row text-center">
+                                        <div class="col-md-12 mb-3">
+                                            <input type="submit" class="btn btn-primary btn-rounded" name="submit" name="upload" value="Upload Images">
+                                        </div>
+                                    </div>
+                                </form> 
+                            </div>                                   
+                        </div>
+                    </div>
+                    
                     <div class="tab-pane fade" id="v-pills-groom" role="tabpanel" aria-labelledby="v-pills-groom-tab">
                         <div class="card-shadow">
                             <div class="card-shadow-header">

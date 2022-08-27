@@ -20,7 +20,7 @@ class GuestContoller extends Controller
 
         $user_id = Session::get('user_id');
 
-        $data['guestlist'] = Guest::where('user_id',$user_id)->paginate(50);;
+        $data['guestlist'] = Guest::where('user_id',$user_id)->paginate(50);
 
         $data['total_guest'] = Guest::where('user_id',$user_id)->count();
         $data['confirm_guest'] = Guest::where('user_id',$user_id)->where('status','confirm')->count();
