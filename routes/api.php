@@ -88,4 +88,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
     Route::post('logout', [UserApiController::class, 'logout']);
+
+    Route::get('dashboard', [UserApiController::class, 'dashboard']);
 });

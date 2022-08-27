@@ -1254,6 +1254,48 @@ class UserApiController extends Controller
 
     }
 
+    public function dashboard(){
+        
+        $user_id = Auth::id();
+
+        if($user_id){
+
+        
+
+            $data['user']   =  User::find($user_id);
+            $data['details']    =   UserDetail::where('user_id',$user_id)->first();
+
+            $data['all_checklist_count'] = checklist::where('user_id', $user_id)->count();
+            $data['all_done_checklist_count'] = checklist::where('user_id', $user_id)->where('status','0')->count();
+
+            $data['checklist_done_perentage'] = round(  ($data['all_done_checklist_count'] / $data['all_checklist_count']) * 100  );
+
+            $data['total_guest'] = Guest::where('user_id',$user_id)->count();
+            $data['confirm_guest'] = Guest::where('user_id',$user_id)->where('status','confirm')->count();
+
+            $data['total_category'] = Category::all()->count();
+            $data['categories'] = Category::all();
+
+            $data['checklist'] = Checklist::where('user_id',$user_id)->orderBy('added_date', 'ASC')->limit(2)->get();
+
+            $data['budget'] = Budget::where('user_id',$user_id)->first();
+
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Profile Update Successfully!",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Unauthorized',
+                'errors'    =>  'Token Expired or unauthorized User!'
+            ];
+            return response()->json($respose,401);
+        }
+    }
+
     public function logout(){
         Auth::user()->tokens()->delete();
     }
