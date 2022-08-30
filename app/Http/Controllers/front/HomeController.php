@@ -193,7 +193,7 @@ class HomeController extends Controller
                         ->select(['blogs.*','categories.category_name','categories.category_url'])
                         ->orderBy('id','desc')
                         ->paginate(20);
-        $data['popular_blogs'] = Blog::orderBy('id','desc')
+        $data['popular_blogs'] = Blog::orderBy('id','asc')
                                 ->limit(3)
                                 ->get();
         $data['categories'] =   Category::all();
@@ -201,7 +201,20 @@ class HomeController extends Controller
     }
 
     public function blog_details(Request $request){
+        $title = str_replace('-',' ',$request->title);
         
+        $data['blog'] = Blog::join('categories','categories.id','=','blogs.category_id')
+                            ->select(['blogs.*','categories.category_name','categories.category_url'])
+                            ->where('title', 'like', "%$title%")
+                            ->first();
+
+        $data['popular_blogs'] = Blog::orderBy('id','asc')
+                                ->limit(3)
+                                ->get();
+        $data['categories'] =   Category::all();
+
+        return view('front.blog_details',$data);
+
     }
 
     public function blogs_by_category(Request $request){
