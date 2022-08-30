@@ -431,7 +431,7 @@
                     autoplayTimeout: 10000,
                     smartSpeed: 1000,
                     nav: false,
-                    dots: true,
+                    dots: false,
                     navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
                     responsive: {
                         0: {

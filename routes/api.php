@@ -37,12 +37,15 @@ use App\Http\Controllers\API\UserApiController;
 Route::post('register', [UserApiController::class, 'register']);
 Route::post('login_with_email', [UserApiController::class, 'login_with_email']);
 Route::post('login_with_otp', [UserApiController::class, 'login_with_otp_api']);
+Route::post('verify_otp', [UserApiController::class, 'verify_otp_api']);
 
+Route::get('relation_groups',[UserApiController::class,'relation_groups']);
+Route::get('categories',[UserApiController::class,'all_categories']);
 
 // procted route with ap token.
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
-    Route::post('verify_otp', [UserApiController::class, 'verify_otp_api']);
+    
     Route::post('logout', [UserApiController::class, 'logout']);
 
     Route::get('/user_data',[UserApiController::class, 'user_data']);
@@ -87,7 +90,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/profile/wedding-info',[UserApiController::class,'wedding_info_api']);
 
 
-    Route::post('logout', [UserApiController::class, 'logout']);
+    Route::get('logout', [UserApiController::class, 'logout']);
 
     Route::get('dashboard', [UserApiController::class, 'dashboard']);
 });

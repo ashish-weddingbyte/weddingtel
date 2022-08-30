@@ -12,9 +12,9 @@
         <!-- Specific Meta
         ================================================== -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <meta name="description" content="WeddingDir - Wedding Directory HTML Template">
+        <meta name="description" content="Wedding Byte is the one-stop shop for all your needs related to hiring professionals for wedding arrangements like photographers, engagement makeup, bridal makeup artists, mehndi artists, choreographers etc.">
         <meta name="keywords" content="bride, business, couple, directory, groom, listing, login, map, marketing, realwedding, registration, rsvp, vendor, wedding, wedding planner">
-        <meta name="author" content="wp-organic">
+        <meta name="author" content="WeddingByte">
         <meta name="MobileOptimized" content="320" />
 
         <meta name="csrf-token" content="{{ csrf_token() }}" />

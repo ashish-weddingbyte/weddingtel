@@ -4,12 +4,14 @@ namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\VendorDetail;
 use App\Models\UserDetail;
 use App\Models\SocialLink;
+use App\Models\MediaGallery;
+use App\Models\Blog;
 
 use vendor_helper;
 
@@ -39,7 +41,11 @@ class HomeController extends Controller
                                 ->orderBy('users.id','desc')
                                 ->get();
         $data['cities']     =   VendorDetail::select('city')->groupBy('city')->orderBy('city','asc')->get();
-       
+        $data['blogs']      =   Blog::limit(3)
+                                ->join('categories','categories.id','=','blogs.category_id')
+                                ->select(['blogs.*','categories.category_name'])
+                                ->orderBy('id','desc')
+                                ->get();
         return view('front.index',$data);
     }
 
@@ -63,7 +69,18 @@ class HomeController extends Controller
                                     // ->orderBy('users.id','desc')
                                     ->first();
         $data['social_media'] = SocialLink::where('user_id',$vendor_data['id'])->first();
+        $data['gallery']    =   MediaGallery::where('user_id',$vendor_data['id'])->where('user_type','vendor')->get();
 
+        $data['featured_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
+                                ->join('categories','categories.id','=','vendor_details.category_id')
+                                ->where('users.user_type','vendor')
+                                ->where('users.status','1')
+                                ->where('vendor_details.is_featured','1')
+                                ->where('vendor_details.featured_image','!=', NULL)
+                                ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.city','vendor_details.featured_image','categories.category_name','categories.icon'])
+                                ->orderBy('users.id','desc')
+                                ->limit(3)
+                                ->get();
         if(!empty($data['vendor'])){
 
             return view('front.vendor_details',$data);
@@ -171,5 +188,24 @@ class HomeController extends Controller
     }
 
 
+    public function all_blogs(){
+        $data['blogs'] = Blog::join('categories','categories.id','=','blogs.category_id')
+                        ->select(['blogs.*','categories.category_name','categories.category_url'])
+                        ->orderBy('id','desc')
+                        ->paginate(20);
+        $data['popular_blogs'] = Blog::orderBy('id','desc')
+                                ->limit(3)
+                                ->get();
+        $data['categories'] =   Category::all();
+        return view('front.blogs',$data);
+    }
+
+    public function blog_details(Request $request){
+        
+    }
+
+    public function blogs_by_category(Request $request){
+
+    }
 
 }

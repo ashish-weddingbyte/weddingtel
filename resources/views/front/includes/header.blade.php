@@ -10,8 +10,8 @@
                 <div class="col-sm-12 col-lg">
                     <div class="social-icons">
                         <ul class="list-unstyled">
-                            <li><a href="javascript:"><i class="fa fa-facebook-f"></i></a></li>
-                            <li><a href="javascript:"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="https://www.facebook.com/Weddingbyte/" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.instagram.com/weddingbyte/" target="_blank"><i class="fa fa-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -115,10 +115,10 @@
                     </li>
                     
                     <li class="nav-item ">
-                        <a href="{{ url('/') }}" class="nav-link">Blogs</a>
+                        <a href="{{ url('/blogs') }}" class="nav-link">Blogs</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/') }}" class="nav-link">Real-Wedding</a>
+                        <a href="{{ url('/real-wedds') }}" class="nav-link">Real-Wedding</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/contact') }}">Contact Us</a>

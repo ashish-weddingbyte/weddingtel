@@ -80,8 +80,8 @@
             <div class="row align-items-end">
                 <div class="col-lg-6 mb-0">
                     <div class="profile-single">
-                        <h3>Matrimony Wedding Photography</h3>
-                        <p><i class="fa fa-map-marker"></i>  Dorothea Lane, New York</p>
+                        <h3>{{ $vendor->name }} ( {{$vendor->brandname }} ) </h3>
+                        <p><i class="fa fa-map-marker"></i>  {{ $vendor->city }}</p>
                         <div class="reviews">
                             <span class="badge"><i class="fa fa-star-half-full"></i> 3.9</span> 8 Reviews
                         </div>
@@ -114,10 +114,10 @@
     <div class="container vendor-nav-sticky">
         <div class="vendor-nav text-center">
             <a href="#description"><i class="fa fa-file-text"></i> Description</a>
+            <a href="#service_offered"><i class="fa fa-list"></i> Service Offered</a>
             <a href="#gallery"><i class="fa fa-image"></i> Gallery</a>
             <a href="#videos"><i class="fa fa-video-camera"></i> Videos</a>
             <a href="#reviews"><i class="fa fa-star-half-full"></i> Reviews</a>
-            <a href="#faq"><i class="fa fa-question-circle"></i> Faq’s</a>
             <a href="#location"><i class="fa fa-map-marker"></i> Location</a>
         </div>
     </div>
@@ -136,13 +136,27 @@
                         <div class="card-shadow-header">
                             <h3><i class="fa fa-file-text"></i> Description</h3>
                         </div>
+                        @if($vendor->description)
                         <div class="card-shadow-body">
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit sed quia.</p>
-
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            {{ $vendor->description }}
                         </div>
+                        @endif
                     </div>
                     <!-- Description -->
+
+                    <!-- Service Offered -->
+                    <div class="card-shadow pos-rel">
+                        <a id="service_offered" class="anchor-fake"></a>
+                        <div class="card-shadow-header">
+                            <h3><i class="fa fa-list"></i> Service Offered</h3>
+                        </div>
+                        @if($vendor->service_offered)
+                        <div class="card-shadow-body">
+                            {{ $vendor->service_offered }}
+                        </div>
+                        @endif
+                    </div>
+                    <!-- Service Offered -->
 
                     <!-- Gallery -->
                     <div class="card-shadow pos-rel">
@@ -150,6 +164,7 @@
                         <div class="card-shadow-header">
                             <h3><i class="fa fa-image"></i> Gallery</h3>
                         </div>
+                        @if($gallery->count() > 0)
                         <div class="card-shadow-body">
                             <div class="row vendor-img-gallery">
                                 <div class="col-md-3 mb-0">
@@ -210,6 +225,7 @@
                                 <a data-toggle="collapse" href="#vendor-img-gallery" role="button" aria-expanded="false" class="collapsed"><i class="fa fa-angle-down"></i> <span>3 More</span></a>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <!-- Gallery -->
 
@@ -219,6 +235,7 @@
                         <div class="card-shadow-header">
                             <h3><i class="fa fa-video-camera"></i> Videos</h3>
                         </div>
+                        @if($vendor->youtube)
                         <div class="card-shadow-body">
                             <div class="vendor-video">
                                 <a class="popup-video" href="http://www.youtube.com/watch?v=0O2aH4XLbto">
@@ -227,6 +244,7 @@
                                 </a>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <!-- Videos -->
 
@@ -234,7 +252,7 @@
                     <div class="card-shadow pos-rel">
                         <a id="reviews" class="anchor-fake"></a>
                         <div class="card-shadow-header d-md-flex justify-content-between align-items-center">
-                            <h3><i class="fa fa-star-o"></i> Reviews For Matrimony Wedding Photography</h3>
+                            <h3><i class="fa fa-star-o"></i> Reviews of {{ $vendor->name }} for {{ $vendor->category_name }} Category</h3>
                             <a href="#review-form" class="btn btn-sm btn-dark mt-3 mt-md-0" id="write-review-form">Write A Review</a>
                         </div>
                         <div class="card-shadow-body border-bottom">
@@ -904,66 +922,21 @@
                     </div>
                     <!-- Write A Review -->
 
-                    <!-- Faq’s -->
-                    <div class="card-shadow pos-rel" >
-                        <a id="faq" class="anchor-fake"></a>
-                        <div class="card-shadow-header">
-                            <h3><i class="fa fa-question-circle"></i> Faq’s</h3>
-                        </div>
-                        <div class="card-shadow-body p-0">
-                            <table class="table mb-0 table-faqs">
-                                <tbody>
-                                    <tr>
-                                        <th>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia</th>
-                                        <td><span class="txt-orange">Yes</span></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Proin viverra tincidunt lectus at sodales. Nam vitae dolor ipsum.</th>
-                                        <td><span class="txt-orange">$ 2500</span></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Aenean at molestie nisl, id rhoncus orci. Suspendisse et. </th>
-                                        <td colspan="2">
-                                            <ul class="list-unstyled icons-listing">
-                                                <li>Clean Up</li>
-                                                <li>Event Planning</li>
-                                                <li>Parking</li>
-                                                <li>Set Up</li>
-                                                <li>Premium Liquor</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia</th>
-                                        <td><span class="txt-orange">Yes</span></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia</th>
-                                        <td><span class="txt-orange">$ 40</span></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- Faq’s -->
-
                     <!-- Location -->
                     <div class="card-shadow pos-rel">
                         <a id="location" class="anchor-fake"></a>
                         <div class="card-shadow-header">
                             <h3><i class="fa fa-map-marker"></i> Location</h3>
                         </div>
+                        @if($vendor->address)
                         <div class="card-shadow-body">
                             <div id="map-holder">
                                 <div id="map_extended" class="vendor-single-popup-wrap">
-                                    <p>This will be replaced with the Google Map.</p>
+                                    <p>{{ $vendor->address }}</p>
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <!-- Location -->
 
@@ -978,66 +951,64 @@
 
                             <!-- Widget Wrap -->
                             <div class="widget">
-                                <h3 class="widget-title">Message Vendor</h3>
-                                
-                                <div class="request-quote-form">
-                                    <div class="form-group">
-                                        <input type="text" placeholder="First and last name" class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" placeholder="Email" class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="number" placeholder="Phone Number" class="form-control" />
-                                    </div>
-                                    <div class="form-group pos-rel">
-                                        <input type="text" class="form-control datepicker" placeholder="Choose Date" />
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea rows="6" placeholder="Your message" class="form-control"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <p><strong><small class="txt-orange">Preferred Contact Method</small></strong></p>
-        
-                                        <div class="custom-control custom-radio custom-control-inline mb-3">
-                                            <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadioInline1">Call</label>
-                                        </div>
-                                        <div class="custom-control custom-radio custom-control-inline mb-3">
-                                            <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadioInline2">Email</label>
-                                        </div>
-                                        <div class="custom-control custom-radio custom-control-inline mb-3">
-                                            <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadioInline3">Video call</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <small class="form-text text-muted">By clicking <span class="txt-orange">'Request pricing'</span>, I agree to WeddingDir’s <a href="javascript:" class="text-underline">Privacy Policy</a> and <a href="javascript:">Terms of Use</a> </small> 
-                                    </div>
-                                    <button type="button" class="btn btn-primary">Request Pricing</button>
-                                </div>
-                            </div>
-                            <!-- Widget Wrap -->
-
-                            <!-- Widget Wrap -->
-                            <div class="widget">
-                                <h3 class="widget-title">Availability</h3>
-                                <div class="datepicker-inline">
-                                    <div data-toggle-inline="datepicker"></div>
-                                </div>
-                            </div>
-                            <!-- Widget Wrap -->
-
-                            <!-- Widget Wrap -->
-                            <div class="widget">
                                 <h3 class="widget-title">Categories</h3>
                                 
                                 <div class="icon-box-style-3 sided">
-                                    <i class="fa fa-camera"></i>
-                                    <span> Photography</span>
+                                    @if($vendor->icon)
+                                        {!! $vendor->icon !!} 
+                                    @else
+                                        <i class="fa fa-life-ring"></i>
+                                    @endif
+                                    <span> {{ $vendor->category_name }} </span>
                                 </div>
                             </div>
+                            <!-- Widget Wrap -->
+
+                            <!-- Widget Wrap -->
+                            <div class="widget">
+                                <h3 class="widget-title">Travel to Client Venue</h3>
+                                
+                                <div class="icon-box-style-3 sided">
+                                    <i class="fa fa-map-marker"></i>
+                                    <span> {{ ($vendor->is_travelable == 1) ? 'Yes': 'No' }} </span>
+                                </div>
+                            </div>
+                            <!-- Widget Wrap -->
+
+                            <!-- Widget Wrap -->
+                            <div class="widget">
+                                <h3 class="widget-title">Cancel Policy</h3>
+                                
+                                <div class="icon-box-style-3 sided">
+                                    <i class="fa fa-ban" aria-hidden="true"></i>
+                                    <span> {{ $vendor->cancel_policy }} </span>
+                                </div>
+                            </div>
+                            <!-- Widget Wrap -->
+
+                            <!-- Widget Wrap -->
+                            <div class="widget">
+                                <h3 class="widget-title">Advance Payment</h3>
+                                
+                                <div class="icon-box-style-3 sided">
+                                    <i class="fa fa-inr"></i>
+                                    <span> {{ $vendor->advance_payment }}% </span>
+                                </div>
+                            </div>
+                            <!-- Widget Wrap -->
+
+                            
+                            <!-- Widget Wrap -->
+                            @if($vendor->gender)
+                            <div class="widget">
+                                <h3 class="widget-title">Advance Payment</h3>
+                                
+                                <div class="icon-box-style-3 sided">
+                                    <i class="weddingdir_gender"></i>
+                                    <span> {{ $vendor->gender }} </span>
+                                </div>
+                            </div>
+                            @endif
                             <!-- Widget Wrap -->
 
                             <!-- Widget Wrap -->
@@ -1080,81 +1051,44 @@
 
                         <!-- Sidebar Secondary Start -->
                         <div class="sidebar-secondary col-lg-12 col-md-6">
-                            <!-- Widget Wrap -->
-                            <div class="widget">
-                                <h3 class="widget-title">Working Hours</h3>
-                                
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    Monday
-                                    <span class="badge border rounded p-2">09:00 AM - 07:00 AM</span>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    Tuesday
-                                    <span class="badge border rounded p-2">09:00 AM - 07:00 AM</span>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    Wednesday
-                                    <span class="badge border rounded p-2">09:00 AM - 07:00 AM</span>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    Thursday
-                                    <span class="badge border rounded p-2">09:00 AM - 07:00 AM</span>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    Friday
-                                    <span class="badge border rounded p-2">09:00 AM - 07:00 AM</span>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    Saturday
-                                    <span class="badge border rounded p-2">10:00 AM - 09:00 AM</span>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    Sunday
-                                    <span class="badge border rounded p-2">10:00 AM - 09:00 AM</span>
-                                </div>
-                            </div>
-                            <!-- Widget Wrap -->
-
 
                             <!-- Widget Wrap -->
                             <div class="widget">
-                                <h3 class="widget-title">Author Profile</h3>
+                                <h3 class="widget-title">Vendor Profile</h3>
 
                                 <div class="profile-avatar">
-                                    <img src="assets/images/author_profile.jpg" alt="">
+                                    <img src=" {{ asset('front/images/author_profile.jpg') }}" alt="">
                                     <div class="content">
                                         <small>Added By</small>
-                                        Tom Wilson
+                                        {{ $vendor->name }}
                                     </div>
                                 </div>
                                 
-                                <p>Proin viverra tincidunt lectus at sodales. Nam vitae dolor ipsum. Aenean at molestie nisl, id rhoncus orci.</p>
+                                <!-- <p>Proin viverra tincidunt lectus at sodales. Nam vitae dolor ipsum. Aenean at molestie nisl, id rhoncus orci.</p> -->
 
                                 <div class="icon-box-style-3 sided mt-3 mb-0">
                                     <i class="fa fa-phone"></i>
-                                    <span> +12 345 678 910</span>
+                                    <span> **********</span>
                                 </div>
 
+                                @if($social_media)
                                 <div class="icon-box-style-3 sided mt-3 mb-0">
                                     <i class="fa fa-envelope-o"></i>
-                                    <span> <a href="javascript:" class="btn-link btn-link-secondary">tom.wilson@site.com</a> </span>
+                                    <span> <a href="javascript:" class="btn-link btn-link-secondary"> {{ $social_media->website }} </a> </span>
                                 </div>
+                                @endif
 
-                                <div class="icon-box-style-3 sided mt-3 mb-0">
-                                    <i class="fa fa-phone"></i>
-                                    <span> <a href="javascript:" class="btn-link btn-link-secondary">https://mybusiness.food</a> </span>
-                                </div>
-
-                                <div class="social-sharing sidebar-social border-top">
+                                <!-- <div class="social-sharing sidebar-social border-top">
                                     <a href="javascript:" class="share-btn-facebook"><i class="fa fa-facebook"></i></a>
                                     <a href="javascript:" class="share-btn-twitter"><i class="fa fa-twitter"></i></a>
                                     <a href="javascript:" class="share-btn-instagram"><i class="fa fa-instagram"></i></a>
                                     <a href="javascript:" class="share-btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- Widget Wrap -->
 
                             <!-- Widget Wrap -->
+                            
                             <div class="widget">
                                 <h3 class="widget-title">Featured Listing</h3>
                                 <div class="owl-carousel owl-theme" id="wedding-listing-single">                        
@@ -1163,7 +1097,7 @@
                                         <div class="wedding-listing">
                                             <div class="img">
                                                 <a href="javascript:">
-                                                    <img src="assets/images/weddings/wedding_listing_1.jpg" alt="">                                                    
+                                                    <img src="{{asset('front/images/weddings/wedding_listing_1.jpg ' ) }}" alt="">
                                                 </a>
                                                 <div class="img-content">
                                                     <div class="top">

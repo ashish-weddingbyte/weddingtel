@@ -9,7 +9,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-10 col-lg-12 mx-auto">
-                        <h1>Find the Perfect Wedding Vendor</h1>
+                        <h1>WeddingByte The Right Way of Wedding Planning</h1>
                         <p class="lead txt-white text-center">Search over 100,000 wedding vendors with reviews, pricing, availability and more</p>
                         <form action="{{ url('vendors') }}" method="post">
                             @csrf
@@ -256,30 +256,35 @@
                 <h1>Latest Blogs</h1>
             </div>
 
+            @if($blogs)
             <div class="row">
+                @foreach($blogs as $blog)
+                <?php
+                    $blog_url = url('/blog').'/'.str_replace(' ','-',trim($blog->title));
+                ?>
                 <div class="col-lg-4 col-md-6">
                     <!-- Post Blog -->
                     <div class="blog-wrap-home">                            
                         <div class="post-content">
                             <!-- Post Blog Image -->
                             <div class="post-img">
-                                <img src="{{ asset('front/images/blogs/blog_home_1.jpg')}}" alt="">
+                                <img src="{{ asset('storage/upload/blog/'.$blog->featured_image)}}" alt="">
                             </div>
                             <!-- Post Blog Image -->
                             <!-- Post Blog Content -->
                             <div class="home-content">                                    
-                                <span class="meta-date">July 12, 2020</span>
+                                <span class="meta-date">{{ date('M d, Y', strtotime($blog->created_at) ) }}</span>
 
                                 <div class="mt-auto">
                                     <span class="post-category">
-                                        <a href="javascript:">Wedding</a>
+                                        <a href="{{ url('/blogs/'.$category->category_url ) }}">{{ $blog->category_name }}</a>
                                     </span>
-                                    <h3 class="blog-title"><a href="blog-details.html" class="post-title">Wedding Tips For Fashion</a></h3>
+                                    <h3 class="blog-title"><a href="{{ $blog_url }}" class="post-title">{{ $blog->title }}</a></h3>
                                     <div class="entry-content">
-                                        <p>Quis autem vel eum prehenderit qui in ea voluptate velit esse quam nihil mole.</p>
+                                        <!-- <p>Quis autem vel eum prehenderit qui in ea voluptate velit esse quam nihil mole.</p> -->
                                     </div>
                                     <div class="read-more">
-                                        <a href="blog-details.html" class="btn btn-link btn-link-default">Read More</a>
+                                        <a href="{{ $blog_url }}" class="btn btn-link btn-link-default">Read More</a>
                                     </div>               
                                 </div>                     
                             </div>                   
@@ -288,71 +293,10 @@
                     </div>
                     <!-- Post Blog -->
                 </div>
+                @endforeach
 
-                <div class="col-lg-4 col-md-6">
-                    <!-- Post Blog -->
-                    <div class="blog-wrap-home">                            
-                        <div class="post-content">
-                            <!-- Post Blog Image -->
-                            <div class="post-img">
-                                <img src="{{ asset('front/images/blogs/blog_home_2.jpg')}}" alt="">
-                            </div>
-                            <!-- Post Blog Image -->
-                            <!-- Post Blog Content -->
-                            <div class="home-content">                                    
-                                <span class="meta-date">July 12, 2020</span>
-
-                                <div class="mt-auto">
-                                    <span class="post-category">
-                                        <a href="javascript:">Photography</a>
-                                    </span>
-                                    <h3 class="blog-title"><a href="blog-details.html" class="post-title">Photography The Effects</a></h3>
-                                    <div class="entry-content">
-                                        <p>Quis autem vel eum prehenderit qui in ea voluptate velit esse quam nihil mole.</p>
-                                    </div>
-                                    <div class="read-more">
-                                        <a href="blog-details.html" class="btn btn-link btn-link-default">Read More</a>
-                                    </div>               
-                                </div>                     
-                            </div>                   
-                            <!-- Post Blog Content -->
-                        </div>                            
-                    </div>
-                    <!-- Post Blog -->
-                </div>
-
-                <div class="col-lg-4 col-md-6 mx-auto mt-md-5 mt-lg-0">
-                    <!-- Post Blog -->
-                    <div class="blog-wrap-home">                            
-                        <div class="post-content">
-                            <!-- Post Blog Image -->
-                            <div class="post-img">
-                                <img src="{{ asset('front/images/blogs/blog_home_3.jpg')}}" alt="">
-                            </div>
-                            <!-- Post Blog Image -->
-                            <!-- Post Blog Content -->
-                            <div class="home-content">                                    
-                                <span class="meta-date">July 12, 2020</span>
-
-                                <div class="mt-auto">
-                                    <span class="post-category">
-                                        <a href="javascript:">Fashion</a>
-                                    </span>
-                                    <h3 class="blog-title"><a href="blog-details.html" class="post-title">Apparels & Makeup Kits</a></h3>
-                                    <div class="entry-content">
-                                        <p>Quis autem vel eum prehenderit qui in ea voluptate velit esse quam nihil mole.</p>
-                                    </div>
-                                    <div class="read-more">
-                                        <a href="blog-details.html" class="btn btn-link btn-link-default">Read More</a>
-                                    </div>               
-                                </div>                     
-                            </div>                   
-                            <!-- Post Blog Content -->
-                        </div>                            
-                    </div>
-                    <!-- Post Blog -->
-                </div>
             </div>
+            @endif
         </div>
     </section>
     <!-- Latest News & Updates End -->
@@ -933,7 +877,7 @@
                 <!-- Features Icons -->
                 
                 <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <a href="@if(Session::get('user_type') == 'user') {{ url('/budget') }} @endif">
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/budget') }} @else {{ url('/login') }}  @endif">
                         <div class="why-choose-icons">
                             <div class="icon-big-cirlce mx-auto">
                                 <i class="weddingdir_budget"></i>
@@ -949,7 +893,7 @@
                 <!-- Features Icons -->
                 
                 <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/budget') }} @endif">
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/budget') }} @else {{ url('/login') }} @endif">
                         <div class="why-choose-icons">
                             <div class="icon-big-cirlce mx-auto">
                                 <i class="weddingdir_calendar_heart"></i>
@@ -964,7 +908,7 @@
                 <!-- Features Icons -->
                 
                 <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/guestlist') }} @endif">
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/guestlist') }} @else {{ url('/login') }} @endif">
                         <div class="why-choose-icons">
                             <div class="icon-big-cirlce mx-auto">
                                 <i class="weddingdir_seating_chart"></i>
@@ -979,7 +923,7 @@
                 <!-- Features Icons -->
                 
                 <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/checklist') }} @endif">
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/checklist') }} @else {{ url('/login') }} @endif">
                         <div class="why-choose-icons">
                             <div class="icon-big-cirlce mx-auto">
                                 <i class="weddingdir_bell"></i>
@@ -994,7 +938,7 @@
                 <!-- Features Icons -->
                 
                 <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/real-wedding') }} @endif">
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/real-wedding') }} @else {{ url('/login') }} @endif">
                         <div class="why-choose-icons">
                             <div class="icon-big-cirlce mx-auto">
                                 <i class="weddingdir_heart_ring"></i>
@@ -1009,7 +953,7 @@
                 <!-- Features Icons -->
                 
                 <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/vendors') }} @endif">
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/vendors') }} @else {{ url('/login') }} @endif">
                         <div class="why-choose-icons">
                             <div class="icon-big-cirlce mx-auto">
                                 <i class="weddingdir_shopping_bag_heart"></i>

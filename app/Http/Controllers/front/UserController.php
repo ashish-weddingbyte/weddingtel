@@ -314,7 +314,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->mobile = $request->input('mobile');
-        $user->status = '0';
+        $user->status = '1';
         $user->user_type = 'vendor';
 
         
@@ -324,7 +324,7 @@ class UserController extends Controller
             // add vendor details
             $vendor_details = new VendorDetail;
             $vendor_details->user_id = $lastId;
-            $vendor_details->category_id = $request->category_id;
+            $vendor_details->category_id = $request->category;
             $vendor_details->city  = $request->city;
             $vendor_details->save();
 

@@ -20,6 +20,8 @@ use App\Models\Budget;
 use App\Models\BudgetCategory;
 use App\Models\BudgetExpense;
 use App\Models\BudgetCategoryExpense;
+use App\Models\Category;
+use App\Models\RelationGroup;
 use otp_helper;
 use tools_helper;
 use Validator;
@@ -149,7 +151,7 @@ class UserApiController extends Controller
 
         if(isset($user->id)){
 
-            $token =  $user->createToken('WeddingByte')->plainTextToken;
+            
 
             $user_id = $user->id;
 
@@ -176,8 +178,7 @@ class UserApiController extends Controller
                     'status'    =>  true,
                     'message'   =>  "OTP Send Successful to Your Mobile Number!",
                     'mobile'    =>  $request->mobile,
-                    'token_type'=> 'Bearer',
-                    'token'     =>  $token
+                    'user_id'   =>  $user_id
                 ];
                 return response()->json($respose,200);
             }else{
@@ -206,6 +207,7 @@ class UserApiController extends Controller
 
         $validator = Validator::make($request->all(),[
             'otp' => 'required|max:6|min:6',
+            'user_id'   =>  'required'
         ]);
 
 
@@ -219,9 +221,10 @@ class UserApiController extends Controller
         }
         $otp = $request->otp;
 
-        $user_id =  Auth::id();
+        $user_id =  $request->user_id;
     
         $otp_details = Otp::where('user_id',$user_id)->first();
+        
 
         if($otp_details){
 
@@ -238,6 +241,9 @@ class UserApiController extends Controller
                 // otp verified succesfully
                 if($otp == $otp_details->otp){
 
+                    $user = User::find($user_id);
+                    $token =  $user->createToken('WeddingByte')->plainTextToken;
+
                     // mark mobile verified
                     $user_details = UserDetail::where('user_id',$user_id)->first();
                     $user_details->is_mobile_verified = '1';
@@ -247,6 +253,8 @@ class UserApiController extends Controller
                     $respose = [
                         'status'    =>  true,
                         'message'   =>  "Login to Dashboard Successful!",
+                        'token_type'=> 'Bearer',
+                        'token'     =>  $token
                     ];
                     return response()->json($respose,200);
                     
@@ -259,6 +267,13 @@ class UserApiController extends Controller
                     return response()->json($respose,401);
                 }
             }
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  'Somthing Went Wrong in OTP.'
+            ];
+            return response()->json($respose,401);
         }
 
     }
@@ -277,7 +292,7 @@ class UserApiController extends Controller
 
             if($user_id){
 
-            $default = checklist::where('user_id',$user_id)->orderBy('added_date', 'ASC')->get()->toArray();
+            $default = checklist::where('user_id',$user_id)->orderBy('added_date', 'ASC')->get();
             // $added = checklist::where('user_id',$user_id)->where('type','added')->get()->toArray();
             
             $data['all_checklist_count'] = checklist::where('user_id', $user_id)->count();
@@ -286,7 +301,7 @@ class UserApiController extends Controller
 
             $data['checklist_done_perentage'] = round(  ($data['all_done_checklist_count'] / $data['all_checklist_count']) * 100  );
 
-            $data['default'] = tools_helper::group_checklist_by_month($default);
+            $data['all_checklists'] = $default;
             
             $respose = [
                 'status'    =>  true,
@@ -1282,7 +1297,7 @@ class UserApiController extends Controller
 
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Profile Update Successfully!",
+                'message'   =>  "Success",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -1297,6 +1312,64 @@ class UserApiController extends Controller
     }
 
     public function logout(){
-        Auth::user()->tokens()->delete();
+        $user_id = Auth::id();
+
+        if($user_id){
+            Auth::user()->tokens()->delete();
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Success",
+                'data'      =>  "User Logout Successful!",
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Unauthorized',
+                'errors'    =>  'Token Expired or unauthorized User!'
+            ];
+            return response()->json($respose,401);
+        }
     }
+
+    Public function relation_groups(){
+        $data['groups'] = RelationGroup::where('status','1')->get();
+        
+        if($data['groups']){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Success",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,401);
+        }
+    }
+
+    Public function all_categories(){
+        $data['categories'] = Category::where('status','1')->get();
+        
+        if($data['categories']){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Success",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,401);
+        }
+    }
+
 }

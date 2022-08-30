@@ -40,6 +40,11 @@ Route::get('vendors/{city}/{category}',[HomeController::class,'vendor_list']);
 Route::get('vendors/{city}',[HomeController::class,'vendor_list']);
 Route::post('vendors/',[HomeController::class,'search']);
 
+
+Route::get('blogs',[HomeController::class,'all_blogs']);
+Route::get('blogs/{category}',[HomeController::class,'blogs_by_category']);
+Route::get('blog/{title}',[HomeController::class,'blog_details']);
+
 // Protected Route by Middleware for user(bride/groom).
 Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], function(){
 
@@ -142,7 +147,6 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
     Route::post('/profile/gallery/{id}',[VendorProfileController::class,'delete_image']);
 
 });
-
 
 
 

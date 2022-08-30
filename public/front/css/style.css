@@ -1812,7 +1812,7 @@ header .btn {
 }
 .navbar .dropdown-menu a,
 .navbar .dropdown-menu li > a {
-  font-size: 0.85rem;
+  font-size: 1rem;
   padding: 10px;
   text-transform: capitalize;
   color: #565656;
@@ -3204,6 +3204,7 @@ header .btn {
   position: relative;
   overflow: hidden;
   border-radius: 4px;
+  max-height: 400px;
 }
 .post-content .post-img img {
   position: relative;
