@@ -3204,11 +3204,14 @@ header .btn {
   position: relative;
   overflow: hidden;
   border-radius: 4px;
-  max-height: 400px;
+  
 }
 .post-content .post-img img {
   position: relative;
   z-index: 1;
+}
+.blog-image {
+  max-height: 400px;
 }
 .post-content .post-img .sticky-post {
   position: absolute;
@@ -4190,7 +4193,8 @@ header .btn {
   background: #fc2779;
 }
 .vendor-wrap-alt .content {
-  padding: 1.5rem;
+  padding: 1rem;
+  height: 160px;
 }
 .vendor-wrap-alt .content .btn-link {
   color: #444444;
@@ -4465,7 +4469,7 @@ header .btn {
 .wedding-listing .img .img-content .bottom .tags {
   border-radius: 40px;
   background: #fc2779;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   color: #fff;
   padding: 0.6rem 1rem;
   font-family: "Lora", serif;

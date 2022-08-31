@@ -248,6 +248,25 @@
                     </div>
                     <!-- Videos -->
 
+
+                    <!-- Location -->
+                    <div class="card-shadow pos-rel">
+                        <a id="location" class="anchor-fake"></a>
+                        <div class="card-shadow-header">
+                            <h3><i class="fa fa-map-marker"></i> Location</h3>
+                        </div>
+                        @if($vendor->address)
+                        <div class="card-shadow-body">
+                            <div id="map-holder">
+                                <div id="map_extended" class="vendor-single-popup-wrap">
+                                    <p>{{ $vendor->address }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                    <!-- Location -->
+
                     <!-- Reviews -->
                     <div class="card-shadow pos-rel">
                         <a id="reviews" class="anchor-fake"></a>
@@ -922,23 +941,7 @@
                     </div>
                     <!-- Write A Review -->
 
-                    <!-- Location -->
-                    <div class="card-shadow pos-rel">
-                        <a id="location" class="anchor-fake"></a>
-                        <div class="card-shadow-header">
-                            <h3><i class="fa fa-map-marker"></i> Location</h3>
-                        </div>
-                        @if($vendor->address)
-                        <div class="card-shadow-body">
-                            <div id="map-holder">
-                                <div id="map_extended" class="vendor-single-popup-wrap">
-                                    <p>{{ $vendor->address }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                    <!-- Location -->
+                    
 
                 </div>
                 <!-- Vendor Single Content -->
@@ -1088,75 +1091,39 @@
                             <!-- Widget Wrap -->
 
                             <!-- Widget Wrap -->
-                            
+                            @if($featured_vendors)
                             <div class="widget">
                                 <h3 class="widget-title">Featured Listing</h3>
                                 <div class="owl-carousel owl-theme" id="wedding-listing-single">                        
                                     <!-- Wedding Lisiting Single -->
-                                    <div class="item">
-                                        <div class="wedding-listing">
-                                            <div class="img">
-                                                <a href="javascript:">
-                                                    <img src="{{asset('front/images/weddings/wedding_listing_1.jpg ' ) }}" alt="">
-                                                </a>
-                                                <div class="img-content">
-                                                    <div class="top">
-                                                        <span class="price">
-                                                            <i class="fa fa-tag"></i>
-                                                            <span>$500-$800</span>
-                                                        </span>
-                                                    </div>
-                                                    <div class="bottom">
-                                                        <a class="tags" href="javascript:">
-                                                            Fashion
-                                                        </a>
-                                                        <a class="favorite" href="javascript:">
-                                                            <i class="fa fa-heart-o"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="content">
-                                                <div class="gap">
-                                                    <h3><a href="listing-singular.html">Happy Wedding Fashions <span class="verified"><i class="fa fa-check-circle"></i></span></a></h3>
-                                                    <div><i class="fa fa-map-marker"></i> Surat, Gujrat, India</div>
-                                                </div>
-                                                <div class="reviews">
-                                                    <span class="stars">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-half-o"></i>
-                                                        <i class="fa fa-star-o"></i>                                    
-                                                    </span>
-                                                    (6 review)
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Wedding Lisiting Single -->
+                                    @foreach($featured_vendors as $vendor)
+                                    <?php
+                                        $image_path = asset('front/default_image/default_featured_image.png');           
+                                        $url = vendor_helper::vendor_profile_url($vendor->id);
 
-                                    <!-- Wedding Lisiting Single -->
+                                        $verified = vendor_helper::check_verified_vendor($vendor->id);
+
+                                    ?>
                                     <div class="item">
                                         <div class="wedding-listing">
                                             <div class="img">
-                                                <a href="javascript:">
-                                                    <img src="assets/images/weddings/wedding_listing_2.jpg" alt="">
+                                                <a href="{{ $url }}">
+                                                    <img src="{{ $image_path }}" alt="{{ $vendor->featured_image }}">
                                                 </a>
                                                 <div class="img-content">
-                                                    <div class="top">                                                           
+                                                    <div class="top">  
                                                         <span class="featured">
                                                             <i class="fa fa-star"></i>
                                                             <span>Featured</span>
                                                         </span>
-                                                        <span class="price">
+                                                        <!-- <span class="price">
                                                             <i class="fa fa-tag"></i>
                                                             <span>$500-$800</span>
-                                                        </span>
+                                                        </span> -->
                                                     </div>
                                                     <div class="bottom">
-                                                        <a class="tags" href="javascript:">
-                                                            Photography
+                                                        <a class="tags" href="{{ $url }}">
+                                                            {{ $vendor->category_name }}
                                                         </a>
                                                         <a class="favorite" href="javascript:">
                                                             <i class="fa fa-heart-o"></i>
@@ -1166,8 +1133,8 @@
                                             </div>
                                             <div class="content">
                                                 <div class="gap">
-                                                    <h3><a href="listing-singular.html">Cool Wed Photography <span class="verified"><i class="fa fa-check-circle"></i></span></a></h3>
-                                                    <div><i class="fa fa-map-marker"></i> Surat, Gujrat, India</div>
+                                                    <h3><a href="{{ $url }}">{{ $vendor->name }} ( {{$vendor->brandname }} ) {!! ($verified) ? '<span class="verified"><i class="fa fa-check-circle"></i></span>': '' !!} </a></h3>
+                                                    <div><i class="fa fa-map-marker"></i> {{ $vendor->city }}</div>
                                                 </div>
                                                 <div class="reviews">
                                                     <span class="stars">
@@ -1182,54 +1149,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                     <!-- Wedding Lisiting Single -->
 
-                                    <!-- Wedding Lisiting Single -->
-                                    <div class="item">
-                                        <div class="wedding-listing">
-                                            <div class="img">
-                                                <a href="javascript:">
-                                                    <img src="assets/images/weddings/wedding_listing_3.jpg" alt="">
-                                                </a>
-                                                <div class="img-content">
-                                                    <div class="top">
-                                                        <span class="price">
-                                                            <i class="fa fa-tag"></i>
-                                                            <span>$500-$800</span>
-                                                        </span>
-                                                    </div>
-                                                    <div class="bottom">
-                                                        <a class="tags" href="javascript:">
-                                                            Flora
-                                                        </a>
-                                                        <a class="favorite" href="javascript:">
-                                                            <i class="fa fa-heart-o"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="content">
-                                                <div class="gap">
-                                                    <h3><a href="listing-singular.html">Lotus Wedding Florist <span class="verified"><i class="fa fa-check-circle"></i></span></a></h3>
-                                                    <div><i class="fa fa-map-marker"></i> Surat, Gujrat, India</div>
-                                                </div>
-                                                <div class="reviews">
-                                                    <span class="stars">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-half-o"></i>
-                                                        <i class="fa fa-star-o"></i>                                    
-                                                    </span>
-                                                    (6 review)
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Wedding Lisiting Single -->
+                                    
                                 </div>
                             </div>
+                            @endif
                             <!-- Widget Wrap -->
                         </div>
                         <!-- Sidebar Secondary End -->

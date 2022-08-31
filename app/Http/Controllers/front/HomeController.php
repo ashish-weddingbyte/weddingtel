@@ -27,8 +27,8 @@ class HomeController extends Controller
                                 ->where('vendor_details.is_top','1')
                                 ->where('vendor_details.featured_image','!=', NULL)
                                 ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.city','vendor_details.featured_image','categories.category_name','categories.icon'])
-                                ->limit(9)
-                                ->orderBy('users.id','desc')
+                                ->limit(8)
+                                ->orderBy('users.id','asc')
                                 ->get();
 
         $data['featured_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
@@ -207,6 +207,12 @@ class HomeController extends Controller
                             ->select(['blogs.*','categories.category_name','categories.category_url'])
                             ->where('title', 'like', "%$title%")
                             ->first();
+        $id =  $data['blog']->id; 
+        $previous_id = $id-1;
+        $next_id = $id+1;
+
+        $data['previous'] = Blog::where('id',"$previous_id")->first();
+        $data['next'] = Blog::where('id',"$next_id")->first();
 
         $data['popular_blogs'] = Blog::orderBy('id','asc')
                                 ->limit(3)

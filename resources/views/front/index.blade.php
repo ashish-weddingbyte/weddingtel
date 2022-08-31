@@ -92,7 +92,7 @@
                                             <i class="fa fa-life-ring"></i>
                                         @endif
                                     </div>
-                                    <a href="{{ url('/vendors/all/'.$category->category_url) }}"><img src="{{ asset('storage/upload/vendor/category/'.$category->image)}}" alt=""></a>
+                                    <a href="{{ url('/vendors/all/'.$category->category_url) }}"><img src="{{ asset('storage/upload/category/'.$category->image)}}" alt=""></a>
                                 </div>
                                 <div class="content">
                                     <h3><a href="{{ url('/vendors/all/'.$category->category_url) }}">{{ ucwords($category->category_name) }}</a></h3>
@@ -114,7 +114,7 @@
             <div class="section-title text-center">
                 <h1>Top Vendors</h1>
             </div>
-            <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+            <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-1">
 
                 @if($top_vendors)
 
@@ -153,7 +153,7 @@
                                             @endif
                                             <a href="{{ $url }}">{{ ucwords($vendor->name) }}</a>
                                         </h3>
-                                        <a href="{{ $url }}" class="btn btn-sm btn-default">Get A Quote</a>
+                                        <!-- <a href="{{ $url }}" class="btn btn-sm btn-default">Get A Quote</a> -->
                                     </div>
                                     <div class="mb-2">
                                         <i class="fa fa-list" aria-hidden="true"></i> 
@@ -267,7 +267,7 @@
                     <div class="blog-wrap-home">                            
                         <div class="post-content">
                             <!-- Post Blog Image -->
-                            <div class="post-img">
+                            <div class="post-img blog-image">
                                 <img src="{{ asset('storage/upload/blog/'.$blog->featured_image)}}" alt="">
                             </div>
                             <!-- Post Blog Image -->

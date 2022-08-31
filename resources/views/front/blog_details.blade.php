@@ -48,7 +48,7 @@
                         @if($blog->short_desc)
                         <div class="entry-content">
                             <blockquote class="blockquote-1 my-5">
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupi datat non proident.
+                                {!! $blog->short_desc !!}
                             </blockquote>
                         </div>
                         @endif
@@ -63,33 +63,40 @@
                             <div class="tag-wrap">
                                 <div class="post-tags">
                                     <i class="fa fa-tags"></i>
-                                    <a href="javascript:">Cake</a>
-                                    <a href="javascript:">Decoration</a>
+                                    <a href="javascript:">Bride</a>
+                                    <a href="javascript:">Makeup</a>
+                                    <a href="javascript:">Groom</a>
+                                    <a href="javascript:">Marriage</a>
                                     <a href="javascript:">Venue</a>
+                                    <a href="javascript:">Makeup Artist</a>
                                 </div>
-                                <div class="social-sharing">
+                                <!-- <div class="social-sharing">
                                     <em>Share This</em> 
-                                    <a href="javascript:" class="share-btn-facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="" class="share-btn-facebook"><i class="fa fa-facebook"></i></a>
                                     <a href="javascript:" class="share-btn-twitter"><i class="fa fa-twitter"></i></a>
                                     <a href="javascript:" class="share-btn-instagram"><i class="fa fa-instagram"></i></a>
                                     <a href="javascript:" class="share-btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- Tags/Socail Sharing -->
 
                             <!-- Next/Previous Post -->
                             <div class="post-linking">
                                 <div class="previous-post">
-                                    <a href="javascript:">
-                                        <small>Previous Post</small>
-                                        Things Bride Should Know
-                                    </a>
+                                    @if($previous)
+                                        <a href="{{ url('/blog').'/'.str_replace(' ','-',trim($previous->title)) }}">
+                                            <small>Previous Post</small>
+                                            {{ $previous->title }}
+                                        </a>
+                                    @endif
                                 </div>
                                 <div class="next-post">
-                                    <a href="javascript:">
-                                        <small>Next Post</small>
-                                        10 Tips For Wedding  Destinat
-                                    </a>
+                                    @if($next)
+                                        <a href="{{ url('/blog').'/'.str_replace(' ','-',trim($next->title)) }}">
+                                            <small>Next Post</small>
+                                            {{ $next->title }}
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                             <!-- Next/Previous Post -->
