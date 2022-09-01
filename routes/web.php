@@ -23,7 +23,7 @@ use App\Http\Controllers\front\user\RealWeddingController;
 // vendor contollers
 use App\Http\Controllers\front\vendor\Vendors;
 use App\Http\Controllers\front\vendor\VendorProfileController;
-
+use App\Http\Controllers\front\vendor\VendorPlanController;
 
 
 /**====================================================================================== */
@@ -129,7 +129,7 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
     Route::get('/dashboard',[Vendors::class, 'dashboard']);
     
     Route::get('/plans',[Vendors::class, 'plans']);
-    Route::get('/request-quote',[Vendors::class, 'request_quote']);
+    Route::get('/query',[Vendors::class, 'query']);
     Route::get('/review',[Vendors::class, 'review']);
     Route::get('/leads',[Vendors::class, 'leads']);
     Route::get('/invoice',[Vendors::class, 'invoice']);
@@ -146,6 +146,9 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
     Route::post('/profile/gallery',[VendorProfileController::class,'gallery']);
     Route::post('/profile/gallery/{id}',[VendorProfileController::class,'delete_image']);
 
+
+    // vendor plans 
+    Route::get('/plans',[VendorPlanController::class, 'plans']);
 });
 
 

@@ -245,7 +245,7 @@
                             <li><a href="{{ url('vendor/profile') }}">My Profile</a></li>
                             <li><a href="{{ url('vendor/plans') }}">Plans</a></li>
                             <li><a href="{{ url('vendor/leads') }}">Leads</a></li>
-                            <li><a href="{{ url('vendor/request-quote') }}">Request Quote</a></li>
+                            <li><a href="{{ url('vendor/query') }}">Query</a></li>
                             <li><a href="{{ url('vendor/wishlist') }}">Wishlist</a></li>
                             <li><a href="{{ url('vendor/invoice') }}">Invoice</a></li>
                             <li><a href="{{ url('vendor/template') }}">Template</a></li>

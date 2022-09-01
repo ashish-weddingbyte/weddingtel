@@ -7,11 +7,16 @@ use Illuminate\Http\Request;
 
 class Vendors extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('is_session');
+    }
+
+
     public function dashboard(){
         return view('front.vendor.dashboard');
     }
     
-
     public function plans(){
         return view('front.vendor.plans');
     }
@@ -23,8 +28,8 @@ class Vendors extends Controller
         return view('front.vendor.leads');
     }
 
-    public function request_quote(){
-        return view('front.vendor.request_quote');
+    public function query(){
+        return view('front.vendor.query');
     }
 
     public function invoice(){

@@ -224,7 +224,26 @@ class HomeController extends Controller
     }
 
     public function blogs_by_category(Request $request){
+        $category_url = $request->category;
 
+        $category_data = Category::where('category_url',$category_url)->first();
+
+        if($category_data){
+            $data['blogs'] = Blog::join('categories','categories.id','=','blogs.category_id')
+                        ->where('categories.category_url',$category_url)
+                        ->select(['blogs.*','categories.category_name','categories.category_url'])
+                        ->orderBy('id','desc')
+                        ->paginate(20);
+            $data['popular_blogs'] = Blog::orderBy('id','asc')
+                                    ->limit(3)
+                                    ->get();
+            $data['categories'] =   Category::all();
+            $data['category'] = $category_data->category_name;
+            return view('front.blogs',$data);
+            
+        }else{
+            return redirect('/');
+        }
     }
 
 }

@@ -148,8 +148,8 @@
                     <li class="{{ (request()->segment(2) == 'leads') ? 'active' : '' }}">
                         <a href="{{ url('/vendor/leads') }}"><i class="weddingdir_pricing_plans"></i> Leads</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'request-quote') ? 'active' : '' }}">
-                        <a href="{{ url('/vendor/request-quote') }}"><i class="weddingdir_request_quote"></i> Request Quote</a>
+                    <li class="{{ (request()->segment(2) == 'query') ? 'active' : '' }}">
+                        <a href="{{ url('/vendor/query') }}"><i class="weddingdir_request_quote"></i> Query</a>
                     </li>
                     <li class="{{ (request()->segment(2) == 'wishlist') ? 'active' : '' }}">
                         <a href="{{ url('/vendor/wishlist') }}"><i class="weddingdir_heart_double"></i> Wishlist</a>

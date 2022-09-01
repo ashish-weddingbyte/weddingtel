@@ -25,7 +25,7 @@
     <section class="wide-tb-90">
         <div class="container">
             <div class="row">
-                @if($blogs)
+                @if($blogs->count() > 0)
                 <div class="col-lg-8 col-md-12">
                     <!-- Post Blog -->
                     @foreach($blogs as $blog)
@@ -74,6 +74,12 @@
                         <div class="theme-pagination">
                             {!! $blogs->links() !!}
                         </div>
+                    </div>
+                </div>
+                @else
+                <div class="col-lg-8 col-md-12">
+                    <div class="text-center my-5">
+                        <h3>Blog Not Available in {{ ucwords ($category) }} Category.</h3>
                     </div>
                 </div>
                 @endif

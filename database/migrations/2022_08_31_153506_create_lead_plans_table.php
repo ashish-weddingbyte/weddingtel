@@ -17,9 +17,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->string('name');
+            $table->enum('plan_type', ['normal','exclusive'])->default('normal');
             $table->integer('price');
             $table->integer('leads');
             $table->integer('days');
+            $table->text('desc');
+            $table->text('image')->nullable();
             $table->enum('support', ['NA','24/7'])->default('NA');
             $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();
