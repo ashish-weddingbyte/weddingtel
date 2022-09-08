@@ -87,7 +87,7 @@
                         <div class="content">
                             <div class="gap">
                                 <h3><a href="{{ $url }}">{{ $vendor->name }} ( {{$vendor->brandname }} ) {!! ($verified) ? '<span class="verified"><i class="fa fa-check-circle"></i></span>': '' !!} </a></h3>
-                                <div><i class="fa fa-map-marker"></i> {{ $vendor->city }}</div>
+                                <div><i class="fa fa-map-marker"></i> {{ $vendor->city_name }}</div>
                             </div>
                             <div class="reviews">
                                 <span class="stars">

@@ -448,15 +448,35 @@ class UserApiController extends Controller
         $id = $request->id;
         $status = $request->status;
 
-        $checklist = Checklist::find($id);
-        $checklist->status = ($status == '1')? '0' : '1' ;
-        $checklist->save();
+        $user_id = Auth::id();
+        if($user_id){
 
-        $respose = [
-            'status'    =>  true,
-            'message'   =>  "Checklist Status Change Successfully!",
-        ];
-        return response()->json($respose,200);
+            $checklist = Checklist::find($id);
+            if(!empty($checklist)){
+                $checklist->status = ($status == '1')? '0' : '1' ;
+                $checklist->save();
+
+                $respose = [
+                    'status'    =>  true,
+                    'message'   =>  "Checklist Status Change Successfully!",
+                ];
+                return response()->json($respose,200);
+            }else{
+                $respose = [
+                    'status'    =>  false,
+                    'message'   =>  'failed',
+                    'errors'    =>  'Checklist not Found!'
+                ];
+                return response()->json($respose,401);
+            }
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Unauthorized',
+                'errors'    =>  'Token Expired or unauthorized User!'
+            ];
+            return response()->json($respose,401);
+        }
         
     }
 
@@ -467,7 +487,7 @@ class UserApiController extends Controller
         $user_id = Auth::id();
         if($user_id){
 
-            $data['guestlist'] = Guest::where('user_id',$user_id)->paginate(50);;
+            $data['guestlist'] = Guest::where('user_id',$user_id)->paginate(50);
 
             $data['total_guest'] = Guest::where('user_id',$user_id)->count();
             $data['confirm_guest'] = Guest::where('user_id',$user_id)->where('status','confirm')->count();
@@ -1287,7 +1307,7 @@ class UserApiController extends Controller
 
             $data['total_guest'] = Guest::where('user_id',$user_id)->count();
             $data['confirm_guest'] = Guest::where('user_id',$user_id)->where('status','confirm')->count();
-
+            $data['guestlist'] = Guest::where('user_id',$user_id)->limit(5);
             $data['total_category'] = Category::all()->count();
             $data['categories'] = Category::all();
 

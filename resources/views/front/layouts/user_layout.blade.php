@@ -45,6 +45,8 @@
         <link href="{{ asset('front/library/owlcarousel/css/owl.carousel.min.css') }}" rel="stylesheet">
         <link href="{{ asset('front/library/perfect-scrollbars/perfect-scrollbar.css') }}" rel="stylesheet">
 
+        <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+
         <!-- Page Level Styles -->
         <link href="{{ asset('front/library/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
         
@@ -283,7 +285,8 @@
     <script src="{{ asset('front/library/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('front/library/jquery-ui/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('front/library/jquery-ui/js/jquery.ui.touch-punch.min.js') }}"></script>
-    <script src="{{ asset('front/library/magnific-popup/jquery.magnific-popup.min.js') }}"></script>  
+    <script src="{{ asset('front/library/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('front/library/isotope-layout/isotope.pkgd.min.js') }}"></script> 
     <script src="{{ asset('front/library/datepicker/js/datepicker.js') }}"></script> 
     <script src="{{ asset('front/library/countdown/js/jquery.countdown.min.js') }}"></script>

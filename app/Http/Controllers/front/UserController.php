@@ -155,7 +155,7 @@ class UserController extends Controller
 
 
             $otp = rand(111111,999999);
-            $message = "Your One Time Password for WeddingByte.com account is $otp. Plase do not share this OTP with anyone.\nThanks";
+            $message = "Your One Time Password for WeddingByte.com account is $otp. Plase do not share this OTP with anyone.Thanks";
             $otp_send_status = otp_helper::send_otp($user->mobile,$message);
             // $otp_send_status ="";
 
@@ -305,7 +305,7 @@ class UserController extends Controller
             'password'  =>'required|min:6',
             'mobile' => 'required|max:10|min:10|unique:users,mobile',
             'category'  =>  'required|not_in:0',
-            'city'  =>  'required',
+            'city'  =>  'required|not_in:0',
         ]);
     
         
@@ -325,10 +325,49 @@ class UserController extends Controller
             $vendor_details = new VendorDetail;
             $vendor_details->user_id = $lastId;
             $vendor_details->category_id = $request->category;
-            $vendor_details->city  = $request->city;
+            $vendor_details->city_id  = $request->city;
+            $vendor_details->city = "c";
+            $vendor_details->cancel_policy = "Booking Amount Non Refundable.";
+            
+            switch($request->category){
+                case('1'):
+                    $vendor_details->service_offered = 'The bouquet of services offered by the makeup artist  , makes them  the one stop solution . they  provide the following beauty services Bridal Makeup , Wedding Makeup AIRBRUSH BRIDAL MAKEUP , GUEST/FAMILY MAKEUP Indian bridal makeup  Engagement Makeup  Party Makeup HD Makeup Hair Styling ';
+                    
+                break;
+
+                case('2'):
+                    $vendor_details->service_offered = 'The bouquet of services offered by the Banquet Hall , makes them the one stop solution for your wedding . they provide the following beauty services BANQUET HALL CATERING SERVICES VENUE DECORATION';
+                    
+                break;
+                case('3'):
+                    $vendor_details->service_offered = 'They offers a plethora of wedding photography services like: Wedding videography  Save the Date Videos Wedding Films Teaser Videos Still Photography Pre-wedding shoots  CANDID PHOTOGRAPHY  TRADITIONAL PHOTOGRAPHY  CINEMATIC VIDEOGRAPHY';
+                    
+                break;
+                case('4'):
+                    $vendor_details->service_offered = 'They have a wide range of outfit options available for every bride.  You will find the most beautiful and eye-catching attire, with a touch of class and elegance. For the biggest event of your life you need something that truly is an extension of your lifestyle and personality Bridal lehengas Anarkalis Sarees Indo Western Outfits  Suits';
+                    
+                break;
+                case('5'):
+                    $vendor_details->service_offered = 'BollyHop,  Folk  Hip-Hop,   Tollywood,  Garba,  Poping';
+                    
+                break;
+                case('6'):
+                    $vendor_details->service_offered = 'Traditional Mehendi  Bridal Mehendi Arabic Mehendi Fusion Mehendi  Pakistani Mehendi';
+                    
+                break;
+                case('7'):
+                    $vendor_details->service_offered = 'With us , arranging an event is totally stress-free as our package usually includes - Wedding Planning Services  Wedding Decoration Entertainment Planning   Venue Booking Catering In-House Decorations Travel and Accommodations Logistics  Wedding day coordination  Invitations Guest management  Music and entertainment and lots more. Everything  can be customized as per your needs and budget.';
+                    
+                break;
+                case('8'):
+                    $vendor_details->service_offered = 'Boxed Invitations, Funky & Offbeat Invitations,   Modern Invites,  Traditional Invitations ';
+                    
+                break;
+
+                default:
+                break;
+            }
             $vendor_details->save();
-
-
            
             // Add Social Links
             $social = new SocialLink;
@@ -342,7 +381,7 @@ class UserController extends Controller
 
 
             $otp = rand(111111,999999);
-            $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Plase do not share this OTP with anyone.\nThanks";
+            $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Plase do not share this OTP with anyone.Thanks";
             $otp_send_status = otp_helper::send_otp($user->mobile,$message);
             // $otp_send_status ="";
 

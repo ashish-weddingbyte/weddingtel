@@ -109,7 +109,20 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-dark" name="city" value="{{ $details->city }}">
+                                                <select class="form-light-select theme-combo" name="city">
+                                                    <option value='0'>Choose Location</option> 
+                                                    @if($cities)   
+                                                        @foreach($cities as $city)
+                                                            
+                                                            @if($city->id === $details->city_id)  
+                                                                <option value="{{ $city->id }}" selected>{{ $city->name }}</option>
+                                                            @else
+                                                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                            @endif
+
+                                                        @endforeach
+                                                    @endif
+                                                </select>
                                             </div>
                                         </div>
 

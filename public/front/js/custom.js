@@ -152,5 +152,47 @@ $('document').ready(function(){
         });
     });
 
+
+    /** ================= Vendor Code ==================================== */
+
+    $('.datatable').DataTable();
+
+    $('.view-lead-button',this).click(function () {
+        var id = $(this).attr('data-id');
+        var url = $(this).attr('data-action');
+
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {id:id},
+            async:false,
+            success:function(response)
+            {
+                if(response.status == '0')
+                {
+                    $('.print-error-msg').empty();
+                    $('.print-error-msg').append(response.message);
+                }
+                if(response.status == '1'){
+                    location.href = "http://localhost/weddingtel/vendor/leads/view/details/"+id;
+                    
+                }
+                console.log(response);
+            },
+            error: function(response) {
+                $('.print-error-msg').empty();
+                var errors = response.responseJSON.errors;
+                var str = "";
+                $.each(errors, function(key,value){
+                    str += '<div class="alert alert-danger" >' + value + '</div>' // build the list
+                });
+                $('.print-error-msg').append(str);
+                // console.log(response);
+            }
+        });
+        
+    });
+
 });
 

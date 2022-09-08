@@ -24,7 +24,7 @@ use App\Http\Controllers\front\user\RealWeddingController;
 use App\Http\Controllers\front\vendor\Vendors;
 use App\Http\Controllers\front\vendor\VendorProfileController;
 use App\Http\Controllers\front\vendor\VendorPlanController;
-
+use App\Http\Controllers\front\vendor\VendorLeadController;
 
 /**====================================================================================== */
 
@@ -32,6 +32,8 @@ Route::get('/',[HomeController::class, 'home']);
 Route::view('/listing','front.listing');
 Route::view('/contact','front.contact');
 
+Route::get('/add_city',[VendorProfileController::class,'add_city']);
+Route::get('/add_leads',[HomeController::class,'add_leads']);
 
 // vendor pages
 // Route::get('vendors_data', [UserController::class,'test']);
@@ -128,7 +130,6 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
 
     Route::get('/dashboard',[Vendors::class, 'dashboard']);
     
-    Route::get('/plans',[Vendors::class, 'plans']);
     Route::get('/query',[Vendors::class, 'query']);
     Route::get('/review',[Vendors::class, 'review']);
     Route::get('/leads',[Vendors::class, 'leads']);
@@ -149,6 +150,12 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
 
     // vendor plans 
     Route::get('/plans',[VendorPlanController::class, 'plans']);
+
+    // Vendor Leeads
+    Route::get('/leads',[VendorLeadController::class, 'leads']);
+    Route::post('/leads/view/{id}',[VendorLeadController::class,'view_lead']);
+    Route::get('/leads/view/details/{id}',[VendorLeadController::class,'view_lead_details']);
+    Route::get('/leads/unlock-leads',[VendorLeadController::class,'unlock_leads']);
 });
 
 

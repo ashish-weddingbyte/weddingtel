@@ -81,7 +81,7 @@
                 <div class="col-lg-6 mb-0">
                     <div class="profile-single">
                         <h3>{{ $vendor->name }} ( {{$vendor->brandname }} ) </h3>
-                        <p><i class="fa fa-map-marker"></i>  {{ $vendor->city }}</p>
+                        <p><i class="fa fa-map-marker"></i>  {{ $vendor->city_name }}</p>
                         <div class="reviews">
                             <span class="badge"><i class="fa fa-star-half-full"></i> 3.9</span> 8 Reviews
                         </div>
@@ -1134,7 +1134,7 @@
                                             <div class="content">
                                                 <div class="gap">
                                                     <h3><a href="{{ $url }}">{{ $vendor->name }} ( {{$vendor->brandname }} ) {!! ($verified) ? '<span class="verified"><i class="fa fa-check-circle"></i></span>': '' !!} </a></h3>
-                                                    <div><i class="fa fa-map-marker"></i> {{ $vendor->city }}</div>
+                                                    <div><i class="fa fa-map-marker"></i> {{ $vendor->city_name }}</div>
                                                 </div>
                                                 <div class="reviews">
                                                     <span class="stars">

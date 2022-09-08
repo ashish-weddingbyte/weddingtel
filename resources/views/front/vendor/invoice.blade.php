@@ -8,18 +8,18 @@
     <div class="container">
         <!-- Page Heading -->
         <div class="section-title">
-            <h2>Invoice List</h2>
+            <h2>Payment History</h2>
         </div>
         <!-- Page Heading -->
 
         <!-- My Invoice Section -->
         <div class="card-shadow">
-            <div class="card-shadow-body p-0">
+            <div class="card-shadow-body p-3">
                 <div class="table-responsive">
-                    <table class="table table-hover mb-0">
+                    <table class="table table-hover mb-0 datatable">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Invoice Id</th>
+                                <th scope="col">Plan Type</th>
                                 <th scope="col">Plan Name</th>
                                 <th scope="col">Payment Mode</th>
                                 <th scope="col">Date</th>
@@ -28,47 +28,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($payments as $pay)
                             <tr>
-                                <th scope="row">#1</th>
+                                <td>{{ $pay->plan_type }}</td>
                                 <td>PREMIUM</td>
-                                <td>PayPal</td>
-                                <td>August 14, 2020	</td>
-                                <td>$30</td>
-                                <td><a href="vendor-dashboard-invoice-details.html" class="action-links"><i class="fa fa-eye"></i></a> </td>
+                                <td>{{ $pay->payment_mode }}</td>
+                                <td>{{ date('M d, Y', strtotime($lead->created_at) ) }}</td>
+                                <td>INR {{ $pay->price }}</td>
+                                <td><a href="#" class="action-links"><i class="fa fa-eye"></i></a> </td>
                             </tr>
-                            <tr>
-                                <th scope="row">#2</th>
-                                <td>STANDARD</td>
-                                <td>Payfast</td>
-                                <td>November 11, 2020</td>
-                                <td>$10</td>
-                                <td><a href="vendor-dashboard-invoice-details.html" class="action-links"><i class="fa fa-eye"></i></a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">#3</th>
-                                <td>PREMIUM</td>
-                                <td>Stripe</td>
-                                <td>November 25, 2020</td>
-                                <td>$20</td>
-                                <td><a href="vendor-dashboard-invoice-details.html" class="action-links"><i class="fa fa-eye"></i></a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">#4</th>
-                                <td>PREMIUM</td>
-                                <td>PayPal</td>
-                                <td>December 08, 2020</td>
-                                <td>$30</td>
-                                <td><a href="vendor-dashboard-invoice-details.html" class="action-links"><i class="fa fa-eye"></i></a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">#5</th>
-                                <td>PREMIUM</td>
-                                <td>PayPal</td>
-                                <td>December 08, 2020</td>
-                                <td>$30</td>
-                                <td><a href="vendor-dashboard-invoice-details.html" class="action-links"><i class="fa fa-eye"></i></a> </td>
-                            </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

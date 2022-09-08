@@ -13,9 +13,17 @@
             <div class="card-shadow-body p-0">
                 <div class="vendor-profile-img mt-5">
                     <div class="text">
+                    @if($details->profile_image)
+                    
+                        <div class="img-holder avatar-wrap">
+                            <img src="{{ asset('storage/upload/vendor/profile/'.$details->profile_image) }}" alt="">
+                        </div>
+                    @else
                         <div class="img-holder">
                             <i class="fa fa-picture-o"></i>
                         </div>
+                    @endif
+                       
                         <strong>Profile Image</strong>
                         <span>Best image size 250 x 250</span>
                     </div>
@@ -28,265 +36,276 @@
         </div>
         <!-- Vendor Cover Images Section -->
 
-        <div class="row">
-            <div class="col-lg-4 col-md-6 mb-3 mb-lg-0">
-                <div class="card-shadow">
-                    <div class="card-shadow-body">
-                        <div class="couple-info vendor-stats">
-                            <div class="couple-status-item">
-                                <div class="counter">
-                                    750
-                                </div>
-                                <div class="text">
-                                    <div class="div"><strong>Total Credit</strong></div>
-                                    <a href="javascript:" class="btn-veiw-all">View All</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-3 mb-lg-0">
-                <div class="card-shadow">
-                    <div class="card-shadow-body">
-                        <div class="couple-info vendor-stats">
-                            <div class="couple-status-item">
-                                <div class="counter">
-                                    12
-                                </div>
-                                <div class="text">
-                                    <div class="div"><strong>Listed Item</strong></div>
-                                    <a href="vendor-dashboard-listing.html" class="btn-veiw-all">View All</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-3 mb-lg-0">
-                <div class="card-shadow">
-                    <div class="card-shadow-body">
-                        <div class="couple-info vendor-stats">
-                            <div class="couple-status-item">
-                                <div class="counter">
-                                    29
-                                </div>
-                                <div class="text">
-                                    <div class="div"><strong>Chat conversation</strong></div>
-                                    <a href="javascript:" class="btn-veiw-all">View All</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mt-dashboard mb-3 mb-lg-0">
-                <div class="card-shadow">
-                    <div class="card-shadow-body">
-                        <div class="couple-info vendor-stats">
-                            <div class="couple-status-item">
-                                <div class="counter">
-                                    89
-                                </div>
-                                <div class="text">
-                                    <div class="div"><strong>Your Review</strong></div>
-                                    <a href="vendor-dashboard-reviews.html" class="btn-veiw-all">View All</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 mt-dashboard">
-                <div class="card-shadow">
-                    <div class="card-shadow-body">
-                        <div class="couple-info vendor-stats">
-                            <div class="couple-status-item">
-                                <div class="counter">
-                                    75
-                                </div>
-                                <div class="text">
-                                    <div class="div"><strong>Request quote</strong></div>
-                                    <a href="vendor-dashboard-quote.html" class="btn-veiw-all">View All</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- <div class="card-shadow mt-dashboard mt-5">
+        <div class="card-shadow mt-5">
             <div class="card-shadow-header">
                 <div class="dashboard-head">
                     <h3>
-                        Your Listing
+                        Lead Plan
                     </h3>
                     <div class="links">
-                        <a href="vendor-dashboard-listing.html">View All <i class="fa fa-angle-right"></i></a>
+                        <a href="{{ url('vendor/plans') }}">View All <i class="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="card-shadow-body p-0">
-                <ul class="list-unstyled my-listing">
-                    <li>
-                        <div class="row align-items-center">
-                            <div class="col-md-3">
-                                <a href="javascript:">
-                                    <img src="assets/images/vendors/vendor_img_1.jpg" class="rounded" alt="">
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="title-listing">
-                                    <a href="listing-singular.html">
-                                        <div>Fiona</div>
-                                        <span>Paris</span>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="info-listing">
-                                    <div class="badge-wrap">
-                                        <div>Task Date</div>
-                                        <span class="badge badge-primary">                                                        
-                                            September 18, 2020
-                                        </span>
-                                    </div>
-                                    <div class="badge-wrap">
-                                        <div>Status</div>
-                                        <span class="badge badge-pending">                                                        
-                                            Pending
-                                        </span>
-                                    </div>
-                                    <div class="badge-wrap text-center">
-                                        <div>Action</div>
-                                        <div class="dropdown hover_out listing-action">
-                                            <button class="btn listing-action-link" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                                ...
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-pencil"></i> Edit</a>
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-eye"></i> Preview</a>
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-clone"></i> Duplicate</a>
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-paper-plane"></i> Publish</a>
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-trash"></i> Removed</a>
-                                            </div>
+            <div class="card-shadow-body">
+                @if($leads)
+                <div class="row my-2">
+                    <div class="col-lg-4 col-md-4 mb-lg-0">
+                        <div class="card-shadow">
+                            <div class="card-shadow-body">
+                                <div class="couple-info vendor-stats">
+                                    <div class="couple-status-item">
+                                        <div class="counter">
+                                            {{ $leads->plan_name }}
+                                        </div>
+                                        <div class="text">
+                                            <div class="div"><strong>Paln Details</strong></div>
+                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="row align-items-center">
-                            <div class="col-md-3">
-                                <a href="javascript:">
-                                    <img src="assets/images/vendors/vendor_img_2.jpg" class="rounded" alt="">
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="title-listing">
-                                    <a href="listing-singular.html">
-                                        <div>Fiona</div>
-                                        <span>Paris</span>
-                                    </a>
-                                </div>
-                            </div>
+                    </div>
 
-                            <div class="col-md-6">
-                                <div class="info-listing">
-                                    <div class="badge-wrap">
-                                        <div>Task Date</div>
-                                        <span class="badge badge-primary">                                                        
-                                            September 18, 2020
-                                        </span>
-                                    </div>
-                                    <div class="badge-wrap">
-                                        <div>Status</div>
-                                        <span class="badge badge-danger">                                                        
-                                            Awaiting for Approval
-                                        </span>
-                                    </div>
-                                    <div class="badge-wrap text-center">
-                                        <div>Action</div>
-                                        <div class="dropdown hover_out listing-action">
-                                            <button class="btn listing-action-link" type="button" id="dropdownMenuButton1" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                                ...
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-pencil"></i> Edit</a>
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-eye"></i> Preview</a>
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-clone"></i> Duplicate</a>
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-paper-plane"></i> Publish</a>
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-trash"></i> Removed</a>
-                                            </div>
+                    <div class="col-lg-4 col-md-4 mb-lg-0">
+                        <div class="card-shadow">
+                            <div class="card-shadow-body">
+                                <div class="couple-info vendor-stats">
+                                    <div class="couple-status-item">
+                                        <div class="counter">
+                                            {{ $leads->lead }}
+                                        </div>
+                                        <div class="text">
+                                            <div class="div"><strong>Total Leads</strong></div>
+                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="row align-items-center">
-                            <div class="col-md-3">
-                                <a href="javascript:">
-                                    <img src="assets/images/vendors/vendor_img_3.jpg" class="rounded" alt="">
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="title-listing">
-                                    <a href="listing-singular.html">
-                                        <div>Fiona</div>
-                                        <span>Paris</span>
-                                    </a>
-                                </div>
-                            </div>
+                    </div>
 
-                            <div class="col-md-6">
-                                <div class="info-listing">
-                                    <div class="badge-wrap">
-                                        <div>Task Date</div>
-                                        <span class="badge badge-primary">                                                        
-                                            September 18, 2020
-                                        </span>
-                                    </div>
-                                    <div class="badge-wrap">
-                                        <div>Status</div>
-                                        <span class="badge badge-success">                                                        
-                                            Publish
-                                        </span>
-                                    </div>
-                                    <div class="badge-wrap text-center">
-                                        <div>Action</div>
-                                        <div class="dropdown hover_out listing-action">
-                                            <button class="btn listing-action-link" type="button" id="dropdownMenuButton2" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                                ...
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-pencil"></i> Edit</a>
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-eye"></i> Preview</a>
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-clone"></i> Duplicate</a>
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-paper-plane"></i> Publish</a>
-                                                <a class="dropdown-item" href="javascript:"><i class="fa fa-trash"></i> Removed</a>
-                                            </div>
+                    <div class="col-lg-4 col-md-4 mb-lg-0 ">
+                        <div class="card-shadow">
+                            <div class="card-shadow-body">
+                                <div class="couple-info vendor-stats">
+                                    <div class="couple-status-item">
+                                        <div class="counter">
+                                            {{ ucwords($leads->is_addon) }}
+                                        </div>
+                                        <div class="text">
+                                            <div class="div"><strong>All Addons</strong></div>
+                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                    <div class="col-md-4 col-md-4  mb-lg-0 mt-dashboard">
+                        <div class="card-shadow">
+                            <div class="card-shadow-body">
+                                <div class="couple-info vendor-stats">
+                                    <div class="couple-status-item">
+                                        <div class="counter">
+                                            {{ $leads->available_leads }}
+                                        </div>
+                                        <div class="text">
+                                            <div class="div"><strong>Available Leads</strong></div>
+                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-md-4 mb-lg-0 mt-dashboard">
+                        <div class="card-shadow">
+                            <div class="card-shadow-body">
+                                <div class="couple-info vendor-stats">
+                                    <div class="couple-status-item">
+                                        <div class="counter">
+                                            {{ ($leads->lead - $leads->available_leads) }}
+                                        </div>
+                                        <div class="text">
+                                            <div class="div"><strong>Used Leads</strong></div>
+                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-md-4 mb-lg-0 mt-dashboard">
+                        <div class="card-shadow">
+                            <div class="card-shadow-body">
+                                <div class="couple-info vendor-stats">
+                                    <div class="couple-status-item">
+                                        <div class="counter">
+                                              {{ $plan_expire_days }}
+                                        </div>
+                                        <div class="text">
+                                            <div class="div"><strong>Expire Days</strong></div>
+                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @else
+                <div class="row my-5">
+                    <div class="col-md-12 text-center">
+                        <h3>You have not purchased Lead Plan!</h3>
+                    </div>
+                </div>
+                @endif
+            </div>
+        </div>
+        
+
+        
+
+        <div class="card-shadow mt-dashboard mt-5">
+            <div class="card-shadow-header">
+                <div class="dashboard-head">
+                    <h3>
+                        Position Plans
+                    </h3>
+                    <div class="links">
+                        <a href="{{ url('vendor/plans') }}">View All <i class="fa fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-shadow-body">
+                @if($position)
+                <div class="row my-2">
+                    <div class="col-md-4 col-md-4 mb-lg-0">
+                        <div class="card-shadow">
+                            <div class="card-shadow-body">
+                                <div class="couple-info vendor-stats">
+                                    <div class="couple-status-item">
+                                        <div class="counter">
+                                            {{ $position->plan_name }}
+                                        </div>
+                                        <div class="text">
+                                            <div class="div"><strong>Plan Details</strong></div>
+                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-md-4 mb-lg-0">
+                        <div class="card-shadow">
+                            <div class="card-shadow-body">
+                                <div class="couple-info vendor-stats">
+                                    <div class="couple-status-item">
+                                        <div class="counter">
+                                            {{ date('M d, Y', strtotime($position->start_at) ) }}
+                                        </div>
+                                        <div class="text">
+                                            <div class="div"><strong>Plan Start Date</strong></div>
+                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-md-4 mb-lg-0">
+                        <div class="card-shadow">
+                            <div class="card-shadow-body">
+                                <div class="couple-info vendor-stats">
+                                    <div class="couple-status-item">
+                                        <div class="counter">
+                                            {{ date('M d, Y', strtotime($position->end_at) ) }}
+                                        </div>
+                                        <div class="text">
+                                            <div class="div"><strong>Plan End Date</strong></div>
+                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                
+                    <div class="col-md-4 col-md-4 mb-lg-0 mt-dashboard">
+                        <div class="card-shadow">
+                            <div class="card-shadow-body">
+                                <div class="couple-info vendor-stats">
+                                    <div class="couple-status-item">
+                                        <div class="counter">
+                                            0
+                                        </div>
+                                        <div class="text">
+                                            <div class="div"><strong>New Query</strong></div>
+                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All (Plan Complimentary un-verified)</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-md-4 mb-lg-0 mt-dashboard">
+                        <div class="card-shadow">
+                            <div class="card-shadow-body">
+                                <div class="couple-info vendor-stats">
+                                    <div class="couple-status-item">
+                                        <div class="counter">
+                                            0
+                                        </div>
+                                        <div class="text">
+                                            <div class="div"><strong>Total Queries</strong></div>
+                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All (Plan Complimentary un-verified)</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-md-4 mb-lg-0 mt-dashboard">
+                        <div class="card-shadow">
+                            <div class="card-shadow-body">
+                                <div class="couple-info vendor-stats">
+                                    <div class="couple-status-item">
+                                        <div class="counter">
+                                            0
+                                        </div>
+                                        <div class="text">
+                                            <div class="div"><strong>Viewed Queries</strong></div>
+                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All (Plan Complimentary un-verified)</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                @else
+                <div class="row my-5">
+                    <div class="col-md-12 text-center">
+                        <h3>You have not purchased Position Plan!</h3>
+                    </div>
+                </div>
+                @endif
             </div>
             
-        </div> -->
+        </div>
 
     </div>
 </div>

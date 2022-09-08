@@ -685,7 +685,10 @@
             this.select_category();      
             this.slider_catgories();     
             this.home_slider_listing();
-            
+            this.select_map_1();
+            this.select_map_2();
+            this.select_map_3();
+            this.select_map_4();
             this.isotope_gallery();
             this.toggle_datepicker();
             this.inline_toggle_datepicker();

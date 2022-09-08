@@ -12,7 +12,7 @@ use App\Models\User;
 use App\Models\VendorDetail;
 use App\Models\SocialLink;
 use App\Models\MediaGallery;
-
+use App\Models\City;
 use Image;
 
 class VendorProfileController extends Controller
@@ -29,6 +29,7 @@ class VendorProfileController extends Controller
         $data['details'] = VendorDetail::where('user_id',$user_id)->first();
         $data['social'] =   SocialLink::where('user_id',$user_id)->first();
         $data['gallery'] =  MediaGallery::where('user_id',$user_id)->where('user_type','vendor')->get();
+        $data['cities'] = City::orderBy('name','asc')->get();
         return view('front.vendor.profile',$data);
     }
 
@@ -89,7 +90,7 @@ class VendorProfileController extends Controller
         $detals = VendorDetail::where('user_id',$user_id)->first();
 
         if($request->filled('city')){
-            $detals->city = $request->city;
+            $detals->city_id = $request->city;
             $detals->save();
         }
 
@@ -315,6 +316,29 @@ class VendorProfileController extends Controller
 
 
     }
+
+
+    // public function add_city(){
+    //     $vendor = VendorDetail::all();
+
+    //     foreach($vendor as $data){
+    //         $city = $data->city;
+    //         $user_id = $data->user_id;
+    //         $city_code = City::where('name','like',"%$city%")->first();
+
+    //         if(isset($city_code->id)){
+    //             $vendor = VendorDetail::where('user_id',$user_id)->first();
+    //             $vendor->city_id = $city_code->id;
+    //             $vendor->save();
+    //         }
+
+    //         // print_r($city_code);
+
+    //     }
+    // }
+
+
+    
 
     
 }

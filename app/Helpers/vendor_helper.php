@@ -3,6 +3,8 @@ namespace App\Helpers;
 
 use App\Models\User;
 use App\Models\VendorDetail;
+use App\Models\LeadPaidVendor;
+use App\Models\PositionPaidVendor;
 
 class vendor_helper {
     public static function vendor_profile_url($id){
@@ -32,6 +34,21 @@ class vendor_helper {
         $name = str_replace('-',' ',$url);
         $brandname = trim( str_replace($id,'',$name) );
         return ['id'=>$id,'brandname'=>$brandname];
-    }   
+    }
+    
+    
+    public static function is_lead_paid_vendor($user_id){
+        $data = LeadPaidVendor::where('user_id',$user_id)
+                            ->where('is_active','1')
+                            ->orderBy('id','desc')
+                            ->first();
+        if(!empty($data)){
+            return true;
+        }else{
+            return false;
+        }
+
+        
+    }
 }
 ?>

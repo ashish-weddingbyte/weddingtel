@@ -2402,7 +2402,7 @@ header .btn {
     z-index: 9999;
 }
 .select2-container .select2-dropdown li {
-    border-top: 1px solid #fc2779;
+    border-top: 1px solid #eeeeee;
     font-size: 0.875rem;
     color: #5b5b5b;
     padding: 0.8rem 1.3rem;
@@ -3021,7 +3021,7 @@ a.ui-button:active,
     display: flex;
     justify-content: center;
     color: #fc2779;
-    font-size: 1.875rem;
+    font-size: 1.3rem;
 }
 .couple-info .couple-status-item .text small{
     display: block;

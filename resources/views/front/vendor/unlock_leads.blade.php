@@ -1,6 +1,6 @@
 @extends('front.layouts.user_layout')
 
-@section('title', 'Leads')
+@section('title', 'Unlock Leads')
 
 
 @section('main-container')
@@ -9,8 +9,7 @@
         <!-- Page Heading -->
         <div class="section-title">
             <div class="d-sm-flex justify-content-between align-items-center">
-                <h2>Leads</h2>
-                <a href="{{ url('/vendor/leads/unlock-leads') }}" class="btn btn-default"><i class="fa fa-money" aria-hidden="true"></i> Unlock Leads</a>
+                <h2>Unlock Leads</h2>
             </div>
         </div>
         <div class=" mt-3">
@@ -19,11 +18,6 @@
                     <span>{{session('message')}}</sapn>
                 </div>
             @endif
-        </div>
-        <div class="my-3">
-            <div class="print-error-msg">
-                
-            </div>
         </div>
         <!-- Page Heading -->
 
@@ -40,6 +34,7 @@
                                 <th scope="col">Budget</th>
                                 <th scope="col">Details</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Open Date</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -52,21 +47,9 @@
                                 <td><span class="btn-link-primary">{{ $lead->budget }}</span></td>
                                 <td>{{ $lead->details }}</td>
                                 <td><span class="{{ ($lead->status == '1') ? 'text-success' : 'text-danger' }}">{{ ($lead->status == '1') ? 'Active' : 'Deactive' }}</span></td>
+                                <td><span>{{ date('M d, Y', strtotime($lead->created_at) ) }}</span></td>
                                 <td>
-                                    @if($lead->status == '0')
-                                        <button disabled class="btn btn-default btn-rounded btn-sm">View</button>
-                                    @else
-                                        <?php
-                                            $user_id = Session::get('user_id');
-                                            $view_status = App\Models\LeadViewStatus::where('user_id',$user_id)->where('lead_id',$lead->id)->first();
-
-                                            if(!empty($view_status)):
-                                        ?>
-                                            <a class="btn btn-default btn-rounded btn-sm view-lead-button" href="{{ url('vendor/leads/view/details/'.$lead->id) }}" >Opened</a>
-                                            <?php else: ?>
-                                                <button class="btn btn-default btn-rounded btn-sm view-lead-button" data-id="{{ $lead->id }}" data-action="{{ url('/vendor/leads/view/'.$lead->id) }}">View</button>
-                                            <?php endif; ?>
-                                    @endif
+                                    <a class="btn btn-default btn-rounded btn-sm view-lead-button" href="{{ url('vendor/leads/view/details/'.$lead->id) }}" >View</a>
                                 </td>
                             </tr>
                             @endforeach

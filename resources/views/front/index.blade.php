@@ -35,7 +35,7 @@
                                             <option value="all">All Cities</option>
                                             @if($cities)   
                                                 @foreach($cities as $city)
-                                                    <option value="{{ $city->city }}">{{ $city->city }}</option>
+                                                    <option value="{{ $city->name }}">{{ $city->name }}</option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -161,7 +161,7 @@
                                     </div>
                                     <div class="mb-2">
                                         <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                                        {{ ucwords($vendor->city) }}
+                                        {{ ucwords($vendor->city_name) }}
                                     </div>
                                     
                                 </div>
@@ -225,7 +225,7 @@
                         <div class="content">
                             <div class="gap">
                                 <h3><a href="{{ $url }}">{{ $vendor->name }} ( {{$vendor->brandname }} ) {!! ($verified) ? '<span class="verified"><i class="fa fa-check-circle"></i></span>': '' !!} </a></h3>
-                                <div><i class="fa fa-map-marker"></i> {{ $vendor->city }}</div>
+                                <div><i class="fa fa-map-marker"></i> {{ $vendor->city_name }}</div>
                             </div>
                             <div class="reviews">
                                 <span class="stars">

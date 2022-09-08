@@ -14,9 +14,9 @@
 
         <!-- My Pricing Section -->
         <div class="card-shadow">
-            <div class="card-shadow-body p-0">
+            <div class="card-shadow-body p-3">
                 <div class="table-responsive">
-                    <table class="table table-hover mb-0">
+                    <table class="table table-hover mb-0 datatable">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Name</th>

@@ -38,9 +38,9 @@
             if ($('.form-light-select').length) {
 
                 $('.form-light-select').select2({
-                    width: 'resolve',
-                    theme: "form-light",
-                    minimumResultsForSearch: -1
+                    // width: 'resolve',
+                    // theme: "form-light",
+                    minimumResultsForSearch: 10
                 });
             }
         },

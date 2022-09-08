@@ -12,7 +12,8 @@ use App\Models\UserDetail;
 use App\Models\SocialLink;
 use App\Models\MediaGallery;
 use App\Models\Blog;
-
+use App\Models\City;
+use App\Models\Leads;
 use vendor_helper;
 
 class HomeController extends Controller
@@ -22,25 +23,27 @@ class HomeController extends Controller
         $data['categories'] = Category::where('status','1')->get();
         $data['top_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
                                 ->join('categories','categories.id','=','vendor_details.category_id')
+                                ->join('cities','cities.id','=','vendor_details.city_id')
                                 ->where('users.user_type','vendor')
                                 ->where('users.status','1')
                                 ->where('vendor_details.is_top','1')
                                 ->where('vendor_details.featured_image','!=', NULL)
-                                ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.city','vendor_details.featured_image','categories.category_name','categories.icon'])
+                                ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.featured_image','categories.category_name','categories.icon','cities.name as city_name'])
                                 ->limit(8)
                                 ->orderBy('users.id','asc')
                                 ->get();
 
         $data['featured_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
                                 ->join('categories','categories.id','=','vendor_details.category_id')
+                                ->join('cities','cities.id','=','vendor_details.city_id')
                                 ->where('users.user_type','vendor')
                                 ->where('users.status','1')
                                 ->where('vendor_details.is_featured','1')
                                 ->where('vendor_details.featured_image','!=', NULL)
-                                ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.city','vendor_details.featured_image','categories.category_name','categories.icon'])
+                                ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','cities.name as city_name','vendor_details.featured_image','categories.category_name','categories.icon'])
                                 ->orderBy('users.id','desc')
                                 ->get();
-        $data['cities']     =   VendorDetail::select('city')->groupBy('city')->orderBy('city','asc')->get();
+        $data['cities']     =   City::orderBy('name','asc')->get();
         $data['blogs']      =   Blog::limit(3)
                                 ->join('categories','categories.id','=','blogs.category_id')
                                 ->select(['blogs.*','categories.category_name'])
@@ -64,8 +67,9 @@ class HomeController extends Controller
 
         $data['vendor'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
                                     ->join('categories','categories.id','=','vendor_details.category_id')
+                                    ->join('cities','cities.id','=','vendor_details.city_id')
                                     ->where($conditions)
-                                    ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.city','vendor_details.featured_image','categories.category_name','categories.icon','vendor_details.profile_image','vendor_details.description','vendor_details.is_travelable','vendor_details.cancel_policy','vendor_details.advance_payment','vendor_details.youtube','vendor_details.service_offered','vendor_details.is_featured','vendor_details.is_top'])
+                                    ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.featured_image','categories.category_name','categories.icon','vendor_details.profile_image','vendor_details.description','vendor_details.is_travelable','vendor_details.cancel_policy','vendor_details.advance_payment','vendor_details.youtube','vendor_details.service_offered','vendor_details.is_featured','vendor_details.is_top','cities.name as city_name' ])
                                     // ->orderBy('users.id','desc')
                                     ->first();
         $data['social_media'] = SocialLink::where('user_id',$vendor_data['id'])->first();
@@ -73,11 +77,12 @@ class HomeController extends Controller
 
         $data['featured_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
                                 ->join('categories','categories.id','=','vendor_details.category_id')
+                                ->join('cities','cities.id','=','vendor_details.city_id')
                                 ->where('users.user_type','vendor')
                                 ->where('users.status','1')
                                 ->where('vendor_details.is_featured','1')
                                 ->where('vendor_details.featured_image','!=', NULL)
-                                ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.city','vendor_details.featured_image','categories.category_name','categories.icon'])
+                                ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','cities.name as city_name','vendor_details.featured_image','categories.category_name','categories.icon'])
                                 ->orderBy('users.id','desc')
                                 ->limit(3)
                                 ->get();
@@ -109,11 +114,12 @@ class HomeController extends Controller
             
             if($category_url == 'all' &&  $city !== 'all'){
                 $data['category'] = 'All';
+                $city_data = City::where('name',$city)->first();
                 $conditions = [
                     ['users.user_type','vendor'],
                     ['users.status','1'],
                     ['vendor_details.featured_image','!=', NULL],
-                    ['vendor_details.city',$city],
+                    ['vendor_details.city_id',$city_data->id],
                 ];
             }
             
@@ -140,7 +146,7 @@ class HomeController extends Controller
 
         }else{
             $category = Category::where('category_url',$category_url)->first();
-
+            $city_data = City::where('name',$city)->first();
             if(!empty($category)){
                 $data['category'] = $category->category_name;
                 $conditions = [
@@ -148,14 +154,14 @@ class HomeController extends Controller
                     ['users.status','1'],    
                     ['vendor_details.category_id',$category->id],
                     ['vendor_details.featured_image','!=', NULL],
-                    ['vendor_details.city',$city],
+                    ['vendor_details.city_id',$city_data->id],
                 ];
             }else{
                 $conditions = [
                     ['users.user_type','vendor'],
                     ['users.status','1'],
                     ['vendor_details.featured_image','!=', NULL],
-                    ['vendor_details.city',$city],
+                    ['vendor_details.city_id',$city_data->id],
                 ];
             }
         }
@@ -163,8 +169,9 @@ class HomeController extends Controller
 
         $data['all_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
                                     ->join('categories','categories.id','=','vendor_details.category_id')
+                                    ->join('cities','cities.id','=','vendor_details.city_id')
                                     ->where($conditions)
-                                    ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.city','vendor_details.featured_image','categories.category_name','categories.icon','vendor_details.is_featured','vendor_details.is_top',])
+                                    ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','cities.name as city_name','vendor_details.featured_image','categories.category_name','categories.icon','vendor_details.is_featured','vendor_details.is_top',])
                                     // ->orderBy('users.id','desc')
                                     ->orderBy('vendor_details.listing_order','asc')
                                     ->orderBy('vendor_details.is_top','desc')
@@ -245,5 +252,65 @@ class HomeController extends Controller
             return redirect('/');
         }
     }
+
+
+    // public function add_leads(){
+        
+    //     $old_leads = DB::table('request_lead')->get();
+
+    //     foreach($old_leads as $lead){
+    //         $l = new Leads;
+    //         $l->name = $lead->name;
+    //         $l->mobile = $lead->phone;
+    //         $l->budget = $lead->budget;
+    //         $l->details = $lead->message;
+
+    //         switch (ucwords($lead->category)) {
+    //             case 'Makeup Artist':
+    //                 $l->category_id = '1';
+    //                 break;
+
+    //                 case 'Wedding Photographers':
+    //                     $l->category_id = '3';
+    //                     break;
+
+    //                     case 'Wedding Venues':
+    //                         $l->category_id = '2';
+    //                         break;
+
+    //                         case 'Choreographers':
+    //                             $l->category_id = '5';
+    //                             break;
+
+    //                             case 'Bridal Designers':
+    //                                 $l->category_id = '4';
+    //                                 break;
+
+    //                                 case 'Wedding Planner':
+    //                                     $l->category_id = '7';
+    //                                     break;
+
+    //                                     case 'Wedding Invitation':
+    //                                         $l->category_id = '8';
+    //                                         break;
+
+    //                                         case 'Mehndi Artist':
+    //                                             $l->category_id = '6';
+    //                                             break;
+                                            
+    //             default:
+    //                 $l->category_id = 1;
+    //                 break;
+    //         }
+
+    //         $l->event_date = $lead->event_date;
+    //         $l->city = $lead->city;
+    //         $l->view_count  = $lead->view_lead_count;
+    //         $l->status  = $lead->status;
+    //         $l->apply_tags = '0';
+    //         $l->save();
+    //     }
+
+    // }
 
 }
