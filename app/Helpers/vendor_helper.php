@@ -46,9 +46,32 @@ class vendor_helper {
             return true;
         }else{
             return false;
-        }
-
-        
+        }        
     }
+
+
+    public static function vendor_image_path($user_id){
+        $data = VendorDetail::where('user_id', $user_id)->first();
+        $path = "javascript:0";
+        if(!empty($data)){
+
+            if(!empty($data->featured_image) ){
+
+                if(file_exists( public_path("storage/upload/vendor/featured/$data->featured_image") ) ){
+                    
+                    return asset("storage/upload/vendor/featured/$data->featured_image");
+
+                }else{
+                    return asset('front/default_image/default_featured_image.png');
+                }
+
+            }else{
+                return asset('front/default_image/default_featured_image.png');
+            }
+        }else{
+            return asset('front/default_image/default_featured_image.png');
+        }
+    }
+
 }
 ?>

@@ -23,6 +23,10 @@
             }
         },
         
+        data_table: function(){
+            $('.datatable').DataTable();
+        },
+        
         select_dark: function () {
             if ($('form-dark-select').length) {
 
@@ -341,6 +345,7 @@
     initializ: function () {
         this.menu_link_toggle();
         this.date_picker();
+        this.data_table();
         this.select_dark();
         this.select_light();
         this.select_bordered();

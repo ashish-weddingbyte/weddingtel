@@ -120,7 +120,7 @@
 
                     @foreach($top_vendors as $vendor)
                         <?php
-                            $image_path = asset('front/default_image/default_featured_image.png');
+                            $image_path = vendor_helper::vendor_image_path($vendor->id);
 
                             $verified = vendor_helper::check_verified_vendor($vendor->id);                    
                             $url = vendor_helper::vendor_profile_url($vendor->id);
@@ -189,7 +189,8 @@
                 
                 @foreach($featured_vendors as $vendor)
                 <?php
-                    $image_path = asset('front/default_image/default_featured_image.png');           
+                    $image_path = vendor_helper::vendor_image_path($vendor->id);
+                               
                     $url = vendor_helper::vendor_profile_url($vendor->id);
 
                     $verified = vendor_helper::check_verified_vendor($vendor->id);
@@ -224,7 +225,7 @@
                         </div>
                         <div class="content">
                             <div class="gap">
-                                <h3><a href="{{ $url }}">{{ $vendor->name }} ( {{$vendor->brandname }} ) {!! ($verified) ? '<span class="verified"><i class="fa fa-check-circle"></i></span>': '' !!} </a></h3>
+                                <h3><a href="{{ $url }}">{{$vendor->brandname }} {!! ($verified) ? '<span class="verified"><i class="fa fa-check-circle"></i></span>': '' !!} </a></h3>
                                 <div><i class="fa fa-map-marker"></i> {{ $vendor->city_name }}</div>
                             </div>
                             <div class="reviews">

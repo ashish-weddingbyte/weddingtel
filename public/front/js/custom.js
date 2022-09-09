@@ -155,8 +155,7 @@ $('document').ready(function(){
 
     /** ================= Vendor Code ==================================== */
 
-    $('.datatable').DataTable();
-
+    
     $('.view-lead-button',this).click(function () {
         var id = $(this).attr('data-id');
         var url = $(this).attr('data-action');

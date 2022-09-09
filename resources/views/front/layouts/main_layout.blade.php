@@ -162,7 +162,7 @@
     <script src="{{ asset('front/library/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('front/library/jquery-ui/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('front/library/jquery-ui/js/jquery.ui.touch-punch.min.js') }}"></script>
-    <script src="{{ asset('front/library/magnific-popup/jquery.magnific-popup.min.js') }}"></script>  
+    <script src="{{ asset('front/library/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('front/library/isotope-layout/isotope.pkgd.min.js') }}"></script> 
     <script src="{{ asset('front/library/datepicker/js/datepicker.js') }}"></script>    
     <script src="{{ asset('front/js/script.js') }}"></script>

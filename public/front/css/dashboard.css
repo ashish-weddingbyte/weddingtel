@@ -875,6 +875,7 @@ main::after{
     border: 4px solid #FFF;
     border-radius: 50%;
     width:100px;
+    height: 100px;
 }
 .avatar-wrap h3{
     color: #fc2779;

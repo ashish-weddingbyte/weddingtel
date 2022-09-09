@@ -15,6 +15,8 @@ use App\Models\Blog;
 use App\Models\City;
 use App\Models\Leads;
 use vendor_helper;
+use File;
+
 
 class HomeController extends Controller
 {
@@ -166,10 +168,20 @@ class HomeController extends Controller
             }
         }
         
-
+        $data['position_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
+                                    ->join('categories','categories.id','=','vendor_details.category_id')
+                                    ->join('cities','cities.id','=','vendor_details.city_id')
+                                    ->where('vendor_details.listing_order','!=',NULL)
+                                    ->where($conditions)
+                                    ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.featured_image','categories.category_name','categories.icon','cities.name as city_name'])
+                                    ->limit(100)
+                                    ->orderBy('vendor_details.listing_order','asc')
+                                    ->get();
+                                    
         $data['all_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
                                     ->join('categories','categories.id','=','vendor_details.category_id')
                                     ->join('cities','cities.id','=','vendor_details.city_id')
+                                    ->where('vendor_details.listing_order', '=', NULL)
                                     ->where($conditions)
                                     ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','cities.name as city_name','vendor_details.featured_image','categories.category_name','categories.icon','vendor_details.is_featured','vendor_details.is_top',])
                                     // ->orderBy('users.id','desc')
@@ -311,6 +323,68 @@ class HomeController extends Controller
     //         $l->save();
     //     }
 
+    // }
+
+
+    // public function  move_profile(){
+    //     $vendor = VendorDetail::all();
+
+    //     foreach($vendor as $v){
+    //         if(!empty($v->featured_image)){
+
+                
+
+    //             $to = storage_path('app/public/upload/vendor/featured/'.$v->featured_image);
+    //             $form = public_path('uploads/'.$v->featured_image);
+
+    //             if(File::exists($form)){
+    //                 File::move($form, $to);
+    //                 echo 'exist and done';
+    //             }else{
+    //                 echo 'not exist';
+    //             }
+
+    //         }else{
+    //             echo 'empty column';
+    //         }
+    //         echo '<br>';
+    //     }
+
+    // }
+
+
+    // public function move_gallery(){
+    //     $user = User::all();
+
+    //     foreach($user as $u){
+    //         $images  = DB::table('images')->where('email',$u->email)->get();
+
+    //         if(!empty($images)){
+    //             foreach($images as $img){
+    //                 $gallery = new MediaGallery;
+    //                 $gallery->user_id = $u->id;
+    //                 $gallery->media_type = 'image';
+    //                 $gallery->name = $img->file_name;
+    //                 $gallery->status = '1';
+    //                 $gallery->user_type = 'vendor';
+    //                 $gallery->save();
+
+    //                 $to = storage_path('app/public/upload/vendor/gallery/'.$img->file_name);
+    //                 $form = public_path('uploads/'.$img->file_name);
+
+    //                 if(File::exists($form)){
+    //                     File::move($form, $to);
+    //                     echo 'exist and done';
+    //                 }else{
+    //                     echo 'not exist';
+    //                 }
+    //             }
+    //             echo '<br>';
+    //         }else{
+    //             echo 'empty';
+    //         }
+    //     }
+    //     echo '<br>';
     // }
 
 }

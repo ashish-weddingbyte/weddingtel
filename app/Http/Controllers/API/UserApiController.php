@@ -44,7 +44,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  "Failed",
-                'errors'   =>  $validator->errors()
+                'errors'   =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -97,14 +97,14 @@ class UserApiController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'email' => 'required|email',
-            'password'  =>  'required:min:6'
+            'password'  =>  'required|min:6'
         ]);
         
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -142,7 +142,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -201,8 +201,6 @@ class UserApiController extends Controller
         
     }
 
-    // Api with token
-    // api for verify otp
     public function verify_otp_api(Request $request){
 
         $validator = Validator::make($request->all(),[
@@ -215,7 +213,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -249,7 +247,7 @@ class UserApiController extends Controller
                     $user_details->is_mobile_verified = '1';
                     $user_details->save();
 
-                    Session::flash('message', 'Login to Dashboard Successful!');
+                    // Session::flash('message', 'Login to Dashboard Successful!');
                     $respose = [
                         'status'    =>  true,
                         'message'   =>  "Login to Dashboard Successful!",
@@ -278,6 +276,8 @@ class UserApiController extends Controller
 
     }
 
+    // Api with token
+    // api for verify otp
 
     public function user_data(){
         return Auth::user();
@@ -329,7 +329,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -370,7 +370,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -407,7 +407,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -440,7 +440,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -521,7 +521,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -573,7 +573,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -620,7 +620,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -687,7 +687,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -740,7 +740,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -802,7 +802,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -853,7 +853,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -901,7 +901,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -974,7 +974,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -1040,7 +1040,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }
@@ -1123,7 +1123,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()
+                'errors'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,401);
         }

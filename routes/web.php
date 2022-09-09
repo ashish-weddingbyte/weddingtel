@@ -32,9 +32,6 @@ Route::get('/',[HomeController::class, 'home']);
 Route::view('/listing','front.listing');
 Route::view('/contact','front.contact');
 
-Route::get('/add_city',[VendorProfileController::class,'add_city']);
-Route::get('/add_leads',[HomeController::class,'add_leads']);
-
 // vendor pages
 // Route::get('vendors_data', [UserController::class,'test']);
 Route::get('profile/{name}',[HomeController::class,'profile']);
@@ -170,3 +167,9 @@ Route::get('/logout', function(){
  Route::get('/test', function(){
     echo  vendor_helper::vendor_profile_url(4586);
  });
+
+
+Route::get('/add_city',[VendorProfileController::class,'add_city']);
+Route::get('/add_leads',[HomeController::class,'add_leads']);
+Route::get('/move_profile',[HomeController::class,'move_profile']);
+Route::get('/move_gallery',[HomeController::class,'move_gallery']);
