@@ -31,6 +31,9 @@ use App\Http\Controllers\front\vendor\VendorLeadController;
 Route::get('/',[HomeController::class, 'home']);
 Route::view('/listing','front.listing');
 Route::view('/contact','front.contact');
+Route::post('/query/send-message',[HomeController::class,'send_message']);
+Route::post('/query/view-contact',[HomeController::class,'view_contact']);
+Route::post('/query/otp/',[HomeController::class,'verify_otp']);
 
 // vendor pages
 // Route::get('vendors_data', [UserController::class,'test']);
@@ -127,7 +130,7 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
 
     Route::get('/dashboard',[Vendors::class, 'dashboard']);
     
-    Route::get('/query',[Vendors::class, 'query']);
+    
     Route::get('/review',[Vendors::class, 'review']);
     Route::get('/leads',[Vendors::class, 'leads']);
     Route::get('/invoice',[Vendors::class, 'invoice']);
@@ -148,11 +151,13 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
     // vendor plans 
     Route::get('/plans',[VendorPlanController::class, 'plans']);
 
-    // Vendor Leeads
+    // Vendor Leads
     Route::get('/leads',[VendorLeadController::class, 'leads']);
     Route::post('/leads/view/{id}',[VendorLeadController::class,'view_lead']);
     Route::get('/leads/view/details/{id}',[VendorLeadController::class,'view_lead_details']);
     Route::get('/leads/unlock-leads',[VendorLeadController::class,'unlock_leads']);
+
+    Route::get('/query',[VendorLeadController::class, 'all_query']);
 });
 
 

@@ -2275,9 +2275,11 @@ header .btn {
 .theme-tabbing.nav-pills .nav-link {
   font-family: "mulibold";
   border-radius: 5.25rem;
-  color: #b0b0b0;
+  color: #fc2779;
   padding: 0.5rem 1.5rem;
   margin-right: 10px;
+  border: 1px solid;
+  margin-bottom: 5px;
 }
 .theme-tabbing.nav-pills .nav-link.active {
   background: #fc2779;
@@ -3711,7 +3713,8 @@ header .btn {
 }
 
 .vendor-profile-wrap {
-  background-color: #f6f6f7;
+  margin-top: 130px;
+  margin-bottom: 80px;
 }
 .vendor-profile {
   margin-top: -3rem;
@@ -3783,8 +3786,8 @@ header .btn {
 }
 .vendor-single-slider {
   position: relative;
-  margin-top: 129px;
-  background-color: #f3f3f3;
+  margin-top: 110px;
+  margin-bottom: 80px;
 }
 
 .vendor-single-slider .slider-frame iframe {
@@ -3891,7 +3894,7 @@ header .btn {
   font-size: 0.875rem;
 }
 .profile-single .reviews .badge {
-  background: #99cc32;
+  background: #19b453;
   font-size: 0.875rem;
   color: #fff;
   margin-right: 4px;
@@ -3934,6 +3937,11 @@ header .btn {
 }
 .vendor-gallery {
   margin: 0 0 1.5rem 0;
+}
+.vendor-gallery img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
 }
 .gallery-btn {
   margin-top: 0;
@@ -4108,6 +4116,7 @@ header .btn {
 .profile-avatar img {
   margin-right: 15px;
   border-radius: 50%;
+  height: 80px;
 }
 .profile-avatar .content {
   font-size: 1.125rem;
@@ -4386,6 +4395,69 @@ header .btn {
 #portfolio-flters li.filter-active a {
   color: #fc2779;
 }
+
+.vendor-profile-banner {
+  position: relative;  
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  background-position: 50% 30% !important;
+  border-radius: 5px;
+}
+
+.vendor-profile-banner img {
+  object-fit: cover;
+  width: 100%;
+  height: 450px;
+  cursor: pointer;
+  object-position: center;
+  border-radius: 5px;
+}
+
+.vendor-profile-info {
+  padding: 0px 0px 20px;
+  margin: -60px auto 0;
+  position: relative;
+  padding-bottom: 20px;
+}
+.vendor-profile-info .vendor-profile-content {
+  max-width: 95%;
+  background: #fff;
+  -webkit-box-shadow: 0 2px 12px 0 rgb(0 0 0 / 20%);
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 20%);
+  margin: 0px auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.profile-single .title .tags {
+  border-radius: 40px;
+  background: #fc2779;
+  /* text-transform: uppercase; */
+  color: #fff;
+  padding: 0.6rem 1rem;
+  font-family: "Lora", serif;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+.vendor-profile-info .vendor-profile-content .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.send-message input{
+  padding: .5rem !important;
+}
+.send-message .card-shadow-body{
+  padding: .5rem !important;
+}
+
 /*---- 9.7  Vendors Pages End ---*/
 
 /*---- 9.8  Wedding Listing Start ---*/
@@ -6228,6 +6300,10 @@ footer .widget-listing li {
     right: 10%;
     padding: 15px;
   }
+  .vendor-profile-wrap {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 }
 
 /* ------------------------------------------------------------------------ */
@@ -6259,6 +6335,10 @@ footer .widget-listing li {
     right: 10%;
     padding: 15px;
   }
+  .vendor-profile-wrap {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 }
 /* ------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------ */
@@ -6297,6 +6377,10 @@ footer .widget-listing li {
   .customer-feedback-alternate .content .name-wrap .icon {
     display: none;
   }
+  .vendor-profile-wrap {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 }
 
 @media (max-width: 991.99px) {
@@ -6406,6 +6490,10 @@ footer .widget-listing li {
     position: static !important;
     width: 100%;
   }
+  .vendor-profile-wrap {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 }
 
 @media (max-width: 767px) {
@@ -6432,7 +6520,7 @@ footer .widget-listing li {
 
   #body-content [class*="col-"]:not(:last-child),
   footer [class*="col-"]:not(:last-child) {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
   }
 
   /* Blog Pages Style */
@@ -6471,18 +6559,18 @@ footer .widget-listing li {
     background: #d7d7d7;
     height: 1px;
     transform: translate(-50%, -50%);
-}
-.author-wrap{
-  flex-direction: column;
-  text-align: center;
-}
-.author-wrap .thumb {
-  margin-right: auto;
-  max-width: 65px;
-  width: 100%;
-  margin-left: auto;
-  margin-bottom: 1rem;
-}
+  }
+  .author-wrap{
+    flex-direction: column;
+    text-align: center;
+  }
+  .author-wrap .thumb {
+    margin-right: auto;
+    max-width: 65px;
+    width: 100%;
+    margin-left: auto;
+    margin-bottom: 1rem;
+  }
 
   /* Real Wedding Pages Style */
   .real-wedding-wrap {
@@ -6577,6 +6665,10 @@ footer .widget-listing li {
     position: static !important;
     width: 100%;
   }
+  .vendor-profile-wrap {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 }
 
 @media (min-width: 576px) and (max-width: 767.99px) {
@@ -6704,6 +6796,10 @@ footer .widget-listing li {
     position: static !important;
     width: 100%;
   }
+  .vendor-profile-wrap {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -6723,6 +6819,10 @@ footer .widget-listing li {
   .megamenu {
     position: static !important;
     width: 100%;
+  }
+  .vendor-profile-wrap {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
 @media (max-width: 430px) {
@@ -6759,6 +6859,10 @@ footer .widget-listing li {
   .megamenu {
     position: static !important;
     width: 100%;
+  }
+  .vendor-profile-wrap {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
 }

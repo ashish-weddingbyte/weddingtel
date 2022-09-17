@@ -16,6 +16,7 @@
         <meta name="keywords" content="bride, business, couple, directory, groom, listing, login, map, marketing, realwedding, registration, rsvp, vendor, wedding, wedding planner">
         <meta name="author" content="wp-organic">
         <meta name="MobileOptimized" content="320" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         
         <!-- Titles
         ================================================== -->

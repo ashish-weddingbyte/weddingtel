@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('otp', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable();
+            $table->bigInteger('mobile')->nullable();
+            $table->string('name')->nullable();
+            $table->enum('otp_from', ['login','register','query'])->nullable();
             $table->integer('otp');
             $table->enum('status', ['0', '1']);
             $table->timestamps();

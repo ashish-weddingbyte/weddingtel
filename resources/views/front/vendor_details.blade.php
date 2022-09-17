@@ -7,108 +7,203 @@
 
 
 <main id="body-content">
-
     
-
-    <!-- Vendor Background Start -->
-    <section class="vendor-single-slider">
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane " id="pills-gallery" role="tabpanel" aria-labelledby="pills-gallery-tab">
-                <div class="single-img">&nbsp;</div>
-            </div>
-            <div class="tab-pane show active" id="pills-hr-grid" role="tabpanel" aria-labelledby="pills-hr-grid-tab">
-                <div class="owl-carousel owl-theme" id="slider-vendor-single">                        
-                    <!-- About Slider Images -->
-                    <div class="item" style="background-image: url({{ asset('front/images/vendors/vendor_slider_1.jpg') }} );">
-                        
+    <!-- Vendor Profile Start -->
+    <div class="vendor-profile-wrap">            
+        <div class="container">
+            <div class="row">
+                <?php
+                    $image_path = vendor_helper::vendor_image_path($vendor->id);
+                ?>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                    <div class="vendor-profile-banner ">
+                        <img src="{{ $image_path }}" class="img-responsive" alt="imag">
                     </div>
-                    <!-- About Slider Images -->
-    
-                    <!-- About Slider Images -->
-                    <div class="item" style="background-image: url({{ asset('front/images/vendors/vendor_slider_2.jpg') }} );">
-                        
-                    </div>
-                    <!-- About Slider Images -->
-    
-                    <!-- About Slider Images -->
-                    <div class="item" style="background-image: url({{ asset('front/images/vendors/vendor_slider_3.jpg') }} );">
-                        
-                    </div>
-                    <!-- About Slider Images -->
-                </div>
-            </div>
-            <div class="tab-pane" id="pills-streetview" role="tabpanel" aria-labelledby="pills-streetview-tab">
-                <iframe src="https://www.google.com/maps/embed?pb=!4v1607331008276!6m8!1m7!1sCAoSLEFGMVFpcFByZ2V2ako1MG1HTW9fVEhtUlJzYlNUZUxUUDIwaTJxM0s1YS1M!2m2!1d33.8126567!2d-117.9189792!3f25.80201492461224!4f19.61613938587837!5f0.7820865974627469" height="597" width="100%" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-            </div>
-            <div class="tab-pane" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
-                <div class="slider-frame">
-                    <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&amp;mute=1"></iframe>
-                </div>
-            </div>
-            <div class="tab-pane" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
-                <div class="slider-frame">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2965.0824050173574!2d-93.63905729999999!3d41.998507000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sWebFilings%2C+University+Boulevard%2C+Ames%2C+IA!5e0!3m2!1sen!2sus!4v1390839289319"></iframe>
-                </div>
-            </div>
-        </div>
-        
-    </section>
-    <!-- Vendor Background End -->
-    
-    <!-- Vendor Profile Single Start -->
-    <div class="vendor-profile-single">            
-        <div class="container pos-rel">
-            <div class="vendor-tab-circle">
-                <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="pills-gallery-tab" data-toggle="pill" href="#pills-gallery" role="tab" aria-controls="pills-gallery" aria-selected="true"><i class="fa fa-image"></i></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="pills-hr-grid-tab" data-toggle="pill" href="#pills-hr-grid" role="tab" aria-controls="pills-hr-grid" aria-selected="false"><i class="fa fa-th-large"></i></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="pills-streetview-tab" data-toggle="pill" href="#pills-streetview" role="tab" aria-controls="pills-streetview" aria-selected="false"><i class="fa fa-street-view"></i>                            </a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="pills-video-tab" data-toggle="pill" href="#pills-video" role="tab" aria-controls="pills-video" aria-selected="false"><i class="fa fa-video-camera"></i></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="false"><i class="fa fa-map-marker"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="row align-items-end">
-                <div class="col-lg-6 mb-0">
-                    <div class="profile-single">
-                        <h3>{{ $vendor->name }} ( {{$vendor->brandname }} ) </h3>
-                        <p><i class="fa fa-map-marker"></i>  {{ $vendor->city_name }}</p>
-                        <div class="reviews">
-                            <span class="badge"><i class="fa fa-star-half-full"></i> 3.9</span> 8 Reviews
+                    <div class="vendor-profile-info">
+                        <div class="vendor-profile-content profile-single">
+                            <div class="title">
+                                <h2>{{ $vendor->brandname }}</h2>
+                                <h4 class="tags">{{ $vendor->category_name }}</h4>
+                            </div>
+                            <div class="content">
+                                <p><i class="fa fa-map-marker"></i>  {{ $vendor->city_name }} India</p>
+                                <div class="reviews">
+                                <span class="badge"><i class="fa fa-star-half-full"></i> 0.0</span> 0 Reviews
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                    <div class="send-message">
+                        <div class="card-shadow pos-rel">
+                            <?php
+                                if(Session::get('user_type') == 'user'){
+                                    $user_id = Session::get('user_id');
 
-                <div class="col-lg-6 text-lg-right mt-lg-0 mt-4">
-                    <a href="javascript:" class="btn btn-outline-white mb-2"><i class="fa fa-heart-o"></i> Favorite</a>
-                    <span class="dropdown hover_out">
-                        <a class="btn btn-outline-white mb-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-share-alt"></i> Share
-                        </a>
-                        
-                        <span class="dropdown-menu">
-                            <a class="dropdown-item" href="javascript:"><i class="fa fa-facebook-f"></i> Facebook</a>
-                            <a class="dropdown-item" href="javascript:"><i class="fa fa-twitter"></i> Twitter</a>
-                            <a class="dropdown-item" href="javascript:"><i class="fa fa-instagram"></i> Instagram</a>
-                            <a class="dropdown-item" href="javascript:"><i class="fa fa-envelope-o"></i> Email</a>
-                        </span>
-                    </span>
-                    <a href="javascript:" class="btn btn-outline-white mb-2"><i class="fa fa-envelope-o"></i> Inbox</a>
-                    <a href="javascript:" class="btn btn-primary mb-2"><i class="fa fa-check"></i> Claim Listing</a>
+                                    $user = App\Models\User::where('id',$user_id)->first();
+                                    $user_details = App\Models\UserDetail::where('user_id',$user_id)->first();
+
+                                    $email = Session::get('email');
+                                    $name = Session::get('name');
+                                    $mobile = $user->mobile;
+                                    $event = $user_details->event;
+                                    $is_logged_in = true;
+                                }else{
+                                    $user_id = "";
+                                    $email = "";
+                                    $name = "";
+                                    $mobile = "";
+                                    $event = "";
+                                    $is_logged_in = false;
+                                }
+                            ?>
+                            <div class="card-shadow-body">
+                                <ul class="nav nav-pills theme-tabbing nav-fill" id="bpills-ta" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-send-tab" data-toggle="pill" href="#pills-send" role="tab" aria-controls="pills-send" aria-selected="false"><i class="fa fa-mobile"></i> Send Message</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-view-tab" data-toggle="pill" href="#pills-view" role="tab" aria-controls="pills-view" aria-selected="true"><i class="fa fa-list"></i> View Contact</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content theme-tabbing" id="pills-tabContent">
+                                    <div class="tab-pane fade" id="pills-send" role="tabpanel" aria-labelledby="pills-send-tab">
+                                        <div class="send-message-message"></div>
+                                    
+                                        <div class="send-message-form">
+                                            <form data-action="{{ url('/query/send-message') }}" method="post" class="query">
+                                                <div class="form-group row">
+                                                    <div class="col-md-6">
+                                                        <input type="text" name="name" id="name" placeholder="Full Name" value="{{ $name }}" class="form-control" />
+                                                        <span class="text-danger error" id="name_error"></span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="number" name="number" id="number" placeholder="Phone Number" value="{{ $mobile }}" class="form-control" />
+                                                        <span class="text-danger error" id="number_error"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-6">
+                                                        <select name="budget" id="budget" class="form-light-select theme-combo">
+                                                            <option value="0">Select Budget</option>
+                                                            <option value="0-5000">0 - 5000</option>
+                                                            <option value="5000-10000">5000 - 10000</option>
+                                                            <option value="10000-20000">10000 - 20000</option>
+                                                            <option value="20000-50000">20000 - 50000</option>
+                                                            <option value="50000-100000">50000 - 100000</option>
+                                                            <option value="100000-200000">100000 - 200000</option>
+                                                        </select>
+                                                        <span class="text-danger error" id="budget_error"></span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" placeholder="Event Date" class="form-control" name="event" id="event"  data-toggle="datepicker" value="{{ $event }}" >
+                                                        <span class="text-danger error" id="event_error"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <textarea rows="6" placeholder="Details About Your Wedding" name="details" class="form-control" cols="1" rows="1"></textarea>
+                                                </div>
+                                                
+                                                @if(Session::get('user_type') == 'user')
+                                                    <input type="hidden" name="user_id" value="{{ $user_id }}" />
+                                                @endif
+                                                <input type="hidden" name="is_logged_in"  value="{{ $is_logged_in }}">
+                                                <input type="hidden" name="vendor_id" value="{{ $vendor->id }}">
+                                                <button type="submit" name="send-message" class="btn btn-primary btn-block btn-rounded" id="send-message-button">Send Message</button>
+                                            </form>
+                                        </div>
+                                        <div class="send-message-otp-div d-none mt-4">
+                                            <form data-action="{{ url('query/otp') }}" class="verify_otp">
+                                                <div class="row">
+                                                    <div class="col-md-12 print-error-msg"></div>
+                                                    <div class="col-md-12 text-center">
+                                                        <h4>An OTP has been sent to <span id="mobile"></span></h3>
+                                                    </div>
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                                        <div class="form-group">
+                                                            <input id="send_message_otp" name="send_message_otp" type="number" placeholder="Enter OTP" class="form-control">
+                                                            <span class="text-danger error" id="send_message_otp_error"></span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <input type="hidden" name="otp_id" id="otp_id" value="">
+                                                            <input type="hidden" name="query_id" id="query_id" value="">
+                                                            <input type="hidden" name="type" id="type" value="">
+                                                            <input type="hidden" name="vendor_id" value="{{ $vendor->id }}">
+                                                            <button type="submit" class="btn btn-default">Verify OTP</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="tab-pane fade" id="pills-view" role="tabpanel" aria-labelledby="pills-view-tab">
+                                        <div class="view-contact-message"></div>
+
+                                        <div class="view-contact-form">
+                                            <form action="" method="post" data-action="{{ url('/query/view-contact') }}" method="post" class="query">
+                                                <div class="form-group row">
+                                                    <div class="col-md-6">
+                                                        <input type="text" name="full_name" id="full_name" placeholder="Full Name" value="{{ $name }}" class="form-control" />
+                                                        <span class="text-danger error" id="full_name_error"></span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="number" name="mobile" id="mobile" placeholder="Phone Number" value="{{ $mobile }}" class="form-control" />
+                                                        <span class="text-danger error" id="mobile_error"></span>
+                                                    </div>
+                                                </div>
+                                                @if(Session::get('user_type') == 'user')
+                                                    <input type="hidden" name="user_id" value="{{ $user_id }}" />
+                                                @endif
+                                                <input type="hidden" name="is_logged_in"  value="{{ $is_logged_in }}">
+                                                <input type="hidden" name="type"  value="view_contact">
+                                                <input type="hidden" name="vendor_id" value="{{ $vendor->id }}">
+                                                <button type="submit" class="btn btn-primary btn-block btn-rounded">View Contact</button>
+                                            </form>
+                                        </div>
+                                        <div class="view-contact-otp-div d-none mt-4 ">
+                                            <form data-action="{{ url('query/otp') }}" class="verify_otp">
+                                                <div class="row">
+                                                    <div class="col-md-12 text-center">
+                                                        <h4>An OTP has been sent to <span id="mobile_1"></span></h3>
+                                                    </div>
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                                        <div class="form-group">
+                                                            <input id="view_contact_otp" name="view_contact_otp" type="number" placeholder="Enter OTP" class="form-control">
+                                                            <span class="text-danger error" id="view_contact_otp_error"></span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <input type="hidden" name="otp_id" id="otp_id_1" value="">
+                                                            <input type="hidden" name="query_id" id="query_id_1" value="">
+                                                            <input type="hidden" name="type" id="type_1" value="">
+                                                            <input type="hidden" name="vendor_id" value="{{ $vendor->id }}">
+                                                            <button type="submit" class="btn btn-default">Verify OTP</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="view-contact-vendor"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
         </div>
     </div>
-    <!-- Vendor Profile Single End -->
+    <!-- Vendor Profile Start -->
 
     <!-- Vendor Profile Navigation -->
     <div class="container vendor-nav-sticky">
@@ -167,36 +262,20 @@
                         @if($gallery->count() > 0)
                         <div class="card-shadow-body">
                             <div class="row vendor-img-gallery">
-                                <div class="col-md-3 mb-0">
-                                    <div class="vendor-gallery">
-                                        <a href="assets/images/vendors/vendor_img_1.jpg" title="Title come here">
-                                            <img src="{{ asset('front/images/vendors/vendor_img_1.jpg') }}" class="rounded" alt="">
-                                        </a>                                            
+                                @foreach($gallery as $image)
+                                    <?php
+                                        $image_path = vendor_helper::gallery_image_path($vendor->id,$image->name);
+                                    ?>
+                                    <div class="col-md-3">
+                                        <div class="vendor-gallery">
+                                            <a href="{{ $image_path }}" title="{{$image->name}}">
+                                                <img src="{{ $image_path }}" class="rounded" alt="">
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3 mb-0">
-                                    <div class="vendor-gallery">
-                                        <a href="assets/images/vendors/vendor_img_2.jpg" title="Title come here">
-                                            <img src="{{ asset('front/images/vendors/vendor_img_2.jpg') }}" class="rounded" alt="">
-                                        </a>  
-                                    </div>
-                                </div>
-                                <div class="col-md-3 mb-0">
-                                    <div class="vendor-gallery">
-                                        <a href="assets/images/vendors/vendor_img_3.jpg" title="Title come here">
-                                            <img src="{{ asset('front/images/vendors/vendor_img_3.jpg') }}" class="rounded" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 mb-0">
-                                    <div class="vendor-gallery">
-                                        <a href="assets/images/vendors/vendor_img_4.jpg" title="Title come here">
-                                            <img src="{{ asset('front/images/vendors/vendor_img_4.jpg') }}" class="rounded" alt="">
-                                        </a>
-                                    </div>
-                                </div>
+                                @endforeach 
                             </div>
-                            <div id="vendor-img-gallery">
+                            <!-- <div id="vendor-img-gallery">
                                 <div class="row vendor-img-gallery">                                       
                                     <div class="col-md-3 mb-0">
                                         <div class="vendor-gallery">
@@ -220,10 +299,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="gallery-btn">
+                            </div> -->
+                            <!-- <div class="gallery-btn">
                                 <a data-toggle="collapse" href="#vendor-img-gallery" role="button" aria-expanded="false" class="collapsed"><i class="fa fa-angle-down"></i> <span>3 More</span></a>
-                            </div>
+                            </div> -->
                         </div>
                         @endif
                     </div>
@@ -266,7 +345,7 @@
                         @endif
                     </div>
                     <!-- Location -->
-
+                    <?php /*
                     <!-- Reviews -->
                     <div class="card-shadow pos-rel">
                         <a id="reviews" class="anchor-fake"></a>
@@ -401,7 +480,7 @@
                             <!-- Review Media -->
                             <div class="reviews-media">
                                 <div class="media">
-                                    <img class="thumb" src="assets/images/thumb_img_1.jpg" alt="">
+                                    <img class="thumb" src="asset/images/thumb_img_1.jpg" alt="">
                                     <div class="media-body">
                                         <div class="heading-wrap no-gutters">
                                             <div class="heading">
@@ -530,7 +609,7 @@
                             <!-- Review Media -->
                             <div class="reviews-media">
                                 <div class="media">
-                                    <img class="thumb" src="assets/images/thumb_img_3.jpg" alt="">
+                                    <img class="thumb" src="asset/images/thumb_img_3.jpg" alt="">
                                     <div class="media-body">
                                         <div class="heading-wrap no-gutters">
                                             <div class="heading">
@@ -671,7 +750,7 @@
                             <!-- Review Media -->
                             <div class="reviews-media">
                                 <div class="media">
-                                    <img class="thumb" src="assets/images/thumb_img_4.jpg" alt="">
+                                    <img class="thumb" src="asset/images/thumb_img_4.jpg" alt="">
                                     <div class="media-body">
                                         <div class="heading-wrap no-gutters">
                                             <div class="heading">
@@ -803,7 +882,7 @@
                         </div>
                     </div>
                     <!-- Reviews -->
-
+                    */ ?>
                     <!-- Write A Review -->
                     <div class="card-shadow pos-rel" >
                         <a id="review-form" class="anchor-fake" tabindex="-1"></a>
@@ -1019,28 +1098,17 @@
                                 <h3 class="widget-title">Statistics</h3>
                                 
                                 <div class="row">
-                                    <div class="col-6 mb-0">
-                                        <div class="icon-box-style-3 sided">
-                                            <i class="fa fa-eye"></i>
-                                            <span> 7521</span>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-6 mb-0">
                                         <div class="icon-box-style-3 sided">
                                             <i class="fa fa-star-o"></i>
-                                            <span> 8 Rating</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 mb-0">
-                                        <div class="icon-box-style-3 sided">
-                                            <i class="fa fa-share"></i>
-                                            <span> 24 Share</span>
+                                            <span> 0 Rating</span>
                                         </div>
                                     </div>
                                     <div class="col-6 mb-0">
                                         <div class="icon-box-style-3 sided">
                                             <i class="fa fa-heart-o"></i>
-                                            <span> 99 Favorite</span>
+                                            <span> 0 Favorite</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1058,9 +1126,11 @@
                             <!-- Widget Wrap -->
                             <div class="widget">
                                 <h3 class="widget-title">Vendor Profile</h3>
-
+                                <?php
+                                    $image_path = vendor_helper::vendor_image_path($vendor->id);
+                                ?>
                                 <div class="profile-avatar">
-                                    <img src=" {{ asset('front/images/author_profile.jpg') }}" alt="">
+                                    <img src="{{ $image_path }}" alt="">
                                     <div class="content">
                                         <small>Added By</small>
                                         {{ $vendor->name }}
@@ -1071,17 +1141,17 @@
 
                                 <div class="icon-box-style-3 sided mt-3 mb-0">
                                     <i class="fa fa-phone"></i>
-                                    <span> **********</span>
+                                    <span id="mobile"> **********</span>
                                 </div>
 
-                                @if($social_media)
+                                <!--@if($social_media)
                                 <div class="icon-box-style-3 sided mt-3 mb-0">
                                     <i class="fa fa-envelope-o"></i>
                                     <span> <a href="javascript:" class="btn-link btn-link-secondary"> {{ $social_media->website }} </a> </span>
                                 </div>
                                 @endif
 
-                                <!-- <div class="social-sharing sidebar-social border-top">
+                                 <div class="social-sharing sidebar-social border-top">
                                     <a href="javascript:" class="share-btn-facebook"><i class="fa fa-facebook"></i></a>
                                     <a href="javascript:" class="share-btn-twitter"><i class="fa fa-twitter"></i></a>
                                     <a href="javascript:" class="share-btn-instagram"><i class="fa fa-instagram"></i></a>
@@ -1098,7 +1168,7 @@
                                     <!-- Wedding Lisiting Single -->
                                     @foreach($featured_vendors as $vendor)
                                     <?php
-                                        $image_path = asset('front/default_image/default_featured_image.png');           
+                                        $image_path = vendor_helper::vendor_image_path($vendor->id);       
                                         $url = vendor_helper::vendor_profile_url($vendor->id);
 
                                         $verified = vendor_helper::check_verified_vendor($vendor->id);

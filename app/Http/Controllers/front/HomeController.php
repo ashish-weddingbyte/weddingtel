@@ -14,7 +14,10 @@ use App\Models\MediaGallery;
 use App\Models\Blog;
 use App\Models\City;
 use App\Models\Leads;
+use App\Models\Query;
+use App\Models\Otp;
 use vendor_helper;
+use otp_helper;
 use File;
 
 
@@ -263,6 +266,402 @@ class HomeController extends Controller
         }else{
             return redirect('/');
         }
+    }
+
+
+    public function send_message(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'number' => 'required|max:10|min:10',
+            'budget'  =>  'required|not_in:0',
+            'event' =>  'required|date|after:today',
+        ]);
+
+        $is_logged_in = $request->is_logged_in;
+        $name = $request->name;
+        $mobile = $request->number;
+        $budget = $request->budget;
+        $event = date('Y-m-d',strtotime($request->event));
+        $details = $request->details;
+        $type = 'send_message';
+        $vendor_id = $request->vendor_id;
+        
+        $conditions = [
+            ['query_type',$type],
+            ['mobile',$mobile],
+            ['event_date',$event],
+            ['vendor_id',$vendor_id]
+        ];
+
+        if($is_logged_in == 1){
+            // for loggedin user.
+            $user_id = $request->user_id;
+            $query = Query::where($conditions)->where('vendor_id',$vendor_id)->first();
+
+            if(!empty($query)){
+
+                $array = [
+                    'query_type' =>  $type,
+                    'status'    =>  '1',
+                    'message'   =>  '<div class="alert alert-danger">You Already Send Message!</div>'
+                ];
+
+                return response()->json($array);
+
+            }else{
+
+                $query = new Query;
+                $query->user_id = $user_id;
+                $query->vendor_id = $vendor_id;
+                $query->user_type = 'user';
+                $query->query_type = $type;
+                $query->name = $name;
+                $query->mobile = $mobile;
+                $query->budget = $budget;
+                $query->event_date = $event;
+                $query->details = $details;
+                $query->is_mobile_verified = '1';
+                $query->save();
+
+                $array = [
+                    'query_type' =>  $type,
+                    'status'    =>  '1',
+                    'message'   =>  '<div class="alert alert-success">Message Send Successfully!</div>'
+                ];
+                return response()->json($array);
+            }
+
+        }else{
+
+            // for new guest user.
+            $query = Query::where($conditions)->first();
+
+            $otp_code = rand(111111,999999);
+            $message = "Your One Time Password for WeddingByte.com Verification is $otp_code. Plase do not share this OTP with anyone.Thanks";
+
+            $otp_model = Otp::where('mobile',$mobile)->where('otp_from','query')->first();
+
+            if(!empty($otp_model)){
+                //  available recode 
+            }else{
+                $otp_model = new Otp;
+                $otp_model->mobile = $mobile;
+                
+            }
+
+            $otp_model->name   = $name;
+            $otp_model->otp_from   = 'query';
+            $otp_model->otp = $otp_code;
+            $otp_model->status = '1';
+            
+            $otp_model->save();
+
+            $otp_id = $otp_model->id;
+
+            
+
+            if(!empty($query)){
+
+                if($query->is_mobile_verified == '0'){
+
+                    $otp_send_status = otp_helper::send_otp($mobile,$message);
+
+                    $array = [
+                        'type'      =>  'otp',
+                        'otp_id'    =>  $otp_id,
+                        'query_id'   =>  $query->id,
+                        'mobile'    =>  $mobile,
+                        'query_type'      =>  $type,
+                    ];
+    
+                    return response()->json($array);
+
+                }else{
+                    $array = [
+                        'query_type' =>  $type,
+                        'status'    =>  '1',
+                        'message'   =>  '<div class="alert alert-success">You Already Send Message!</div>'
+                    ];
+                    return response()->json($array);
+                }
+
+            }else{
+
+                $otp_send_status = otp_helper::send_otp($mobile,$message);
+
+                $query = new Query;
+                $query->vendor_id = $vendor_id;
+                $query->user_type = 'guest';
+                $query->query_type = $type;
+                $query->name = $name;
+                $query->mobile = $mobile;
+                $query->budget = $budget;
+                $query->event_date = $event;
+                $query->details = $details;
+                $query->is_mobile_verified = '0';
+                $query->save();
+
+                $query_id = $query->id;
+
+
+                $array = [
+                    'type'      =>  'otp',
+                    'otp_id'    =>  $otp_id,
+                    'query_id'   =>  $query_id,
+                    'mobile'    =>  $mobile,
+                    'query_type'      =>  $type,
+                ];
+
+                return response()->json($array);
+            }
+
+        }
+
+
+    }
+
+    public function view_contact(Request $request){
+        $request->validate([
+            'full_name' => 'required',
+            'mobile' => 'required|max:10|min:10',
+        ]);
+
+        $is_logged_in = $request->is_logged_in;
+        $name = $request->full_name;
+        $mobile = $request->mobile;
+        $type = 'view_contact';
+        $vendor_id = $request->vendor_id;
+        $today = date('Y-m-d');
+
+        $vendor_data = User::where('id',$vendor_id)->first();
+
+        $conditions = [
+            ['query_type',$type],
+            ['mobile',$mobile],
+            ['vendor_id',$vendor_id]
+        ];
+
+        if($is_logged_in == 1){
+            // for loggedn user.
+            $user_id = $request->user_id;
+            
+            $query = Query::where($conditions)->whereDate('created_at', $today)->first();
+
+            if(!empty($query)){
+                $array = [
+                    'query_type'    =>  $type,
+                    'status'    =>  '1',
+                    'verify'    =>  'yes',
+                    'data'   =>  '<div class="text-center text-success"><p>Here are the contact details of vendor</p><p><i class="fa fa-mobile"></i></p><h3><a href="tel:'.$vendor_data->mobile.'">'.$vendor_data->mobile.'</a></h3></div>'
+                ];
+                return response()->json($array);
+            }else{
+
+                $query = new Query;
+                $query->user_id = $user_id;
+                $query->vendor_id = $vendor_id;
+                $query->user_type = 'user';
+                $query->query_type = $type;
+                $query->name = $name;
+                $query->mobile = $mobile;
+
+                $query->is_mobile_verified = '1';
+                $query->save();
+
+                $array = [
+                    'query_type'    =>  $type,
+                    'status'    =>  '1',
+                    'verify'    =>  'yes',
+                    'data'   =>  '<div class="text-center text-success"><p>Here are the contact details of vendor</p><p><i class="fa fa-mobile"></i></p><h3><a href="tel:'.$vendor_data->mobile.'">'.$vendor_data->mobile.'</a></h3></div>'
+                ];
+                return response()->json($array);
+            }
+            
+        }else{
+
+            // for new guest user.
+            $query = Query::where($conditions)->whereDate('created_at', $today)->first();
+
+            $otp_code = rand(111111,999999);
+            $message = "Your One Time Password for WeddingByte.com Verification is $otp_code. Plase do not share this OTP with anyone.Thanks";
+
+            $otp_model = Otp::where('mobile',$mobile)->where('otp_from','query')->first();
+
+            if(!empty($otp_model)){
+                //  available recode 
+            }else{
+                $otp_model = new Otp;
+                $otp_model->mobile = $mobile;
+                
+            }
+
+            $otp_model->name   = $name;
+            $otp_model->otp_from   = 'query';
+            $otp_model->otp = $otp_code;
+            $otp_model->status = '1';
+            
+            $otp_model->save();
+
+            $otp_id = $otp_model->id;
+
+            
+
+            if(!empty($query)){
+
+                if($query->is_mobile_verified == '0'){
+
+                    $otp_send_status = otp_helper::send_otp($mobile,$message);
+
+                    $array = [
+                        'type'      =>  'otp',
+                        'otp_id'    =>  $otp_id,
+                        'query_id'   =>  $query->id,
+                        'mobile'    =>  $mobile,
+                        'query_type'      =>  $type,
+                    ];
+    
+                    return response()->json($array);
+
+                }else{
+                    $array = [
+                        'query_type'    =>  $type,
+                        'status'    =>  '1',
+                        'verify'    =>  'yes',
+                        'data'   =>  '<div class="text-center text-success"><p>Here are the contact details of vendor</p><p><i class="fa fa-mobile"></i></p><h3><a href="tel:'.$vendor_data->mobile.'">'.$vendor_data->mobile.'</a></h3></div>'
+                    ];
+                    return response()->json($array);
+                }
+
+            }else{
+
+                $otp_send_status = otp_helper::send_otp($mobile,$message);
+
+                $query = new Query;
+                $query->vendor_id = $vendor_id;
+                $query->user_type = 'guest';
+                $query->query_type = $type;
+                $query->name = $name;
+                $query->mobile = $mobile;
+                
+                $query->is_mobile_verified = '0';
+                $query->save();
+
+                $query_id = $query->id;
+
+
+                $array = [
+                    'type'      =>  'otp',
+                    'otp_id'    =>  $otp_id,
+                    'query_id'   =>  $query_id,
+                    'mobile'    =>  $mobile,
+                    'query_type'      =>  $type,
+                ];
+
+                return response()->json($array);
+            }
+            
+        }
+
+
+    }
+
+    public function verify_otp(Request $request){
+
+        $type = $request->type ;
+
+        if($type == 'send_message'){
+            $request->validate([
+                'send_message_otp' => 'required|max:6|min:6'
+            ]);
+            $otp = $request->send_message_otp;
+        }
+
+        if($type == 'view_contact'){
+            $request->validate([
+                'view_contact_otp' => 'required|max:6|min:6'
+            ]);
+            $otp = $request->view_contact_otp;
+        }
+
+        
+        $query_id = $request->query_id;
+        $otp_id = $request->otp_id;
+        $query_type = $request->type;
+        $vendor_id = $request->vendor_id;
+
+        $vendor_data = User::where('id',$vendor_id)->first();
+
+        $otp_details = Otp::where('id',$otp_id)->first();
+        $query = Query::where('id',$query_id)->first();
+
+        if(!empty($otp_details)  && !empty($query)){
+
+            if($query_type == 'send_message'){
+                if($otp_details->otp == $otp){
+                    $otp_details->status = '0';
+                    $otp_details->save();
+
+                    $query->is_mobile_verified = '1';
+                    $query->save();
+
+                    $array = [
+                        'query_type'    =>  $query_type,
+                        'status'    =>  '1',
+                        'message'   =>  '<div class="alert alert-success">OTP is Verified, Message Send Successfull.</div>'
+                    ];
+                    return response()->json($array);
+
+                }else{
+                    $array = [
+                        'query_type'      =>  $query_type,
+                        'status'    =>  '1',
+                        'message'   =>  '<div class="alert alert-danger">OTP is Incorrect!</div>'
+                    ];
+                    
+                    return response()->json($array);
+                }
+            }
+
+            if($query_type == 'view_contact'){
+
+                if($otp_details->otp == $otp){
+                    $otp_details->status = '0';
+                    $otp_details->save();
+
+                    $query->is_mobile_verified = '1';
+                    $query->save();
+
+                    $array = [
+                        'query_type'    =>  $query_type,
+                        'status'    =>  '1',
+                        'verify'    =>  'yes',
+                        'mobile'    =>  $query->mobile,
+                        'data'   =>  '<div class="text-center text-success"><h4>Here are the contact details of vendor</h4><p><i class="fa fa-mobile"></i></p><h3><a href="tel:'.$vendor_data->mobile.'">'.$vendor_data->mobile.'</a></h3></div>'
+                    ];
+                    return response()->json($array);
+
+                }else{
+                    $array = [
+                        'query_type'      =>  $query_type,
+                        'status'    =>  '1',
+                        'verify'    =>  'no',
+                        'message'   =>  '<div class="alert alert-danger">OTP is Incorrect!</div>'
+                    ];
+                    
+                    return response()->json($array);
+                }
+            }
+
+
+        }else{
+            $array = [
+                'status'    =>  '0',
+                'message'   =>  '<div class="alert alert-danger">Somthing Went Wrong!</div>'
+            ];
+
+            return response()->json($array);
+        }
+
     }
 
 

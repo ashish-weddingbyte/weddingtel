@@ -19,97 +19,33 @@
                     <table class="table table-hover mb-0 datatable">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Wedding Date</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">No .of Guest</th>
-                                <th scope="col">Budget</th>
+                                <th scope="col">Enquiry By</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">User Type</th>
+                                <th scope="col">Is Verified</th>
                                 <th scope="col">Action</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($query as $qry)
                             <tr>
-                                <th scope="row">Hitesh Mahavar</th>
-                                <td>11/12/2020</td>
-                                <td><a href="mailto:hiteshmahavar22@gmail.com" class="btn btn-link btn-link-primary text-lowercase p-0">hiteshmahavar22@gmail.com</a></td>
-                                <td><a href="tel:+91-9596880088" class="btn btn-link btn-link-primary text-lowercase p-0">+91 9596880088</a></td>
-                                <td>250</td>
-                                <td>$950</td>
-                                <td><a href="javascript:" class="action-links"><i class="fa fa-trash"></i></a> </td>
+                                <td>{{ ucwords($qry->name) }}</td>
+                                @if($qry->query_type == 'send_message')
+                                    <th>Enquiry</th>
+                                @endif
+
+                                @if($qry->query_type == 'view_contact')
+                                    <th>View Contact</th>
+                                @endif
+                                <td><span class="text-success">{{ date('M d, Y', strtotime($qry->created_at) ) }}</span></td>
+                                <td>{{ ucwords($qry->user_type) }}</td>
+                                <td><span class="{{ ($qry->is_mobile_verified == '1') ? 'text-success' : 'text-danger' }}">{{ ($qry->is_mobile_verified == '1') ? 'Verified' : 'Not Verified' }}</span></td>
+                                
+                                <td><button class="btn btn-default btn-rounded btn-sm view-button" data-id="{{ $qry->id }}" data-action="{{ url('/vendor/query/view/'.$qry->id) }}">View</button></td>
                             </tr>
-                            <tr>
-                                <th scope="row">Hitesh Mahavar</th>
-                                <td>11/12/2020</td>
-                                <td><a href="mailto:hiteshmahavar22@gmail.com" class="btn btn-link btn-link-primary text-lowercase p-0">hiteshmahavar22@gmail.com</a></td>
-                                <td><a href="tel:+91-9596880088" class="btn btn-link btn-link-primary text-lowercase p-0">+91 9596880088</a></td>
-                                <td>250</td>
-                                <td>$950</td>
-                                <td><a href="javascript:" class="action-links"><i class="fa fa-trash"></i></a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Hitesh Mahavar</th>
-                                <td>11/12/2020</td>
-                                <td><a href="mailto:hiteshmahavar22@gmail.com" class="btn btn-link btn-link-primary text-lowercase p-0">hiteshmahavar22@gmail.com</a></td>
-                                <td><a href="tel:+91-9596880088" class="btn btn-link btn-link-primary text-lowercase p-0">+91 9596880088</a></td>
-                                <td>250</td>
-                                <td>$950</td>
-                                <td><a href="javascript:" class="action-links"><i class="fa fa-trash"></i></a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Hitesh Mahavar</th>
-                                <td>11/12/2020</td>
-                                <td><a href="mailto:hiteshmahavar22@gmail.com" class="btn btn-link btn-link-primary text-lowercase p-0">hiteshmahavar22@gmail.com</a></td>
-                                <td><a href="tel:+91-9596880088" class="btn btn-link btn-link-primary text-lowercase p-0">+91 9596880088</a></td>
-                                <td>250</td>
-                                <td>$950</td>
-                                <td><a href="javascript:" class="action-links"><i class="fa fa-trash"></i></a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Hitesh Mahavar</th>
-                                <td>11/12/2020</td>
-                                <td><a href="mailto:hiteshmahavar22@gmail.com" class="btn btn-link btn-link-primary text-lowercase p-0">hiteshmahavar22@gmail.com</a></td>
-                                <td><a href="tel:+91-9596880088" class="btn btn-link btn-link-primary text-lowercase p-0">+91 9596880088</a></td>
-                                <td>250</td>
-                                <td>$950</td>
-                                <td><a href="javascript:" class="action-links"><i class="fa fa-trash"></i></a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Hitesh Mahavar</th>
-                                <td>11/12/2020</td>
-                                <td><a href="mailto:hiteshmahavar22@gmail.com" class="btn btn-link btn-link-primary text-lowercase p-0">hiteshmahavar22@gmail.com</a></td>
-                                <td><a href="tel:+91-9596880088" class="btn btn-link btn-link-primary text-lowercase p-0">+91 9596880088</a></td>
-                                <td>250</td>
-                                <td>$950</td>
-                                <td><a href="javascript:" class="action-links"><i class="fa fa-trash"></i></a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Hitesh Mahavar</th>
-                                <td>11/12/2020</td>
-                                <td><a href="mailto:hiteshmahavar22@gmail.com" class="btn btn-link btn-link-primary text-lowercase p-0">hiteshmahavar22@gmail.com</a></td>
-                                <td><a href="tel:+91-9596880088" class="btn btn-link btn-link-primary text-lowercase p-0">+91 9596880088</a></td>
-                                <td>250</td>
-                                <td>$950</td>
-                                <td><a href="javascript:" class="action-links"><i class="fa fa-trash"></i></a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Hitesh Mahavar</th>
-                                <td>11/12/2020</td>
-                                <td><a href="mailto:hiteshmahavar22@gmail.com" class="btn btn-link btn-link-primary text-lowercase p-0">hiteshmahavar22@gmail.com</a></td>
-                                <td><a href="tel:+91-9596880088" class="btn btn-link btn-link-primary text-lowercase p-0">+91 9596880088</a></td>
-                                <td>250</td>
-                                <td>$950</td>
-                                <td><a href="javascript:" class="action-links"><i class="fa fa-trash"></i></a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Hitesh Mahavar</th>
-                                <td>11/12/2020</td>
-                                <td><a href="mailto:hiteshmahavar22@gmail.com" class="btn btn-link btn-link-primary text-lowercase p-0">hiteshmahavar22@gmail.com</a></td>
-                                <td><a href="tel:+91-9596880088" class="btn btn-link btn-link-primary text-lowercase p-0">+91 9596880088</a></td>
-                                <td>250</td>
-                                <td>$950</td>
-                                <td><a href="javascript:" class="action-links"><i class="fa fa-trash"></i></a> </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -12,6 +12,7 @@ use App\Models\VendorDetail;
 use App\Models\LeadPaidVendor;
 use App\Models\PositionPaidVendor;
 use App\Models\LeadViewStatus;
+use App\Models\Query;
 use vendor_helper;
 
 
@@ -136,6 +137,15 @@ class VendorLeadController extends Controller
             
         return view('front.vendor.unlock_leads',$data);
 
+    }
+
+    public function all_query(){
+        $user_id = Session::get('user_id');
+        $vendor_details = User::where('id',$user_id)->first();
+
+        $data['query'] = Query::where('vendor_id',$user_id)->orderBy('id','desc')->get();
+            
+        return view('front.vendor.query',$data);
     }
 }
 

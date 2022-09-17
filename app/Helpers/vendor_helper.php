@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\VendorDetail;
 use App\Models\LeadPaidVendor;
 use App\Models\PositionPaidVendor;
+use App\Models\MediaGallery;
 
 class vendor_helper {
     public static function vendor_profile_url($id){
@@ -52,7 +53,6 @@ class vendor_helper {
 
     public static function vendor_image_path($user_id){
         $data = VendorDetail::where('user_id', $user_id)->first();
-        $path = "javascript:0";
         if(!empty($data)){
 
             if(!empty($data->featured_image) ){
@@ -60,6 +60,29 @@ class vendor_helper {
                 if(file_exists( public_path("storage/upload/vendor/featured/$data->featured_image") ) ){
                     
                     return asset("storage/upload/vendor/featured/$data->featured_image");
+
+                }else{
+                    return asset('front/default_image/default_featured_image.png');
+                }
+
+            }else{
+                return asset('front/default_image/default_featured_image.png');
+            }
+        }else{
+            return asset('front/default_image/default_featured_image.png');
+        }
+    }
+
+
+    public static function gallery_image_path($user_id, $image){
+        $data = MediaGallery::where('user_id', $user_id)->where('name',$image)->where('user_type','vendor')->first();
+        if(!empty($data)){
+
+            if(!empty($data->name) ){
+
+                if(file_exists( public_path("storage/upload/vendor/gallery/$data->name") ) ){
+                    
+                    return asset("storage/upload/vendor/gallery/$data->name");
 
                 }else{
                     return asset('front/default_image/default_featured_image.png');

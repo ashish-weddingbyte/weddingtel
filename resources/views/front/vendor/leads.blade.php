@@ -62,9 +62,9 @@
 
                                             if(!empty($view_status)):
                                         ?>
-                                            <a class="btn btn-default btn-rounded btn-sm view-lead-button" href="{{ url('vendor/leads/view/details/'.$lead->id) }}" >Opened</a>
+                                            <a class="btn btn-default btn-rounded btn-sm view-button" href="{{ url('vendor/leads/view/details/'.$lead->id) }}" >Opened</a>
                                             <?php else: ?>
-                                                <button class="btn btn-default btn-rounded btn-sm view-lead-button" data-id="{{ $lead->id }}" data-action="{{ url('/vendor/leads/view/'.$lead->id) }}">View</button>
+                                                <button class="btn btn-default btn-rounded btn-sm view-button" data-id="{{ $lead->id }}" data-action="{{ url('/vendor/leads/view/'.$lead->id) }}">View</button>
                                             <?php endif; ?>
                                     @endif
                                 </td>
