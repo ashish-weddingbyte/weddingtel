@@ -13,11 +13,10 @@ use App\Models\UserDetail;
 use App\Models\Guest;
 use App\Models\Category;
 use App\Models\Budget;
-use Validator;
+use App\Models\City;
 
-class Planning_tool extends Controller
+class UserDashboard extends Controller
 {
-
     public function __construct(){
         $this->middleware('is_session');
     }
@@ -27,7 +26,10 @@ class Planning_tool extends Controller
         $user_id = Session::get('user_id');
 
         $data['user']   =  User::find($user_id);
-        $data['details']    =   UserDetail::where('user_id',$user_id)->first();
+        $data['details']    =   UserDetail::join('cities','cities.id','user_details.city_id')
+                                        ->where('user_details.user_id',$user_id)
+                                        ->select(['user_details.*','cities.name as city'])
+                                        ->first();
 
         $data['all_checklist_count'] = checklist::where('user_id', $user_id)->count();
         $data['all_done_checklist_count'] = checklist::where('user_id', $user_id)->where('status','0')->count();
@@ -46,5 +48,4 @@ class Planning_tool extends Controller
         
         return view('front.user.dashboard',$data);
     }
-
 }

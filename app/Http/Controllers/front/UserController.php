@@ -115,7 +115,7 @@ class UserController extends Controller
             'email' => 'required|unique:users,email',
             'password'  =>'required|min:6',
             'mobile' => 'required|max:10|min:10|unique:users,mobile',
-            'city'  =>  'required',
+            'city'  =>  'required|not_in:0',
             'event' =>  'required|date|after:today',
         ]);
         
@@ -134,7 +134,7 @@ class UserController extends Controller
             $user_details = new UserDetail;
             $user_details->user_id = $lastId;
             $user_details->event = date('Y-m-d',strtotime($request->event));
-            $user_details->city  = $request->city;
+            $user_details->city_id  = $request->city;
             $user_details->save();
 
 

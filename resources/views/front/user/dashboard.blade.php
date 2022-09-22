@@ -17,15 +17,15 @@
                             <div class="couple-img">
                                 <img src="{{ asset('front/images/dashboard/couple_img.jpg') }}" class="hidden-desktop" alt="">
                                 <div class="couple-btn">
-                                    <a href="javascript:" class="btn btn-outline-white"><i class="fa fa-camera"></i> Photo </a>
+                                    <a href="{{ url('/tools/profile') }}" class="btn btn-outline-white"><i class="fa fa-camera"></i> Edit </a>
                                 </div>
                             </div>
                             <div class="couple-counter">
-                                <ul id="wedding-countdown" class="list-unstyled list-inline">
-                                    <li class="list-inline-item"><span class="days">00</span><div class="days_text">Days</div></li>
-                                    <li class="list-inline-item"><span class="hours">00</span><div class="hours_text">Hours</div></li>
-                                    <li class="list-inline-item"><span class="minutes">00</span><div class="minutes_text">Minutes</div></li>
-                                    <li class="list-inline-item"><span class="seconds">00</span><div class="seconds_text">Seconds</div></li>
+                                <ul id="wedding-countdown" class="counter-class list-unstyled list-inline" data-date="{{ date('Y-m-d H:i:s',strtotime($details->event)) }}">
+                                    <li class="list-inline-item"><span class="counter-days"></span><div class="days_text">Days</div></li>
+                                    <li class="list-inline-item"><span class="counter-hours"></span><div class="hours_text">Hours</div></li>
+                                    <li class="list-inline-item"><span class="counter-minutes"></span><div class="minutes_text">Minutes</div></li>
+                                    <li class="list-inline-item"><span class="counter-seconds"></span><div class="seconds_text">Seconds</div></li>
                                 </ul>
                             </div>
                         </div>                                    
@@ -130,7 +130,7 @@
                     <div class="card-shadow-header">
                         <div class="dashboard-head">
                             <h3>
-                                <span>of {{$total_category}} categories hired</span>
+                                <span>0 of {{$total_category}} categories hired</span>
                                 Your vendor team
                             </h3>
                             <div class="links">
@@ -138,7 +138,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-light">
+                    <!-- <div class="bg-light">
                         <div class="card-shadow-body">
                             <div class="row align-items-center">
                                 <div class="col-md mb-3 mb-md-0">
@@ -152,7 +152,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="card-shadow-body pb-2">
                         <div class="row">
@@ -180,343 +180,7 @@
                     
                 </div>
                 <!-- Vendor Team -->
-
-                <?php /*
-                    <!-- Wedding details -->
-                    <div class="card-shadow">
-                        <div class="card-shadow-header">
-                            <div class="dashboard-head">
-                                <h3>Wedding details</h3>
-                            </div>
-                        </div>
-
-                        <div class="card-shadow-body">
-                            <div class="wedding-detail-wrap row">
-                                <div class="wedding-details-popups col">
-                                    <div class="wedding-details-items">
-                                        <div class="wedding-color-theme purple">
-                                            &nbsp;
-                                        </div>                                    
-                                        <div>
-                                            <small>Color</small>
-                                            <div class="head">Purple</div>
-                                            <span class="count">9,489 couples</span>
-                                        </div>
-
-                                        
-                                        <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false"><i class="fa fa-pencil"></i></button>
-                                        <div class="dropdown-menu">
-                                            <div class="droplayer">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme black">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Black</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme blue">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Blue</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme blush">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Blush</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme brown">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Brown</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme burgundy">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Burgundy</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme champagne">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Champagne</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme glod">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Gold</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme gray">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Gray</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme green">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Green</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme ivory">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Ivory</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme orange">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Orange</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme pink">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Pink</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div class="wedding-color-theme red">
-                                                                &nbsp;
-                                                            </div>  
-                                                            <span>Red</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>                                            
-                                </div>
-
-                                <div class="wedding-details-popups col">
-                                    <div class="wedding-details-items">
-                                        <div class="question">
-                                            <i class="fa fa-question"></i>
-                                        </div>                                
-                                        <div>
-                                            <small>Season</small>
-                                            <div class="head">...</div>
-                                            <span class="count">&nbsp;</span>
-                                        </div>
-
-                                        
-                                        <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false"><i class="fa fa-pencil"></i></button>
-                                        <div class="dropdown-menu season-icons">
-                                            <div class="p-3">
-                                                <ul class="list-unstyled ">
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/winter_icon.svg') }}" alt=""></div>
-                                                            <span>Winter</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/spring_icon.svg') }}" alt=""></div>
-                                                            <span>Spring</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/summer_icon.svg') }}" alt=""></div>
-                                                            <span>Summer</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/fall_icon.svg') }}" alt=""></div>
-                                                            <span>Fall</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-
-                                            </div>
-                                        </div>
-                                    </div>                                            
-                                </div>
-
-                                <div class="wedding-details-popups col">
-                                    <div class="wedding-details-items">
-                                        <div class="question">
-                                            <i class="fa fa-question"></i>
-                                        </div>                                
-                                        <div>
-                                            <small>Style</small>
-                                            <div class="head">...</div>
-                                            <span class="count">&nbsp;</span>
-                                        </div>
-
-                                        
-                                        <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false"><i class="fa fa-pencil"></i></button>
-                                        <div class="dropdown-menu style-icons">
-                                            <div class="p-3">
-                                                <ul class="list-unstyled ">
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/beach_icon.svg') }}" alt=""></div>
-                                                            <span>Beach</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/bohemian_icon.svg') }}" alt=""></div>
-                                                            <span>Bohemian</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/casual_icon.svg') }}" alt=""></div>
-                                                            <span>Casual</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/classic_icon.svg') }}" alt=""></div>
-                                                            <span>Classic</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/elegant_icon.svg') }}" alt=""></div>
-                                                            <span>Elegant</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/formal_icon.svg') }}" alt=""></div>
-                                                            <span>Formal</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/glam_icon.svg') }}" alt=""></div>
-                                                            <span>Glam</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/industrial_icon.svg') }}" alt=""></div>
-                                                            <span>Industrial</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/modern_icon.svg') }}" alt=""></div>
-                                                            <span>Modern</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/romantic_icon.svg') }}" alt=""></div>
-                                                            <span>Romantic</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/rustic_icon.svg') }}" alt=""></div>
-                                                            <span>Rustic</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:">
-                                                            <div><img src="{{ asset('front/images/dashboard/vintage_icon.svg') }}" alt=""></div>
-                                                            <span>Vintage</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-
-                                            </div>
-                                        </div>
-                                    </div>                                            
-                                </div>
-
-                                <div class="wedding-details-popups col">
-                                    <div class="wedding-details-items">
-                                        <div class="question">
-                                            <i class="fa fa-question"></i>
-                                        </div>                                
-                                        <div>
-                                            <small>Dress</small>
-                                            <div class="head">...</div>
-                                            <span class="count">&nbsp;</span>
-                                        </div>
-
-                                        
-                                        <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false"><i class="fa fa-pencil"></i></button>
-                                        <div class="dropdown-menu season-icons dropdown-menu-right">
-                                            <div class="p-3">
-                                                <p><strong>Designer's Name</strong></p>
-                                                <input type="text" class="form-control" placeholder="Find your designer">
-                                            </div>
-                                        </div>
-                                    </div>                                            
-                                </div>
-
-                                <div class="wedding-details-popups col">
-                                    <div class="wedding-details-items">
-                                        <div class="question">
-                                            <i class="fa fa-question"></i>
-                                        </div>                                
-                                        <div>
-                                            <small>Honeymoon</small>
-                                            <div class="head">...</div>
-                                            <span class="count">&nbsp;</span>
-                                        </div>
-
-                                        
-                                        <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false"><i class="fa fa-pencil"></i></button>
-                                        <div class="dropdown-menu season-icons dropdown-menu-right">
-                                            <div class="p-3">
-                                                <p><strong>Honeymoon Destination</strong></p>
-                                                <input type="text" class="form-control" placeholder="Enter a Honeymoon destination">
-                                            </div>
-                                        </div>
-                                    </div>                                            
-                                </div>
-                                
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <!-- Wedding details -->
-                */ ?>
-
-                <div class="card-shadow"></div>
+                
             </div>
 
             <div class="col-xl-4">

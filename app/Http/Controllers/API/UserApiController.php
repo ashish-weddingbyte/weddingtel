@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\UserDetail;
+use App\Models\VendorDetail;
 use App\Models\Otp;
 use App\Models\Planning_tool;
 use App\Models\Checklist;
@@ -21,9 +22,12 @@ use App\Models\BudgetCategory;
 use App\Models\BudgetExpense;
 use App\Models\BudgetCategoryExpense;
 use App\Models\Category;
+use App\Models\City;
+use App\Models\SocialLink;
 use App\Models\RelationGroup;
+use App\Models\MediaGallery;
 use otp_helper;
-use tools_helper;
+use user_helper;
 use Validator;
 
 class UserApiController extends Controller
@@ -31,7 +35,7 @@ class UserApiController extends Controller
     // api for register.
     public function register(Request $request)
     {
-         $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(),[
             'name' => 'required|string',
             'email' => 'required|unique:users,email',
             'password'  =>'required|min:6',
@@ -65,12 +69,12 @@ class UserApiController extends Controller
         $user_details = new UserDetail;
         $user_details->user_id = $lastId;
         $user_details->event = date('Y-m-d',strtotime($request->event));
-        $user_details->city  = $request->city;
+        $user_details->city_id  = $request->city;
         $user_details->save();
 
 
         // add default checklist
-        tools_helper::add_default_checklist($lastId);
+        user_helper::add_default_checklist($lastId);
 
 
         // planning tool info
@@ -277,7 +281,6 @@ class UserApiController extends Controller
     }
 
     // Api with token
-    // api for verify otp
 
     public function user_data(){
         return Auth::user();
@@ -458,6 +461,7 @@ class UserApiController extends Controller
 
                 $respose = [
                     'status'    =>  true,
+                    'data'      =>  $checklist->status,
                     'message'   =>  "Checklist Status Change Successfully!",
                 ];
                 return response()->json($respose,200);
@@ -487,7 +491,7 @@ class UserApiController extends Controller
         $user_id = Auth::id();
         if($user_id){
 
-            $data['guestlist'] = Guest::where('user_id',$user_id)->paginate(50);
+            $data['guestlist'] = Guest::where('user_id',$user_id)->get();
 
             $data['total_guest'] = Guest::where('user_id',$user_id)->count();
             $data['confirm_guest'] = Guest::where('user_id',$user_id)->where('status','confirm')->count();
@@ -825,7 +829,7 @@ class UserApiController extends Controller
                 BudgetCategoryExpense::where('budget_category_id',$category_id)->delete();
                 BudgetExpense::where('budget_category_id',$category_id)->where('user_id',$user_id)->delete();
             }
-            
+            user_helper::total_expense_of_user($user_id);
             $respose = [
                 'status'    =>  true,
                 'message'   =>  "Budget Category Delete Successfully!",
@@ -872,6 +876,8 @@ class UserApiController extends Controller
             $budget->pending = $total_pending_of_category;
             $budget->status = '1';
             $budget->save();
+            user_helper::total_expense_of_user($user_id);
+
             $respose = [
                 'status'    =>  true,
                 'message'   =>  "Budget Estimanted Cost Edit Successfully!",
@@ -920,30 +926,9 @@ class UserApiController extends Controller
             $budget_expense->status = '1';
             $budget_expense->save();
 
-            // calculate total cost for category expense.
-            $total_estimated_cost_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$request->category_id)->sum('estimated_cost');
-            $total_paid_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$request->category_id)->sum('paid');
-            $total_pending_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$request->category_id)->sum('pending');
+            user_helper::total_expense_of_category($user_id,$request->category_id);
+            user_helper::total_expense_of_user($user_id);
 
-            // category expense code.
-            $category_expense = BudgetCategoryExpense::where('user_id',$user_id)->where('budget_category_id',$request->category_id)->first();
-
-            if( $category_expense ){
-                // $category_expense->estimated_cost = $total_estimated_cost_of_category;
-                $category_expense->final_cost = $total_paid_of_category;
-                $category_expense->pending = $total_pending_of_category;
-                $category_expense->save();
-            }else{
-                $category_expense = new BudgetCategoryExpense;
-                $category_expense->user_id = $user_id;
-                $category_expense->budget_category_id = $request->category_id;
-                $category_expense->estimated_cost = 0 ;
-                $category_expense->final_cost = $total_paid_of_category;
-                $category_expense->pending = $total_pending_of_category;
-                $category_expense->status = '1';
-                $category_expense->save();
-                
-            }
             $respose = [
                 'status'    =>  true,
                 'message'   =>  "Budget Expense Added Successfully!",
@@ -998,19 +983,8 @@ class UserApiController extends Controller
             $budget_expense->pending = $pending_amount;
             $budget_expense->save();
 
-            // calculate total cost for category expense.
-            $total_estimated_cost_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->sum('estimated_cost');
-            $total_paid_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->sum('paid');
-            $total_pending_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$request->category_id)->sum('pending');
-
-            // category expense code.
-            $category_expense = BudgetCategoryExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->first();
-
-
-            // $category_expense->estimated_cost = $total_estimated_cost_of_category;
-            $category_expense->final_cost = $total_paid_of_category;
-            $category_expense->pending = $total_pending_of_category;
-            $category_expense->save();
+            user_helper::total_expense_of_category($user_id,$request->category_id);
+            user_helper::total_expense_of_user($user_id);
         
 
             $respose = [
@@ -1057,17 +1031,8 @@ class UserApiController extends Controller
             
             if($budget_expense){
 
-                // calculate total cost for category expense.
-                $total_estimated_cost_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->sum('estimated_cost');
-                $total_paid_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->sum('paid');
-
-                // category expense code.
-                $category_expence = BudgetCategoryExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->first();
-
-
-                // $category_expence->estimated_cost = $total_estimated_cost_of_category;
-                $category_expence->final_cost = $total_paid_of_category;
-                $category_expence->save();
+                user_helper::total_expense_of_category($user_id,$request->category_id);
+                user_helper::total_expense_of_user($user_id);
 
             }
             $respose = [
@@ -1094,7 +1059,8 @@ class UserApiController extends Controller
         if($user_id){
             $data['user'] = User::find($user_id);
             $data['details'] = UserDetail::where('user_id',$user_id)->first();
-        
+            $data['cities'] = City::orderBy('name','asc')->get();
+
             $respose = [
                 'status'    =>  true,
                 'message'   =>  "Success",
@@ -1179,7 +1145,7 @@ class UserApiController extends Controller
 
     public function update_details_api(Request $request){
         $validator = Validator::make($request->all(),[
-            'profile'  =>'image|mimes:jpg,png,jpeg|max:1024',
+            'profile'  =>'image|mimes:jpg,png,jpeg|max:512',
         ]);
 
         $user_id = Auth::id();
@@ -1194,13 +1160,13 @@ class UserApiController extends Controller
             $detals = UserDetail::where('user_id',$user_id)->first();
 
             if($request->filled('city')){
-                $detals->city = $request->city;
+                $detals->city_id = $request->city;
                 $detals->save();
             }
 
             if ($request->hasFile('profile')) {
 
-                // Storage::delete($detals->profile);
+                Storage::delete('public/upload/user/profile/'.$detals->profile);
                 $image_name  =  $request->file('profile')->getClientOriginalName();
                 $detals->profile = $image_name;
                 $request->file('profile')->storeAs('public/upload/user/profile',$image_name);
@@ -1298,7 +1264,10 @@ class UserApiController extends Controller
         
 
             $data['user']   =  User::find($user_id);
-            $data['details']    =   UserDetail::where('user_id',$user_id)->first();
+            $data['details']    =   UserDetail::join('cities','cities.id','user_details.city_id')
+                                        ->where('user_details.user_id',$user_id)
+                                        ->select(['user_details.*','cities.name as city'])
+                                        ->first();
 
             $data['all_checklist_count'] = checklist::where('user_id', $user_id)->count();
             $data['all_done_checklist_count'] = checklist::where('user_id', $user_id)->where('status','0')->count();
@@ -1390,6 +1359,111 @@ class UserApiController extends Controller
             ];
             return response()->json($respose,401);
         }
+    }
+
+    Public function all_cities(){
+        $data['cities'] = City::where('status','1')->orderBy('name','asc')->get();
+        
+        if($data['cities']){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Success",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,401);
+        }
+    }
+
+    public function vendor_list(Request $request){
+        $city = $request->city;
+        $category_url = $request->category;
+
+        $conditions = [
+            ['users.user_type','vendor'],
+            ['users.status','1'],
+            ['vendor_details.featured_image','!=', NULL],
+        ];
+        if($category_url !== NULL){
+            $category = Category::where('category_url',$category_url)->first();
+            array_push($conditions,['vendor_details.category_id',$category->id]);
+        }
+        if($city !== NULL){
+            $city_data = City::where('name',$city)->first();
+            array_push($conditions,['vendor_details.city_id',$city_data->id]);
+        }
+
+        $data['all_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
+                                    ->join('categories','categories.id','=','vendor_details.category_id')
+                                    ->join('cities','cities.id','=','vendor_details.city_id')
+                                    ->where('vendor_details.listing_order', '=', NULL)
+                                    ->where($conditions)
+                                    ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','cities.name as city_name','vendor_details.featured_image','categories.category_name','vendor_details.is_featured','vendor_details.is_top',])
+                                    ->orderBy('users.id','desc')
+                                    ->orderBy('vendor_details.listing_order','asc')
+                                    ->orderBy('vendor_details.is_top','desc')
+                                    ->orderBy('vendor_details.is_featured','desc')
+                                    ->get();
+
+        if($data['all_vendors']){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Success",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,401);
+        }
+        
+    }
+
+    public function vendor_details(Request $request){
+        $vendor_id = $request->id;
+        $conditions = [
+            ['users.user_type','vendor'],
+            ['users.status','1'],
+            ['users.id',$vendor_id],
+            ['vendor_details.featured_image','!=', NULL],
+        ];
+
+        $data['vendor'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
+                                    ->join('categories','categories.id','=','vendor_details.category_id')
+                                    ->join('cities','cities.id','=','vendor_details.city_id')
+                                    ->where($conditions)
+                                    ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.featured_image','categories.category_name','vendor_details.profile_image','vendor_details.description','vendor_details.is_travelable','vendor_details.cancel_policy','vendor_details.advance_payment','vendor_details.youtube','vendor_details.service_offered','vendor_details.is_featured','vendor_details.is_top','cities.name as city_name' ])
+                                    // ->orderBy('users.id','desc')
+                                    ->first();
+        $data['social_media'] = SocialLink::where('user_id',$vendor_id)->first();
+        $data['gallery']    =   MediaGallery::where('user_id',$vendor_id)->where('user_type','vendor')->get();
+
+        if($data['vendor']){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Success",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,401);
+        }
+
     }
 
 }

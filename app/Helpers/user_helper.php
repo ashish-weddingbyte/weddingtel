@@ -3,10 +3,15 @@ namespace App\Helpers;
 
 use App\Models\Checklist;
 use App\Models\UserDetail;
+use App\Models\Budget;
+use App\Models\BudgetCategory;
+use App\Models\BudgetExpense;
+use App\Models\BudgetCategoryExpense;
 
 use Carbon\Carbon;
 
-class tools_helper {
+class user_helper {
+
     public static function add_default_checklist($user_id){
         $user = UserDetail::select('event')->where('user_id',$user_id)->first();
         
@@ -108,6 +113,55 @@ class tools_helper {
 
 
         return $months;
+    }
+
+    public static function total_expense_of_user($user_id){
+        if(isset($user_id)){
+            $total_paid = BudgetExpense::where('user_id',$user_id)->sum('paid');
+            $total_pending = BudgetExpense::where('user_id',$user_id)->sum('pending');
+
+            $budget_data = Budget::where('user_id',$user_id)->first();
+            $budget_data->final_cost = $total_paid;
+            $budget_data->pending = $total_pending;
+            $budget_data->save();
+
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function total_expense_of_category($user_id, $category_id){
+
+        if(isset($user_id) && isset($category_id) ){
+
+            $total_estimated_cost_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->sum('estimated_cost');
+
+            $total_paid_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->sum('paid');
+
+            $total_pending_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->sum('pending');
+
+            $category_expense = BudgetCategoryExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->first();
+
+            if(!empty($category_expense)){
+                $category_expense->estimated_cost = $total_estimated_cost_of_category;
+                $category_expense->final_cost = $total_paid_of_category;
+                $category_expense->pending = $total_pending_of_category;
+                $category_expense->save();
+            }else{
+                $category_expense = new BudgetCategoryExpense;
+                $category_expense->user_id = $user_id;
+                $category_expense->budget_category_id = $category_id;
+                $category_expense->estimated_cost = 0 ;
+                $category_expense->final_cost = $total_paid_of_category;
+                $category_expense->pending = $total_pending_of_category;
+                $category_expense->status = '1';
+                $category_expense->save();
+            }
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

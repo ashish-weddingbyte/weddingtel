@@ -26,6 +26,10 @@ class CheckUser
             if($user_type == 'user'){
                 return redirect('/tools/dashboard');
             }
+
+            if($user_type == 'admin'){
+                return redirect('/byte/dashboard');
+            }
         }
         return $next($request);
 

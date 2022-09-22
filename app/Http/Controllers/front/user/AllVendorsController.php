@@ -8,9 +8,8 @@ use Illuminate\Support\Facades\Session;
 
 use App\Models\Category;
 
-class VendorController extends Controller
+class AllVendorsController extends Controller
 {
-
     public function __construct(){
         $this->middleware('is_session');
     }
@@ -21,6 +20,4 @@ class VendorController extends Controller
 
         return view('front.user.vendors',$data);
     }
-
-    
 }

@@ -289,7 +289,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('front/library/isotope-layout/isotope.pkgd.min.js') }}"></script> 
     <script src="{{ asset('front/library/datepicker/js/datepicker.js') }}"></script> 
-    <script src="{{ asset('front/library/countdown/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('front/library/countdown/js/loopcounter.js') }}"></script>
     <script src="{{ asset('front/library/perfect-scrollbars/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('front/library/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('front/js/dashboard.js') }}"></script>

@@ -69,7 +69,7 @@ class login extends Controller
         if($login_type === 'e'){
             $validator = $request->validate([
                 'email' => 'required|email',
-                'password'  =>  'required:min:6'
+                'password'  =>  'required|min:6'
             ]);
 
             $email = $request->email;
@@ -228,7 +228,7 @@ class login extends Controller
         if($login_type === 'e'){
             $validator = $request->validate([
                 'email' => 'required|email',
-                'password'  =>  'required:min:6'
+                'password'  =>  'required|min:6'
             ]);
 
             
@@ -310,5 +310,51 @@ class login extends Controller
     }
 
 /**============================== Vendor code Ends here =================================== */
+
+
+
+/**============================== Admin Code Start here =================================== */
+
+    public function admin_login(Request $request){
+
+        $validator = $request->validate([
+            'email' => 'required|email',
+            'password'  =>  'required|min:6'
+        ]);
+
+        
+        $email = $request->email;
+        $password = $request->password;
+
+        $user = User::where('email',$email)->where('user_type','admin')->first();
+
+        if(isset($user->id)){
+
+            if(Hash::check($password, $user->password)){
+                Session::put('name', $user->name);
+                Session::put('email', $user->email);
+                Session::put('user_id', $user->id);
+                Session::put('user_type', $user->user_type);
+
+                Session::flash('message', 'Login to Dashboard Successful!');
+                Session::flash('class', 'alert-danger');
+                return redirect("/byte/dashboard");
+            }else{
+                Session::flash('message', 'Incorrect Password!');
+                Session::flash('class', 'alert-danger');
+                return redirect('/byte');
+            }
+
+        }else{
+            Session::flash('message', 'Email ID is not Registred with US!');
+            Session::flash('class', 'alert-danger');
+            return redirect('/byte');
+        }
+
+    }
+
+
+
+/**============================== Admin Code Ends here =================================== */
 
 }

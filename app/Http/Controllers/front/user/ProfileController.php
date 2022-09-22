@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\UserDetail;
-// use App\Models\User;
+use App\Models\City;
 
 class ProfileController extends Controller
 {
@@ -24,7 +24,7 @@ class ProfileController extends Controller
         $data['user'] = User::find($user_id);
         $data['details'] = UserDetail::where('user_id',$user_id)->first();
 
-
+        $data['cities'] = City::orderBy('name','asc')->get();
         return view('front.user.profile',$data);
     }
 
@@ -70,7 +70,7 @@ class ProfileController extends Controller
 
     public function update_details(Request $request){
         $request->validate([
-            'profile'  =>'image|mimes:jpg,png,jpeg|max:1024',
+            'profile'  =>'image|mimes:jpg,png,jpeg|max:512',
         ]);
 
         $user_id = Session::get('user_id');
@@ -84,13 +84,13 @@ class ProfileController extends Controller
         $detals = UserDetail::where('user_id',$user_id)->first();
 
         if($request->filled('city')){
-            $detals->city = $request->city;
+            $detals->city_id = $request->city;
             $detals->save();
         }
 
         if ($request->hasFile('profile')) {
 
-            Storage::delete('public/upload/user/profile'.$detals->profile);
+            Storage::delete('public/upload/user/profile/'.$detals->profile);
             $image_name  =  $request->file('profile')->getClientOriginalName();
             $detals->profile = $image_name;
             $request->file('profile')->storeAs('public/upload/user/profile',$image_name);

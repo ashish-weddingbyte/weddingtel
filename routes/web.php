@@ -11,11 +11,11 @@ use App\Http\Controllers\front\UserController;
 use App\Http\Controllers\front\HomeController;
 
 // user controllers
-use App\Http\Controllers\front\user\Planning_tool;
+use App\Http\Controllers\front\user\UserDashboard;
 use App\Http\Controllers\front\user\ChecklistController;
 use App\Http\Controllers\front\user\GuestContoller;
 use App\Http\Controllers\front\user\BudgetController;
-use App\Http\Controllers\front\user\VendorController;
+use App\Http\Controllers\front\user\AllVendorsController;
 use App\Http\Controllers\front\user\ProfileController;
 use App\Http\Controllers\front\user\RealWeddingController;
 
@@ -25,6 +25,9 @@ use App\Http\Controllers\front\vendor\Vendors;
 use App\Http\Controllers\front\vendor\VendorProfileController;
 use App\Http\Controllers\front\vendor\VendorPlanController;
 use App\Http\Controllers\front\vendor\VendorLeadController;
+
+
+// admin Controllers
 
 /**====================================================================================== */
 
@@ -47,11 +50,14 @@ Route::get('blogs',[HomeController::class,'all_blogs']);
 Route::get('blogs/{category}',[HomeController::class,'blogs_by_category']);
 Route::get('blog/{title}',[HomeController::class,'blog_details']);
 
+
+Route::post('/byte/login',[login::class,'admin_login']);
+
 // Protected Route by Middleware for user(bride/groom).
 Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], function(){
 
-    Route::get('/',[Planning_tool::class, 'dashboard']);
-    Route::get('/dashboard',[Planning_tool::class, 'dashboard']);
+    Route::get('/',[UserDashboard::class, 'dashboard']);
+    Route::get('/dashboard',[UserDashboard::class, 'dashboard']);
     
     // real wedding pages
     Route::get('/real-wedding',[RealWeddingController::class, 'index']);
@@ -89,7 +95,7 @@ Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], functio
 
 
     // vendor manager pages
-    Route::get('/vendors',[VendorController::class, 'vendors']);
+    Route::get('/vendors',[AllVendorsController::class, 'vendors']);
     
 });
 
@@ -122,6 +128,9 @@ Route::middleware(['CheckUser'])->group(function () {
     Route::post('/vendor-forget-password',[login::class,'vendor_forget_password']);
     Route::get('/vendor-reset-password/{from}/{id}',[UserController::class,'vendor_reset_passord']);
     Route::post('/vendor-reset-password',[UserController::class,'vendor_change_password']);
+
+    // admin
+    Route::view('/byte','back.login');
 });
 
 
@@ -161,6 +170,10 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
 });
 
 
+// Protected routes of admin 
+Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], function(){
+    Route::view('/dashboard','back.dashboard');
+});
 
 // logout route
 Route::get('/logout', function(){
@@ -168,10 +181,6 @@ Route::get('/logout', function(){
     return Redirect::to('/');
  });
 
-
- Route::get('/test', function(){
-    echo  vendor_helper::vendor_profile_url(4586);
- });
 
 
 Route::get('/add_city',[VendorProfileController::class,'add_city']);

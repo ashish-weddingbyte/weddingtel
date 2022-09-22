@@ -17,22 +17,6 @@ use App\Http\Controllers\API\UserApiController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-
-// Route::post('register', [AuthController::class, 'register']);
-// Route::post('login', [AuthController::class, 'login']);
-
-// Route::group(['middleware' => ['auth:sanctum']], function () {
-//     Route::post('profile', [AuthController::class, 'profile']);
-//     Route::post('logout', [AuthController::class, 'logout']);
-//     Route::get('me', function(){
-//         return Auth::id();
-//     });
-// });
-
 
 Route::post('register', [UserApiController::class, 'register']);
 Route::post('login_with_email', [UserApiController::class, 'login_with_email']);
@@ -41,10 +25,15 @@ Route::post('verify_otp', [UserApiController::class, 'verify_otp_api']);
 
 Route::get('relation_groups',[UserApiController::class,'relation_groups']);
 Route::get('categories',[UserApiController::class,'all_categories']);
+Route::get('cities',[UserApiController::class,'all_cities']);
+Route::get('vendor_list',[UserApiController::class,'vendor_list']);
+Route::get('vendor_list/{city}/{category}',[UserApiController::class,'vendor_list']);
+Route::get('vendor_list/{city}',[UserApiController::class,'vendor_list']);
+Route::get('vendor/{id}',[UserApiController::class,'vendor_details']);
+
 
 // procted route with ap token.
 Route::group(['middleware' => ['auth:sanctum']], function () {
-
     
     Route::post('logout', [UserApiController::class, 'logout']);
 

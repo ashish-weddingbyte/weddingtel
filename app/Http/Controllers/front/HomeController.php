@@ -51,7 +51,7 @@ class HomeController extends Controller
         $data['cities']     =   City::orderBy('name','asc')->get();
         $data['blogs']      =   Blog::limit(3)
                                 ->join('categories','categories.id','=','blogs.category_id')
-                                ->select(['blogs.*','categories.category_name'])
+                                ->select(['blogs.*','categories.category_name','categories.category_url'])
                                 ->orderBy('id','desc')
                                 ->get();
         return view('front.index',$data);

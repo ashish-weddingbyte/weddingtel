@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('is_email_verified', ['0', '1']);
             $table->enum('is_mobile_verified', ['0', '1']);
             $table->date('event');
-            $table->string('city');
+            $table->foreignId('city_id')->nullable();
             $table->string('profile')->nullable();
             $table->enum('type', ['bride','groom'])->nullable();
             $table->string('partner_name')->nullable();

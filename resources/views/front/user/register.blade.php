@@ -73,23 +73,21 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                
-                                <!-- <div class="form-group">
-                                    <select class="city" id="city" name="city">
-                                        <option disabled selected>Choose City</option>
-                                        @if(!empty($citys))
-                                            @foreach($citys as $city)
-                                                <option value="{{ $city->city_id }}">{{ $city->city_name }}</option>
+
+                                <div class="form-group">
+
+                                    <?php
+                                        $cities = App\Models\City::orderBy('name','asc')->get();
+                                    ?>
+                                    <select class="form-light-select theme-combo" name="city">
+                                        <option value='0'>Choose Location</option>
+                                        @if($cities)   
+                                            @foreach($cities as $city)
+                                                <option value="{{ $city->id }}">{{ $city->name }} ( {{ $city->state }} )</option>
                                             @endforeach
                                         @endif
                                     </select>
-                                    @error('city')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div> -->
-
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="City" type="text" name="city" id="city"  value="{{ old('city') }}">
+                                    <!-- <input class="form-control" placeholder="City" type="text" name="city" id="city"  value="{{ old('city') }}"> -->
                                     @error('city')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -109,7 +107,7 @@
                                 </div>
                             </form>
                         </div>
-
+                        
                         <div class="section-title mt-5 text-center">
                             <h3>Are you a vendor?</h3>
                             <a href="{{ url('/vendor-login') }}" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       

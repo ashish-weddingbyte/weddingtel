@@ -11,6 +11,7 @@ use App\Models\Budget;
 use App\Models\BudgetCategory;
 use App\Models\BudgetExpense;
 use App\Models\BudgetCategoryExpense;
+use user_helper;
 
 
 class BudgetController extends Controller
@@ -119,7 +120,7 @@ class BudgetController extends Controller
     public function delete_budget_category(Request $request){
         $request->validate([
             'category_id' => 'required',
-        ]);
+        ]);    
 
         
         $category_id = $request->category_id;
@@ -140,8 +141,8 @@ class BudgetController extends Controller
             BudgetExpense::where('budget_category_id',$category_id)->where('user_id',$user_id)->delete();
         }
         
-        
 
+        user_helper::total_expense_of_user($user_id);
         
 
         Session::flash('message', 'Budget Category Delete Successfully!');
@@ -162,15 +163,12 @@ class BudgetController extends Controller
 
         $user_id = Session::get('user_id');
 
-        $final_cost_of_all_category = BudgetCategoryExpense::where('user_id',$user_id)->sum('final_cost');
-        $total_pending_of_category =  BudgetCategoryExpense::where('user_id',$user_id)->sum('pending');
-
         $budget = Budget::find($budget_id);
         $budget->estimated_cost = $estimated_cost;
-        $budget->final_cost = $final_cost_of_all_category;
-        $budget->pending = $total_pending_of_category;
         $budget->status = '1';
         $budget->save();
+
+        user_helper::total_expense_of_user($user_id);
 
         Session::flash('message', 'Budget Estimanted Cost Edit Successfully!');
         Session::flash('class', 'alert-success');
@@ -181,6 +179,7 @@ class BudgetController extends Controller
 
 
     public function add_budget_expense(Request $request){
+
         $request->validate([
             'expense_name' => 'required',
             'estimated_cost' => 'required',
@@ -201,30 +200,9 @@ class BudgetController extends Controller
         $budget_expense->status = '1';
         $budget_expense->save();
 
-        // calculate total cost for category expense.
-        $total_estimated_cost_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$request->category_id)->sum('estimated_cost');
-        $total_paid_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$request->category_id)->sum('paid');
-        $total_pending_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$request->category_id)->sum('pending');
 
-        // category expense code.
-        $category_expense = BudgetCategoryExpense::where('user_id',$user_id)->where('budget_category_id',$request->category_id)->first();
-
-        if( $category_expense ){
-            // $category_expense->estimated_cost = $total_estimated_cost_of_category;
-            $category_expense->final_cost = $total_paid_of_category;
-            $category_expense->pending = $total_pending_of_category;
-            $category_expense->save();
-        }else{
-            $category_expense = new BudgetCategoryExpense;
-            $category_expense->user_id = $user_id;
-            $category_expense->budget_category_id = $request->category_id;
-            $category_expense->estimated_cost = 0 ;
-            $category_expense->final_cost = $total_paid_of_category;
-            $category_expense->pending = $total_pending_of_category;
-            $category_expense->status = '1';
-            $category_expense->save();
-            
-        }
+        user_helper::total_expense_of_category($user_id,$request->category_id);
+        user_helper::total_expense_of_user($user_id);
 
         Session::flash('message', 'Budget Expense Added Successfully!');
         Session::flash('class', 'alert-success');
@@ -257,20 +235,8 @@ class BudgetController extends Controller
         $budget_expense->pending = $pending_amount;
         $budget_expense->save();
 
-        // calculate total cost for category expense.
-        $total_estimated_cost_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->sum('estimated_cost');
-        $total_paid_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->sum('paid');
-        $total_pending_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$request->category_id)->sum('pending');
-
-        // category expense code.
-        $category_expense = BudgetCategoryExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->first();
-
-
-        // $category_expense->estimated_cost = $total_estimated_cost_of_category;
-        $category_expense->final_cost = $total_paid_of_category;
-        $category_expense->pending = $total_pending_of_category;
-        $category_expense->save();
-
+        user_helper::total_expense_of_category($user_id,$request->category_id);
+        user_helper::total_expense_of_user($user_id);
 
         Session::flash('message', 'Budget Expense Edit Successfully!');
         Session::flash('class', 'alert-success');
@@ -296,18 +262,8 @@ class BudgetController extends Controller
         
         if($budget_expense){
 
-            // calculate total cost for category expense.
-            $total_estimated_cost_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->sum('estimated_cost');
-            $total_paid_of_category =  BudgetExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->sum('paid');
-
-            // category expense code.
-            $category_expence = BudgetCategoryExpense::where('user_id',$user_id)->where('budget_category_id',$category_id)->first();
-
-
-            // $category_expence->estimated_cost = $total_estimated_cost_of_category;
-            $category_expence->final_cost = $total_paid_of_category;
-            $category_expence->save();
-
+            user_helper::total_expense_of_category($user_id,$request->category_id);
+            user_helper::total_expense_of_user($user_id);
 
             Session::flash('message', 'Budget Expense Delete Successfully!');
             Session::flash('class', 'alert-success');

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 
 use App\Models\Checklist;
 
-use tools_helper;
+use user_helper;
 
 class ChecklistController extends Controller
 {
@@ -31,8 +31,8 @@ class ChecklistController extends Controller
 
         $data['checklist_done_perentage'] = round(  ($data['all_done_checklist_count'] / $data['all_checklist_count']) * 100  );
 
-        $data['default'] = tools_helper::group_checklist_by_month($default);
-        // $data['added'] = tools_helper::group_checklist_by_month($added);
+        $data['default'] = user_helper::group_checklist_by_month($default);
+        // $data['added'] = user_helper::group_checklist_by_month($added);
 
         return view('front.user.checklist',$data);
     }

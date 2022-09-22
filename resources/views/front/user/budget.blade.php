@@ -36,7 +36,7 @@
                         <div class="budget-estimation">
                             <div class="d-flex w-100">
                                 <div class="etimated-cost">
-                                    <h3 class="mb-3">Expenses</h3>
+                                    <h3 class="mb-3">Budget</h3>
                                     <div class="icon"><i class="weddingdir_saving_money"></i></div> 
                                     <p class="cost-price">INR {{ number_format($budget->estimated_cost) }}</p>
                                     <div>Estimated cost</div>
@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                                 <div class="etimated-cost border-left">
-                                    <h3 class="mb-3">Budget</h3>
+                                    <h3 class="mb-3">Expenses</h3>
                                     <div class="icon"><i class="weddingdir_money_stack"></i></div>
                                     <p class="cost-price final">INR {{ number_format($budget->final_cost) }}</p>
                                     <div>Final cost</div>

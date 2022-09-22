@@ -67,9 +67,111 @@
 
 <main id="body-content">
 
+    <!-- Wedding Plannign  Start -->
+    <section class="wide-tb-50 bg-light-gray">
+    <div class="container">
+        <div class="section-title text-center">
+            <h1>Wedding Planning Tool</h1>
+        </div>            
+        <div class="row">
+            <!-- Features Icons -->
+            
+            <div class="col-lg-4 col-xl-2 text-center col-6">
+                <a href="@if(Session::get('user_type') == 'user') {{ url('/budget') }} @else {{ url('/login') }}  @endif">
+                    <div class="why-choose-icons">
+                        <div class="icon-big-cirlce mx-auto">
+                            <i class="weddingdir_budget"></i>
+                        </div>
+
+                        <h4>Budget</h4>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Features Icons -->
+
+            <!-- Features Icons -->
+            
+            <div class="col-lg-4 col-xl-2 text-center col-6">
+                <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/budget') }} @else {{ url('/login') }} @endif">
+                    <div class="why-choose-icons">
+                        <div class="icon-big-cirlce mx-auto">
+                            <i class="weddingdir_calendar_heart"></i>
+                        </div>
+                        <h4>Guest List</h4>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Features Icons -->
+
+            <!-- Features Icons -->
+            
+            <div class="col-lg-4 col-xl-2 text-center col-6">
+                <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/guestlist') }} @else {{ url('/login') }} @endif">
+                    <div class="why-choose-icons">
+                        <div class="icon-big-cirlce mx-auto">
+                            <i class="weddingdir_seating_chart"></i>
+                        </div>
+                        <h4>Seating Chart</h4>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Features Icons -->
+
+            <!-- Features Icons -->
+            
+            <div class="col-lg-4 col-xl-2 text-center col-6">
+                <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/checklist') }} @else {{ url('/login') }} @endif">
+                    <div class="why-choose-icons">
+                        <div class="icon-big-cirlce mx-auto">
+                            <i class="weddingdir_bell"></i>
+                        </div>
+                        <h4>Check List</h4>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Features Icons -->
+
+            <!-- Features Icons -->
+            
+            <div class="col-lg-4 col-xl-2 text-center col-6">
+                <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/real-wedding') }} @else {{ url('/login') }} @endif">
+                    <div class="why-choose-icons">
+                        <div class="icon-big-cirlce mx-auto">
+                            <i class="weddingdir_heart_ring"></i>
+                        </div>
+                        <h4>Real Weddings</h4>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Features Icons -->
+
+            <!-- Features Icons -->
+            
+            <div class="col-lg-4 col-xl-2 text-center col-6">
+                <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/vendors') }} @else {{ url('/login') }} @endif">
+                    <div class="why-choose-icons">
+                        <div class="icon-big-cirlce mx-auto">
+                            <i class="weddingdir_shopping_bag_heart"></i>
+                        </div>
+                        <h4>Vendors</h4>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Features Icons -->
+            
+        </div>
+    </div>
+</section>
+<!-- Wedding Plannign  End -->
 
     <!-- Top Wedding Vendors Start -->
-    <section class="wide-tb-50">
+    <section class="wide-tb-50 ">
         <div class="container">
             <div class="section-title text-center">
                 <h1>Top Category</h1>
@@ -278,7 +380,7 @@
 
                                 <div class="mt-auto">
                                     <span class="post-category">
-                                        <a href="{{ url('/blogs/'.$category->category_url ) }}">{{ $blog->category_name }}</a>
+                                        <a href="{{ url('/blogs/'.$blog->category_url ) }}">{{ $blog->category_name }}</a>
                                     </span>
                                     <h3 class="blog-title"><a href="{{ $blog_url }}" class="post-title">{{ $blog->title }}</a></h3>
                                     <div class="entry-content">
@@ -867,109 +969,6 @@
     </section>
     <!-- Callout Style Main End -->
 
-
-    <!-- Wedding Plannign  Start -->
-    <section class="wide-tb-50">
-        <div class="container">
-            <div class="section-title text-center">
-                <h1>Wedding Planning Tool</h1>
-            </div>            
-            <div class="row">
-                <!-- Features Icons -->
-                
-                <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <a href="@if(Session::get('user_type') == 'user') {{ url('/budget') }} @else {{ url('/login') }}  @endif">
-                        <div class="why-choose-icons">
-                            <div class="icon-big-cirlce mx-auto">
-                                <i class="weddingdir_budget"></i>
-                            </div>
-
-                            <h4>Budget</h4>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Features Icons -->
-
-                <!-- Features Icons -->
-                
-                <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/budget') }} @else {{ url('/login') }} @endif">
-                        <div class="why-choose-icons">
-                            <div class="icon-big-cirlce mx-auto">
-                                <i class="weddingdir_calendar_heart"></i>
-                            </div>
-                            <h4>Guest List</h4>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Features Icons -->
-
-                <!-- Features Icons -->
-                
-                <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/guestlist') }} @else {{ url('/login') }} @endif">
-                        <div class="why-choose-icons">
-                            <div class="icon-big-cirlce mx-auto">
-                                <i class="weddingdir_seating_chart"></i>
-                            </div>
-                            <h4>Seating Chart</h4>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Features Icons -->
-
-                <!-- Features Icons -->
-                
-                <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/checklist') }} @else {{ url('/login') }} @endif">
-                        <div class="why-choose-icons">
-                            <div class="icon-big-cirlce mx-auto">
-                                <i class="weddingdir_bell"></i>
-                            </div>
-                            <h4>Check List</h4>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Features Icons -->
-
-                <!-- Features Icons -->
-                
-                <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/real-wedding') }} @else {{ url('/login') }} @endif">
-                        <div class="why-choose-icons">
-                            <div class="icon-big-cirlce mx-auto">
-                                <i class="weddingdir_heart_ring"></i>
-                            </div>
-                            <h4>Real Weddings</h4>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Features Icons -->
-
-                <!-- Features Icons -->
-                
-                <div class="col-lg-4 col-xl-2 text-center col-6">
-                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/vendors') }} @else {{ url('/login') }} @endif">
-                        <div class="why-choose-icons">
-                            <div class="icon-big-cirlce mx-auto">
-                                <i class="weddingdir_shopping_bag_heart"></i>
-                            </div>
-                            <h4>Vendors</h4>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Features Icons -->
-                
-            </div>
-        </div>
-    </section>
-    <!-- Wedding Plannign  End -->
 
 </main>
 
