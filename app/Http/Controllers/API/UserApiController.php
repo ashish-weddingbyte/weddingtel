@@ -1059,7 +1059,7 @@ class UserApiController extends Controller
         if($user_id){
             $data['user'] = User::find($user_id);
             $data['details'] = UserDetail::where('user_id',$user_id)->first();
-            $data['cities'] = City::orderBy('name','asc')->get();
+            // $data['cities'] = City::orderBy('name','asc')->get();
 
             $respose = [
                 'status'    =>  true,
@@ -1510,4 +1510,45 @@ class UserApiController extends Controller
 
     }
 
+    public function city(Request $request){
+        $city_id = $request->id;
+        $data['city'] = City::where('status','1')->where('id',$city_id)->first();
+        if($data['city']){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Success",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,401);
+        }
+    }
+
+    public function category(Request $request){
+        $category_id = $request->id;
+        
+        $data['category'] = Category::where('status','1')->where('id',$category_id)->first();
+        if($data['category']){
+            
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Success",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,401);
+        }
+    }
 }
