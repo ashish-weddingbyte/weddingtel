@@ -30,7 +30,7 @@ Route::get('vendor_list',[UserApiController::class,'vendor_list']);
 Route::get('vendor_list/{city}/{category}',[UserApiController::class,'vendor_list']);
 Route::get('vendor_list/{city}',[UserApiController::class,'vendor_list']);
 Route::get('vendor/{id}',[UserApiController::class,'vendor_details']);
-
+Route::get('vendor_list_by_category/{category}',[UserApiController::class,'vendor_list_by_category']);
 
 // procted route with ap token.
 Route::group(['middleware' => ['auth:sanctum']], function () {

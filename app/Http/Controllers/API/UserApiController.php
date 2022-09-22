@@ -1429,6 +1429,50 @@ class UserApiController extends Controller
         
     }
 
+    public function vendor_list_by_category(Request $request){
+
+        $category_url = $request->category;
+
+        $conditions = [
+            ['users.user_type','vendor'],
+            ['users.status','1'],
+            ['vendor_details.featured_image','!=', NULL],
+        ];
+        if($category_url !== NULL){
+            $category = Category::where('category_url',$category_url)->first();
+            array_push($conditions,['vendor_details.category_id',$category->id]);
+        }
+        
+        $data['all_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
+                                    ->join('categories','categories.id','=','vendor_details.category_id')
+                                    ->join('cities','cities.id','=','vendor_details.city_id')
+                                    ->where('vendor_details.listing_order', '=', NULL)
+                                    ->where($conditions)
+                                    ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','cities.name as city_name','vendor_details.featured_image','categories.category_name','vendor_details.is_featured','vendor_details.is_top',])
+                                    ->orderBy('users.id','desc')
+                                    ->orderBy('vendor_details.listing_order','asc')
+                                    ->orderBy('vendor_details.is_top','desc')
+                                    ->orderBy('vendor_details.is_featured','desc')
+                                    ->get();
+
+        if($data['all_vendors']){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Success",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,401);
+        }
+        
+    }
+
     public function vendor_details(Request $request){
         $vendor_id = $request->id;
         $conditions = [
