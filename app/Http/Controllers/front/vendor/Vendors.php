@@ -31,9 +31,9 @@ class Vendors extends Controller
                                         ->where('is_active','1')
                                         ->first();
 
-        $end_date = new Carbon($paid->end_at);
-        $now = new Carbon( date('Y-m-d') );
-        $data['plan_expire_days'] = $end_date->diffInDays($now);
+        // $end_date = new Carbon($paid->end_at);
+        // $now = new Carbon( date('Y-m-d') );
+        // $data['plan_expire_days'] = $end_date->diffInDays($now);
          
         return view('front.vendor.dashboard',$data);
     }

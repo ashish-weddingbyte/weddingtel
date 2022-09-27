@@ -8,168 +8,31 @@
         <div class="container">
             <!-- Page Heading -->
             <div class="section-title">
-                <h2>Real Wedding</h2>
+                <h2>Submit Your Wedding</h2>
             </div>
             <!-- Page Heading -->
-            <form action="{{ url('tools/real-wedding/update') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('tools/real-wedding/save') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="card-shadow">
-                    <div class="card-shadow-body">                            
-                        <div class="row">
-                            <div class="col-md-6 border-right no-mobile">
-                                <div class="d-flex">
-                                    <div class="mr-4">
-                                        <div class="form-group">
-                                            <div class="custom-file-wrap">
-                                                <div class="custom-file-holder">
-                                                    @if($details->profile)
-                                                        <div class="avatar-wrap">
-                                                            <img src="{{ asset('storage/upload/user/profile/'.$details->profile) }}" alt="">
-                                                        </div>
-                                                    @else
-                                                        <i class="fa fa-picture-o"></i>
-                                                    @endif
-                                                    <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="profile" name="profile" aria-describedby="profile">
-                                                        <label class="custom-file-label" for="profile"><i class="fa fa-pencil"></i></label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="w-100">
-                                        <h3 class="mb-4">My Info</h3>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-dark" name="name" value="{{ $user->name }}"  placeholder="Name">
-                                        </div>
-
-                                    </div>
-                                </div>
-                                
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="d-flex">
-                                    <div class="mr-4">
-                                        <div class="form-group">
-                                            <div class="custom-file-wrap">
-                                                <div class="custom-file-holder">
-                                                    @if($details->partner_profile)
-                                                        <div class="avatar-wrap">
-                                                            <img src="{{ asset('storage/upload/user/profile/'.$details->partner_profile) }}" alt="">
-                                                        </div>
-                                                    @else
-                                                        <i class="fa fa-picture-o"></i>
-                                                    @endif
-                                                    <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="partner_profile"  name="partner_profile" aria-describedby="partner_profile">
-                                                        <label class="custom-file-label" for="partner_profile"><i class="fa fa-pencil"></i></label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="w-100">
-                                        <h3 class="mb-4">Partner Info</h3>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-dark" name="partner_name" value="{{ $details->partner_name }}" placeholder="Partner Name">
-                                        </div>
-
-                                    </div>
-                                </div>
-                                
-                            </div>    
-                        </div>                                                  
-                    </div>                                        
-                </div>
-
-                <div class="card-shadow">
-                    <div class="card-shadow-header p-0 d-flex align-items-center">
-                        <span class="budget-head-icon"> <i class="weddingdir_location_heart"></i></span>
-                        <span class="head-simple">Wedding Info</span>                                
-                    </div>
-                    <div class="card-shadow-body p-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control datepicker" placeholder="Wedding Date" value="{{ date('m/d/Y', strtotime($details->event) ) }}" name="event" disabled>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <select class="theme-combo form-control" name="setting">
-                                        <option>Select Wedding Setting</option>
-                                        <option value="indoor">Indoor</option>
-                                        <option value="outdoor">Outdoor</option>
-                                        <option value="destination">Destination</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <select class="theme-combo form-control" name="season">
-                                        <option>Select Wedding Season</option>
-                                        <option value="fall">Fall</option>
-                                        <option value="spring">Spring</option>
-                                        <option value="summer">Summer</option>
-                                        <option value="winter">Winter</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Wedding Theme" name="theme" >
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Wedding Tags">
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <select class="theme-combo form-control" name="community">
-                                        <option>Select Community</option>
-                                        <option value="hindu">Hindu</option>
-                                        <option value="muslims">Muslims</option>
-                                        <option value="christians">Christians</option>
-                                        <option value="sikhs">Sikhs</option>
-                                        <option value="jains">Jains</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="city" id="city" class="form-control" value="{{ $details->city }}">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
                 <div class="card-shadow">
                     <div class="card-shadow-header p-0 d-flex align-items-center">
                         <span class="budget-head-icon"> <i class="weddingdir_heart_double_face"></i></span>
-                        <span class="head-simple">Set Featured Images</span>                                
+                        <span class="head-simple">Set Featured Images</span>
                     </div>
                     <div class="card-shadow-body p-0">
                         <div class="row no-gutters align-items-center">
                             <div class="col-md-6">
-                                <div class="custom-file-featured" style="background: url({{ asset('front/images/dashboard/featured_img.jpg') }}) no-repeat; background-size: cover;">
-                                    
-                                </div>
+                                @if(!empty($realwedd))
+                                    <div class="custom-file-featured" style="background: url({{ asset('front/images/dashboard/featured_img.jpg') }}) no-repeat; background-size: cover;">
+                                        <div class="custom-file">
+                                            <input type="button" class="custom-file-input" id="featured_image" data-toggle="modal" data-target="#delete_featured_image" aria-describedby="featured_image">
+                                            <label class="custom-file-label" for="featured_image"><i class="fa fa-trash" aria-hidden="true"></i></label>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="featured-img">
+                                        <img src="{{ asset('front/default_image/default_featured_image.png') }}" alt="" class="img" >
+                                    </div>
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <div class="py-4">
@@ -177,13 +40,14 @@
                                         <div class="custom-file-holder">
                                             <i class="fa fa-picture-o"></i>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="feature_image" aria-describedby="feature_image">
+                                                <input type="file" class="custom-file-input" id="feature_image" name="feature_image" accept=".jpg,.jpeg,.png" aria-describedby="feature_image">
                                                 <label class="custom-file-label" for="feature_image"><i class="fa fa-pencil"></i></label>
                                             </div>
+                                            
                                         </div>
                                         <div class="custom-file-text">
                                             <div class="head">Upload Featured Image</div>
-                                            <div>Files must be less than <strong>4mb</strong>, allowed files types are <strong>png/jpg</strong>.</div>
+                                            <div>Files must be less than <strong>512KB or (800*300)</strong>, allowed files types are <strong>png/jpg/jpeg</strong>.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -205,10 +69,10 @@
                             <div class="col-md-7 pr-4">
                                 
                                 <div class="d-flex align-items-center justify-content-md-end px-3 ml-auto my-3 my-md-0">
-                                    <span class="mr-3 text-muted"><small>Maximum 16 images can be uploaded</small></span>
+                                    <span class="mr-3 text-muted"><small>Maximum 6 images can be uploaded</small></span>
                                     <div class="custom-file button-style">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile019" aria-describedby="inputGroupFile019">
-                                        <label class="custom-file-label text-nowrap" for="inputGroupFile019"><i class="fa fa-plus"></i> Browse Image</label>
+                                        <input type="file" class="custom-file-input" id="gallery" aria-describedby="gallery" name='gallery[]' accept=".jpg,.png,.jpeg" multiple>
+                                        <label class="custom-file-label text-nowrap" for="gallery"><i class="fa fa-plus"></i> Browse Image</label>
                                     </div>
                                 </div>
                             </div>
@@ -217,58 +81,76 @@
                     </div>
                     <div class="card-shadow-body p-3">
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="dash-categories selected" style="background: url({{ asset('front/images/dashboard/dash_category.jpg') }} ) no-repeat; background-size: cover;">
-                                    <div class="edit">
-                                        <a href="javascript:"><i class="fa fa-pencil"></i></a>
+                            @if($gallery->count() > 0)
+
+                                @foreach($gallery as $g)
+
+                                <div class="col-md-4">
+                                    <div class="dash-categories selected" style="background: url( {{ asset('storage/upload/vendor/gallery/'.$g->name) }} ) no-repeat; background-size: cover;">
+                                        <div class="edit">
+                                            <a href="{{ asset('storage/upload/vendor/gallery/'.$g->name) }}" data-toggle="modal" data-target="#delete_modal-{{ $g->id }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>                                         
+                                </div>
+
+                                <!-- Modal for Delete guets -->
+                                <div class="modal fade" id="delete_modal-{{ $g->id }}" tabindex="-1" aria-labelledby="login_form" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered register-tab">
+                                        <div class="modal-content">
+                                            <div class="modal-body p-0">
+                                                <div class="d-flex justify-content-between align-items-center p-3 px-4 bg-light-gray">
+                                                    <h2 class="m-0" >Confirmation</h2>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+
+                                                
+
+                                                <div class="card-shadow-body">
+                                                    <form data-action="{{ url('tools/real-wedding/image/'.$g->id) }}" class="submit">
+                                                        <div class="row">
+                                                            
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                <div class="form-group">
+                                                                    <P class="text-danger">Are you sure, You want to delete this Gallery Image</P>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                <div class="form-group">
+                                                                    <input type="hidden" name="gallery_id" value="{{ $g->id }}">
+                                                                    <button type="submit" class="btn btn-default">Delete Image</button>
+
+                                                                    <button type="close" data-dismiss="modal" class="btn btn-secondary ">Cancel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="gallery-info">
-                                    <span>Event</span>
-                                    Wedding
-                                </div>                                            
-                            </div>
-                            <div class="col-md-3">
-                                <div class="dash-categories">
-                                    <div class="edit">
-                                        <a href="javascript:"><i class="fa fa-plus"></i></a>
-                                    </div>
-                                    <div class="head">
-                                        <i class="fa fa-picture-o"></i>
+                                    
+                                @endforeach
+                                
+                            @else
+                                <div class="col-md-12 my-5">
+                                    <div class="text-center mb-3">
+                                        <div class="custom-file button-style">
+                                            <h5>No Gallery Images Found!</h5>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="gallery-info">
-                                    <span>...</span>
-                                    &nbsp;
-                                </div> 
-                            </div>
-                            <div class="col-md-3">
-                                <div class="dash-categories">
-                                    <div class="edit">
-                                        <a href="javascript:"><i class="fa fa-plus"></i></a>
-                                    </div>
-                                    <div class="head">
-                                        <i class="fa fa-picture-o"></i>
-                                    </div>
-                                </div>
-                                <div class="gallery-info">
-                                    <span>...</span>
-                                    &nbsp;
-                                </div> 
-                            </div>
-                            <div class="col-md-3">
-                                <div class="dash-categories">
-                                    <div class="edit">
-                                        <a href="javascript:"><i class="fa fa-plus"></i></a>
-                                    </div>
-                                    <div class="head">
-                                        <i class="fa fa-picture-o"></i>
-                                    </div>
-                                </div>
-                                <div class="gallery-info">
-                                    <span>...</span>
-                                    &nbsp;
-                                </div> 
+                            @endif
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-lg-12">
+                            <h4>Image Preview</h4>
+                                <div class="images-preview-div"> </div>
                             </div>
                         </div>
                     </div>
@@ -288,12 +170,56 @@
                 </div>
 
                 <div class="col-md-12">
-                    <input type="submit" class="btn btn-primary btn-rounded" name="submit" value="Update Real-Wedding">
+
+                    @if(!empty($realwedd))
+                        <input type="hidden" name="realwedd_id" value="{{ $realwedd->id }}">
+                    @endif
+                    <input type="submit" class="btn btn-primary btn-rounded" name="submit" value="@if(!empty($realwedd)) Update @else Save @endif Real-Wedding">
                 </div>
             </form>
-            
         </div>
     </div>
+
+    @if(!empty($realwedd))
+    <div class="modal fade" id="delete_featured_image" tabindex="-1" aria-labelledby="login_form" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered register-tab">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="d-flex justify-content-between align-items-center p-3 px-4 bg-light-gray">
+                        <h2 class="m-0" >Confirmation</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="card-shadow-body">
+                        <form data-action="{{ url('tools/real-wedding/image/') }}" class="submit">
+                            <div class="row">
+                                
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <P class="text-danger">Are you sure, You want to delete this Featured Image</P>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <input type="hidden" name="gallery_id" value="">
+                                        <button type="submit" class="btn btn-default">Delete Image</button>
+
+                                        <button type="close" data-dismiss="modal" class="btn btn-secondary ">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 
 @endsection
 

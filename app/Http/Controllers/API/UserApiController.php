@@ -14,7 +14,6 @@ use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\VendorDetail;
 use App\Models\Otp;
-use App\Models\Planning_tool;
 use App\Models\Checklist;
 use App\Models\Guest;
 use App\Models\Budget;
@@ -77,10 +76,6 @@ class UserApiController extends Controller
         user_helper::add_default_checklist($lastId);
 
 
-        // planning tool info
-        $planning_tool = new Planning_tool;
-        $planning_tool ->user_id= $lastId;
-        $planning_tool->save();
 
         // add budget of user
         $budget = new Budget;

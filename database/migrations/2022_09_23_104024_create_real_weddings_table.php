@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('real_weddings', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->foreignId('category_id')->nullable();
-            $table->text('short_desc');
-            $table->text('desc');
+            $table->foreignId('user_id')->nullable();
             $table->string('featured_image');
-            $table->string('tags');
+            $table->text('description')->nullable();
+            $table->string('tag_vendors')->nullable();
+            $table->enum('is_gallery', ['0', '1'])->default('0');
             $table->enum('status', ['0', '1'])->default('1');
-            $table->enum('added_by', ['vendor','user','admin','guest']); 
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('real_weddings');
     }
 };

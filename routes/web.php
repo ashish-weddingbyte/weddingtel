@@ -18,6 +18,7 @@ use App\Http\Controllers\front\user\BudgetController;
 use App\Http\Controllers\front\user\AllVendorsController;
 use App\Http\Controllers\front\user\ProfileController;
 use App\Http\Controllers\front\user\RealWeddingController;
+use App\Http\Controllers\front\user\WishlistController;
 
 
 // vendor contollers
@@ -43,7 +44,7 @@ Route::post('/query/otp/',[HomeController::class,'verify_otp']);
 Route::get('profile/{name}',[HomeController::class,'profile']);
 Route::get('vendors/{city}/{category}',[HomeController::class,'vendor_list']);
 Route::get('vendors/{city}',[HomeController::class,'vendor_list']);
-Route::post('vendors/',[HomeController::class,'search']);
+Route::match(['get','post'],'vendors/',[HomeController::class,'search']);
 
 
 Route::get('blogs',[HomeController::class,'all_blogs']);
@@ -61,7 +62,8 @@ Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], functio
     
     // real wedding pages
     Route::get('/real-wedding',[RealWeddingController::class, 'index']);
-    Route::post('/real-wedding/update',[RealWeddingController::class, 'update']);
+    Route::post('/real-wedding/save',[RealWeddingController::class, 'save']);
+    Route::post('/real-wedding/image/{id}',[RealWeddingController::class, 'delete_featured_image']);
 
     // profile pages 
     Route::get('/profile',[ProfileController::class, 'profile']);
@@ -96,6 +98,8 @@ Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], functio
 
     // vendor manager pages
     Route::get('/vendors',[AllVendorsController::class, 'vendors']);
+
+    Route::get('/wishlist',[WishlistController::class,'all_vendors']);
     
 });
 

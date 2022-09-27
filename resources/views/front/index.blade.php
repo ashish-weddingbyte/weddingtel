@@ -42,7 +42,6 @@
                                         @error('city')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
-                                        
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-2">

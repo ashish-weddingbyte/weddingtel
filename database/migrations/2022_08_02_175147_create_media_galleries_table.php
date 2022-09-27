@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->enum('status', ['0', '1'])->default('1');
             $table->enum('user_type', ['vendor','user']); 
+            $table->string('tags')->nullable();
             $table->timestamps();
         });
     }

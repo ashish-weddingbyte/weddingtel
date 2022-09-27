@@ -104,8 +104,13 @@
                     <li class="{{ (request()->segment(2) == 'budget') ? 'active' : '' }}">
                         <a href="{{ url('/tools/budget') }}"><i class="weddingdir_budget"></i> Budget</a>
                     </li>
+
+                    <li class="{{ (request()->segment(2) == 'wishlist') ? 'active' : '' }}">
+                        <a href="{{ url('/tools/wishlist') }}"><i class="weddingdir_heart_double_face"></i> Wishlist</a>
+                    </li>
+
                     <li class="{{ (request()->segment(2) == 'real-wedding') ? 'active' : '' }}">
-                        <a href="{{ url('/tools/real-wedding') }}"><i class="weddingdir_dove"></i> RealWedding</a>
+                        <a href="{{ url('/tools/real-wedding') }}"><i class="weddingdir_dove"></i> Real-Wedding</a>
                     </li>
                     
                     <li class="{{ (request()->segment(2) == 'profile') ? 'active' : '' }}">

@@ -48,7 +48,12 @@ class HomeController extends Controller
                                 ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','cities.name as city_name','vendor_details.featured_image','categories.category_name','categories.icon'])
                                 ->orderBy('users.id','desc')
                                 ->get();
-        $data['cities']     =   City::orderBy('name','asc')->get();
+        $data['cities']     =   City::Join('vendor_details','vendor_details.city_id','=','cities.id')                       
+                                    ->select(['cities.*'])
+                                    ->orderBy('cities.name','asc')
+                                    ->groupBy('cities.id')
+                                    ->get();
+
         $data['blogs']      =   Blog::limit(3)
                                 ->join('categories','categories.id','=','blogs.category_id')
                                 ->select(['blogs.*','categories.category_name','categories.category_url'])
@@ -204,6 +209,10 @@ class HomeController extends Controller
 
         $city = $request->city;
         $category = $request->category;
+
+        if(empty($city)){
+            return redirect('/');
+        }
 
 
         return redirect("vendors/$city/$category");

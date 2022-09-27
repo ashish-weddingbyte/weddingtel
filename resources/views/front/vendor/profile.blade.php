@@ -182,13 +182,13 @@
                                             @endif
                                             
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="featured_image" name="featured_image" aria-describedby="featured_image">
+                                                <input type="file" class="custom-file-input" id="featured_image" accept=".jpg,.jpeg,.png" name="featured_image" aria-describedby="featured_image">
                                                 <label class="custom-file-label" for="featured_image"><i class="fa fa-pencil"></i></label>
                                             </div>
                                         </div>
                                         <div class="custom-file-text">
                                             <div class="head">Upload Featured Image</div>
-                                            <div>Files must be less than <strong>1024KB or (600*450)</strong>, allowed files types are <strong>png/jpg/jpeg</strong>.</div>
+                                            <div>Files must be less than <strong>512KB or (600*450)</strong>, allowed files types are <strong>png/jpg/jpeg</strong>.</div>
                                         </div>
                                     </div>
                                 </div>

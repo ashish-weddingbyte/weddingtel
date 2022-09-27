@@ -14,10 +14,9 @@ use App\Models\UserDetail;
 use App\Models\VendorDetail;
 use App\Models\SocialLink;
 use App\Models\Otp;
-use App\Models\Planning_tool;
 use App\Models\Budget;
 use otp_helper;
-use tools_helper;
+use user_helper;
 use Validator;
 
 class UserController extends Controller
@@ -139,13 +138,8 @@ class UserController extends Controller
 
 
             // add default checklist
-            tools_helper::add_default_checklist($lastId);
+            user_helper::add_default_checklist($lastId);
 
-
-            // planning tool info
-            $planning_tool = new Planning_tool;
-            $planning_tool ->user_id= $lastId;
-            $planning_tool->save();
 
             // add budget of user
             $budget = new Budget;
@@ -326,7 +320,6 @@ class UserController extends Controller
             $vendor_details->user_id = $lastId;
             $vendor_details->category_id = $request->category;
             $vendor_details->city_id  = $request->city;
-            $vendor_details->city = "c";
             $vendor_details->cancel_policy = "Booking Amount Non Refundable.";
             
             switch($request->category){
