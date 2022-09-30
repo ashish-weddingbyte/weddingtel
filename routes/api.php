@@ -28,10 +28,8 @@ Route::get('categories',[UserApiController::class,'all_categories']);
 Route::get('category/{id}',[UserApiController::class,'category']);
 Route::get('cities',[UserApiController::class,'all_cities']);
 Route::get('city/{id}',[UserApiController::class,'city']);
-Route::get('vendor_list',[UserApiController::class,'vendor_list']);
-Route::get('vendor_list/{city}/{category}',[UserApiController::class,'vendor_list']);
-Route::get('vendor_list/{city}',[UserApiController::class,'vendor_list']);
-Route::get('vendor/{id}',[UserApiController::class,'vendor_details']);
+Route::post('vendor_list',[UserApiController::class,'vendor_list']);
+Route::get('vendor_list/{id}',[UserApiController::class,'vendor_details']);
 Route::get('vendor_list_by_category/{category}',[UserApiController::class,'vendor_list_by_category']);
 
 // procted route with ap token.

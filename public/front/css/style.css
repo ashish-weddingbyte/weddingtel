@@ -3749,6 +3749,7 @@ header .btn {
 .vendor-listing-wrap .content {
   padding: 1.5rem;
   word-break: break-word;
+  min-height: 120px;
 }
 .vendor-listing-wrap .content a {
   color: #121212;

@@ -63,7 +63,7 @@ Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], functio
     // real wedding pages
     Route::get('/real-wedding',[RealWeddingController::class, 'index']);
     Route::post('/real-wedding/save',[RealWeddingController::class, 'save']);
-    Route::post('/real-wedding/image/{id}',[RealWeddingController::class, 'delete_featured_image']);
+    Route::post('/real-wedding/image',[RealWeddingController::class, 'delete_image']);
 
     // profile pages 
     Route::get('/profile',[ProfileController::class, 'profile']);

@@ -649,7 +649,7 @@ class UserApiController extends Controller
 
         if($user_id){
 
-            $data['budget'] = Budget::find($user_id);
+            $data['budget'] = Budget::where('user_id', $user_id)->first();
 
             // $data['budget_categories'] = BudgetCategory::where('type','default')->orWhere('user_id',$user_id)->orderBy('id','desc')->get();
 
@@ -809,11 +809,12 @@ class UserApiController extends Controller
         $category_id = $request->category_id;
         
         $user_id = Auth::id();
+        $budget_category = BudgetCategory::find($category_id);
 
-        if($user_id){
 
-            $budget_category = BudgetCategory::find($category_id);
+        if($user_id && $budget_category){
 
+            
             
             if($budget_category->type == 'added'){
 
@@ -834,7 +835,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'errors'    =>  'Token Expired or Unauthorized User! or Invalid Category ID!'
             ];
             return response()->json($respose,401);
         }
@@ -909,7 +910,9 @@ class UserApiController extends Controller
         $pending_amount = $request->estimated_cost - $request->amount_paid;
         $user_id = Auth::id();
         
-        if($user_id){
+        $category_id = BudgetCategory::find($request->category_id);
+        
+        if($user_id && $category_id){
             // indiviual expense 
             $budget_expense = new BudgetExpense;
             $budget_expense->user_id = $user_id;
@@ -933,7 +936,7 @@ class UserApiController extends Controller
             $respose = [
                 'status'    =>  false,
                 'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'errors'    =>  'Token Expired or Unauthorized User! or Invalid Category'
             ];
             return response()->json($respose,401);
         }
@@ -970,8 +973,12 @@ class UserApiController extends Controller
             $amount_paid = $request->amount_paid;
             $pending_amount = $estimated_cost - $amount_paid;
             
-            // indiviual expense 
+            $category_id = BudgetCategory::find($request->category_id);
+
             $budget_expense = BudgetExpense::find($expense_id);        
+            
+            if($budget_expense && $category_id){
+
             $budget_expense->expense_name = $expense_name;
             $budget_expense->estimated_cost = $estimated_cost;
             $budget_expense->paid = $amount_paid; 
@@ -987,6 +994,15 @@ class UserApiController extends Controller
                 'message'   =>  "Budget Expense Edit Successfully!",
             ];
             return response()->json($respose,200);
+
+            }else{
+                $respose = [
+                    'status'    =>  false,
+                    'message'   =>  'Invalid',
+                    'errors'    =>  'Category ID or Expence ID Invalid!'
+                ];
+                return response()->json($respose,401);
+            }
         }else{
             $respose = [
                 'status'    =>  false,
@@ -1020,21 +1036,30 @@ class UserApiController extends Controller
             $category_id = $request->category_id;
             $expense_id = $request->expense_id;
             
-            
+            $category_id = BudgetCategory::find($request->category_id);
             // indiviual expense 
-            $budget_expense = BudgetExpense::find($expense_id)->delete();        
+            $budget_expense = BudgetExpense::find($expense_id);        
             
-            if($budget_expense){
+            if($budget_expense && $category_id){
 
+                $budget_expense->delete();
                 user_helper::total_expense_of_category($user_id,$request->category_id);
                 user_helper::total_expense_of_user($user_id);
 
+                $respose = [
+                    'status'    =>  true,
+                    'message'   =>  "Budget Expense Delete Successfully!",
+                ];
+                return response()->json($respose,200);
+            }else{
+                $respose = [
+                    'status'    =>  false,
+                    'message'   =>  'Invalid',
+                    'errors'    =>  'Category ID or Expence ID Invalid!'
+                ];
+                return response()->json($respose,401);
             }
-            $respose = [
-                'status'    =>  true,
-                'message'   =>  "Budget Expense Delete Successfully!",
-            ];
-            return response()->json($respose,200);
+            
         }else{
             $respose = [
                 'status'    =>  false,
@@ -1379,6 +1404,7 @@ class UserApiController extends Controller
     public function vendor_list(Request $request){
         $city = $request->city;
         $category_url = $request->category;
+        $id = $request->vendor_id;
 
         $conditions = [
             ['users.user_type','vendor'],
@@ -1392,6 +1418,10 @@ class UserApiController extends Controller
         if($city !== NULL){
             $city_data = City::where('name',$city)->first();
             array_push($conditions,['vendor_details.city_id',$city_data->id]);
+        }
+
+        if($id !== NULL){
+            array_push($conditions,['users.id',$id]);
         }
 
         $data['all_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')

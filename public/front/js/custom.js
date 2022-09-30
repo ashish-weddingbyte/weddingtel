@@ -35,9 +35,9 @@ $('document').ready(function(){
             data: form_data,
             success:function(response)
             {
-                console.log(response);
-                alert(response);
-                // location.reload();   
+                // console.log(response);
+                // alert(response);
+                location.reload();   
             },
             error: function(response) {
                 // console.log(response);

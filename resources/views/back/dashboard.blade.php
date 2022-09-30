@@ -28,6 +28,7 @@
     <!-- Main content -->
     <section class="content">
 
+      <?php /*
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
@@ -52,6 +53,7 @@
         <!-- /.card-footer-->
       </div>
       <!-- /.card -->
+      */ ?>
 
     </section>
     <!-- /.content -->
