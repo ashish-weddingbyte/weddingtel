@@ -37,19 +37,19 @@ class BudgetCategorySeeder extends Seeder
                 'icon'  =>  '<i class="weddingdir_cake_floor"></i>',
             ],
             [
-                'name'  =>  'Dress and Attire',
+                'name'  =>  'Bride/Groom Dress',
                 'icon'  =>  '<i class="weddingdir_fashion"></i>',
             ],
             [
-                'name'  =>  'Band',
+                'name'  =>  'Marriage Band',
                 'icon'  =>  '<i class="weddingdir_guitar"></i>',
             ],
             [
-                'name'  =>  'Jewelry',
+                'name'  =>  'Jewellery',
                 'icon'  =>  '<i class="weddingdir_ring_double"></i>',
             ],
             [
-                'name'  =>  'Rentals',
+                'name'  =>  'Honeymoon',
                 'icon'  =>  '<i class="weddingdir_tent"></i>',
             ],
             [
@@ -57,7 +57,7 @@ class BudgetCategorySeeder extends Seeder
                 'icon'  =>  '<i class="weddingdir_bus"></i>',
             ],
             [
-                'name'  =>  'Other',
+                'name'  =>  'Miscellaneous',
                 'icon'  =>  '<i class="fa fa-life-ring"></i>',
             ],
 

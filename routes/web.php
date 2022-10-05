@@ -29,6 +29,10 @@ use App\Http\Controllers\front\vendor\VendorLeadController;
 
 
 // admin Controllers
+use App\Http\Controllers\back\Users;
+use App\Http\Controllers\back\AdminDashboard;
+
+
 
 /**====================================================================================== */
 
@@ -99,7 +103,9 @@ Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], functio
     // vendor manager pages
     Route::get('/vendors',[AllVendorsController::class, 'vendors']);
 
-    Route::get('/wishlist',[WishlistController::class,'all_vendors']);
+    Route::get('/wishlist',[WishlistController::class,'wishlist_vendors']);
+    Route::post('/wishlist/change-status',[WishlistController::class,'change_status']);
+    Route::post('/wishlist/remove',[WishlistController::class,'remove_vendor']);
     
 });
 
@@ -176,7 +182,11 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
 
 // Protected routes of admin 
 Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], function(){
-    Route::view('/dashboard','back.dashboard');
+
+    Route::get('/dashboard', [AdminDashboard::class,'dashboard']);
+    Route::get('/vendors',[Users::class,'all_vendors']);
+    Route::get('/vendors/all-vendors',[Users::class,'all_vendors']);
+    Route::post('/vendors/all-vendors/action',[Users::class,'action']);
 });
 
 // logout route

@@ -61,15 +61,15 @@
                                         <div class="col">
                                             <div class="wedding-listing">
                                                 <div class="img">
-                                                    <a href="listing-singular.html">
+                                                    <a href="">
                                                         <img src="{{ $image_path }}" alt="">
                                                     </a>
                                                     <div class="img-content">
-                                                        <div class="top text-right">                                                           
+                                                        <!-- <div class="top text-right">                                                           
                                                             <a class="favorite" href="javascript:">
                                                                 <i class="fa fa-times"></i>
                                                             </a>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="bottom">
                                                             <div class="reviews">
                                                                 <span class="stars">

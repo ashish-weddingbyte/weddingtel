@@ -213,6 +213,7 @@ return [
         "otp_helper"   =>  App\Helpers\otp_helper::class,
         "user_helper"   =>  App\Helpers\user_helper::class,
         "vendor_helper"   =>  App\Helpers\vendor_helper::class,
+        "admin_helper"   =>  App\Helpers\admin_helper::class,
         'Image'     => Intervention\Image\Facades\Image::class
     ])->toArray(),
 

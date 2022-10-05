@@ -1,12 +1,13 @@
 <?php
 namespace App\Helpers;
-
+use Illuminate\Support\Facades\Session;
 use App\Models\Checklist;
 use App\Models\UserDetail;
 use App\Models\Budget;
 use App\Models\BudgetCategory;
 use App\Models\BudgetExpense;
 use App\Models\BudgetCategoryExpense;
+use App\Models\Wishlist;
 
 use Carbon\Carbon;
 
@@ -158,6 +159,18 @@ class user_helper {
                 $category_expense->status = '1';
                 $category_expense->save();
             }
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function check_wishlist($vendor_id){
+        $user_id = Session::get('user_id');
+        
+        $data = Wishlist::where('from_id',$user_id)->where('to_id',$vendor_id)->first();
+
+        if(!empty($data)){
             return true;
         }else{
             return false;

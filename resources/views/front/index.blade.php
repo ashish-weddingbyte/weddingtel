@@ -68,106 +68,106 @@
 
     <!-- Wedding Plannign  Start -->
     <section class="wide-tb-50 bg-light-gray">
-    <div class="container">
-        <div class="section-title text-center">
-            <h1>Wedding Planning Tool</h1>
-        </div>            
-        <div class="row">
-            <!-- Features Icons -->
-            
-            <div class="col-lg-4 col-xl-2 text-center col-6">
-                <a href="@if(Session::get('user_type') == 'user') {{ url('/budget') }} @else {{ url('/login') }}  @endif">
-                    <div class="why-choose-icons">
-                        <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_budget"></i>
-                        </div>
+        <div class="container">
+            <div class="section-title text-center">
+                <h1>Wedding Planning Tool</h1>
+            </div>            
+            <div class="row">
+                <!-- Features Icons -->
+                
+                <div class="col-lg-4 col-xl-2 text-center col-6">
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('tools/budget') }} @else {{ url('/login') }}  @endif">
+                        <div class="why-choose-icons">
+                            <div class="icon-big-cirlce mx-auto">
+                                <i class="weddingdir_budget"></i>
+                            </div>
 
-                        <h4>Budget</h4>
-                    </div>
-                </a>
-            </div>
-            
-            <!-- Features Icons -->
-
-            <!-- Features Icons -->
-            
-            <div class="col-lg-4 col-xl-2 text-center col-6">
-                <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/budget') }} @else {{ url('/login') }} @endif">
-                    <div class="why-choose-icons">
-                        <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_calendar_heart"></i>
+                            <h4>Budget</h4>
                         </div>
-                        <h4>Guest List</h4>
-                    </div>
-                </a>
-            </div>
-            
-            <!-- Features Icons -->
+                    </a>
+                </div>
+                
+                <!-- Features Icons -->
 
-            <!-- Features Icons -->
-            
-            <div class="col-lg-4 col-xl-2 text-center col-6">
-                <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/guestlist') }} @else {{ url('/login') }} @endif">
-                    <div class="why-choose-icons">
-                        <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_seating_chart"></i>
+                <!-- Features Icons -->
+                
+                <div class="col-lg-4 col-xl-2 text-center col-6">
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/guestlist') }} @else {{ url('/login') }} @endif">
+                        <div class="why-choose-icons">
+                            <div class="icon-big-cirlce mx-auto">
+                                <i class="weddingdir_calendar_heart"></i>
+                            </div>
+                            <h4>Guest List</h4>
                         </div>
-                        <h4>Seating Chart</h4>
-                    </div>
-                </a>
-            </div>
-            
-            <!-- Features Icons -->
+                    </a>
+                </div>
+                
+                <!-- Features Icons -->
 
-            <!-- Features Icons -->
-            
-            <div class="col-lg-4 col-xl-2 text-center col-6">
-                <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/checklist') }} @else {{ url('/login') }} @endif">
-                    <div class="why-choose-icons">
-                        <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_bell"></i>
+                <!-- Features Icons -->
+                
+                <div class="col-lg-4 col-xl-2 text-center col-6">
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/wishlist') }} @else {{ url('/login') }} @endif">
+                        <div class="why-choose-icons">
+                            <div class="icon-big-cirlce mx-auto">
+                                <i class="weddingdir_heart_double_face"></i>
+                            </div>
+                            <h4>Wish List</h4>
                         </div>
-                        <h4>Check List</h4>
-                    </div>
-                </a>
-            </div>
-            
-            <!-- Features Icons -->
+                    </a>
+                </div>
+                
+                <!-- Features Icons -->
 
-            <!-- Features Icons -->
-            
-            <div class="col-lg-4 col-xl-2 text-center col-6">
-                <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/real-wedding') }} @else {{ url('/login') }} @endif">
-                    <div class="why-choose-icons">
-                        <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_heart_ring"></i>
+                <!-- Features Icons -->
+                
+                <div class="col-lg-4 col-xl-2 text-center col-6">
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/checklist') }} @else {{ url('/login') }} @endif">
+                        <div class="why-choose-icons">
+                            <div class="icon-big-cirlce mx-auto">
+                                <i class="weddingdir_bell"></i>
+                            </div>
+                            <h4>Check List</h4>
                         </div>
-                        <h4>Real Weddings</h4>
-                    </div>
-                </a>
-            </div>
-            
-            <!-- Features Icons -->
+                    </a>
+                </div>
+                
+                <!-- Features Icons -->
 
-            <!-- Features Icons -->
-            
-            <div class="col-lg-4 col-xl-2 text-center col-6">
-                <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/vendors') }} @else {{ url('/login') }} @endif">
-                    <div class="why-choose-icons">
-                        <div class="icon-big-cirlce mx-auto">
-                            <i class="weddingdir_shopping_bag_heart"></i>
+                <!-- Features Icons -->
+                
+                <div class="col-lg-4 col-xl-2 text-center col-6">
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/real-wedding') }} @else {{ url('/login') }} @endif">
+                        <div class="why-choose-icons">
+                            <div class="icon-big-cirlce mx-auto">
+                                <i class="weddingdir_heart_ring"></i>
+                            </div>
+                            <h4>Real Weddings</h4>
                         </div>
-                        <h4>Vendors</h4>
-                    </div>
-                </a>
+                    </a>
+                </div>
+                
+                <!-- Features Icons -->
+
+                <!-- Features Icons -->
+                
+                <div class="col-lg-4 col-xl-2 text-center col-6">
+                    <a href="@if(Session::get('user_type') == 'user') {{ url('/tools/vendors') }} @else {{ url('/login') }} @endif">
+                        <div class="why-choose-icons">
+                            <div class="icon-big-cirlce mx-auto">
+                                <i class="weddingdir_shopping_bag_heart"></i>
+                            </div>
+                            <h4>Vendors</h4>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Features Icons -->
+                
             </div>
-            
-            <!-- Features Icons -->
-            
         </div>
-    </div>
-</section>
-<!-- Wedding Plannign  End -->
+    </section>
+    <!-- Wedding Plannign  End -->
 
     <!-- Top Wedding Vendors Start -->
     <section class="wide-tb-50 ">
@@ -225,6 +225,8 @@
 
                             $verified = vendor_helper::check_verified_vendor($vendor->id);                    
                             $url = vendor_helper::vendor_profile_url($vendor->id);
+
+                            $wishlist = user_helper::check_wishlist($vendor->id);
                         ?>
                         <div class="col ">
                             <div class="vendor-wrap-alt">
@@ -240,7 +242,9 @@
                                     </div>
                                     <div class="img-content">
                                         <span class="rating">1.0</span>
-                                        <a href="javascript:void;" class="favorite"><i class="fa fa-heart-o"></i></a>
+                                        @if(Session::get('user_type') == 'user')
+                                            <a href="javascript:void(0)" class="favorite wishlist {{ ( $wishlist == true) ? 'wishlist-active' : '' }}" id="wishlist-{{ $vendor->id }}"  data-vendor-id="{{ $vendor->id }}" data-action="{{ url('tools/wishlist/change-status/') }}" data-status="{{ ( $wishlist == true) ? '1' : '0' }}"><i class="fa fa-heart-o"></i></a>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -291,11 +295,9 @@
                 @foreach($featured_vendors as $vendor)
                 <?php
                     $image_path = vendor_helper::vendor_image_path($vendor->id);
-                               
                     $url = vendor_helper::vendor_profile_url($vendor->id);
-
                     $verified = vendor_helper::check_verified_vendor($vendor->id);
-
+                    $wishlist = user_helper::check_wishlist($vendor->id);
                 ?>
                 <div class="item">
                     <div class="wedding-listing">
@@ -318,9 +320,10 @@
                                     <a class="tags" href="{{ $url }}">
                                         {{ $vendor->category_name }}
                                     </a>
-                                    <a class="favorite" href="javascript:">
-                                        <i class="fa fa-heart-o"></i>
-                                    </a>
+
+                                    @if(Session::get('user_type') == 'user')
+                                        <a class="favorite {{ ($wishlist == true)? 'wishlist-active' : '' }}" href="javascript:"><i class="fa fa-heart-o"></i></a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

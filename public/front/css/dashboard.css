@@ -103,11 +103,16 @@ a:focus {
 }
 .table-hover tbody tr:hover {
     color: #212529;
-    background-color: rgba(0,0,0,.02);
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 /* Heading */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Lora", serif !important;
     color: #121212;
 }
@@ -142,9 +147,9 @@ h6 {
     font-family: "icomoon";
     src: url("fonts/icomoonbbd3.eot?m8nw1l");
     src: url("fonts/icomoonbbd3.eot?m8nw1l#iefix") format("embedded-opentype"),
-    url("fonts/icomoonbbd3.ttf?m8nw1l") format("truetype"),
-    url("fonts/icomoonbbd3.woff?m8nw1l") format("woff"),
-    url("fonts/icomoonbbd3.svg?m8nw1l#icomoon") format("svg");
+        url("fonts/icomoonbbd3.ttf?m8nw1l") format("truetype"),
+        url("fonts/icomoonbbd3.woff?m8nw1l") format("woff"),
+        url("fonts/icomoonbbd3.svg?m8nw1l#icomoon") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -152,70 +157,70 @@ h6 {
 @font-face {
     font-family: "muliregular";
     src: url("fonts/muli-webfont.woff2") format("woff2"),
-    url("fonts/muli-webfont.woff") format("woff");
+        url("fonts/muli-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: "mulibold";
     src: url("fonts/muli-bold-webfont.woff2") format("woff2"),
-    url("fonts/muli-bold-webfont.woff") format("woff");
+        url("fonts/muli-bold-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: "mulibolditalic";
     src: url("fonts/muli-bolditalic-webfont.woff2") format("woff2"),
-    url("fonts/muli-bolditalic-webfont.woff") format("woff");
+        url("fonts/muli-bolditalic-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: "muliextralight";
     src: url("fonts/muli-extralight-webfont.woff2") format("woff2"),
-    url("fonts/muli-extralight-webfont.woff") format("woff");
+        url("fonts/muli-extralight-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: "muliextralightitalic";
     src: url("fonts/muli-extralightitalic-webfont.woff2") format("woff2"),
-    url("fonts/muli-extralightitalic-webfont.woff") format("woff");
+        url("fonts/muli-extralightitalic-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: "muliregularitalic";
     src: url("fonts/muli-italic-webfont.woff2") format("woff2"),
-    url("fonts/muli-italic-webfont.woff") format("woff");
+        url("fonts/muli-italic-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: "mulilight";
     src: url("fonts/muli-light-webfont.woff2") format("woff2"),
-    url("fonts/muli-light-webfont.woff") format("woff");
+        url("fonts/muli-light-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: "mulilightitalic";
     src: url("fonts/muli-lightitalic-webfont.woff2") format("woff2"),
-    url("fonts/muli-lightitalic-webfont.woff") format("woff");
+        url("fonts/muli-lightitalic-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: "mulisemibold";
     src: url("fonts/muli-semibold-webfont.woff2") format("woff2"),
-    url("fonts/muli-semibold-webfont.woff") format("woff");
+        url("fonts/muli-semibold-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: "mulisemibolditalic";
     src: url("fonts/muli-semi-bolditalic-webfont.woff2") format("woff2"),
-    url("fonts/muli-semi-bolditalic-webfont.woff") format("woff");
+        url("fonts/muli-semi-bolditalic-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
@@ -439,25 +444,26 @@ i[class*="weddingdir_"] {
 }
 
 /* Action Links */
-.action-links{
+.action-links {
     color: #171717;
     font-size: 0.875rem;
     display: inline-flex;
     align-items: center;
 }
-.action-links i{
+.action-links i {
     color: #fc2779;
     padding-left: 0.4rem;
     font-size: 1.25rem;
     transition: all 400ms ease-in-out 0s;
 }
-.action-links:hover, .action-links:hover i {
+.action-links:hover,
+.action-links:hover i {
     color: #fc2779;
 }
-.action-links.edit i{
+.action-links.edit i {
     color: #fc2779;
 }
-.action-links.edit:hover i{
+.action-links.edit:hover i {
     color: #fc2779;
 }
 /* Table Styles */
@@ -469,7 +475,8 @@ i[class*="weddingdir_"] {
     font-weight: normal;
     font-size: 0.875rem;
 }
-.table td, .table th {
+.table td,
+.table th {
     padding: 0.75rem;
     vertical-align: middle;
     border-top: 1px solid #ececec;
@@ -740,10 +747,10 @@ Background Color / Color
 .section-title h2 {
     text-transform: capitalize;
     font-weight: 700;
-    color: #fc2779; 
-    margin: 0;   
+    color: #fc2779;
+    margin: 0;
 }
-.head-simple{
+.head-simple {
     font-size: 1.25rem;
     font-family: "mulisemibold";
 }
@@ -784,7 +791,7 @@ Background Color / Color
 /*--------------------------- 
 2.  Layout Container Start
 -----------------------------*/
-aside.sidebar-wrap{
+aside.sidebar-wrap {
     position: fixed;
     left: 0;
     top: 0;
@@ -793,20 +800,20 @@ aside.sidebar-wrap{
     max-width: 310px;
     z-index: 99;
 }
-.main-contaner{
+.main-contaner {
     margin-bottom: 40px;
 }
-.body-content{
+.body-content {
     position: relative;
     margin-left: 0;
     padding-top: 100px;
     height: 100%;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
 }
 
-.open .body-content{
+.open .body-content {
     margin-left: 310px;
 }
 
@@ -821,7 +828,7 @@ aside.sidebar-wrap{
     padding-left: 1rem;
     z-index: 999;
     visibility: hidden;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     flex-direction: column;
     display: flex;
 }
@@ -831,7 +838,7 @@ aside.sidebar-wrap{
     transform: translateX(310px);
 }
 
-.sidebar-toggle{
+.sidebar-toggle {
     width: 40px;
     height: 40px;
     display: flex;
@@ -842,21 +849,21 @@ aside.sidebar-wrap{
     border-radius: 50%;
     margin-right: 15px;
 }
-.sidebar-toggle:hover{
+.sidebar-toggle:hover {
     background: #fc2779;
-    color: #FFF;
+    color: #fff;
 }
-.sidebar-toggle.desktop{
+.sidebar-toggle.desktop {
     visibility: visible;
 }
-.sidebar-toggle.mobile{
+.sidebar-toggle.mobile {
     visibility: hidden;
     width: 0;
     margin: 0;
     height: 0;
 }
 
-main::after{
+main::after {
     position: fixed;
     width: 100%;
     content: "";
@@ -867,24 +874,24 @@ main::after{
     background: #f9f9f9;
 }
 
-.avatar-wrap{
+.avatar-wrap {
     text-align: center;
     margin: 1rem 0;
 }
-.avatar-wrap img{
-    border: 4px solid #FFF;
+.avatar-wrap img {
+    border: 4px solid #fff;
     border-radius: 50%;
-    width:100px;
+    width: 100px;
     height: 100px;
 }
-.avatar-wrap h3{
+.avatar-wrap h3 {
     color: #fc2779;
     font-weight: 800;
 }
-.offcanvas-collapse .sidebar-nav{
+.offcanvas-collapse .sidebar-nav {
     overflow-y: auto;
 }
-.navbar-expand-lg .navbar-nav .user-profile{
+.navbar-expand-lg .navbar-nav .user-profile {
     align-items: center;
     display: flex;
 }
@@ -898,12 +905,12 @@ main::after{
     position: relative;
     font-size: 0.875rem;
 }
-.navbar-expand-lg .navbar-nav .user-profile  .nav-link img{
+.navbar-expand-lg .navbar-nav .user-profile .nav-link img {
     width: 36px;
     border-radius: 50%;
     margin-right: 10px;
 }
-.navbar .user-profile .dropdown-menu{
+.navbar .user-profile .dropdown-menu {
     min-width: 140px;
 }
 @media (max-width: 991.98px) {
@@ -918,53 +925,57 @@ main::after{
         overflow-y: auto;
         visibility: hidden;
         display: block !important;
-        background-color: #FFF;
+        background-color: #fff;
         z-index: -1;
         box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.1);
         padding-top: 70px;
-        transition: visibility .3s ease-in-out, -webkit-transform .3s ease-in-out;
-        transition: transform .3s ease-in-out, visibility .3s ease-in-out;
-        transition: transform .3s ease-in-out, visibility .3s ease-in-out, -webkit-transform .3s ease-in-out;
+        transition: visibility 0.3s ease-in-out,
+            -webkit-transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out,
+            -webkit-transform 0.3s ease-in-out;
     }
     .offcanvas-collapse-mobile.open {
         visibility: visible;
         -webkit-transform: translateX(-100%);
-        transform: translateX(-100%);      
+        transform: translateX(-100%);
     }
-    .offcanvas-collapse-mobile .nav-link{
+    .offcanvas-collapse-mobile .nav-link {
         justify-content: space-between;
     }
-    .offcanvas-collapse-mobile .user-profile{
+    .offcanvas-collapse-mobile .user-profile {
         display: none;
     }
-  }
+}
 @media (min-width: 991px) {
-    html, body, main {
+    html,
+    body,
+    main {
         height: 100%;
     }
-    main{
+    main {
         width: 100%;
         display: flex;
         flex-direction: column;
     }
     body {
-      display: -ms-flexbox;
-      display: flex;
+        display: -ms-flexbox;
+        display: flex;
     }
 
-    footer{ 
+    footer {
         margin-top: auto;
     }
-  }
-  @media (max-width: 991px) {
-    .error-img{ margin-top: 2rem; }
-  }
-  
-  
+}
+@media (max-width: 991px) {
+    .error-img {
+        margin-top: 2rem;
+    }
+}
+
 /*--------------------------- 
 2.  Layout Container End
 -----------------------------*/
-
 
 /*--------------------------- 
 3. Buttons
@@ -1589,7 +1600,7 @@ main::after{
     z-index: 1;
     background-color: #fff;
     box-shadow: 0px 0px 147px 0px rgba(0, 0, 0, 0.07);
-    padding: 1.5rem;      
+    padding: 1.5rem;
     height: 100%;
     margin-bottom: 15px;
 }
@@ -1912,7 +1923,7 @@ header .btn {
     position: relative;
     justify-content: space-between;
 }
-.navbar .dropdown-menu li > a:hover{
+.navbar .dropdown-menu li > a:hover {
     background-color: #e3f5f5;
 }
 .navbar .dropdown-menu a i {
@@ -2069,16 +2080,16 @@ header .btn {
 }
 .theme-tabbing-vertical {
     border-radius: 6px;
-    background-color: #FFF;
+    background-color: #fff;
     padding: 0;
-    box-shadow: 0px 0px 147px 0px rgba(0, 0, 0, 0.07);    
+    box-shadow: 0px 0px 147px 0px rgba(0, 0, 0, 0.07);
 }
 .theme-tabbing-vertical .nav-link {
     color: #171717;
     font-size: 1rem;
-    padding: 0.9rem 1.5rem;    
+    padding: 0.9rem 1.5rem;
 }
-.theme-tabbing-vertical .nav-link:not(:last-child){
+.theme-tabbing-vertical .nav-link:not(:last-child) {
     border-bottom: 1px solid #fc2779;
 }
 .theme-tabbing-vertical .nav-link.active,
@@ -2109,17 +2120,16 @@ header .btn {
     border-bottom: 3px solid #fc2779;
 }
 /*---- 6.2 Tabbing End ---*/
-  
 
 /*-------------------------------------------------------------------
 7. Forms Elements
 -------------------------------------------------------------------*/
 
 /*---- 7.1  Default Style ---*/
-.custom-switch .custom-control-label::before{
+.custom-switch .custom-control-label::before {
     border-color: #dadada;
 }
-.custom-switch .custom-control-label::after{
+.custom-switch .custom-control-label::after {
     background-color: #f18d00;
 }
 .form-control {
@@ -2287,8 +2297,8 @@ header .btn {
 }
 
 .form-light.custom-radio
-.custom-control-input:checked
-~ .custom-control-label::after {
+    .custom-control-input:checked
+    ~ .custom-control-label::after {
     background-image: none;
     width: 19px;
     height: 19px;
@@ -2305,23 +2315,23 @@ header .btn {
     box-shadow: none;
 }
 .form-light
-.custom-control-input:focus:not(:checked)
-~ .custom-control-label::before {
+    .custom-control-input:focus:not(:checked)
+    ~ .custom-control-label::before {
     border-color: #fc2779;
 }
 .form-light .custom-control-input:checked ~ .custom-control-label::before,
 .form-light
-.custom-control-input:not(:disabled):active
-~ .custom-control-label::before {
+    .custom-control-input:not(:disabled):active
+    ~ .custom-control-label::before {
     color: #fff;
     border-color: #f29008;
     background-color: #f29008;
 }
 
 .form-light
-.custom-checkbox
-.custom-control-input:checked
-~ .custom-control-label::after {
+    .custom-checkbox
+    .custom-control-input:checked
+    ~ .custom-control-label::after {
     background-image: none;
     content: "\f00c";
     font-family: "FontAwesome";
@@ -2378,8 +2388,8 @@ header .btn {
     transition: all 400ms ease-in-out;
 }
 .select2-container.select2-container--open
-.select2-selection--single
-.select2-selection__arrow {
+    .select2-selection--single
+    .select2-selection__arrow {
     transform: rotate(180deg);
 }
 .select2-container .select2-selection--single .select2-selection__arrow::after {
@@ -2451,23 +2461,23 @@ header .btn {
     border: none;
 }
 .select2-container--form-light.select2-container
-.select2-results__option--highlighted {
+    .select2-results__option--highlighted {
     background-color: #f6f6f6;
     color: #0a0a0a;
 }
 .select2-container--form-light.select2-container--open
-.select2-selection--single {
+    .select2-selection--single {
     border-bottom: 0;
     background-color: #fff;
 }
 .select2-container--form-light.select2-container
-.select2-selection--single:focus {
+    .select2-selection--single:focus {
     /* box-shadow: none; */
     outline: none;
 }
 .select2-container--form-light
-.select2-selection--single
-.select2-selection__arrow {
+    .select2-selection--single
+    .select2-selection__arrow {
     height: 100%;
     position: absolute;
     top: 1px;
@@ -2480,13 +2490,13 @@ header .btn {
     transition: all 400ms ease-in-out;
 }
 .select2-container--form-light.select2-container--open
-.select2-selection--single
-.select2-selection__arrow {
+    .select2-selection--single
+    .select2-selection__arrow {
     transform: rotate(180deg);
 }
 .select2-container--form-light
-.select2-selection--single
-.select2-selection__arrow::after {
+    .select2-selection--single
+    .select2-selection__arrow::after {
     position: absolute;
     font-size: 0.87rem;
     font-style: normal;
@@ -2529,19 +2539,20 @@ header .btn {
     background: #fff;
 }
 .select2-container--form-light
-.select2-selection--single
-.select2-selection__arrow
-b {
+    .select2-selection--single
+    .select2-selection__arrow
+    b {
     display: none;
 }
 /* Light Theme */
 
 /* Border Theme */
 
-.select2-container.select2-container--bordered-theme{
+.select2-container.select2-container--bordered-theme {
     width: 150px !important;
 }
-.select2-container.select2-container--bordered-theme .select2-selection--single {
+.select2-container.select2-container--bordered-theme
+    .select2-selection--single {
     padding: 0.2rem 0;
     height: auto;
     border-width: 0 0 1px 0;
@@ -2551,7 +2562,9 @@ b {
     background: transparent;
 }
 
-.select2-container.select2-container--bordered-theme .select2-selection--single .select2-selection__arrow{
+.select2-container.select2-container--bordered-theme
+    .select2-selection--single
+    .select2-selection__arrow {
     right: 0;
     width: 14px;
 }
@@ -2567,21 +2580,33 @@ b {
     padding: 0.4rem 0 0.4rem 2.5rem;
     position: relative;
 }
-.select2-container.select2-container--bordered-theme .select2-dropdown li:first-child,
-.select2-container.select2-container--bordered-theme .select2-dropdown li:first-child::after{
+.select2-container.select2-container--bordered-theme
+    .select2-dropdown
+    li:first-child,
+.select2-container.select2-container--bordered-theme
+    .select2-dropdown
+    li:first-child::after {
     color: #28a745;
 }
 .select2-container.select2-container--bordered-theme .select2-dropdown li,
-.select2-container.select2-container--bordered-theme .select2-dropdown li::after{
+.select2-container.select2-container--bordered-theme
+    .select2-dropdown
+    li::after {
     color: #ffc107;
 }
 
-.select2-container.select2-container--bordered-theme .select2-dropdown li:last-child,
-.select2-container.select2-container--bordered-theme .select2-dropdown li:last-child::after{
+.select2-container.select2-container--bordered-theme
+    .select2-dropdown
+    li:last-child,
+.select2-container.select2-container--bordered-theme
+    .select2-dropdown
+    li:last-child::after {
     color: #dc3545;
 }
 
-.select2-container.select2-container--bordered-theme .select2-dropdown li:after{
+.select2-container.select2-container--bordered-theme
+    .select2-dropdown
+    li:after {
     position: absolute;
     left: 15px;
     top: 50%;
@@ -2603,22 +2628,31 @@ b {
     position: relative;
 }
 
-.select2-container.select2-container .select2-selection--multiple .select2-search--inline .select2-search__field{
+.select2-container.select2-container
+    .select2-selection--multiple
+    .select2-search--inline
+    .select2-search__field {
     background: transparent;
 }
-.select2-container.select2-container .select2-selection--multiple .select2-search--inline .select2-search__field:focus{
+.select2-container.select2-container
+    .select2-selection--multiple
+    .select2-search--inline
+    .select2-search__field:focus {
     outline: none;
     box-shadow: none;
 }
-.select2-selection.select2-selection--multiple .select2-selection__choice{
+.select2-selection.select2-selection--multiple .select2-selection__choice {
     display: inline-block;
 }
-.select2-selection.select2-selection--multiple .select2-selection__choice:not(:last-child){
+.select2-selection.select2-selection--multiple
+    .select2-selection__choice:not(:last-child) {
     margin-right: 0.8rem;
 }
-.select2-selection.select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove {
+.select2-selection.select2-selection--multiple
+    .select2-selection__choice
+    .select2-selection__choice__remove {
     background: #fc2779;
-    color: #FFF;
+    color: #fff;
     border: none;
     outline: none;
     margin-right: 8px;
@@ -2629,7 +2663,10 @@ b {
     height: 25px;
     border-radius: 4px;
 }
-.select2-selection.select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove span {
+.select2-selection.select2-selection--multiple
+    .select2-selection__choice
+    .select2-selection__choice__remove
+    span {
     position: relative;
     top: -1px;
     font-size: 0.875rem;
@@ -2658,7 +2695,7 @@ b {
 }
 .ui-slider-handle:hover .slider-tip {
     opacity: 1;
-/* opacity:1;
+    /* opacity:1;
 bottom:120%; */
 }
 /*---- 7.4  Range Slider End ---*/
@@ -2772,10 +2809,10 @@ a.ui-button:active,
 .datepicker-inline .datepicker-panel li[data-view="month current"] {
     width: 71.44%;
 }
-.datepicker-inline .datepicker-container.datepicker-inline{
+.datepicker-inline .datepicker-container.datepicker-inline {
     width: 100%;
 }
-.datepicker-panel > ul > li{
+.datepicker-panel > ul > li {
     width: 14%;
 }
 /*---- 7.5 Jquery UI Calendar End ---*/
@@ -2811,7 +2848,7 @@ a.ui-button:active,
     justify-content: center;
     font-size: 1.25rem;
 }
-.custom-file{
+.custom-file {
     position: absolute;
     width: 30px;
     height: 30px;
@@ -2825,7 +2862,7 @@ a.ui-button:active,
     height: 30px;
     display: flex;
     border: 1px solid #fc2779;
-    background: #FFF;
+    background: #fff;
     z-index: 99;
     align-items: center;
     justify-content: center;
@@ -2836,17 +2873,17 @@ a.ui-button:active,
     cursor: pointer;
     font-size: 0.875rem;
 }
-.custom-file-label::after{
+.custom-file-label::after {
     display: none;
 }
-.custom-file-text{
+.custom-file-text {
     font-size: 0.875rem;
     color: #b4b4b4;
 }
-.custom-file-text strong{
+.custom-file-text strong {
     color: #171717;
 }
-.custom-file-text .head{
+.custom-file-text .head {
     font-family: "mulisemibold";
     font-size: 1rem;
     color: #171717;
@@ -2860,7 +2897,7 @@ a.ui-button:active,
 .form-group {
     margin-bottom: 1.4rem;
 }
-.password-eye{
+.password-eye {
     position: relative;
 }
 .password-eye span {
@@ -2886,27 +2923,25 @@ a.ui-button:active,
     text-align: center;
     cursor: pointer;
 }
-.button-style.custom-file .custom-file-label{
+.button-style.custom-file .custom-file-label {
     width: auto;
     border-radius: 4px;
     height: 100%;
     background-color: #fc2779;
     border-color: #fc2779;
-    color: #FFF;
+    color: #fff;
     padding: 0.7rem 1.3rem 0.7rem;
 }
-.button-style.custom-file i{
+.button-style.custom-file i {
     padding-right: 7px;
 }
 /*---- 7.6 Custom File Input End ---*/
-
-
 
 /*-------------------------------------------------------------------
 8. Pages Content
 -------------------------------------------------------------------*/
 /*---- 8.1 Couple Dashboard Start ---*/
-.couple-img{
+.couple-img {
     position: relative;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
@@ -2915,36 +2950,36 @@ a.ui-button:active,
     width: 100%;
     height: 100%;
 }
-.couple-img img{
+.couple-img img {
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
 }
-.couple-img .hidden-desktop{
+.couple-img .hidden-desktop {
     display: none;
 }
-.couple-btn{
+.couple-btn {
     position: absolute;
     bottom: 20px;
     right: 20px;
 }
-#wedding-countdown{
+#wedding-countdown {
     background: #fc2779;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
     padding: 1.5rem 1rem;
     text-align: center;
-    color: #FFF;
+    color: #fff;
     margin-bottom: 0;
 }
-#wedding-countdown li{
+#wedding-countdown li {
     display: block;
     position: relative;
     font-size: 0.875rem;
 }
-#wedding-countdown li span{
+#wedding-countdown li span {
     font-size: 1.25rem;
 }
-#wedding-countdown li:not(:last-child)::after{
+#wedding-countdown li:not(:last-child)::after {
     position: absolute;
     content: "";
     width: 29px;
@@ -2955,7 +2990,7 @@ a.ui-button:active,
     height: 1px;
 }
 
-#wedding-countdown li:not(:last-child){
+#wedding-countdown li:not(:last-child) {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
 }
@@ -2963,54 +2998,54 @@ a.ui-button:active,
     padding: 2rem 100px;
     position: relative;
 }
-.edit-btn{
+.edit-btn {
     position: absolute;
     top: 20px;
     right: 20px;
 }
-.couple-avatar img{
+.couple-avatar img {
     border-style: solid;
-    border-color: #FFF;
+    border-color: #fff;
     border-radius: 50%;
-    background-color: #FFF;
+    background-color: #fff;
     box-shadow: 0px 0px 100px 0px rgba(0, 0, 0, 0.27);
     margin-bottom: 1.2rem;
     position: relative;
 }
-.couple-avatar img:first-child{
+.couple-avatar img:first-child {
     left: 10px;
 }
-.couple-avatar img:last-child{
+.couple-avatar img:last-child {
     right: 10px;
 }
-.couple-info h2{
+.couple-info h2 {
     font-weight: 700;
     color: #fc2779;
 }
-.save-date{
+.save-date {
     color: #9e9e9e;
     font-size: 00.775rem;
 }
-.couple-info .couple-status{
+.couple-info .couple-status {
     margin-bottom: 1rem;
 }
-.couple-info .couple-status .progress{
+.couple-info .couple-status .progress {
     height: 6px;
     margin: 0.7rem 0;
 }
-.couple-info .couple-status .small-text{
+.couple-info .couple-status .small-text {
     display: flex;
     color: #1a1a1a;
     font-size: 00.875rem;
     font-family: "mulisemibold";
     justify-content: space-between;
 }
-.couple-info .couple-status-item{
+.couple-info .couple-status-item {
     display: flex;
     align-items: center;
     margin: 0.7rem 0;
 }
-.couple-info .couple-status-item .counter{
+.couple-info .couple-status-item .counter {
     background-color: #f5f5f5;
     border-radius: 4px;
     margin-right: 20px;
@@ -3024,28 +3059,28 @@ a.ui-button:active,
     color: #fc2779;
     font-size: 1.3rem;
 }
-.couple-info .couple-status-item .text small{
+.couple-info .couple-status-item .text small {
     display: block;
     font-size: 00.875rem;
     color: #b4b4b4;
     line-height: 1.2;
 }
-.couple-info .couple-status-item .text{
+.couple-info .couple-status-item .text {
     color: #0b0b0b;
     font-size: 1.125rem;
     font-weight: bold;
     line-height: 1.2;
 }
 
-.dashboard-head{
+.dashboard-head {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
 }
-.dashboard-head h3{
+.dashboard-head h3 {
     color: #fc2779;
 }
-.dashboard-head h3 span{
+.dashboard-head h3 span {
     color: #b4b4b4;
     font-size: 00.875rem;
     font-family: "muliregular";
@@ -3053,19 +3088,19 @@ a.ui-button:active,
     font-weight: normal;
     padding-bottom: 0.3rem;
 }
-.dashboard-head .links a{
+.dashboard-head .links a {
     color: #0e0e0e;
     white-space: nowrap;
     font-size: 0.875rem;
 }
-.dashboard-head .links a i{
+.dashboard-head .links a i {
     padding-left: 4px;
 }
-.dashboard-head .links a:hover{
+.dashboard-head .links a:hover {
     color: #fc2779;
 }
 
-.dash-categories{
+.dash-categories {
     min-height: 180px;
     display: flex;
     align-items: center;
@@ -3078,12 +3113,12 @@ a.ui-button:active,
     overflow: hidden;
 }
 
-.dash-categories .edit a{
+.dash-categories .edit a {
     position: absolute;
     top: 8px;
     font-size: 0.875rem;
     right: 8px;
-    background: #FFF;
+    background: #fff;
     color: #cdcdcd;
     width: 30px;
     height: 30px;
@@ -3094,11 +3129,11 @@ a.ui-button:active,
     border-bottom-left-radius: 6px;
     z-index: 99;
 }
-.dash-categories .edit a:hover{
+.dash-categories .edit a:hover {
     background: #fc2779;
-    color: #FFF;
+    color: #fff;
 }
-.dash-categories .head{
+.dash-categories .head {
     color: #171717;
     font-size: 1.125rem;
     text-align: center;
@@ -3107,13 +3142,13 @@ a.ui-button:active,
     position: relative;
     z-index: 99;
 }
-.dash-categories .head i{
+.dash-categories .head i {
     color: #fc2779;
     display: block;
     font-size: 2rem;
     margin-bottom: 0.4rem;
 }
-.dash-categories.selected::after{
+.dash-categories.selected::after {
     position: absolute;
     content: "";
     width: 100%;
@@ -3129,18 +3164,18 @@ a.ui-button:active,
     transition: all 400ms ease-in-out;
 }
 .dash-categories.selected .head,
-.dash-categories.selected .head i{
-    color: #FFF;
+.dash-categories.selected .head i {
+    color: #fff;
 }
 
-.wedding-detail-wrap .col{
+.wedding-detail-wrap .col {
     width: 20%;
     max-width: 20%;
 }
-.wedding-detail-wrap .wedding-details-items{
+.wedding-detail-wrap .wedding-details-items {
     text-align: center;
 }
-.wedding-detail-wrap .wedding-details-items .question{
+.wedding-detail-wrap .wedding-details-items .question {
     font-size: 20px;
     width: 37px;
     height: 37px;
@@ -3154,7 +3189,7 @@ a.ui-button:active,
 }
 
 .wedding-detail-wrap .wedding-details-items .edit .edit-click,
-.wedding-detail-wrap .wedding-details-items .btn{
+.wedding-detail-wrap .wedding-details-items .btn {
     font-size: 0.875rem;
     background: #e5f7f7;
     color: #848787;
@@ -3167,13 +3202,13 @@ a.ui-button:active,
     margin-top: 15px;
     padding: 0;
 }
-.wedding-detail-wrap .wedding-details-items .edit{
+.wedding-detail-wrap .wedding-details-items .edit {
     position: relative;
 }
 .wedding-detail-wrap .wedding-details-items .edit .droplayer {
     border: 1px solid #d9d9d9;
     border-radius: 3px;
-    box-shadow: 0 3px 4px 0 rgba(0,0,0,.15);
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.15);
     width: 400px;
     top: 53px;
     left: 20px;
@@ -3192,10 +3227,13 @@ a.ui-button:active,
     margin-left: -27px;
     margin-top: 8px;
 }
-.wedding-detail-wrap .wedding-details-items .dropdown-menu .wedding-color-theme{
+.wedding-detail-wrap
+    .wedding-details-items
+    .dropdown-menu
+    .wedding-color-theme {
     margin-bottom: 0;
 }
-.wedding-detail-wrap .wedding-details-items .dropdown-menu li{
+.wedding-detail-wrap .wedding-details-items .dropdown-menu li {
     width: 20%;
     float: left;
     overflow: hidden;
@@ -3214,15 +3252,20 @@ a.ui-button:active,
     left: 25px;
     position: absolute;
     top: -21px;
-    
 }
 
-.wedding-detail-wrap .wedding-details-items .dropdown-menu.dropdown-menu-right:before,
-.wedding-detail-wrap .wedding-details-items .dropdown-menu.dropdown-menu-right:after {
+.wedding-detail-wrap
+    .wedding-details-items
+    .dropdown-menu.dropdown-menu-right:before,
+.wedding-detail-wrap
+    .wedding-details-items
+    .dropdown-menu.dropdown-menu-right:after {
     right: 27px;
-    left: auto;    
+    left: auto;
 }
-.wedding-detail-wrap .wedding-details-items .dropdown-menu.dropdown-menu.dropdown-menu-right{
+.wedding-detail-wrap
+    .wedding-details-items
+    .dropdown-menu.dropdown-menu.dropdown-menu-right {
     margin-left: 0;
     margin-right: -27px;
 }
@@ -3235,7 +3278,7 @@ a.ui-button:active,
     top: -20px;
     border-color: transparent transparent #d9d9d9;
 }
-.wedding-detail-wrap .wedding-details-items .dropdown-menu li a{
+.wedding-detail-wrap .wedding-details-items .dropdown-menu li a {
     display: block;
 
     -webkit-transition: all 400ms ease-in-out;
@@ -3244,7 +3287,12 @@ a.ui-button:active,
     -ms-transition: all 400ms ease-in-out;
     transition: all 400ms ease-in-out;
 }
-.wedding-detail-wrap .wedding-details-items .dropdown-menu li a:hover .wedding-color-theme::after{
+.wedding-detail-wrap
+    .wedding-details-items
+    .dropdown-menu
+    li
+    a:hover
+    .wedding-color-theme::after {
     -webkit-transition: all 400ms ease-in-out;
     -moz-transition: all 400ms ease-in-out;
     -o-transition: all 400ms ease-in-out;
@@ -3252,24 +3300,24 @@ a.ui-button:active,
     transition: all 400ms ease-in-out;
     top: -20%;
 }
-.wedding-detail-wrap .wedding-details-items .dropdown-menu li span{
+.wedding-detail-wrap .wedding-details-items .dropdown-menu li span {
     font-size: 0.775rem;
 }
 .wedding-detail-wrap .wedding-details-items small,
-.wedding-detail-wrap .wedding-details-items .count{
+.wedding-detail-wrap .wedding-details-items .count {
     color: #9a9a9a;
     font-size: 0.69rem;
 }
-.wedding-detail-wrap .wedding-details-items .head{
+.wedding-detail-wrap .wedding-details-items .head {
     color: #333333;
     font-size: 0.92rem;
     font-family: "mulisemibold";
 }
-.wedding-detail-wrap .wedding-details-items .count{
+.wedding-detail-wrap .wedding-details-items .count {
     border-bottom: 1px solid #d0d0d0;
 }
 
-.wedding-color-theme{
+.wedding-color-theme {
     font-size: 20px;
     width: 37px;
     height: 37px;
@@ -3282,12 +3330,12 @@ a.ui-button:active,
     /* overflow: hidden; */
     position: relative;
 }
-.wedding-color-theme::after{
+.wedding-color-theme::after {
     position: absolute;
     content: "";
     width: 27px;
     height: 27px;
-    background: #FFF;
+    background: #fff;
     top: -30%;
     left: 50%;
     transform: translateX(-50%);
@@ -3299,71 +3347,94 @@ a.ui-button:active,
     -ms-transition: all 400ms ease-in-out;
     transition: all 400ms ease-in-out;
 }
-.wedding-color-theme.purple{
+.wedding-color-theme.purple {
     background: #d6bedb;
 }
-.wedding-color-theme.blue{
+.wedding-color-theme.blue {
     background: #afe0ef;
 }
 
-.wedding-color-theme.blush{
+.wedding-color-theme.blush {
     background: #f6e5dd;
 }
-.wedding-color-theme.brown{
+.wedding-color-theme.brown {
     background: #c2a580;
 }
-.wedding-color-theme.burgundy{
+.wedding-color-theme.burgundy {
     background: #d6807e;
 }
-.wedding-color-theme.champagne{
+.wedding-color-theme.champagne {
     background: #eddcb7;
 }
-.wedding-color-theme.glod{
+.wedding-color-theme.glod {
     background: #efd888;
 }
-.wedding-color-theme.gray{
+.wedding-color-theme.gray {
     background: #cecdcd;
 }
-.wedding-color-theme.green{
+.wedding-color-theme.green {
     background: #cadf92;
 }
-.wedding-color-theme.ivory{
+.wedding-color-theme.ivory {
     background: #faf3dd;
 }
-.wedding-color-theme.orange{
+.wedding-color-theme.orange {
     background: #f7ba95;
 }
-.wedding-color-theme.pink{
+.wedding-color-theme.pink {
     background: #f3ddec;
 }
-.wedding-color-theme.black{
+.wedding-color-theme.black {
     background: #5f5e5f;
 }
-.wedding-color-theme.red{
+.wedding-color-theme.red {
     background: #f4aba7;
 }
 
-.wedding-detail-wrap .wedding-details-items .dropdown-menu.season-icons{
+.wedding-detail-wrap .wedding-details-items .dropdown-menu.season-icons {
     width: 300px;
 }
-.wedding-detail-wrap .wedding-details-items .dropdown-menu.season-icons li a:hover,
-.wedding-detail-wrap .wedding-details-items .dropdown-menu.style-icons li a:hover{
-    color:#fc2779;
+.wedding-detail-wrap
+    .wedding-details-items
+    .dropdown-menu.season-icons
+    li
+    a:hover,
+.wedding-detail-wrap
+    .wedding-details-items
+    .dropdown-menu.style-icons
+    li
+    a:hover {
+    color: #fc2779;
 }
-.wedding-detail-wrap .wedding-details-items .dropdown-menu.season-icons li a:hover img,
-.wedding-detail-wrap .wedding-details-items .dropdown-menu.style-icons li a:hover img{
+.wedding-detail-wrap
+    .wedding-details-items
+    .dropdown-menu.season-icons
+    li
+    a:hover
+    img,
+.wedding-detail-wrap
+    .wedding-details-items
+    .dropdown-menu.style-icons
+    li
+    a:hover
+    img {
     opacity: 0.5;
 }
-.wedding-detail-wrap .wedding-details-items .season-icons ul{
+.wedding-detail-wrap .wedding-details-items .season-icons ul {
     display: flex;
     margin: 0;
 }
-.wedding-detail-wrap .wedding-details-items .dropdown-menu.season-icons li{
+.wedding-detail-wrap .wedding-details-items .dropdown-menu.season-icons li {
     width: 25%;
     margin: 0;
 }
 .wedding-detail-wrap .wedding-details-items .season-icons ul li img,
-.wedding-detail-wrap .wedding-details-items .dropdown-menu.style-icons ul li img{
+.wedding-detail-wrap
+    .wedding-details-items
+    .dropdown-menu.style-icons
+    ul
+    li
+    img {
     width: 40px;
     -webkit-transition: all 400ms ease-in-out;
     -moz-transition: all 400ms ease-in-out;
@@ -3372,50 +3443,50 @@ a.ui-button:active,
     transition: all 400ms ease-in-out;
 }
 
-
-
 /*---- 8.1 Couple Dashboard End ---*/
 
 /*-------------------------------------------------------------------
 8.2 Guest List
 -------------------------------------------------------------------*/
-.empty-guest-list{
+.empty-guest-list {
     text-align: center;
     padding: 1rem 0;
     color: #0b0b0b;
 }
-.empty-guest-list i{
+.empty-guest-list i {
     font-size: 3rem;
     margin-bottom: 1rem;
     color: #dcdcdc;
     display: block;
 }
-.table-truncate{
+.table-truncate {
     width: 100px;
 }
-.table .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
-    left: -1.80rem;
+.table
+    .custom-checkbox
+    .custom-control-input:checked
+    ~ .custom-control-label::after {
+    left: -1.8rem;
 }
-.search-guest-list{
+.search-guest-list {
     position: relative;
 }
-.search-guest-list i{
+.search-guest-list i {
     position: absolute;
     color: #fc2779;
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
 }
-.search-guest-list input{
+.search-guest-list input {
     background: #ffffff;
     border-color: #e5e5e5;
     border-radius: 0;
     padding: 0.4rem 0.8rem 0.4rem 2rem;
     font-size: 0.75rem;
     width: 100%;
-
 }
-.todo-status{
+.todo-status {
     display: flex;
     align-items: center;
 }
@@ -3427,13 +3498,13 @@ a.ui-button:active,
     top: 2px;
     border-radius: 50px;
 }
-.todo-done{
+.todo-done {
     display: flex;
     align-items: center;
     align-items: center;
     margin-left: 1rem;
 }
-.todo-done span{
+.todo-done span {
     color: #b4b4b4;
     font-size: 12px;
     display: block;
@@ -3442,19 +3513,19 @@ a.ui-button:active,
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    margin-right: 15px;;
+    margin-right: 15px;
 }
-.todo-subhead{
+.todo-subhead {
     padding: 1rem 1.5rem;
     background: #f7f7f8;
     margin-bottom: 1.5rem;
 }
-.todo-subhead h3{
+.todo-subhead h3 {
     color: #fc2779;
     font-weight: 600;
     margin: 0;
 }
-.todo-subhead h3 span{
+.todo-subhead h3 span {
     color: #0b0b0b;
     font-size: 0.875rem;
     margin-left: 7px;
@@ -3464,30 +3535,30 @@ a.ui-button:active,
 /*-------------------------------------------------------------------
 8.3 Budget
 -------------------------------------------------------------------*/
-.budget-estimation{
+.budget-estimation {
     text-align: center;
     padding: 1rem 0;
     width: 100%;
 }
-.etimated-cost{
+.etimated-cost {
     text-align: center;
     width: 50%;
     margin-bottom: 1.5rem;
     color: #b4b4b4;
     font-size: 0.875rem;
 }
-.etimated-cost .icon{
+.etimated-cost .icon {
     font-size: 3rem;
     margin-bottom: 1rem;
     color: #fc2779;
     display: block;
 }
-.cost-price{
-    font-size: 1.5rem ;
+.cost-price {
+    font-size: 1.5rem;
     color: #0b0b0b;
     margin: 0;
 }
-.cost-price.final{
+.cost-price.final {
     color: #fc2779;
 }
 .budget-tab.theme-tabbing-vertical .nav-link {
@@ -3496,12 +3567,12 @@ a.ui-button:active,
     display: flex;
     align-items: center;
 }
-.budget-tab.theme-tabbing-vertical .nav-link i{
+.budget-tab.theme-tabbing-vertical .nav-link i {
     font-size: 1.5rem;
     color: #fc2779;
     padding-right: 0.9rem;
 }
-.budget-tab.theme-tabbing-vertical .nav-link.active i{
+.budget-tab.theme-tabbing-vertical .nav-link.active i {
     color: #fc2779;
 }
 .budget-head-icon {
@@ -3510,25 +3581,25 @@ a.ui-button:active,
     justify-content: center;
     display: inline-flex;
     align-items: center;
-    color: #FFF;
+    color: #fff;
     font-size: 2rem;
     background: #fc2779;
     border-top-left-radius: 7px;
     margin-right: 15px;
 }
-.cost-details{
+.cost-details {
     color: #171717;
     font-size: 1rem;
     min-width: 150px;
     font-weight: 500;
     line-height: 1.3;
 }
-.cost-details span{
+.cost-details span {
     color: #9a9a9a;
     font-size: 0.69rem;
 }
-.sliding-panel{
-    background: #FFF;
+.sliding-panel {
+    background: #fff;
     position: relative;
     overflow-y: auto;
     z-index: 1;
@@ -3541,11 +3612,11 @@ a.ui-button:active,
 /*-------------------------------------------------------------------
 8.4 Upcoming Task
 -------------------------------------------------------------------*/
-.upcoming-task{
+.upcoming-task {
     position: relative;
 }
 
-.upcoming-task ul li{
+.upcoming-task ul li {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -3554,37 +3625,40 @@ a.ui-button:active,
 
     transition: all 400ms ease-in-out;
 }
-.upcoming-task ul li:last-child{
+.upcoming-task ul li:last-child {
     border: none;
 }
-.upcoming-task ul li:hover{
+.upcoming-task ul li:hover {
     background-color: #fbfbfb;
 }
-.upcoming-task ul li .info-listing{
+.upcoming-task ul li .info-listing {
     opacity: 0;
     transition: all 400ms ease-in-out;
 }
-.upcoming-task ul li:hover .info-listing{
+.upcoming-task ul li:hover .info-listing {
     opacity: 1;
 }
-.upcoming-task ul li .info-listing .badge-wrap{
+.upcoming-task ul li .info-listing .badge-wrap {
     padding-left: 1.5rem;
 }
-.custom-control-label small{
+.custom-control-label small {
     display: block;
     font-size: 0.875rem;
     color: #b4b4b4;
 }
-.checked-label-text .label-text{
+.checked-label-text .label-text {
     text-decoration-line: line-through;
 
     transition: all 400ms ease-in-out;
 }
 .upcoming-task .custom-checkbox .custom-control-label::before,
-.upcoming-task .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+.upcoming-task
+    .custom-checkbox
+    .custom-control-input:checked
+    ~ .custom-control-label::after {
     top: 15px;
 }
-.upcoming-task .custom-checkbox .custom-control-label::before{
+.upcoming-task .custom-checkbox .custom-control-label::before {
     background-image: none;
     content: "\f00c";
     font-family: "FontAwesome";
@@ -3593,29 +3667,34 @@ a.ui-button:active,
     font-size: 0.9rem;
     border: none;
 }
-.upcoming-task .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after{
+.upcoming-task
+    .custom-checkbox
+    .custom-control-input:checked
+    ~ .custom-control-label::after {
     content: "";
     display: none;
 }
-.upcoming-task .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before{
+.upcoming-task
+    .custom-checkbox
+    .custom-control-input:checked
+    ~ .custom-control-label::before {
     background: #48964d;
     content: "\f00c";
     font-family: "FontAwesome";
-    color: #FFF;
+    color: #fff;
 }
-
 
 /*---- 8.4 Upcoming Task End ---*/
 
 /*-------------------------------------------------------------------
 8.5 Real Wedding
 -------------------------------------------------------------------*/
-.custom-file-featured{
+.custom-file-featured {
     position: relative;
     height: 100%;
     min-height: 190px;
 }
-.custom-file-featured::after{
+.custom-file-featured::after {
     position: absolute;
     content: "";
     width: 100%;
@@ -3628,31 +3707,29 @@ a.ui-button:active,
     right: 20px;
     top: 20px;
 }
-.gallery-info{
+.gallery-info {
     text-align: center;
     font-size: 1.125rem;
     color: #fc2779;
     margin-bottom: 1.5rem;
 }
-.gallery-info span{
+.gallery-info span {
     color: #5b5b5b;
     font-size: 0.875rem;
     display: block;
     line-height: 1;
 }
-.vendor-input .input-wraps{
+.vendor-input .input-wraps {
     padding: 1rem 0 0;
-    border-bottom: 1px solid #f4f4f4 ;
-
+    border-bottom: 1px solid #f4f4f4;
 }
-.vendor-input .input-wraps:first-child{
+.vendor-input .input-wraps:first-child {
     padding-bottom: 0;
 }
-.vendor-input .input-wraps:last-child{
+.vendor-input .input-wraps:last-child {
     border: none;
 }
 /*---- 8.5 Real Wedding End ---*/
-
 
 /*-------------------------------------------------------------------
 8.6 Vendor Manager
@@ -3682,19 +3759,19 @@ a.ui-button:active,
 .view-by .selected-tags:not(:last-child) {
     margin-bottom: 0.8rem;
 }
-.widget-box{
+.widget-box {
     margin-bottom: 2rem;
 }
-.status-list li:not(:last-child){
+.status-list li:not(:last-child) {
     margin-bottom: 0.5rem;
 }
-.status-list li a{
+.status-list li a {
     display: flex;
     align-items: center;
     color: #0b0b0b;
     font-size: 0.875rem;
 }
-.status-list li a .badge{
+.status-list li a .badge {
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -3781,6 +3858,18 @@ a.ui-button:active,
     color: #fff;
     border-radius: 50%;
 }
+
+.wedding-listing .img .img-content .bottom .tags {
+    border-radius: 40px;
+    background: #fc2779;
+    /* text-transform: uppercase; */
+    color: #fff;
+    padding: 0.6rem 1rem;
+    font-family: "Lora", serif;
+    font-size: 0.875rem;
+    line-height: 1;
+}
+
 .wedding-listing .content .gap {
     padding: 1.5rem;
     width: 100%;
@@ -3790,7 +3879,7 @@ a.ui-button:active,
     margin-left: 5px;
 }
 .wedding-listing .img .reviews {
-    background: #FFF;
+    background: #fff;
     border-radius: 50px;
     padding: 0.4rem 1rem;
     display: inline-block;
@@ -3802,7 +3891,7 @@ a.ui-button:active,
     margin-right: 4px;
     margin-right: 7px;
 }
-.wedding-listing h4 a{
+.wedding-listing h4 a {
     font-weight: 600;
 }
 .wedding-listing h4 a:hover {
@@ -3825,12 +3914,12 @@ a.ui-button:active,
     cursor: pointer;
 }
 
-.price-wedding{
+.price-wedding {
     padding: 0.4rem 0.5rem;
     font-size: 12px;
 }
 
-.bottom-footer{
+.bottom-footer {
     border-top: 1px solid #f4f4f4;
     padding: 0.7rem 1.5rem;
     font-size: 0.875rem;
@@ -3839,7 +3928,7 @@ a.ui-button:active,
     align-items: center;
 }
 .bottom-footer a:hover,
-.bottom-footer a i{
+.bottom-footer a i {
     color: #fc2779;
 }
 /*---- 8.6 Vendor Manager End ---*/
@@ -3858,7 +3947,7 @@ a.ui-button:active,
     height: 350px;
     border: none;
 }
-.vendor-banner-cover{
+.vendor-banner-cover {
     position: relative;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
@@ -3867,26 +3956,25 @@ a.ui-button:active,
     font-size: 1rem;
     color: #e3f5f5;
     padding: 6rem 0;
-
 }
-.vendor-banner-cover span{
+.vendor-banner-cover span {
     display: block;
     font: 0.875rem;
 }
-.vendor-banner-cover i{
+.vendor-banner-cover i {
     display: block;
     font-size: 2rem;
     margin-bottom: 0.8rem;
 }
-.vendor-profile-img{
+.vendor-profile-img {
     padding: 1.5rem 1.5rem 3rem 2rem;
 }
-.vendor-profile-img{
+.vendor-profile-img {
     display: flex;
     justify-content: space-between;
     position: relative;
 }
-.vendor-profile-img .text .img-holder{
+.vendor-profile-img .text .img-holder {
     position: absolute;
     width: 140px;
     height: 140px;
@@ -3903,35 +3991,35 @@ a.ui-button:active,
     top: -3rem;
     left: 2rem;
 }
-.vendor-profile-img .text{
+.vendor-profile-img .text {
     padding-left: 160px;
 }
-.vendor-profile-img .text strong{
+.vendor-profile-img .text strong {
     font-family: "mulisemibold";
     display: block;
     font-size: 1rem;
     color: #171717;
 }
-.vendor-profile-img .text span{
+.vendor-profile-img .text span {
     display: block;
     color: #b4b4b4;
     font-size: 0.875rem;
 }
-.vendor-stats{
+.vendor-stats {
     padding: 0 !important;
 }
-.vendor-stats .couple-status-item{
+.vendor-stats .couple-status-item {
     margin: 0;
 }
-.vendor-stats .btn-veiw-all{
+.vendor-stats .btn-veiw-all {
     font-size: 0.75rem;
     font-weight: normal;
     color: #b4b4b4;
 }
-.vendor-stats .btn-veiw-all:hover{
+.vendor-stats .btn-veiw-all:hover {
     color: #fc2779;
 }
-.mt-dashboard{
+.mt-dashboard {
     margin-top: 40px;
 }
 
@@ -3946,7 +4034,7 @@ a.ui-button:active,
     align-items: center;
     justify-content: space-between;
 }
-.info-listing .badge-wrap:not(:last-child){
+.info-listing .badge-wrap:not(:last-child) {
     width: 50%;
 }
 .info-listing .badge {
@@ -3959,24 +4047,24 @@ a.ui-button:active,
 }
 .info-listing .badge.badge-primary {
     border: 1px solid #dedede;
-    color: #989898 ;
+    color: #989898;
 }
 .info-listing .badge.badge-success {
     border: 1px solid #28a745;
-    color: #28a745 ;
+    color: #28a745;
 }
 .info-listing .badge.badge-pending {
     border: 1px solid #ffc107;
-    color: #ffc107 ;
+    color: #ffc107;
 }
 .info-listing .badge.badge-danger {
     border: 1px solid #dc3545;
-    color: #dc3545 ;
+    color: #dc3545;
 }
 .listing-action.hover_out > .dropdown-menu {
     min-width: 70px;
 }
-.listing-action.hover_out > .dropdown-menu a{
+.listing-action.hover_out > .dropdown-menu a {
     padding: 0.4rem 0.8rem;
     border: none;
 }
@@ -3985,7 +4073,8 @@ a.ui-button:active,
     text-align: left;
 }
 
-.listing-action.hover_out > .dropdown-menu a:focus, .listing-action.hover_out > .dropdown-menu a:hover{
+.listing-action.hover_out > .dropdown-menu a:focus,
+.listing-action.hover_out > .dropdown-menu a:hover {
     background-color: #e3f5f5;
 }
 .listing-action-link {
@@ -3996,13 +4085,13 @@ a.ui-button:active,
     line-height: 1;
 }
 
-.title-listing a{
+.title-listing a {
     font-size: 1.25rem;
     color: #0b0b0b;
     line-height: 1;
 }
 
-.title-listing a span{
+.title-listing a span {
     font-size: 0.875rem;
     display: inline-block;
     color: #b4b4b4;
@@ -4010,20 +4099,19 @@ a.ui-button:active,
 
 /*---- 8.8 Vendor Dashboard End ---*/
 
-
 /*-------------------------------------------------------------------
 8.9 Vendor My Listing
 -------------------------------------------------------------------*/
-.my-listing-tab{
+.my-listing-tab {
     background-color: #f7f7f8;
     border-radius: 0;
     padding-top: 0;
 }
-.my-listing-tab .nav-link{
+.my-listing-tab .nav-link {
     font-size: 1rem;
     padding: 0.7rem 0;
 }
-.my-listing-tab .nav-link span{
+.my-listing-tab .nav-link span {
     color: #0b0b0b;
     font-size: 0.875rem;
     padding-left: 4px;
@@ -4095,15 +4183,15 @@ a.ui-button:active,
 .pricing-table-wrap.premium h3 {
     color: #1f1f1f;
 }
-.pricing-plan{
+.pricing-plan {
     padding: 1rem;
 }
-.pricing-plan .sub-head{
+.pricing-plan .sub-head {
     color: #9e9e9e;
     font-size: 0.875rem;
     margin-bottom: 7px;
 }
-.pricing-plan h3{
+.pricing-plan h3 {
     font-weight: 600;
     color: #fc2779;
     font-size: 1.5rem;
@@ -4117,44 +4205,43 @@ a.ui-button:active,
 }
 /*---- 8.10 Vendor Pricing End ---*/
 
-    
 /*-------------------------------------------------------------------
 8.11 Invoice Pages
 -------------------------------------------------------------------*/
-.invoice-logo img{
+.invoice-logo img {
     width: 200px;
 }
-.invoice-number h3{
+.invoice-number h3 {
     color: #fc2779;
     font: 1.25rem;
     text-align: right;
     font-weight: 600;
 }
-.invoice-number h3 span{
+.invoice-number h3 span {
     display: block;
     font-size: 0.875rem;
     color: #171717;
     font-family: "muliregular";
     font-weight: normal;
 }
-.invoice-detail-wrap{
+.invoice-detail-wrap {
     padding: 0 1.5rem;
     font-size: 0.875rem !important;
     color: #b4b4b4;
 }
-.invoice-detail-wrap a{
+.invoice-detail-wrap a {
     font-size: 0.875rem !important;
 }
-.invoice-detail-wrap address{
+.invoice-detail-wrap address {
     margin: 0;
 }
-.invoice-detail-head{
+.invoice-detail-head {
     font-size: 1.25rem;
     color: #171717;
     font-family: "mulisemibold";
     margin-bottom: 0.7rem;
 }
-.invoice-detail-head span{
+.invoice-detail-head span {
     font-size: 0.875rem;
     color: #fc2779;
     font-family: "muliregular";
@@ -4222,7 +4309,7 @@ a.ui-button:active,
     height: 6px;
     border-radius: 5px;
 }
-.reviews-media{
+.reviews-media {
     padding: 1.5rem;
 }
 .reviews-media h3 {
@@ -4241,7 +4328,7 @@ a.ui-button:active,
     font-size: 1rem;
     font-family: "mulisemibold" !important;
 }
-.reviews-tabbing .reviews-media .heading small{
+.reviews-tabbing .reviews-media .heading small {
     color: #b5b5b5;
     font-size: 0.75rem;
 }
@@ -4317,39 +4404,38 @@ a.ui-button:active,
     cursor: pointer;
 }
 
-.search-review-list{
+.search-review-list {
     position: relative;
 }
-.search-review-list i{
+.search-review-list i {
     position: absolute;
     color: #fc2779;
     left: 13px;
     top: 50%;
     transform: translateY(-50%);
 }
-.search-review-list input{
+.search-review-list input {
     padding-left: 2rem;
-
 }
-.reviews-tabbing-wrap{
+.reviews-tabbing-wrap {
     min-height: 650px;
     height: 650px;
     border-right: 1px solid #fc2779;
     overflow: hidden;
     position: relative;
 }
-.reviews-tabbing.theme-tabbing-vertical{
+.reviews-tabbing.theme-tabbing-vertical {
     background: #ffffff;
     border-radius: 0;
     height: 100%;
     box-shadow: none;
     display: block;
 }
-.reviews-tabbing.theme-tabbing-vertical .nav-link{
+.reviews-tabbing.theme-tabbing-vertical .nav-link {
     padding: 1rem 1.5rem;
     border-bottom: 1px solid rgb(238, 238, 238);
 }
-.reviews-tabbing .reviews-media{
+.reviews-tabbing .reviews-media {
     padding: 0;
 }
 .reviews-tabbing .reviews-media .media {
@@ -4358,28 +4444,27 @@ a.ui-button:active,
     border-radius: 0;
     align-items: center;
 }
-.reviews-tabbing .reviews-media .heading{
+.reviews-tabbing .reviews-media .heading {
     display: block;
 }
-.reviews-tabbing .reviews-media .heading-wrap{
+.reviews-tabbing .reviews-media .heading-wrap {
     border: none;
     margin: 0;
     padding: 0;
 }
-.reviews-tabbing.theme-tabbing-vertical .nav-link.active, 
-.reviews-tabbing.theme-tabbing-vertical .show > .nav-link{
+.reviews-tabbing.theme-tabbing-vertical .nav-link.active,
+.reviews-tabbing.theme-tabbing-vertical .show > .nav-link {
     color: #fc2779;
     border-radius: 0;
 }
 
-.reviews-tabbing.theme-tabbing-vertical .nav-link.active{
+.reviews-tabbing.theme-tabbing-vertical .nav-link.active {
     background-color: #f8f8f9;
 }
 /*------------------------------------------*/
 /*    8.12 Rating/Reviews End
 /*------------------------------------------*/
 
-    
 /*-------------------------------------------------------------------
 9. Footers
 -------------------------------------------------------------------*/
@@ -4391,7 +4476,7 @@ footer {
     z-index: 1;
 }
 footer::after,
-.copyrights::after{
+.copyrights::after {
     position: absolute;
     content: "";
     left: -100%;
@@ -4400,12 +4485,12 @@ footer::after,
     height: 100%;
 }
 
-footer::after{
+footer::after {
     background: #302d34;
     z-index: -2;
 }
 
-.copyrights::after{
+.copyrights::after {
     background: #252428;
 }
 .footer-logo {
@@ -4481,17 +4566,13 @@ footer .widget-listing li {
 8. Footers End
 -------------------------------------------------------------------*/
 
-
-
-
-
 /*-------------------------------------------------------------------
  13. Modal Popups Start
 -------------------------------------------------------------------*/
 .register-tab .modal-content {
     overflow: hidden;
-  }
-  button.close {
+}
+button.close {
     width: 40px;
     height: 40px;
     background: #acacac;
@@ -4501,28 +4582,27 @@ footer .widget-listing li {
     justify-content: center;
     border-radius: 50%;
     opacity: 1;
-  }
-  button.close:hover {
+}
+button.close:hover {
     background: #fc2779;
     color: #fff;
-  }
-  button.close:focus {
+}
+button.close:focus {
     outline: none;
     box-shadow: none;
-  }
-  .request-quote-form .form-text a {
+}
+.request-quote-form .form-text a {
     text-decoration: underline;
     color: #000;
-  }
-  .request-quote-form .form-text a:hover {
+}
+.request-quote-form .form-text a:hover {
     text-decoration: none;
     color: #009091;
-  }
-  
-  /*-------------------------------------------------------------------
+}
+
+/*-------------------------------------------------------------------
    13. Modal Popups End
   -------------------------------------------------------------------*/
-
 
 /*-------------------------------------------------------------------
 16. Media Query
@@ -4532,7 +4612,6 @@ footer .widget-listing li {
 /* ------------------------------------------------------------------------ */
 
 @media (min-width: 1921px) {
-    
 }
 
 /* ------------------------------------------------------------------------ */
@@ -4540,10 +4619,9 @@ footer .widget-listing li {
 /* ------------------------------------------------------------------------ */
 
 @media (max-width: 1400px) {
-    .couple-info{
+    .couple-info {
         padding: 2rem 2rem 2rem 0;
     }
-  
 }
 
 /* ------------------------------------------------------------------------ */
@@ -4551,16 +4629,16 @@ footer .widget-listing li {
 /* ------------------------------------------------------------------------ */
 
 @media (max-width: 1200px) {
-  .form-light.custom-radio
-  .custom-control-input:checked
-  ~ .custom-control-label::after,
-  .form-dark.custom-radio
-  .custom-control-input:checked
-  ~ .custom-control-label::after {
+    .form-light.custom-radio
+        .custom-control-input:checked
+        ~ .custom-control-label::after,
+    .form-dark.custom-radio
+        .custom-control-input:checked
+        ~ .custom-control-label::after {
         left: -20px;
     }
 
-    .offcanvas-collapse{
+    .offcanvas-collapse {
         width: 280px;
     }
     .open .offcanvas-collapse {
@@ -4577,11 +4655,11 @@ footer .widget-listing li {
 /* ------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------ */
 @media (min-width: 992px) and (max-width: 1199px) {
-  html {
+    html {
         font-size: 15px;
     }
 
-    .footer-widget{
+    .footer-widget {
         margin-bottom: 20px;
     }
     footer .col-lg-7,
@@ -4589,7 +4667,7 @@ footer .widget-listing li {
         flex: 0 0 100%;
         max-width: 100%;
     }
-    .logedin-text{
+    .logedin-text {
         display: none;
     }
 }
@@ -4598,29 +4676,20 @@ footer .widget-listing li {
 /* ------------------------------------------------------------------------ */
 
 @media (min-width: 768px) and (max-width: 991px) {
-  html {
+    html {
         font-size: 15px;
     }
-
-    
-    
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
     html {
-          font-size: 15px;
-      }
-  
-    
-      
-  }
+        font-size: 15px;
+    }
+}
 
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-    .footer-widget{
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+    .footer-widget {
         margin-bottom: 20px;
     }
     footer .col-lg-7,
@@ -4632,12 +4701,12 @@ footer .widget-listing li {
         width: 100%;
     }
 
-    .wedding-detail-wrap .wedding-details-items .dropdown-menu:before, 
+    .wedding-detail-wrap .wedding-details-items .dropdown-menu:before,
     .wedding-detail-wrap .wedding-details-items .dropdown-menu:after,
-    .logedin-text{
+    .logedin-text {
         display: none;
     }
-    .megamenu{
+    .megamenu {
         width: 100% !important;
     }
 }
@@ -4646,9 +4715,10 @@ footer .widget-listing li {
     main::after {
         position: absolute;
     }
-    .navbar-expand-md .navbar-nav .nav-link, .navbar-expand-lg .navbar-nav .nav-link{
+    .navbar-expand-md .navbar-nav .nav-link,
+    .navbar-expand-lg .navbar-nav .nav-link {
         padding: 0.5rem 0.4rem;
-      }
+    }
     .dropdown-menu .dropdown-menu {
         left: 100%;
         margin: 0;
@@ -4670,19 +4740,19 @@ footer .widget-listing li {
         margin: 0;
         padding: 0.6rem 0;
     }
-    .sidebar-toggle.desktop{
+    .sidebar-toggle.desktop {
         visibility: hidden;
         width: 0;
         height: 0;
         display: none;
     }
-    .sidebar-toggle.mobile{
-        visibility: visible;        
+    .sidebar-toggle.mobile {
+        visibility: visible;
         width: 40px;
         height: 40px;
     }
 
-     .open .offcanvas-collapse {
+    .open .offcanvas-collapse {
         visibility: visible;
         -webkit-transform: translateX(0);
         transform: translateX(0);
@@ -4697,11 +4767,11 @@ footer .widget-listing li {
         margin-left: 0;
     }
 
-    .offcanvas-collapse{
-        background: #FFF;
+    .offcanvas-collapse {
+        background: #fff;
     }
 
-    .couple-info{
+    .couple-info {
         padding: 2rem;
     }
 
@@ -4709,25 +4779,24 @@ footer .widget-listing li {
         margin-top: 0px;
     }
 
-    .footer-widget{
+    .footer-widget {
         margin-bottom: 20px;
     }
 
-    .wedding-detail-wrap .wedding-details-items .dropdown-menu:before, 
-    .wedding-detail-wrap .wedding-details-items .dropdown-menu:after{
+    .wedding-detail-wrap .wedding-details-items .dropdown-menu:before,
+    .wedding-detail-wrap .wedding-details-items .dropdown-menu:after {
         display: none;
     }
-    .megamenu{
+    .megamenu {
         width: 100% !important ;
     }
-    
 }
 
 @media (max-width: 767px) {
-  html {
+    html {
         font-size: 15px;
     }
-    .navbar .user-profile{
+    .navbar .user-profile {
         margin-top: 0.5rem;
     }
     .navbar .user-profile .dropdown-menu li > a {
@@ -4739,7 +4808,7 @@ footer .widget-listing li {
     .copyrights-link {
         padding-top: 7px;
     }
-    .search-guest-list{
+    .search-guest-list {
         margin-top: 1rem;
     }
     .wedding-detail-wrap .col {
@@ -4751,36 +4820,35 @@ footer .widget-listing li {
     .todo-status {
         display: block;
     }
-    .todo-status .progress{
+    .todo-status .progress {
         width: 100%;
         margin: 7px 0;
     }
-    .todo-done{
+    .todo-done {
         margin: 0 1rem 0 0;
     }
-    .upcoming-task ul li{
+    .upcoming-task ul li {
         display: inherit;
     }
-    .upcoming-task ul li .info-listing{
+    .upcoming-task ul li .info-listing {
         opacity: 1;
         margin-top: 1rem;
     }
-    .upcoming-task ul li .info-listing .badge-wrap{
+    .upcoming-task ul li .info-listing .badge-wrap {
         padding: 0;
     }
-    .upcoming-task ul li .info-listing .badge-wrap:not(:last-child){
+    .upcoming-task ul li .info-listing .badge-wrap:not(:last-child) {
         padding: 0 1rem 0 0;
     }
 
-    footer [class*="col-"]:not(:last-child){
+    footer [class*="col-"]:not(:last-child) {
         margin-bottom: 30px;
     }
-    
 
-    .cost-details{
+    .cost-details {
         min-width: 100px;
     }
-    .no-mobile{
+    .no-mobile {
         border: none !important;
     }
 
@@ -4791,17 +4859,16 @@ footer .widget-listing li {
     .vendor-profile-img .text {
         padding-left: 140px;
     }
-    .title-listing{
+    .title-listing {
         padding: 1rem 0;
     }
-    .review-count{
+    .review-count {
         margin-right: 0;
         margin-bottom: 0.7rem;
     }
-    .megamenu{
+    .megamenu {
         width: 100% !important;
     }
-
 }
 
 @media (min-width: 576px) and (max-width: 767.99px) {
@@ -4811,13 +4878,12 @@ footer .widget-listing li {
         max-width: 50%;
         margin-bottom: 1.5rem;
     }
-    .megamenu{
+    .megamenu {
         width: 100% !important;
     }
 }
 
 @media (max-width: 575px) {
-    
     footer .col {
         flex: 1 1 100%;
     }
@@ -4828,23 +4894,23 @@ footer .widget-listing li {
         margin-bottom: 30px;
         max-width: 50%;
     }
-    .section-title .btn{
+    .section-title .btn {
         margin-top: 1rem;
     }
-    .section-title h2{
+    .section-title h2 {
         font-size: 1.5rem;
     }
-    .body-content{
+    .body-content {
         padding-top: 85px;
     }
-    .upcoming-task ul li .info-listing{
+    .upcoming-task ul li .info-listing {
         display: inherit;
         align-items: flex-start;
     }
     .upcoming-task ul li .info-listing .badge-wrap:not(:last-child) {
         padding: 0 1rem 1rem 0;
     }
-    .custom-file-wrap{
+    .custom-file-wrap {
         width: 100%;
     }
 
@@ -4862,37 +4928,37 @@ footer .widget-listing li {
     .vendor-profile-img {
         padding: 1.5rem;
     }
-    .invoice-number h3{
+    .invoice-number h3 {
         text-align: center;
         margin-top: 1rem;
     }
-    .invoice-logo{
+    .invoice-logo {
         text-align: center;
     }
-    .wedding-detail-wrap .wedding-details-items .dropdown-menu{
+    .wedding-detail-wrap .wedding-details-items .dropdown-menu {
         width: 300px;
     }
-    .wedding-detail-wrap .wedding-details-items .dropdown-menu li{
+    .wedding-detail-wrap .wedding-details-items .dropdown-menu li {
         width: 33.33%;
     }
-    .wedding-detail-wrap .wedding-details-items .season-icons ul{
+    .wedding-detail-wrap .wedding-details-items .season-icons ul {
         display: block;
     }
-    .wedding-detail-wrap .wedding-details-items .dropdown-menu.season-icons{
+    .wedding-detail-wrap .wedding-details-items .dropdown-menu.season-icons {
         width: 250px;
         margin-left: -120px;
     }
-    .wedding-detail-wrap .wedding-details-items .dropdown-menu.season-icons li{
+    .wedding-detail-wrap .wedding-details-items .dropdown-menu.season-icons li {
         width: 50%;
         margin-bottom: 7px;
     }
-    .megamenu{
+    .megamenu {
         width: 100% !important;
     }
 }
 
 @media (max-width: 480px) {
-  .navbar-brand img {
+    .navbar-brand img {
         height: 40px;
         margin: 0;
     }
@@ -4905,7 +4971,7 @@ footer .widget-listing li {
     .vendor-wrap-alt .content .vendor-heading h3 {
         margin-bottom: 1rem;
     }
-    .megamenu{
+    .megamenu {
         width: 100% !important;
     }
 }
@@ -4916,54 +4982,51 @@ footer .widget-listing li {
     .select2-container {
         z-index: 9;
     }
-    
+
     .select2-container--form-light .select2-dropdown {
         left: 15px;
     }
-    .megamenu{
+    .megamenu {
         width: 100% !important;
     }
-    
 }
-@media (max-width: 320px) {  
-  .select2-container {
+@media (max-width: 320px) {
+    .select2-container {
         z-index: 9;
         width: 100% !important;
     }
 
-    .wedding-detail-wrap .wedding-details-items .dropdown-menu{
+    .wedding-detail-wrap .wedding-details-items .dropdown-menu {
         width: 280px;
         margin-left: -60px;
     }
-    .wedding-detail-wrap .wedding-details-items .dropdown-menu li{
+    .wedding-detail-wrap .wedding-details-items .dropdown-menu li {
         width: 33.33%;
     }
 
-    .couple-btn .btn{
+    .couple-btn .btn {
         padding: 0.5rem 0.7rem;
         font-size: 0.875rem;
     }
 
-    .megamenu{
+    .megamenu {
         width: 100% !important;
     }
 }
 
-
 /* added by ashish */
 .megamenu-li {
-	position: static;
+    position: static;
 }
 .megamenu {
-    position: absolute ;
+    position: absolute;
     width: 80%;
     left: 10%;
     right: 10%;
     padding: 15px;
 }
 
-.images-preview-div img
-{
-padding: 10px;
-max-width: 100px;
+.images-preview-div img {
+    padding: 10px;
+    max-width: 100px;
 }

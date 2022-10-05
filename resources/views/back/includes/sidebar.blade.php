@@ -5,22 +5,22 @@
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
-        <li class="nav-item">
-            <a href="{{ url('/byte/dashboard') }}" class="nav-link">
+        <li class="nav-item {{ admin_helper::is_open_menu('dashboard') }}">
+            <a href="{{ url('/byte/dashboard') }}" class="nav-link {{ admin_helper::active_menu('dashboard') }} ">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>Dashboard</p>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a href="" class="nav-link">
+        <li class="nav-item {{ admin_helper::is_open_menu('new-request') }}">
+            <a href="{{ url('byte/new-request') }}" class="nav-link {{ admin_helper::active_menu('new-request') }}">
                 <i class="nav-icon fas fa-user"></i>
                 <p>New Request</p>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a href="#" class="nav-link">
+        <li class="nav-item {{ admin_helper::is_open_menu('vendors') }}">
+            <a href="{{ url('/byte/vendors') }}" class="nav-link {{ admin_helper::active_menu('vendors') }}">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                 Vendors
@@ -29,7 +29,7 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url('/byte/vendors/all-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('all-vendors') }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>All Vendors</p>
                 </a>

@@ -22,23 +22,23 @@ class CategorySeeder extends Seeder
                 'category_url'  =>  'makeup-artist',   
             ],
             [
-                'category_name' =>  'Wedding Venues',
-                'category_url'  =>  'wedding-venues',
+                'category_name' =>  'Wedding Venue',
+                'category_url'  =>  'wedding-venue',
                 'icon'  =>  '<i class="weddingdir_location_heart"></i>',
             ],
             [
-                'category_name'  =>  'Wedding Photographers',
-                'category_url'  =>  'wedding-photographers',  
+                'category_name'  =>  'Wedding Photographer',
+                'category_url'  =>  'wedding-photographer',  
                 'icon'  =>  '<i class="weddingdir_videographer"></i>',
             ],
             [
-                'category_name'  =>  'Bridal Designers',
-                'category_url'  =>  'bridal-designers',  
+                'category_name'  =>  'Bridal Designer',
+                'category_url'  =>  'bridal-designer',  
                 'icon'  =>  '<i class="weddingdir_fashion"></i>',
             ],
             [
-                'category_name'  =>  'Choreographers',
-                'category_url'  =>  'choreographers',  
+                'category_name'  =>  'Choreographer',
+                'category_url'  =>  'choreographer',  
                 'icon'  =>  '<i class="weddingdir_music"></i>'
             ],
             [
