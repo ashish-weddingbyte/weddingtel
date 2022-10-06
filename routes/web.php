@@ -49,6 +49,7 @@ Route::get('profile/{name}',[HomeController::class,'profile']);
 Route::get('vendors/{city}/{category}',[HomeController::class,'vendor_list']);
 Route::get('vendors/{city}',[HomeController::class,'vendor_list']);
 Route::match(['get','post'],'vendors/',[HomeController::class,'search']);
+Route::post('write-review',[HomeController::class,'write_review']);
 
 
 Route::get('blogs',[HomeController::class,'all_blogs']);

@@ -322,7 +322,7 @@
                                     </a>
 
                                     @if(Session::get('user_type') == 'user')
-                                        <a class="favorite {{ ($wishlist == true)? 'wishlist-active' : '' }}" href="javascript:"><i class="fa fa-heart-o"></i></a>
+                                        <a href="javascript:void(0)" class="favorite wishlist {{ ( $wishlist == true) ? 'wishlist-active' : '' }}" id="wishlist-{{ $vendor->id }}"  data-vendor-id="{{ $vendor->id }}" data-action="{{ url('tools/wishlist/change-status/') }}" data-status="{{ ( $wishlist == true) ? '1' : '0' }}"><i class="fa fa-heart-o"></i></a>
                                     @endif
                                 </div>
                             </div>

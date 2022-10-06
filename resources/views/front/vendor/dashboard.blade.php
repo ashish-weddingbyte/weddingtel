@@ -7,6 +7,29 @@
 
 <div class="main-contaner">
     <div class="container">
+        <div class="section-title wide-tb-30">
+            <h2>Dashborad</h2>
+            <div class="mt-1">
+                @if(empty($details->brandname))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span>Please Add Brandname to Your Profile to visible in the Vendor listing</span>
+                        <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                    </div>
+                @endif
+                @if(empty($details->featured_image))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span>Please Add Featured Image to Your Profile to visible in the Vendor listing</span>
+                        <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                    </div>
+                @endif
+                @if(empty($details->description))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span>Please Add Description to Your Profile to visible in the Vendor listing</span>
+                        <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                    </div>
+                @endif
+            </div> 
+        </div>
 
         <!-- Vendor Cover Images Section -->
         <div class="card-shadow">

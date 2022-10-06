@@ -25,11 +25,11 @@ class VendorProfileController extends Controller
 
         $user_id = Session::get('user_id');
         
-        $data['user'] = User::find($user_id);
-        $data['details'] = VendorDetail::where('user_id',$user_id)->first();
-        $data['social'] =   SocialLink::where('user_id',$user_id)->first();
-        $data['gallery'] =  MediaGallery::where('user_id',$user_id)->where('user_type','vendor')->get();
-        $data['cities'] = City::orderBy('name','asc')->get();
+        $data['user']       =   User::find($user_id);
+        $data['details']    =   VendorDetail::where('user_id',$user_id)->first();
+        $data['social']     =   SocialLink::where('user_id',$user_id)->first();
+        $data['gallery']    =   MediaGallery::where('user_id',$user_id)->where('user_type','vendor')->get();
+        $data['cities']     =   City::orderBy('name','asc')->get();
         return view('front.vendor.profile',$data);
     }
 
@@ -119,15 +119,16 @@ class VendorProfileController extends Controller
         
     }
 
-    public function update_social(Request $request){
-
-        
-
-
+    public function update_social(Request $request){ 
         $user_id = Session::get('user_id');
-
         $social_links = SocialLink::where('user_id',$user_id)->first();
 
+        if(empty($social_links)){
+            $social_links = new SocialLink;
+            $social_links->user_id = $user_id;
+            $social_links->save();
+        }
+        
         if($social_links){
             if($request->filled('facebook')){
                 $request->validate([
@@ -180,8 +181,6 @@ class VendorProfileController extends Controller
     public function update_business_profie(Request $request){
         
         $user_id = Session::get('user_id');
-
-
         $detals = VendorDetail::where('user_id',$user_id)->first();
 
         if($detals){
@@ -193,15 +192,14 @@ class VendorProfileController extends Controller
 
             if ($request->hasFile('featured_image')) {
                 $request->validate([
-                    'featured_image'  =>'image|mimes:jpg,png,jpeg|max:1024',
+                    'featured_image'  =>'image|mimes:jpg,png,jpeg|max:512',
                 ]);
-                Storage::delete('public/upload/vendor/business'.$detals->featured_image);
+                Storage::delete('public/upload/vendor/featured'.$detals->featured_image);
                 $image_name  =  $request->file('featured_image')->hashName();
                 $detals->featured_image = $image_name;
-                $request->file('featured_image')->storeAs('public/upload/vendor/business',$image_name);
+                $request->file('featured_image')->storeAs('public/upload/vendor/featured',$image_name);
                 $detals->save();
             }
-
 
 
             if($request->filled('description')){

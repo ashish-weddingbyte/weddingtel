@@ -361,17 +361,6 @@ class UserController extends Controller
                 break;
             }
             $vendor_details->save();
-           
-            // Add Social Links
-            $social = new SocialLink;
-            $social->user_id= $lastId;
-            $social->facebook=Null;
-            $social->youtube=NULL;
-            $social->instagram=Null;
-            $social->twitter=Null;
-            $social->save();
-
-
 
             $otp = rand(111111,999999);
             $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Plase do not share this OTP with anyone.Thanks";

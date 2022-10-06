@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\front;
-
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +16,7 @@ use App\Models\City;
 use App\Models\Leads;
 use App\Models\Query;
 use App\Models\Otp;
+use App\Models\Review;
 use vendor_helper;
 use otp_helper;
 use File;
@@ -103,6 +104,57 @@ class HomeController extends Controller
         }else{
             return redirect('/');
         }
+    }
+
+
+    public function write_review(Request $request){
+        $request->validate([
+            'star'  =>  'required',
+            'name' => 'required',
+            'email' => 'required',
+            'comment' => 'required',
+        ]);
+
+        $user_id = $request->user_id;
+        $vendor_id = $request->vendor_id;
+        $name = $request->name;
+        $email = $request->email;
+        $comment = $request->comment;
+        $rating = $request->star;
+
+        if(!empty($user_id)){
+            $review = Review::where('user_id',$user_id)->where('vendor_id',$vendor_id)->first();
+            if(!empty($review)){
+                $review->comment = $comment;
+                $review->rating = $rating;
+            }else{
+                $review = new Review;
+                $review->vendor_id = $vendor_id;
+                $review->user_id = $user_id;
+                $review->name = $name;
+                $review->email = $email;
+                $review->comment = $comment;
+                $review->rating = $rating;
+                $review->user_type = 'user';
+                $review->status = '1';
+            }
+        }else{
+            $review = new Review;
+            $review->vendor_id = $vendor_id;
+            $review->name = $name;
+            $review->email = $email;
+            $review->comment = $comment;
+            $review->rating = $rating;
+            $review->user_type = 'guest';
+            $review->status = '1';
+        }
+
+        $review->save();
+        Session::flash('message', 'You Write a Review Successfully!');
+        Session::flash('class', 'alert-success');
+        $url = vendor_helper::vendor_profile_url($vendor_id);
+        return redirect("$url");
+
     }
 
 

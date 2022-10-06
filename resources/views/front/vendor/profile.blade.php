@@ -19,11 +19,29 @@
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
-                        <ul>
+                        <ul class="mb-0">
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
+                    </div>
+                @endif
+                @if(empty($details->brandname))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span>Please Add Brandname to Your Profile to visible in the Vendor listing</span>
+                        <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                    </div>
+                @endif
+                @if(empty($details->featured_image))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span>Please Add Featured Image to Your Profile to visible in the Vendor listing</span>
+                        <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                    </div>
+                @endif
+                @if(empty($details->description))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span>Please Add Description to Your Profile to visible in the Vendor listing</span>
+                        <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></a>
                     </div>
                 @endif
             </div> 
@@ -175,7 +193,7 @@
                                         <div class="custom-file-holder">
                                             @if($details->featured_image)
                                                 <div class="avatar-wrap">
-                                                    <img src="{{ asset('storage/upload/vendor/business/'.$details->featured_image) }}" alt="">
+                                                    <img src="{{ asset('storage/upload/vendor/featured/'.$details->featured_image) }}" alt="">
                                                 </div>
                                             @else
                                                 <i class="fa fa-picture-o"></i>
@@ -209,7 +227,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <textarea name="description" id="description" cols="5" rows="10" class="summernote">{{ $details->description }}</textarea>
+                                                <textarea name="description" id="description" cols="5" rows="10" class="summernote_2">{{ $details->description }}</textarea>
                                             </div>
                                         </div>
 
@@ -225,14 +243,14 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <textarea name="service_offered" id="service_offered" cols="5" rows="10" class="summernote">{{ $details->service_offered }}</textarea>
+                                                <textarea name="service_offered" id="service_offered" cols="5" rows="10" class="summernote_2">{{ $details->service_offered }}</textarea>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
 
-                                <div class="todo-subhead">
+                                <!-- <div class="todo-subhead">
                                     <h3>Business Details</h3>
                                 </div>
 
@@ -245,7 +263,7 @@
                                         </div>
 
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="todo-subhead">
                                     <h3>Travel to client Venue</h3>
@@ -271,7 +289,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <input type="text" name="cancel_policy" id="cancel_policy" class="form-control" placeholder="No Refund">
+                                                <input type="text" name="cancel_policy" id="cancel_policy" value="{{ $details->cancel_policy }}" class="form-control" placeholder="No Refund">
                                             </div>
                                         </div>
                                     </div>        
@@ -284,7 +302,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <input type="text" name="youtube" id="youtube" class="form-control" placeholder="Youtube" value="{{ $details->youtube }}">
+                                                <input type="text" name="youtube" id="youtube" class="form-control" placeholder="Youtube Url" value="{{ $details->youtube }}">
                                             </div>
                                         </div>
                                     </div>        
@@ -490,7 +508,22 @@
                             <div class="card-shadow-header">
                                 <div class="head-simple">
                                     Social Media
-                                </div>                                            
+                                </div>
+                                <?php
+                                    if(!empty($social)){
+                                        $facebook = $social->facebook;
+                                        $twitter = $social->twitter;
+                                        $instagram = $social->instagram;
+                                        $website = $social->website;
+                                        $youtube = $social->youtube;
+                                    }else{
+                                        $facebook = "";
+                                        $twitter = "";
+                                        $instagram = "";
+                                        $website = "";
+                                        $youtube = "";
+                                    }
+                                ?>
                             </div>
                             <div class="card-shadow-body">
                                 <form method="post" action="{{ url('/vendor/profile/social') }}">
@@ -498,28 +531,28 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-dark" name="facebook" placeholder="Facebook" value="{{ $social->facebook }}">
+                                                <input type="text" class="form-control form-dark" name="facebook" placeholder="Facebook" value="{{ $facebook }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-dark" name="twitter" placeholder="Twitter" value="{{ $social->twitter }}" >
+                                                <input type="text" class="form-control form-dark" name="twitter" placeholder="Twitter" value="{{ $twitter }}" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-dark" name="instagram" placeholder="Instagram" value="{{ $social->instagram }}" >
+                                                <input type="text" class="form-control form-dark" name="instagram" placeholder="Instagram" value="{{ $instagram }}" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-dark" name="youtube" placeholder="Youtube" value="{{ $social->youtube }}" >
+                                                <input type="text" class="form-control form-dark" name="youtube" placeholder="Youtube" value="{{ $youtube }}" >
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-dark" name="website" placeholder="Website" value="{{ $social->website }}">
+                                                <input type="text" class="form-control form-dark" name="website" placeholder="Website" value="{{ $website }}">
                                             </div>
                                         </div>
 

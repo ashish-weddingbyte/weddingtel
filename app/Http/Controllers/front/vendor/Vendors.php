@@ -9,6 +9,7 @@ use App\Models\PaymentHistory;
 use App\Models\LeadPaidVendor;
 use App\Models\PositionPaidVendor;
 use App\Models\VendorDetail;
+use App\Models\Wishlist;
 use Carbon\Carbon;
 
 class Vendors extends Controller
@@ -31,10 +32,11 @@ class Vendors extends Controller
                                         ->where('is_active','1')
                                         ->first();
 
-        // $end_date = new Carbon($paid->end_at);
-        // $now = new Carbon( date('Y-m-d') );
-        // $data['plan_expire_days'] = $end_date->diffInDays($now);
-         
+        if(!empty($paid)){                                
+            $end_date = new Carbon($paid->end_at);
+            $now = new Carbon( date('Y-m-d') );
+            $data['plan_expire_days'] = $end_date->diffInDays($now);
+        } 
         return view('front.vendor.dashboard',$data);
     }
     
@@ -62,6 +64,22 @@ class Vendors extends Controller
     }
 
     public function wishlist(){
-        return view('front.vendor.wishlist');
+
+        $user_id = Session::get('user_id');
+
+        $conditions = [
+            ['users.user_type','user'],
+            ['users.status','1'],
+            ['wishlists.to_id',$user_id]
+        ];
+        
+        $data['all_vendors']  = Wishlist::join('user_details','user_details.user_id','=','wishlists.from_id')
+                                ->join('users', 'users.id', '=', 'wishlists.from_id')
+                                ->join('cities','cities.id','=','user_details.city_id')
+                                ->where($conditions)
+                                ->select(['users.id','users.name','cities.name as city_name','wishlists.created_at','users.mobile'])
+                                ->orderBy('wishlists.id','desc')
+                                ->get();
+        return view('front.vendor.wishlist',$data);
     }
 }

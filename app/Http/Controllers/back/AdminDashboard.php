@@ -11,7 +11,6 @@ class AdminDashboard extends Controller
         $this->middleware('is_session');
     }
 
-
     public function dashboard(){
         return view('back.dashboard');
     }

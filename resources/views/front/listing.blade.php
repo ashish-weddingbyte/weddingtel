@@ -116,7 +116,7 @@
 
                     $url = vendor_helper::vendor_profile_url($vendor->id);
                     $verified = vendor_helper::check_verified_vendor($vendor->id);
-
+                    $wishlist = user_helper::check_wishlist($vendor->id);
                     $paid = true ;
 
                 ?>
@@ -158,9 +158,9 @@
                                     <a class="tags" href="{{ $url }}">
                                         {{ $vendor->category_name }}
                                     </a>
-                                    <a class="favorite" href="javascript.html">
-                                        <i class="fa fa-heart-o"></i>
-                                    </a>
+                                     @if(Session::get('user_type') == 'user')
+                                        <a href="javascript:void(0)" class="favorite wishlist {{ ( $wishlist == true) ? 'wishlist-active' : '' }}" id="wishlist-{{ $vendor->id }}"  data-vendor-id="{{ $vendor->id }}" data-action="{{ url('tools/wishlist/change-status/') }}" data-status="{{ ( $wishlist == true) ? '1' : '0' }}"><i class="fa fa-heart-o"></i></a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

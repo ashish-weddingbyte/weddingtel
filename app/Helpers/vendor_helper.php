@@ -12,7 +12,7 @@ class vendor_helper {
         $data = VendorDetail::where('user_id', $id)->first();
         if(!empty($data)){
             $brandname = str_replace(' ','-', trim($data->brandname) );
-            $id = $data->id; 
+            $id = $data->user_id; 
             $url =  url('/').'/'.'profile/'.$brandname.'-'.$id;
             return $url;
         }else{
@@ -96,5 +96,26 @@ class vendor_helper {
         }
     }
 
+
+    public static function youtube_url($url){
+        preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
+        if(isset($match[1])){
+            $youtube_url = 'https://www.youtube.com/watch?v='.$match[1];
+        }else{
+            $youtube_url = "";
+        }
+        return $youtube_url;
+    }
+
+    public static function youtube_thumbnail($url){
+        preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
+        if(isset($match[1])){
+            $youtube_id = $match[1];
+            $image_url = "https://img.youtube.com/vi/$youtube_id/sddefault.jpg";
+        }else{
+            $image_url = asset('front/images/vendors/vendor_video.jpg');
+        }
+        return $image_url;
+    }
 }
 ?>
