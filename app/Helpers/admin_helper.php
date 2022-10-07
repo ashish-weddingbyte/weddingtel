@@ -2,6 +2,10 @@
 namespace App\Helpers;
 
 use Illuminate\Http\Request;
+use App\Models\MediaGallery;
+use App\Models\PositionPaidVendor;
+use App\Models\LeadPaidVendor;
+use Carbon\Carbon;
 
 class admin_helper {
     
@@ -32,5 +36,56 @@ class admin_helper {
         return $menu_open;
     }
 
+
+
+    public static function is_gallery($id){
+        $data = MediaGallery::where('user_id',$id)->where('status','1')->first();
+        if(!empty($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function is_lead_plan_active($id){
+        $data = LeadPaidVendor::where('user_id',$id)->where('is_active','1')->first();
+        if(!empty($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function is_position_plan_active($id){
+        $data = PositionPaidVendor::where('user_id',$id)->where('is_active','1')->first();
+        if(!empty($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    public static function used_leads($id){
+        $data = LeadPaidVendor::where('user_id',$id)->where('is_active','1')->first();
+        if(!empty($data)){
+           return  ($data->lead - $data->available_leads);
+        }else{
+            return 0;
+        }
+    }
+
+    public static function expiry_days($id){
+        $data = LeadPaidVendor::where('user_id',$id)->where('is_active','1')->first();
+        if(!empty( $data) ){
+            $toDate = Carbon::parse($data->start_at);
+            $fromDate = Carbon::parse($data->end_at);
+            $days = $toDate->diffInDays($fromDate);
+            return $days;
+        }else{
+            return 0 ;
+        }
+
+    }
 }
 ?>

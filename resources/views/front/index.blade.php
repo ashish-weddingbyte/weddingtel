@@ -298,6 +298,7 @@
                     $url = vendor_helper::vendor_profile_url($vendor->id);
                     $verified = vendor_helper::check_verified_vendor($vendor->id);
                     $wishlist = user_helper::check_wishlist($vendor->id);
+                    $rating = vendor_helper::get_rating_of_vendor($vendor->id);
                 ?>
                 <div class="item">
                     <div class="wedding-listing">
@@ -334,13 +335,10 @@
                             </div>
                             <div class="reviews">
                                 <span class="stars">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                    <i class="fa fa-star-o"></i>                                    
+                                    {!! str_repeat('<span><i class="fa fa-star"></i></span>', round($rating['avg']) ) !!}
+                                    {!! str_repeat('<span><i class="fa fa-star-o"></i></span>', 5 - round($rating['avg']) ) !!}                                    
                                 </span>
-                                (6 review)
+                                ({{ $rating['count'] }} review)
                             </div>
                         </div>
                     </div>

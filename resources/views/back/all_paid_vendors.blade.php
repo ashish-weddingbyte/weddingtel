@@ -13,13 +13,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>All Vendors</h1>
+            <h1>All Paid Vendors</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ url('byte/dashboard') }}">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="{{ url('byte/vendors/') }}">Vendors</a></li>
-              <li class="breadcrumb-item active">All Vendors</li>
+              <li class="breadcrumb-item active">All Paid Vendors</li>
             </ol>
           </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="col-12">
             <div class="card card-info">
             <div class="card-header">
-                <h3 class="card-title">All Vendor List</h3>
+                <h3 class="card-title">All Leads Plan Vendor List</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -62,15 +62,17 @@
                                     <th>Category</th>
                                     <th>Status</th>
                                     <th>Is Photo Uploaded</th>
-                                    <th>Is Paid</th>
+                                    <th>Plan Details</th>
+                                    <th>Lead Details</th>
+                                    <th>Addon Details</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($all_vendors as $vendor)
+                                @foreach($leads_paid_vendor as $vendor)
                                 <?php
                                     $gallery = admin_helper::is_gallery($vendor->id);
-                                    $lead = admin_helper::is_lead_plan_active($vendor->id);
-                                    $position = admin_helper::is_position_plan_active($vendor->id);
+                                    $expiry_days = admin_helper::expiry_days($vendor->id);
+                                    $user_leads = admin_helper::used_leads($vendor->id);
                                 ?>
                                 <tr>
                                     <td><input type="checkbox" class="sub_chk" data-id="{{ $vendor->id }}"></td>
@@ -108,19 +110,17 @@
                                         </p>
                                     </td>
                                     <td>
-                                        <p>Lead Plan: 
-                                            @if($lead == true)
-                                                <span class="text-success font-weight-bold">Yes</span>
-                                            @else
-                                                <span class="text-danger font-weight-bold">No</span></p>
-                                            @endif
-                                        </p>
-                                        <p>Position Plan: 
-                                            @if($position == true)
-                                                <span class="text-success font-weight-bold">Yes</span>
-                                            @else
-                                                <span class="text-danger font-weight-bold">No</span></p>
-                                            @endif</p>
+                                        <p>Start : <span class="text-success">{{ date('M d, Y', strtotime($vendor->start_at) ) }}</span></p>
+                                        <p>End : <span class="text-danger">{{ date('M d, Y', strtotime($vendor->end_at) ) }}</span></p>
+                                        <p>Expiry Days : <span class="font-weight-bold">{{ $expiry_days }}</span></p>
+                                    </td>
+                                    <td>
+                                        <p>Total Leads : <span class="text-success font-weight-bold">{{ $vendor->lead }}</span></p>
+                                        <p>Available Leads : <span class="text-success font-weight-bold">{{ $vendor->available_leads }}</span></p>
+                                        <p>Used Leads: <span class="text-success font-weight-bold">{{ ucwords($user_leads) }}</span></p>
+                                    </td>
+                                    <td>
+                                        <p>Is Addon : <span class="text-success font-weight-bold">{{ ucwords($vendor->is_addon) }}</span></p>
                                     </td>
                                 </tr>
                                 @endforeach

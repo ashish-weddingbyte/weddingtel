@@ -77,8 +77,7 @@
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>                                    
+                                            <i class="fa fa-star"></i>                                  
                                         </span>
                                         <span class="right">{{ $four['count'] }}</span>
                                         <div>

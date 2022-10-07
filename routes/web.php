@@ -185,9 +185,17 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
 Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], function(){
 
     Route::get('/dashboard', [AdminDashboard::class,'dashboard']);
+
+    Route::get('/new-request',[Users::class,'new_request']);
+
     Route::get('/vendors',[Users::class,'all_vendors']);
     Route::get('/vendors/all-vendors',[Users::class,'all_vendors']);
     Route::post('/vendors/all-vendors/action',[Users::class,'action']);
+    Route::get('/vendors/inactive-vendors',[Users::class,'inactive_vendors']);
+    Route::get('/vendors/top-vendors',[Users::class,'top_vendors']);
+    Route::get('/vendors/featured-vendors',[Users::class,'featured_vendors']);
+    Route::get('/vendors/paid-vendors',[Users::class,'paid_vendors']);
+
 });
 
 // logout route

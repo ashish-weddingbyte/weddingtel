@@ -15,7 +15,7 @@
         <li class="nav-item {{ admin_helper::is_open_menu('new-request') }}">
             <a href="{{ url('byte/new-request') }}" class="nav-link {{ admin_helper::active_menu('new-request') }}">
                 <i class="nav-icon fas fa-user"></i>
-                <p>New Request</p>
+                <p>New Request <span class="right badge badge-danger">New</span></p>
             </a>
         </li>
 
@@ -35,7 +35,7 @@
                 </a>
                 </li>
                 <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url('/byte/vendors/paid-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('paid-vendors') }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>All Paid Vendors</p>
                 </a>
@@ -47,19 +47,19 @@
                 </a>
                 </li>
                 <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url('/byte/vendors/inactive-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('inactive-vendors') }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>In-active Vendors</p>
                 </a>
                 </li>
                 <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url('/byte/vendors/top-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('top-vendors') }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Top Vendors</p>
                 </a>
                 </li>
                 <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url('/byte/vendors/featured-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('featured-vendors') }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Featured Vendors</p>
                 </a>
