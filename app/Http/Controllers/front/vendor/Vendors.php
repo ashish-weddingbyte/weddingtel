@@ -10,6 +10,7 @@ use App\Models\LeadPaidVendor;
 use App\Models\PositionPaidVendor;
 use App\Models\VendorDetail;
 use App\Models\Wishlist;
+use App\Models\Review;
 use Carbon\Carbon;
 
 class Vendors extends Controller
@@ -45,7 +46,12 @@ class Vendors extends Controller
     }
 
     public function review(){
-        return view('front.vendor.review');
+        $user_id = Session::get('user_id');
+
+        $data['avg_count'] = Review::where('vendor_id',$user_id)->avg('rating');
+        $data['total'] =   Review::where('vendor_id',$user_id)->count();
+        $data['all_ratings'] = Review::where('vendor_id',$user_id)->where('status','1')->orderBy('id','desc')->get();
+        return view('front.vendor.review',$data);
     }
     
 

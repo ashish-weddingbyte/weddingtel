@@ -12,7 +12,7 @@
         </div>
         <!-- Page Heading -->
 
-        <!-- My Invoice Section -->
+        <!-- My wishlist Section -->
         <div class="card-shadow">
             <div class="card-shadow-body p-3">
                 <div class="table-responsive">
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        <!-- My Invoice Section -->  
+        <!-- My wishlist Section -->  
     </div>
 </div>
 @endsection

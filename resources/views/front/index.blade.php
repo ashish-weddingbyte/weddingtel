@@ -225,7 +225,7 @@
 
                             $verified = vendor_helper::check_verified_vendor($vendor->id);                    
                             $url = vendor_helper::vendor_profile_url($vendor->id);
-
+                            $avg_rating = vendor_helper::get_avg_rating_of_vendor($vendor->id);
                             $wishlist = user_helper::check_wishlist($vendor->id);
                         ?>
                         <div class="col ">
@@ -241,7 +241,7 @@
                                         </div>
                                     </div>
                                     <div class="img-content">
-                                        <span class="rating">1.0</span>
+                                        <span class="rating">{{ round($avg_rating,1) }}</span>
                                         @if(Session::get('user_type') == 'user')
                                             <a href="javascript:void(0)" class="favorite wishlist {{ ( $wishlist == true) ? 'wishlist-active' : '' }}" id="wishlist-{{ $vendor->id }}"  data-vendor-id="{{ $vendor->id }}" data-action="{{ url('tools/wishlist/change-status/') }}" data-status="{{ ( $wishlist == true) ? '1' : '0' }}"><i class="fa fa-heart-o"></i></a>
                                         @endif

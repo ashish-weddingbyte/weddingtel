@@ -1,11 +1,12 @@
 <?php
 namespace App\Helpers;
-
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\VendorDetail;
 use App\Models\LeadPaidVendor;
 use App\Models\PositionPaidVendor;
 use App\Models\MediaGallery;
+use App\Models\Review;
 
 class vendor_helper {
     public static function vendor_profile_url($id){
@@ -117,5 +118,27 @@ class vendor_helper {
         }
         return $image_url;
     }
+
+    public static function get_rating($rating){
+        $user_id = Session::get('user_id');
+
+        $data['avg'] = Review::where('vendor_id',$user_id)->where('rating',$rating)->where('status','1')->avg('rating');
+        $data['count'] = Review::where('vendor_id',$user_id)->where('rating',$rating)->where('status','1')->count();
+        $data['all_count'] = Review::where('vendor_id',$user_id)->count();
+        $data['percentage'] = round(($data['count']/$data['all_count'])*100);
+        return $data;
+    }
+
+    public static function get_avg_rating_of_vendor($user_id){
+        return Review::where('vendor_id',$user_id)->where('status','1')->avg('rating');
+    }
+
+
+    public static function get_rating_of_vendor($user_id){
+        $data['avg'] = Review::where('vendor_id',$user_id)->where('status','1')->avg('rating');
+        $data['count'] = Review::where('vendor_id',$user_id)->where('status','1')->count();
+        return $data;
+    }
+
 }
 ?>
