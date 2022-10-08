@@ -87,5 +87,20 @@ class admin_helper {
         }
 
     }
+
+    public static function expiry_days_position($id){
+        $data = PositionPaidVendor::where('user_id',$id)->where('is_active','1')->first();
+        if(!empty( $data) ){
+            $toDate = Carbon::parse($data->start_at);
+            $fromDate = Carbon::parse($data->end_at);
+            $days = $toDate->diffInDays($fromDate);
+            return $days;
+        }else{
+            return 0 ;
+        }
+
+    }
+
+    
 }
 ?>

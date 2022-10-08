@@ -29,29 +29,36 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="{{ url('/byte/vendors/all-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('all-vendors') }}">
+                <a href="{{ url('/byte/vendors/active-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('active-vendors') }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>All Vendors</p>
-                </a>
-                </li>
-                <li class="nav-item">
-                <a href="{{ url('/byte/vendors/paid-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('paid-vendors') }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>All Paid Vendors</p>
-                </a>
-                </li>
-                <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Expired Paid Vendors</p>
+                    <p>Active Vendors</p>
                 </a>
                 </li>
                 <li class="nav-item">
                 <a href="{{ url('/byte/vendors/inactive-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('inactive-vendors') }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>In-active Vendors</p>
+                    <p>In-Active Vendors</p>
                 </a>
                 </li>
+                <li class="nav-item">
+                <a href="{{ url('/byte/vendors/archive-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('archive-vendors') }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Archive Vendors</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ url('/byte/vendors/paid-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('paid-vendors') }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Paid Vendors</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ url('/byte/vendors/expire-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('expire-vendors') }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Expired Paid Vendors</p>
+                </a>
+                </li>
+                
                 <li class="nav-item">
                 <a href="{{ url('/byte/vendors/top-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('top-vendors') }}">
                     <i class="far fa-circle nav-icon"></i>
@@ -66,14 +73,14 @@
                 </li>
             </ul>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ admin_helper::is_open_menu('plans') }}">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-table"></i>
                 <p>Plans<i class="fas fa-angle-left right"></i></p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ url('/byte/plans') }}" class="nav-link {{ admin_helper::active_sub_menu('plans') }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>All Plans</p>
                 </a>
@@ -86,18 +93,10 @@
                 </li>
             </ul>
         </li>
-        <!-- <li class="nav-item">
-        <a href="../widgets.html" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-            Widgets
-            <span class="right badge badge-danger">New</span>
-            </p>
-        </a>
-        </li> -->
-        <li class="nav-item">
+        
+        <li class="nav-item {{ admin_helper::is_open_menu('settings') }}">
             <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
+                <i class="nav-icon fas fa-cog"></i>
                 <p>
                 Settings
                 <i class="fas fa-angle-left right"></i>
@@ -124,41 +123,42 @@
                 </li>
             </ul>
         </li>
-        <li class="nav-item">
-        <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-chart-pie"></i>
-            <p>
-            Charts
-            <i class="right fas fa-angle-left"></i>
-            </p>
-        </a>
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-            <a href="../charts/chartjs.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>ChartJS</p>
+        <li class="nav-item {{ admin_helper::is_open_menu('leads') }}">
+            <a href="{{ url('/byte/leads') }}" class="nav-link {{ admin_helper::active_menu('leads') }}">
+                <i class="nav-icon fas fa-list"></i>
+                <p>
+                Leads
+                <i class="right fas fa-angle-left"></i>
+                </p>
             </a>
-            </li>
-            <li class="nav-item">
-            <a href="../charts/flot.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Flot</p>
-            </a>
-            </li>
-            <li class="nav-item">
-            <a href="../charts/inline.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Inline</p>
-            </a>
-            </li>
-            <li class="nav-item">
-            <a href="../charts/uplot.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>uPlot</p>
-            </a>
-            </li>
-        </ul>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="{{ url('/byte/leads/approved') }}" class="nav-link {{ admin_helper::active_sub_menu('approved') }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>All Approved Leads</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ url('/byte/leads/unapproved') }}" class="nav-link {{ admin_helper::active_sub_menu('unapproved') }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>All Un-Approved Leads</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ url('/byte/leads/archive') }}" class="nav-link {{ admin_helper::active_sub_menu('archive') }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>All Archive Leads</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Leads</p>
+                </a>
+                </li>
+            </ul>
         </li>
+        <?php /*
         <li class="nav-item">
         <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tree"></i>
@@ -629,6 +629,7 @@
             <p>Informational</p>
         </a>
         </li>
+        */ ?>
     </ul>
     </nav>
     <!-- /.sidebar-menu -->

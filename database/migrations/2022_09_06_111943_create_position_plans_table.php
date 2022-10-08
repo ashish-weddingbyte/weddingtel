@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('position');
             $table->integer('price');
             $table->integer('days');
+            $table->text('desc');
             $table->text('image')->nullable();
             $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();

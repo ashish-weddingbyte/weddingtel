@@ -88,8 +88,7 @@ class UserApiController extends Controller
             'message' => "User registered successfully",
             'token_type' => 'Bearer',
             'access_token' => $token
-        ]);
-        return response()->json($respose,200);
+        ],200);
     }
 
     //  api for login with email

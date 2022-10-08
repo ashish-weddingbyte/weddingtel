@@ -5,7 +5,7 @@ jQuery(document).ready(function () {
         },
     });
 
-    $("#dataTable").DataTable({
+    $(".dataTable").DataTable({
         autoWidth: false,
         responsive: true,
         columnDefs: [

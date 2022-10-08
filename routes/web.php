@@ -31,8 +31,8 @@ use App\Http\Controllers\front\vendor\VendorLeadController;
 // admin Controllers
 use App\Http\Controllers\back\Users;
 use App\Http\Controllers\back\AdminDashboard;
-
-
+use App\Http\Controllers\back\Plans;
+use App\Http\Controllers\back\LeadController;
 
 /**====================================================================================== */
 
@@ -188,13 +188,24 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
 
     Route::get('/new-request',[Users::class,'new_request']);
 
-    Route::get('/vendors',[Users::class,'all_vendors']);
-    Route::get('/vendors/all-vendors',[Users::class,'all_vendors']);
-    Route::post('/vendors/all-vendors/action',[Users::class,'action']);
+    Route::get('/vendors',[Users::class,'active_vendors']);
+    Route::get('/vendors/active-vendors',[Users::class,'active_vendors']);
+    Route::get('/vendors/archive-vendors',[Users::class,'archive_vendors']);
+    Route::post('/vendors/action',[Users::class,'action']);
     Route::get('/vendors/inactive-vendors',[Users::class,'inactive_vendors']);
     Route::get('/vendors/top-vendors',[Users::class,'top_vendors']);
     Route::get('/vendors/featured-vendors',[Users::class,'featured_vendors']);
     Route::get('/vendors/paid-vendors',[Users::class,'paid_vendors']);
+    Route::get('/vendors/expire-vendors',[Users::class,'expire_vendors']);
+
+    Route::get('/plans',[Plans::class,'all_plans']);
+
+
+    Route::get('/leads',[LeadController::class,'all_approved_leads']);
+    Route::get('/leads/approved',[LeadController::class,'all_approved_leads']);
+    Route::get('/leads/unapproved',[LeadController::class,'all_unapproved_leads']);
+    Route::get('/leads/archive',[LeadController::class,'all_archive_leads']);
+    Route::post('/leads/action',[LeadController::class,'action']);
 
 });
 

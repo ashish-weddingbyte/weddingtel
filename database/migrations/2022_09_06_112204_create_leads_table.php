@@ -30,6 +30,7 @@ return new class extends Migration
             $table->enum('approved_status', ['0', '1'])->default('0');
             $table->integer('view_count');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

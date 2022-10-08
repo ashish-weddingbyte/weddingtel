@@ -1,7 +1,7 @@
 
 @extends('back.layouts.admin_layout')
 
-@section('title', 'All Vendors')
+@section('title', 'New User Requests')
 
 
 @section('main-container')
@@ -39,7 +39,7 @@
         <div class="col-12">
             <div class="card card-secondary">
             <div class="card-header">
-                <h3 class="card-title">New User List</h3>
+                <h3 class="card-title">New Users</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -53,7 +53,7 @@
             <div class="card-body">
                 <form action="" method="post">
                     <div class="table-responsive">
-                        <table id="dataTable" class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped dataTable">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" name="checkAll" id="checkAll"></th>

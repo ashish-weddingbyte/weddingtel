@@ -1,7 +1,7 @@
 
 @extends('back.layouts.admin_layout')
 
-@section('title', 'All Vendors')
+@section('title', 'All In-Active Vendors')
 
 
 @section('main-container')
@@ -38,9 +38,9 @@
     <div class="container-fluid">
         <div class="row">
         <div class="col-12">
-            <div class="card card-success">
+            <div class="card card-warning">
             <div class="card-header">
-                <h3 class="card-title">All Vendor List</h3>
+                <h3 class="card-title">All In-Active Vendor</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -54,7 +54,7 @@
             <div class="card-body">
                 <form action="" method="post">
                     <div class="table-responsive">
-                        <table id="dataTable" class="table table-bordered table-striped">
+                        <table  class="table table-bordered table-striped dataTable">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" name="checkAll" id="checkAll"></th>
@@ -62,14 +62,15 @@
                                     <th>Category</th>
                                     <th>Status</th>
                                     <th>Is Photo Uploaded</th>
+                                    <th>Is Paid</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($all_vendors as $vendor)
                                 <?php
                                     $gallery = admin_helper::is_gallery($vendor->id);
-                                    // $lead = admin_helper::is_lead_plan_active($vendor->id);
-                                    // $position = admin_helper::is_position_plan_active($vendor->id);
+                                    $lead = admin_helper::is_lead_plan_active($vendor->id);
+                                    $position = admin_helper::is_position_plan_active($vendor->id);
                                 ?>
                                 <tr>
                                     <td><input type="checkbox" class="sub_chk" data-id="{{ $vendor->id }}"></td>
@@ -106,6 +107,21 @@
                                             @endif
                                         </p>
                                     </td>
+                                    <td>
+                                        <p>Lead Plan: 
+                                            @if($lead == true)
+                                                <span class="text-success font-weight-bold">Yes</span>
+                                            @else
+                                                <span class="text-danger font-weight-bold">No</span></p>
+                                            @endif
+                                        </p>
+                                        <p>Position Plan: 
+                                            @if($position == true)
+                                                <span class="text-success font-weight-bold">Yes</span>
+                                            @else
+                                                <span class="text-danger font-weight-bold">No</span></p>
+                                            @endif</p>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -113,9 +129,9 @@
                         </table>
                     </div>
                     <hr />
-                    <input type="button" data-action-type="activate" data-action="{{ url('byte/vendors/all-vendors/action') }}" class="btn btn-outline-info submit" value="Activate Vendor" >
+                    <input type="button" data-action-type="activate" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-info submit" value="Activate Vendor" >
 
-                    <input type="button" data-action-type="delete" data-action="{{ url('byte/vendors/all-vendors/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Vendor" >
+                    <input type="button" data-action-type="delete" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Vendor" >
 
                 </form>
             </div>

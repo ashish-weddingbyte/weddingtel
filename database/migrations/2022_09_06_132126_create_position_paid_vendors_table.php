@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('plan_id');
+            $table->foreignId('city_id');
             $table->string('plan_name');
             $table->date('start_at');
             $table->date('end_at');

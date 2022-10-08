@@ -1,7 +1,7 @@
 
 @extends('back.layouts.admin_layout')
 
-@section('title', 'All Vendors')
+@section('title', 'All Active Vendors')
 
 
 @section('main-container')
@@ -13,13 +13,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>All Vendors</h1>
+            <h1>All Active Vendors</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ url('byte/dashboard') }}">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="{{ url('byte/vendors/') }}">Vendors</a></li>
-              <li class="breadcrumb-item active">All Vendors</li>
+              <li class="breadcrumb-item active">All Active Vendors</li>
             </ol>
           </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="col-12">
             <div class="card card-info">
             <div class="card-header">
-                <h3 class="card-title">All Vendor List</h3>
+                <h3 class="card-title">All Active Vendors</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -54,7 +54,7 @@
             <div class="card-body">
                 <form action="" method="post">
                     <div class="table-responsive">
-                        <table id="dataTable" class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped dataTable">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" name="checkAll" id="checkAll"></th>
@@ -87,6 +87,24 @@
                                                 <span class="text-success font-weight-bold">Yes</span>
                                             @endif
                                             @if($vendor->status == '0')
+                                                <span class="text-danger font-weight-bold">No</span>
+                                            @endif
+                                        </p>
+
+                                        <p>Is Top : 
+                                            @if($vendor->is_top == '1')
+                                                <span class="text-success font-weight-bold">Yes</span>
+                                            @endif
+                                            @if($vendor->is_top == '0')
+                                                <span class="text-danger font-weight-bold">No</span>
+                                            @endif
+                                        </p>
+
+                                        <p>Is Featured : 
+                                            @if($vendor->is_featured == '1')
+                                                <span class="text-success font-weight-bold">Yes</span>
+                                            @endif
+                                            @if($vendor->is_featured == '0')
                                                 <span class="text-danger font-weight-bold">No</span>
                                             @endif
                                         </p>
@@ -129,15 +147,14 @@
                         </table>
                     </div>
                     <hr />
-                    <input type="button" data-action-type="activate" data-action="{{ url('byte/vendors/all-vendors/action') }}" class="btn btn-outline-info submit" value="Activate Vendor" >
+                    
+                    <input type="button" data-action-type="deactivate" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-danger submit" value="De-Activate Vendor" >
 
-                    <input type="button" data-action-type="deactivate" data-action="{{ url('byte/vendors/all-vendors/action') }}" class="btn btn-outline-danger submit" value="De-Activate Vendor" >
+                    <input type="button" data-action-type="delete" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Vendor" >
 
-                    <input type="button" data-action-type="delete" data-action="{{ url('byte/vendors/all-vendors/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Vendor" >
+                    <input type="button" data-action-type="add_top" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-info submit" value="Add Top Vendor" >
 
-                    <input type="button" data-action-type="add_top" data-action="{{ url('byte/vendors/all-vendors/action') }}" class="btn btn-outline-info submit" value="Add Top Vendor" >
-
-                    <input type="button" data-action-type="add_featured" data-action="{{ url('byte/vendors/all-vendors/action') }}" class="btn btn-outline-secondary submit" value="Add Featured Vendor" >
+                    <input type="button" data-action-type="add_featured" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-secondary submit" value="Add Featured Vendor" >
 
                 </form>
             </div>
