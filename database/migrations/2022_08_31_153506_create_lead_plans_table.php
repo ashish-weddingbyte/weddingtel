@@ -26,6 +26,7 @@ return new class extends Migration
             $table->enum('support', ['NA','24/7'])->default('NA');
             $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

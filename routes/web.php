@@ -199,7 +199,8 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::get('/vendors/expire-vendors',[Users::class,'expire_vendors']);
 
     Route::get('/plans',[Plans::class,'all_plans']);
-
+    Route::get('/plans/all-plans',[Plans::class,'all_plans']);
+    Route::post('/plans/action',[Plans::class,'action']);
 
     Route::get('/leads',[LeadController::class,'all_approved_leads']);
     Route::get('/leads/approved',[LeadController::class,'all_approved_leads']);

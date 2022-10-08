@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('image')->nullable();
             $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

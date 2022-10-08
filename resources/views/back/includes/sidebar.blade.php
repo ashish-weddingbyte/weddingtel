@@ -74,13 +74,13 @@
             </ul>
         </li>
         <li class="nav-item {{ admin_helper::is_open_menu('plans') }}">
-            <a href="#" class="nav-link">
+            <a href="{{ url('/byte/plans') }}" class="nav-link {{ admin_helper::active_menu('plans') }}">
                 <i class="nav-icon fas fa-table"></i>
                 <p>Plans<i class="fas fa-angle-left right"></i></p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="{{ url('/byte/plans') }}" class="nav-link {{ admin_helper::active_sub_menu('plans') }}">
+                <a href="{{ url('/byte/plans/all-plans') }}" class="nav-link {{ admin_helper::active_sub_menu('all-plans') }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>All Plans</p>
                 </a>
