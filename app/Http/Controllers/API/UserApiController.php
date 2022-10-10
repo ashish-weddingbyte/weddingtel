@@ -242,9 +242,9 @@ class UserApiController extends Controller
                     $token =  $user->createToken('WeddingByte')->plainTextToken;
 
                     // mark mobile verified
-                    $user_details = UserDetail::where('user_id',$user_id)->first();
-                    $user_details->is_mobile_verified = '1';
-                    $user_details->save();
+                    // $user_details = UserDetail::where('user_id',$user_id)->first();
+                    // $user_details->is_mobile_verified = '1';
+                    // $user_details->save();
 
                     // Session::flash('message', 'Login to Dashboard Successful!');
                     $respose = [

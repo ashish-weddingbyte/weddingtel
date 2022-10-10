@@ -831,6 +831,7 @@ aside.sidebar-wrap {
     transition: all 0.3s ease-in-out;
     flex-direction: column;
     display: flex;
+    background-color: #f8f8f9;
 }
 .open .offcanvas-collapse {
     visibility: visible;
@@ -4470,7 +4471,7 @@ a.ui-button:active,
 -------------------------------------------------------------------*/
 footer {
     background: #302d34;
-    color: #bebebf;
+    color: #444444;
     padding-top: 5rem;
     position: relative;
     z-index: 1;
@@ -4501,7 +4502,7 @@ footer::after {
     width: 200px;
 }
 footer .widget-title {
-    color: #ffffff;
+    color: #000;
     font-size: 1.375rem;
     margin-bottom: 1.2rem;
 }
@@ -4559,6 +4560,10 @@ footer .widget-listing li {
     margin: 0 3px;
 }
 .copyrights-link a:hover {
+    color: #fc2779;
+}
+
+.footer-category-link a {
     color: #fc2779;
 }
 

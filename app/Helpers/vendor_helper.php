@@ -7,6 +7,8 @@ use App\Models\LeadPaidVendor;
 use App\Models\PositionPaidVendor;
 use App\Models\MediaGallery;
 use App\Models\Review;
+use App\Models\Category;
+use App\Models\City;
 
 class vendor_helper {
     public static function vendor_profile_url($id){
@@ -138,6 +140,13 @@ class vendor_helper {
         $data['avg'] = Review::where('vendor_id',$user_id)->where('status','1')->avg('rating');
         $data['count'] = Review::where('vendor_id',$user_id)->where('status','1')->count();
         return $data;
+    }
+
+
+    public static function footer_data($category_id){
+        $vendor = VendorDetail::join('cities','cities.id','=','vendor_details.city_id')
+                            ->where('category_id',$category_id)->select('cities.name')->distinct()->get();
+        return $vendor;
     }
 
 }

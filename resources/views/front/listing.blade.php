@@ -180,13 +180,13 @@
                     @endforeach
                 
                 @else
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="text-center">
-                            <h3>Vendors Not Available in {{ ucwords ($city) }} City.</h3>
-                        </div>
+            
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <h3>Vendors Not Available in {{ ucwords ($city) }} City.</h3>
                     </div>
                 </div>
+                
                 @endif
             </div>
             <!-- all other vendors end -->

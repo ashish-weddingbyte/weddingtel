@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\API\UserApiController;
+use App\Http\Controllers\API\VendorApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,16 @@ Route::get('city/{id}',[UserApiController::class,'city']);
 Route::post('vendor_list',[UserApiController::class,'vendor_list']);
 Route::get('vendor_list/{id}',[UserApiController::class,'vendor_details']);
 Route::get('vendor_list_by_category/{category}',[UserApiController::class,'vendor_list_by_category']);
+
+
+
+
+// vendor routes 
+Route::post('vendor_register', [VendorApiController::class, 'vendor_register']);
+Route::post('vendor_login_with_email', [VendorApiController::class, 'vendor_login_with_email']);
+Route::post('vendor_login_with_otp', [VendorApiController::class, 'vendor_login_with_otp_api']);
+Route::post('vendor_verify_otp', [VendorApiController::class, 'vendor_verify_otp_api']);
+
 
 // procted route with ap token.
 Route::group(['middleware' => ['auth:sanctum']], function () {
