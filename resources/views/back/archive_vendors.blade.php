@@ -148,9 +148,9 @@
                     </div>
                     <hr />
                     
-                    <input type="button" data-action-type="restore" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-success submit" value="Restore Leads" >
+                    <input type="button" data-action-type="restore" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-success submit" value="Restore Vendor" >
 
-                    <input type="button" data-action-type="force_delete" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-danger submit" value="Hard Delete Leads" >
+                    <input type="button" data-action-type="force_delete" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-danger submit" value="Hard Delete Vendor" >
 
                 </form>
             </div>

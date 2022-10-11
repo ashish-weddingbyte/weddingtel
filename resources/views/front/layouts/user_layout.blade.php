@@ -78,6 +78,7 @@
                     $user_id = Session::get('user_id');
                     $user = App\Models\User::find($user_id);
                     $details = App\Models\UserDetail::where('user_id',$user_id)->first();
+                    
                 ?>
                 @if($details->profile)
                     <img src="{{ asset('storage/upload/user/profile/'.$details->profile) }}" alt="">
@@ -89,31 +90,33 @@
             </div>
             <div class="sidebar-nav">
                 <ul class="list-unstyled">
-                    <li class="{{ (request()->segment(2) == 'dashboard') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('dashboard') }}">
                         <a href="{{ url('/tools/dashboard') }}"><i class="weddingdir_heart_ring"></i> Dashboard</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'checklist') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('checklist') }}">
                         <a href="{{ url('/tools/checklist') }}"><i class="weddingdir_checklist"></i> Checklist</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'vendors') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('vendors') }}">
                         <a href="{{ url('/tools/vendors') }}"><i class="weddingdir_vendor_manager"></i> Vendor Manager</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'guestlist') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('guestlist') }}">
                         <a href="{{ url('/tools/guestlist') }}"><i class="weddingdir_guestlist"></i> Guest List</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'budget') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('budget') }}">
                         <a href="{{ url('/tools/budget') }}"><i class="weddingdir_budget"></i> Budget</a>
                     </li>
-
-                    <li class="{{ (request()->segment(2) == 'wishlist') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('review') }}">
+                        <a href="{{ url('/tools/review') }}"><i class="fa fa-star"></i> Ratings & Reviews</a>
+                    </li>
+                    <li class="{{ user_helper::active_menu('wishlist') }}">
                         <a href="{{ url('/tools/wishlist') }}"><i class="weddingdir_heart_double_face"></i> Wishlist</a>
                     </li>
 
-                    <li class="{{ (request()->segment(2) == 'real-wedding') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('real-wedding') }}">
                         <a href="{{ url('/tools/real-wedding') }}"><i class="weddingdir_dove"></i> Real-Wedding</a>
                     </li>
                     
-                    <li class="{{ (request()->segment(2) == 'profile') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('profile') }}">
                         <a href="{{ url('/tools/profile') }}"><i class="weddingdir_my_profile"></i> My Profile</a>
                     </li>
                     
@@ -143,31 +146,31 @@
             </div>
             <div class="sidebar-nav">
                 <ul class="list-unstyled">
-                    <li class="{{ (request()->segment(2) == 'dashboard') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('dashboard') }}">
                         <a href="{{ url('/vendor/dashboard') }}"><i class="weddingdir_dashboard"></i> Dashboard</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'profile') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('profile') }}">
                         <a href="{{ url('/vendor/profile') }}"><i class="weddingdir_my_profile"></i> My Profile</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'plans') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('plans') }}">
                         <a href="{{ url('/vendor/plans') }}"><i class="fa fa-money" aria-hidden="true"></i> Plans</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'leads') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('leads') }}">
                         <a href="{{ url('/vendor/leads') }}"><i class="weddingdir_pricing_plans"></i> Leads</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'query') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('query') }}">
                         <a href="{{ url('/vendor/query') }}"><i class="weddingdir_request_quote"></i> Query</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'wishlist') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('wishlist') }}">
                         <a href="{{ url('/vendor/wishlist') }}"><i class="weddingdir_heart_double"></i> Wishlist</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'invoice') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('invoice') }}">
                         <a href="{{ url('/vendor/invoice') }}"><i class="weddingdir_invoice"></i> Invoice</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'template') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('template') }}">
                         <a href="{{ url('/vendor/template') }}"><i class="weddingdir_my_listing"></i> Template</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'review') ? 'active' : '' }}">
+                    <li class="{{ user_helper::active_menu('review') }}">
                         <a href="{{ url('/vendor/review') }}"><i class="weddingdir_reviews"></i> Reviews</a>
                     </li>
                     <li>

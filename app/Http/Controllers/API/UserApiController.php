@@ -25,6 +25,7 @@ use App\Models\City;
 use App\Models\SocialLink;
 use App\Models\RelationGroup;
 use App\Models\MediaGallery;
+use App\Models\Wishlist;
 use otp_helper;
 use user_helper;
 use Validator;
@@ -1168,6 +1169,15 @@ class UserApiController extends Controller
             'profile'  =>'image|mimes:jpg,png,jpeg|max:512',
         ]);
 
+        if($validator->fails()){
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  $validator->errors()->first()
+            ];
+            return response()->json($respose,422);
+        }
+
         $user_id = Auth::id();
 
         if($user_id){
@@ -1225,6 +1235,15 @@ class UserApiController extends Controller
             'profile'  =>'image|mimes:jpg,png,jpeg|max:1024',
             'partner_profile'  =>'image|mimes:jpg,png,jpeg|max:1024',
         ]);
+
+        if($validator->fails()){
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  $validator->errors()->first()
+            ];
+            return response()->json($respose,422);
+        }
 
         $user_id = Auth::id();
 
@@ -1576,4 +1595,127 @@ class UserApiController extends Controller
             return response()->json($respose,422);
         }
     }
+
+    public function add_wishlist(Request $request){
+        $validator = Validator::make($request->all(),[
+            'vendor_id'  =>'required',
+        ]);
+
+        if($validator->fails()){
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  $validator->errors()->first()
+            ];
+            return response()->json($respose,422);
+        }
+
+        $vendor_id = $request->vendor_id;
+        $user_id = Auth::id();
+
+        if($user_id){
+
+            $wishlist = new Wishlist;
+            $wishlist->from_id = $user_id;
+            $wishlist->to_id = $vendor_id;
+            $wishlist->save();
+
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Vendor Added To wishlist Successfully!",
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Unauthorized',
+                'errors'    =>  'Token Expired or unauthorized User!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
+    public function remove_wishlist(Request $request){
+        $validator = Validator::make($request->all(),[
+            'vendor_id'  =>'required',
+            'wishlist_id'  =>'required',
+        ]);
+
+        if($validator->fails()){
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  $validator->errors()->first()
+            ];
+            return response()->json($respose,422);
+        }
+
+        $vendor_id = $request->vendor_id;
+        $wishlist_id = $request->wishist_id;
+        $user_id = Auth::id();
+
+        if($user_id){
+
+            $wishlist = Wishlist::where('id',$wishlist_id)->where('to_id',$vendor_id)->first();
+            if($wishlist->delete()){
+
+                $respose = [
+                    'status'    =>  true,
+                    'message'   =>  "Vendor Removed From Wishlist Successfully!",
+                ];
+                return response()->json($respose,200);
+            }
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Invalid',
+                'errors'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,422);
+
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Unauthorized',
+                'errors'    =>  'Token Expired or unauthorized User!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
+    public function wishlist(){
+        $user_id = Auth::id();
+
+        if($user_id){
+
+            $conditions = [
+                ['users.user_type','vendor'],
+                ['users.status','1'],
+                ['wishlists.from_id',$user_id]
+            ];
+            
+            $data['all_vendors']  = Wishlist::join('vendor_details','vendor_details.user_id','=','wishlists.to_id')
+                                    ->join('users', 'users.id', '=', 'wishlists.to_id')
+                                    ->join('categories','categories.id','=','vendor_details.category_id')
+                                    ->join('cities','cities.id','=','vendor_details.city_id')
+                                    ->where($conditions)
+                                    ->select(['users.id','users.name','vendor_details.brandname','cities.name as city_name','vendor_details.featured_image','categories.category_name','categories.icon'])
+                                    ->orderBy('wishlists.id','desc')
+                                    ->get();
+
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Success",
+                'data'      =>  $data
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Unauthorized',
+                'errors'    =>  'Token Expired or unauthorized User!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
 }

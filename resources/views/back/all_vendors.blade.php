@@ -1,7 +1,7 @@
 
 @extends('back.layouts.admin_layout')
 
-@section('title', 'All Active Vendors')
+@section('title', 'All Vendors')
 
 
 @section('main-container')
@@ -13,13 +13,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>All Active Vendors</h1>
+            <h1>All Vendors</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ url('byte/dashboard') }}">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="{{ url('byte/vendors/') }}">Vendors</a></li>
-              <li class="breadcrumb-item active">All Active Vendors</li>
+              <li class="breadcrumb-item active">All Vendors</li>
             </ol>
           </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="col-12">
             <div class="card card-info">
             <div class="card-header">
-                <h3 class="card-title">All Active Vendors</h3>
+                <h3 class="card-title">All Vendors</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -148,6 +148,8 @@
                     </div>
                     <hr />
                     
+                    <input type="button" data-action-type="activate" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-info submit" value="Activate Vendor" >
+
                     <input type="button" data-action-type="deactivate" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-danger submit" value="De-Activate Vendor" >
 
                     <input type="button" data-action-type="delete" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Vendor" >

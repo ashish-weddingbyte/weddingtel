@@ -177,6 +177,14 @@ class user_helper {
         }
     }
 
+    public static function active_menu($url = ''){
+        $active = '';
+        if( request()->segment(2) == $url ){
+            $active = 'active';
+        }
+        return $active;
+    }
+
 }
 
 

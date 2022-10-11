@@ -23,29 +23,28 @@ class Users extends Controller
         $this->middleware('is_session');
     }
     
-    public function active_vendors(){
+    public function all_vendors(){
 
         $data['all_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
                                     ->join('categories','categories.id','=','vendor_details.category_id')
                                     ->join('cities','cities.id','=','vendor_details.city_id')
                                     ->where('users.user_type','vendor')
-                                    ->where('users.status','1')
                                     ->select(['users.id','users.name','users.email','users.mobile','users.status','vendor_details.brandname','vendor_details.is_email_verified','vendor_details.is_mobile_verified','cities.name as city_name','vendor_details.featured_image','categories.category_name','vendor_details.is_featured','vendor_details.is_top',])
                                     ->orderBy('users.id','desc')
                                     ->get();
-        return view('back.active_vendors',$data);
+        return view('back.all_vendors',$data);
     }
 
-    public function inactive_vendors(){
-        $data['all_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
+    public function unpaid_vendors(){
+        $data['all_vendors']    =   LeadPaidVendor::join('users','users.id','lead_paid_vendors.user_id')
+                                    ->join('vendor_details','vendor_details.user_id','=','users.id')
                                     ->join('categories','categories.id','=','vendor_details.category_id')
                                     ->join('cities','cities.id','=','vendor_details.city_id')
                                     ->where('users.user_type','vendor')
-                                    ->where('users.status','0')
                                     ->select(['users.id','users.name','users.email','users.mobile','users.status','vendor_details.brandname','vendor_details.is_email_verified','vendor_details.is_mobile_verified','cities.name as city_name','vendor_details.featured_image','categories.category_name','vendor_details.is_featured','vendor_details.is_top',])
                                     ->orderBy('users.id','desc')
                                     ->get();
-        return view('back.inactive_vendors',$data);
+        return view('back.unpaid_vendors',$data);
     }
 
     public function archive_vendors(){

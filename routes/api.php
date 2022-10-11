@@ -93,4 +93,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('logout', [UserApiController::class, 'logout']);
 
     Route::get('dashboard', [UserApiController::class, 'dashboard']);
+
+    Route::get('wishlist',[UserApiController::class, 'wishlist']);
+    Route::post('add_wishlist',[UserApiController::class, 'add_wishlist']);
+    Route::post('remove_wishlist',[UserApiController::class, 'remove_wishlist']);
+
 });

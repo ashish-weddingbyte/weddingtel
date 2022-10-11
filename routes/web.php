@@ -19,7 +19,7 @@ use App\Http\Controllers\front\user\AllVendorsController;
 use App\Http\Controllers\front\user\ProfileController;
 use App\Http\Controllers\front\user\RealWeddingController;
 use App\Http\Controllers\front\user\WishlistController;
-
+use App\Http\Controllers\front\user\ReviewController;
 
 // vendor contollers
 use App\Http\Controllers\front\vendor\Vendors;
@@ -107,6 +107,10 @@ Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], functio
     Route::get('/wishlist',[WishlistController::class,'wishlist_vendors']);
     Route::post('/wishlist/change-status',[WishlistController::class,'change_status']);
     Route::post('/wishlist/remove',[WishlistController::class,'remove_vendor']);
+
+    Route::get('/review',[ReviewController::class,'reviews']);
+    Route::post('/review/edit',[ReviewController::class,'edit_review']);
+    Route::post('/review/remove',[ReviewController::class,'remove_review']);
     
 });
 
@@ -189,10 +193,10 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::get('/new-request',[Users::class,'new_request']);
 
     Route::get('/vendors',[Users::class,'active_vendors']);
-    Route::get('/vendors/active-vendors',[Users::class,'active_vendors']);
+    Route::get('/vendors/all-vendors',[Users::class,'all_vendors']);
     Route::get('/vendors/archive-vendors',[Users::class,'archive_vendors']);
     Route::post('/vendors/action',[Users::class,'action']);
-    Route::get('/vendors/inactive-vendors',[Users::class,'inactive_vendors']);
+    Route::get('/vendors/unpaid-vendors',[Users::class,'unpaid_vendors']);
     Route::get('/vendors/top-vendors',[Users::class,'top_vendors']);
     Route::get('/vendors/featured-vendors',[Users::class,'featured_vendors']);
     Route::get('/vendors/paid-vendors',[Users::class,'paid_vendors']);
