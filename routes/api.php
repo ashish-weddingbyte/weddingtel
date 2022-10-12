@@ -35,7 +35,6 @@ Route::get('vendor_list_by_category/{category}',[UserApiController::class,'vendo
 
 
 
-
 // vendor routes 
 Route::post('vendor_register', [VendorApiController::class, 'vendor_register']);
 Route::post('vendor_login_with_email', [VendorApiController::class, 'vendor_login_with_email']);
@@ -97,5 +96,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('wishlist',[UserApiController::class, 'wishlist']);
     Route::post('add_wishlist',[UserApiController::class, 'add_wishlist']);
     Route::post('remove_wishlist',[UserApiController::class, 'remove_wishlist']);
+
+    Route::get('/review',[ReviewController::class,'reviews']);
+    Route::post('/review/edit',[ReviewController::class,'edit_review']);
+    Route::post('/review/remove',[ReviewController::class,'remove_review']);
 
 });

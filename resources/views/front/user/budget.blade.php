@@ -133,12 +133,12 @@
                                     </div>
                                     <div class="d-flex p-4 align-items-center justify-content-between ">
                                         <div class="cost-details">
-                                            <span>Final Cost (Paid)</span>
-                                            <div class="text-success">INR {{ number_format($category->final_cost) }}</div>
-                                        </div>
-                                        <div class="cost-details">
                                             <span>Estimated cost:</span>
                                             <div class="text-info">INR {{ number_format($category->estimated_cost) }}</div>
+                                        </div>
+                                        <div class="cost-details">
+                                            <span>Final Cost (Paid)</span>
+                                            <div class="text-success">INR {{ number_format($category->final_cost) }}</div>
                                         </div>
                                         <div class="cost-details">
                                             <span>Pending</span>
@@ -260,7 +260,7 @@
                             </div>
                             <div class="card-shadow-body p-0">
                                 <div class="table-responsive">
-                                    <table class="table table-hover mb-0">
+                                    <table class="table table-hover table-bordered  mb-0">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">Expense</th>

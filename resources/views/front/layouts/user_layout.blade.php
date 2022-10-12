@@ -119,6 +119,9 @@
                     <li class="{{ user_helper::active_menu('profile') }}">
                         <a href="{{ url('/tools/profile') }}"><i class="weddingdir_my_profile"></i> My Profile</a>
                     </li>
+                    <li class="{{ user_helper::active_menu('/wedding-website') }}">
+                        <a href="{{ url('/tools/wedding-website') }}"><i class="weddingdir_websote_demo"></i> Wedding Website</a>
+                    </li>
                     
                     <li>
                         <a href="{{ url('logout') }}"><i class="weddingdir_logout"></i> Logout</a>

@@ -97,6 +97,7 @@ class HomeController extends Controller
                                 ->orderBy('users.id','desc')
                                 ->limit(3)
                                 ->get();
+        $data['ratings']    =   Review::where('vendor_id', $vendor_data['id'])->orderBy('id','desc')->get();
         if(!empty($data['vendor'])){
 
             return view('front.vendor_details',$data);

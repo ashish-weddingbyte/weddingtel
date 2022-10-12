@@ -1535,7 +1535,7 @@ class UserApiController extends Controller
                                     ->first();
         $data['social_media'] = SocialLink::where('user_id',$vendor_id)->first();
         $data['gallery']    =   MediaGallery::where('user_id',$vendor_id)->where('user_type','vendor')->get();
-
+        $data['ratings']    =   Review::where('vendor_id', $vendor_data['id'])->orderBy('id','desc')->get();
         if($data['vendor']){
             $respose = [
                 'status'    =>  true,
@@ -1638,7 +1638,6 @@ class UserApiController extends Controller
     public function remove_wishlist(Request $request){
         $validator = Validator::make($request->all(),[
             'vendor_id'  =>'required',
-            'wishlist_id'  =>'required',
         ]);
 
         if($validator->fails()){
@@ -1656,7 +1655,7 @@ class UserApiController extends Controller
 
         if($user_id){
 
-            $wishlist = Wishlist::where('id',$wishlist_id)->where('to_id',$vendor_id)->first();
+            $wishlist = Wishlist::where('from_id',$user_id)->where('to_id',$vendor_id)->first();
             if($wishlist->delete()){
 
                 $respose = [
@@ -1708,6 +1707,121 @@ class UserApiController extends Controller
                 'data'      =>  $data
             ];
             return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Unauthorized',
+                'errors'    =>  'Token Expired or unauthorized User!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
+
+
+    public function reviews(){
+        $user_id = Auth::id();
+
+        if($user_id){
+
+            $data['all_ratings'] = Review::join('users','users.id','=','reviews.vendor_id')
+                                    ->where('reviews.user_id',$user_id)
+                                    ->select(['reviews.*','users.name'])
+                                    ->orderBy('reviews.id','desc')
+                                    ->get();
+            $data['total_ratings'] = Review::where('user_id',$user_id)->count();
+
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Success",
+                'data'      =>  $data
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Unauthorized',
+                'errors'    =>  'Token Expired or unauthorized User!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
+    public function edit_review(Request $request){
+        $request->validate([
+            'review_id' =>  'required',
+            'star'      =>  'required',
+            'comment'   =>  'required',
+        ]);
+
+        if($validator->fails()){
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  $validator->errors()->first()
+            ];
+            return response()->json($respose,422);
+        }
+
+        $user_id = Auth::id();
+
+        if($user_id){
+
+            $user_id = Session::get('user_id');
+            $id = $request->review_id;
+            $star = $request->star;
+            $comment = $request->comment;
+            $rating = Review::where('id',$id)->where('user_id',$user_id)->first();
+
+            $rating->comment = $comment;
+            $rating->rating   =   $star;
+            $rating->save();
+
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Review & Rating Edit Successfully!",
+            ];
+            return response()->json($respose,200);
+
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Unauthorized',
+                'errors'    =>  'Token Expired or unauthorized User!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
+    public function remove_review(Request $request){
+        $request->validate([
+            'review_id' =>  'required',
+        ]);
+
+        if($validator->fails()){
+            $respose = [
+                'status'    =>  false,
+                'message'   =>  'Failed',
+                'errors'    =>  $validator->errors()->first()
+            ];
+            return response()->json($respose,422);
+        }
+
+        $user_id = Auth::id();
+
+        if($user_id){
+
+            $user_id = Session::get('user_id');
+            $id = $request->review_id;
+            $rating = Review::where('id',$id)->where('user_id',$user_id)->delete();
+
+
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Rating & Review Delete Successfully!",
+            ];
+            return response()->json($respose,200);
+
         }else{
             $respose = [
                 'status'    =>  false,

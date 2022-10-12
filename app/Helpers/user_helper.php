@@ -22,7 +22,6 @@ class user_helper {
         $before_5_months = $event_date_before_5_months->subMonth(5)->format('Y-m-d');
         $before_5_months_array = [
             ['user_id'=>$user_id, 'task'=>'Decide wedding budget','added_date'=>$before_5_months],
-            ['user_id'=>$user_id, 'task'=>'Estimate guest count','added_date'=>$before_5_months],
             ['user_id'=>$user_id, 'task'=>'Book Photographer','added_date'=>$before_5_months],
             ['user_id'=>$user_id, 'task'=>'Book Makeup Artist','added_date'=>$before_5_months],
             ['user_id'=>$user_id, 'task'=>'Research Honeymoon destinations','added_date'=>$before_5_months],
@@ -37,7 +36,6 @@ class user_helper {
             ['user_id'=>$user_id, 'task'=>'Research outfit stores','added_date'=>$before_4_months],
             ['user_id'=>$user_id, 'task'=>'Make Guest List','added_date'=>$before_4_months],
             ['user_id'=>$user_id, 'task'=>'Research Bridal Wear stores','added_date'=>$before_4_months],
-            ['user_id'=>$user_id, 'task'=>'Start Visa arrangements','added_date'=>$before_4_months],
         ];
 
 
@@ -46,7 +44,7 @@ class user_helper {
         $before_3_months  = $event_date_before_3_months->subMonth(3)->format('Y-m-d');
         $before_3_months_array = [
             ['user_id'=>$user_id, 'task'=>'Shortlist Bridal entry songs','added_date'=>$before_3_months],
-            ['user_id'=>$user_id, 'task'=>'Book DJ','added_date'=>$before_3_months],
+
             ['user_id'=>$user_id, 'task'=>'Find Choreographer','added_date'=>$before_3_months],
             ['user_id'=>$user_id, 'task'=>'Book Mehendi Artist','added_date'=>$before_3_months],
             ['user_id'=>$user_id, 'task'=>'Browse Hairstyle Ideas','added_date'=>$before_3_months],
@@ -59,10 +57,8 @@ class user_helper {
         $before_2_months  = $event_date_before_2_months->subMonth(2)->format('Y-m-d');
         $before_2_months_array = [
             ['user_id'=>$user_id, 'task'=>'Start distributing invitations','added_date'=>$before_2_months],
-            ['user_id'=>$user_id, 'task'=>'Do a site visit with Decorator','added_date'=>$before_2_months],
             ['user_id'=>$user_id, 'task'=>'Research Sangeet Songs','added_date'=>$before_2_months],
             ['user_id'=>$user_id, 'task'=>'Start dance practices','added_date'=>$before_2_months],
-            ['user_id'=>$user_id, 'task'=>'Book Family makeup services','added_date'=>$before_2_months],
             
         ];
 

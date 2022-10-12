@@ -111,7 +111,9 @@ Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], functio
     Route::get('/review',[ReviewController::class,'reviews']);
     Route::post('/review/edit',[ReviewController::class,'edit_review']);
     Route::post('/review/remove',[ReviewController::class,'remove_review']);
-    
+
+
+    Route::view('/wedding-website','front.user.website');
 });
 
 

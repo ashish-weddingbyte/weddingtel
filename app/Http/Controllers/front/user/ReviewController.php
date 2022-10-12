@@ -26,4 +26,48 @@ class ReviewController extends Controller
         $data['total_ratings'] = Review::where('user_id',$user_id)->count();
         return view('front.user.review',$data);
     }
+
+    public function edit_review(Request $request){
+        $request->validate([
+            'review_id' =>  'required',
+            'star'      =>  'required',
+            'comment'   =>  'required',
+        ]);
+
+        $user_id = Session::get('user_id');
+        $id = $request->review_id;
+        $star = $request->star;
+        $comment = $request->comment;
+        $rating = Review::where('id',$id)->where('user_id',$user_id)->first();
+
+        $rating->comment = $comment;
+        $rating->rating   =   $star;
+        $rating->save();
+
+        Session::flash('message', 'Rating & Review Edit Successfully!');
+        Session::flash('class', 'alert-success');
+        
+        return response()->json(['success' => 'Rating & Review Edit Successfully!']);
+        
+    }
+
+
+    public function remove_review(Request $request){
+        $request->validate([
+            'review_id' =>  'required',
+            
+        ]);
+
+        $user_id = Session::get('user_id');
+        $id = $request->review_id;
+        $rating = Review::where('id',$id)->where('user_id',$user_id)->delete();
+
+        Session::flash('message', 'Rating & Review Delete Successfully!');
+        Session::flash('class', 'alert-success');
+        
+        return response()->json(['success' => 'Rating & Review Delete Successfully!']);
+        
+    }
+
+    
 }
