@@ -78,8 +78,6 @@ class UserApiController extends Controller
         // add default checklist
         user_helper::add_default_checklist($lastId);
 
-
-
         // add budget of user
         $budget = new Budget;
         $budget->user_id = $lastId;
@@ -294,7 +292,7 @@ class UserApiController extends Controller
             
             $respose = [
                 'status'    =>  true,
-                'message'   =>  'data',
+                'message'   =>  'Get Data Successfully!',
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -481,7 +479,7 @@ class UserApiController extends Controller
         
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfully",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data
             ];
             return response()->json($respose,200);
@@ -644,7 +642,7 @@ class UserApiController extends Controller
             $data['buget_expense'] = BudgetExpense::where('user_id', $user_id)->get();
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfully",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data
             ];
             return response()->json($respose,200);
@@ -1066,7 +1064,7 @@ class UserApiController extends Controller
         
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull.",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data
             ];
             return response()->json($respose,200);
@@ -1296,7 +1294,7 @@ class UserApiController extends Controller
 
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull.",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -1370,7 +1368,7 @@ class UserApiController extends Controller
         if($data['groups']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull.",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -1389,7 +1387,7 @@ class UserApiController extends Controller
         if($data['categories']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull.",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -1408,7 +1406,7 @@ class UserApiController extends Controller
         if($data['cities']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull.",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -1459,7 +1457,7 @@ class UserApiController extends Controller
         if($data['all_vendors']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull.",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -1502,7 +1500,7 @@ class UserApiController extends Controller
         if($data['all_vendors']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -1538,7 +1536,7 @@ class UserApiController extends Controller
         if($data['vendor']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull.",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -1569,7 +1567,7 @@ class UserApiController extends Controller
         if($data){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -1598,7 +1596,7 @@ class UserApiController extends Controller
         if($data){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -1617,7 +1615,7 @@ class UserApiController extends Controller
         if($data['city']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -1638,7 +1636,7 @@ class UserApiController extends Controller
             
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
@@ -1753,7 +1751,7 @@ class UserApiController extends Controller
 
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull",
+                'message'   =>  "Get Data Successfully!",
                 'data'      =>  $data
             ];
             return response()->json($respose,200);
@@ -1782,7 +1780,7 @@ class UserApiController extends Controller
 
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Get Data Successfull.",
+                'message'   =>  "Get Data Successfully!.",
                 'data'      =>  $data
             ];
             return response()->json($respose,200);

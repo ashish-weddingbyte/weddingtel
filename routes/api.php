@@ -47,7 +47,7 @@ Route::post('vendor_verify_otp', [VendorApiController::class, 'vendor_verify_otp
 Route::group(['middleware' => ['auth:sanctum']], function () {
     
     Route::post('logout', [UserApiController::class, 'logout']);
-
+    Route::get('delete_account',[UserApiController::class,'delete_account']);
     Route::get('/user_data',[UserApiController::class, 'user_data']);
 
     // checklist pages api
@@ -102,5 +102,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/review/add',[UserApiController::class,'add_review']);
     Route::post('/review/edit',[UserApiController::class,'edit_review']);
     Route::post('/review/remove',[UserApiController::class,'remove_review']);
+
+
 
 });
