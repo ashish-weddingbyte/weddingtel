@@ -26,6 +26,9 @@ use App\Models\SocialLink;
 use App\Models\RelationGroup;
 use App\Models\MediaGallery;
 use App\Models\Wishlist;
+use App\Models\Review;
+use App\Models\RealWedding;
+
 use otp_helper;
 use user_helper;
 use Validator;
@@ -47,8 +50,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  "Failed",
-                'errors'   =>  $validator->errors()->first()
+                'message'   =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -103,16 +105,14 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
         if (!Auth::attempt($request->only('email', 'password'))) {
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'   =>   'Invalid login details!'
+                'message'   =>   'Invalid login details!'
             ];
             return response()->json($respose,422);
         }
@@ -141,8 +141,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -150,8 +149,6 @@ class UserApiController extends Controller
         $user = User::where('mobile',$request->mobile)->first();
 
         if(isset($user->id)){
-
-            
 
             $user_id = $user->id;
 
@@ -184,8 +181,7 @@ class UserApiController extends Controller
             }else{
                 $respose = [
                     'status'    =>  false,
-                    'message'   =>  "Failed",
-                    'errors'    =>  'OTP Send Fail! Somthing Went Wrong!'
+                    'message'    =>  'OTP Send Fail! Somthing Went Wrong!'
                 ];
                 return response()->json($respose,422);
             }
@@ -193,8 +189,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  "Failed",
-                'errors'    =>  'User Not Register Yet, Please Register First!'
+                'message'    =>  'User Not Register Yet, Please Register First!'
             ];
             return response()->json($respose,422);
         }
@@ -212,8 +207,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -230,8 +224,7 @@ class UserApiController extends Controller
                 
                 $respose = [
                     'status'    =>  false,
-                    'message'   =>  "Failed",
-                    'errors'    =>  'OTP is Expired!'
+                    'message'    =>  'OTP is Expired!'
                 ];
                 return response()->json($respose,422);
 
@@ -247,7 +240,6 @@ class UserApiController extends Controller
                     // $user_details->is_mobile_verified = '1';
                     // $user_details->save();
 
-                    // Session::flash('message', 'Login to Dashboard Successful!');
                     $respose = [
                         'status'    =>  true,
                         'message'   =>  "Login to Dashboard Successful!",
@@ -259,8 +251,7 @@ class UserApiController extends Controller
                 }else{
                     $respose = [
                         'status'    =>  false,
-                        'message'   =>  'Failed',
-                        'errors'    =>  'OTP is Invalid!'
+                        'message'    =>  'OTP is Invalid!'
                     ];
                     return response()->json($respose,422);
                 }
@@ -268,8 +259,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  'Somthing Went Wrong in OTP.'
+                'message'    =>  'Somthing Went Wrong in OTP.'
             ];
             return response()->json($respose,422);
         }
@@ -289,7 +279,7 @@ class UserApiController extends Controller
 
         $user_id = Auth::id();
 
-            if($user_id){
+        if($user_id){
 
             $default = checklist::where('user_id',$user_id)->orderBy('added_date', 'ASC')->get();
             // $added = checklist::where('user_id',$user_id)->where('type','added')->get()->toArray();
@@ -304,14 +294,14 @@ class UserApiController extends Controller
             
             $respose = [
                 'status'    =>  true,
-                'message'   =>  $data,
+                'message'   =>  'data',
+                'data'      =>  $data,
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User.'
+                'message'    =>  'Token Expired or Unauthorized User.'
             ];
             return response()->json($respose,422);
         }
@@ -327,8 +317,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -350,8 +339,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -368,13 +356,13 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
 
-            if($request->task_id){
+        $user_id = Auth::id();
+        if($user_id){
             $checklist = Checklist::find($request->task_id);
             $checklist->type = 'edited';
             $checklist->task = $request->title;
@@ -389,8 +377,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -410,10 +397,11 @@ class UserApiController extends Controller
             ];
             return response()->json($respose,422);
         }
-        if($request->task_id){
+
+        $user_id = Auth::id();
+        if($user_id){
 
             Checklist::find($request->task_id)->delete();
-
             $respose = [
                 'status'    =>  true,
                 'message'   =>  "Checklist Delete Successfully!",
@@ -422,8 +410,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -464,16 +451,14 @@ class UserApiController extends Controller
             }else{
                 $respose = [
                     'status'    =>  false,
-                    'message'   =>  'failed',
-                    'errors'    =>  'Checklist not Found!'
+                    'message'    =>  'Checklist not Found!'
                 ];
                 return response()->json($respose,422);
             }
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -496,7 +481,7 @@ class UserApiController extends Controller
         
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfully",
                 'data'      =>  $data
             ];
             return response()->json($respose,200);
@@ -520,8 +505,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -554,8 +538,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -572,12 +555,13 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
-        if($request->guest_id){
+
+        $user_id = Auth::id();
+        if($user_id){   
             $name = $request->name;
             $group = $request->group;
             $mobile = $request->mobile;
@@ -605,8 +589,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -619,13 +602,13 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
 
-        if($request->guest_id){
+        $user_id = Auth::id();
+        if($user_id){   
             Guest::find($request->guest_id)->delete();
             $respose = [
                 'status'    =>  true,
@@ -635,8 +618,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -662,7 +644,7 @@ class UserApiController extends Controller
             $data['buget_expense'] = BudgetExpense::where('user_id', $user_id)->get();
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfully",
                 'data'      =>  $data
             ];
             return response()->json($respose,200);
@@ -721,8 +703,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -739,8 +720,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -786,8 +766,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -801,8 +780,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -813,30 +791,37 @@ class UserApiController extends Controller
         $budget_category = BudgetCategory::find($category_id);
 
 
-        if($user_id && $budget_category){
+        if($user_id){
 
+            if($budget_category){
             
-            
-            if($budget_category->type == 'added'){
+                if($budget_category->type == 'added'){
 
-                $budget_category->delete();
-                BudgetCategoryExpense::where('budget_category_id',$category_id)->delete();
-                BudgetExpense::where('budget_category_id',$category_id)->where('user_id',$user_id)->delete();
+                    $budget_category->delete();
+                    BudgetCategoryExpense::where('budget_category_id',$category_id)->delete();
+                    BudgetExpense::where('budget_category_id',$category_id)->where('user_id',$user_id)->delete();
+                }else{
+                    BudgetCategoryExpense::where('budget_category_id',$category_id)->delete();
+                    BudgetExpense::where('budget_category_id',$category_id)->where('user_id',$user_id)->delete();
+                }
+                user_helper::total_expense_of_user($user_id);
+                $respose = [
+                    'status'    =>  true,
+                    'message'   =>  "Budget Category Delete Successfully!",
+                ];
+                return response()->json($respose,200);
             }else{
-                BudgetCategoryExpense::where('budget_category_id',$category_id)->delete();
-                BudgetExpense::where('budget_category_id',$category_id)->where('user_id',$user_id)->delete();
+                $respose = [
+                    'status'    =>  false,
+                    'message'    =>  'Invalid Budget Category!'
+                ];
+                return response()->json($respose,422);
             }
-            user_helper::total_expense_of_user($user_id);
-            $respose = [
-                'status'    =>  true,
-                'message'   =>  "Budget Category Delete Successfully!",
-            ];
-            return response()->json($respose,200);
+
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or Unauthorized User! or Invalid Category ID!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -853,8 +838,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -883,8 +867,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -903,8 +886,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -913,31 +895,38 @@ class UserApiController extends Controller
         
         $category_id = BudgetCategory::find($request->category_id);
         
-        if($user_id && $category_id){
-            // indiviual expense 
-            $budget_expense = new BudgetExpense;
-            $budget_expense->user_id = $user_id;
-            $budget_expense->budget_category_id = $request->category_id;
-            $budget_expense->expense_name = $request->expense_name;
-            $budget_expense->estimated_cost = $request->estimated_cost;
-            $budget_expense->paid = $request->amount_paid;
-            $budget_expense->pending = $pending_amount;
-            $budget_expense->status = '1';
-            $budget_expense->save();
+        if($user_id){
+            if($category_id){
+                // indiviual expense 
+                $budget_expense = new BudgetExpense;
+                $budget_expense->user_id = $user_id;
+                $budget_expense->budget_category_id = $request->category_id;
+                $budget_expense->expense_name = $request->expense_name;
+                $budget_expense->estimated_cost = $request->estimated_cost;
+                $budget_expense->paid = $request->amount_paid;
+                $budget_expense->pending = $pending_amount;
+                $budget_expense->status = '1';
+                $budget_expense->save();
 
-            user_helper::total_expense_of_category($user_id,$request->category_id);
-            user_helper::total_expense_of_user($user_id);
+                user_helper::total_expense_of_category($user_id,$request->category_id);
+                user_helper::total_expense_of_user($user_id);
 
-            $respose = [
-                'status'    =>  true,
-                'message'   =>  "Budget Expense Added Successfully!",
-            ];
-            return response()->json($respose,200);
+                $respose = [
+                    'status'    =>  true,
+                    'message'   =>  "Budget Expense Added Successfully!",
+                ];
+                return response()->json($respose,200);
+            }else{
+                $respose = [
+                    'status'    =>  false,
+                    'message'    =>  'Invalid Category'
+                ];
+                return response()->json($respose,422);
+            }
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or Unauthorized User! or Invalid Category'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -957,8 +946,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -980,35 +968,33 @@ class UserApiController extends Controller
             
             if($budget_expense && $category_id){
 
-            $budget_expense->expense_name = $expense_name;
-            $budget_expense->estimated_cost = $estimated_cost;
-            $budget_expense->paid = $amount_paid; 
-            $budget_expense->pending = $pending_amount;
-            $budget_expense->save();
+                $budget_expense->expense_name = $expense_name;
+                $budget_expense->estimated_cost = $estimated_cost;
+                $budget_expense->paid = $amount_paid; 
+                $budget_expense->pending = $pending_amount;
+                $budget_expense->save();
 
-            user_helper::total_expense_of_category($user_id,$request->category_id);
-            user_helper::total_expense_of_user($user_id);
-        
+                user_helper::total_expense_of_category($user_id,$request->category_id);
+                user_helper::total_expense_of_user($user_id);
+            
 
-            $respose = [
-                'status'    =>  true,
-                'message'   =>  "Budget Expense Edit Successfully!",
-            ];
-            return response()->json($respose,200);
+                $respose = [
+                    'status'    =>  true,
+                    'message'   =>  "Budget Expense Edit Successfully!",
+                ];
+                return response()->json($respose,200);
 
             }else{
                 $respose = [
                     'status'    =>  false,
-                    'message'   =>  'Invalid',
-                    'errors'    =>  'Category ID or Expence ID Invalid!'
+                    'message'    =>  'Category ID / Expence ID Invalid!'
                 ];
                 return response()->json($respose,422);
             }
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -1025,8 +1011,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -1055,8 +1040,7 @@ class UserApiController extends Controller
             }else{
                 $respose = [
                     'status'    =>  false,
-                    'message'   =>  'Invalid',
-                    'errors'    =>  'Category ID or Expence ID Invalid!'
+                    'message'    =>  'Category ID or Expence ID Invalid!'
                 ];
                 return response()->json($respose,422);
             }
@@ -1064,8 +1048,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -1080,19 +1063,17 @@ class UserApiController extends Controller
         if($user_id){
             $data['user'] = User::find($user_id);
             $data['details'] = UserDetail::where('user_id',$user_id)->first();
-            // $data['cities'] = City::orderBy('name','asc')->get();
-
+        
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfull.",
                 'data'      =>  $data
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -1109,8 +1090,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -1138,16 +1118,14 @@ class UserApiController extends Controller
                 }else{
                     $respose = [
                         'status'    =>  false,
-                        'message'   =>  'Failed',
-                        'errors'    =>  'Old Password is Incorrect!'
+                        'message'    =>  'Old Password is Incorrect!'
                     ];
                     return response()->json($respose,422);
                 }
             }else{
                 $respose = [
                     'status'    =>  false,
-                    'message'   =>  'Unauthorized',
-                    'errors'    =>  'Token Expired or unauthorized User!'
+                    'message'    =>  'Token Expired or Unauthorized User!'
                 ];
                 return response()->json($respose,422);
             }
@@ -1155,8 +1133,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  'Password Not Matched!'
+                'message'    =>  'Password Not Matched!'
             ];
             return response()->json($respose,422);
             
@@ -1172,8 +1149,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -1222,8 +1198,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -1239,8 +1214,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -1286,8 +1260,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -1299,8 +1272,6 @@ class UserApiController extends Controller
         $user_id = Auth::id();
 
         if($user_id){
-
-        
 
             $data['user']   =  User::find($user_id);
             $data['details']    =   UserDetail::join('cities','cities.id','user_details.city_id')
@@ -1325,19 +1296,54 @@ class UserApiController extends Controller
 
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfull.",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
     }
+
+    public function delete_account(){
+        $user_id = Auth::id();
+
+        if($user_id){
+            $detals = UserDetail::where('user_id',$user_id)->first();
+            Storage::delete('public/upload/user/profile/'.$detals->profile);
+            $details->delete();
+            Budget::where('user_id',$user_id)->delete();
+            BudgetCategory::where('user_id',$user_id)->delete();
+            BudgetCategoryExpense::where('user_id',$user_id)->delete();
+            BudgetExpense::where('user_id',$user_id)->delete();
+            Checklist::where('user_id',$user_id)->delete();
+            Guest::where('user_id',$user_id)->delete();
+            $realwedd =  RealWedding::where('user_id',$user_id)->first();
+            Storage::delete('public/upload/realwedding/profile/'.$realwedd->featured_image);
+            $realwedd->delete();
+            Review::where('user_id',$user_id)->delete();
+            Wishlist::where('user_id',$user_id)->delete();
+            MediaGallery::where('user_id',$user_id)->delete();
+            User::find($user_id)->delete();
+            Auth::user()->tokens()->delete();
+            $respose = [
+                'status'    =>  true,
+                'message'      =>  "Your Account Delete Successful!",
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  'Token Expired or Unauthorized User!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
 
     public function logout(){
         $user_id = Auth::id();
@@ -1346,15 +1352,13 @@ class UserApiController extends Controller
             Auth::user()->tokens()->delete();
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
-                'data'      =>  "User Logout Successful!",
+                'message'      =>  "User Logout Successful!",
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -1366,15 +1370,14 @@ class UserApiController extends Controller
         if($data['groups']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfull.",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  'Somthing Went Wrong!'
+                'message'    =>  'Somthing Went Wrong!'
             ];
             return response()->json($respose,422);
         }
@@ -1386,15 +1389,14 @@ class UserApiController extends Controller
         if($data['categories']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfull.",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  'Somthing Went Wrong!'
+                'message'    =>  'Somthing Went Wrong!'
             ];
             return response()->json($respose,422);
         }
@@ -1406,15 +1408,14 @@ class UserApiController extends Controller
         if($data['cities']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfull.",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  'Somthing Went Wrong!'
+                'message'    =>  'Somthing Went Wrong!'
             ];
             return response()->json($respose,422);
         }
@@ -1458,15 +1459,14 @@ class UserApiController extends Controller
         if($data['all_vendors']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfull.",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  'Somthing Went Wrong!'
+                'message'    =>  'Somthing Went Wrong!'
             ];
             return response()->json($respose,422);
         }
@@ -1502,15 +1502,14 @@ class UserApiController extends Controller
         if($data['all_vendors']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfull",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  'Somthing Went Wrong!'
+                'message'    =>  'Somthing Went Wrong!'
             ];
             return response()->json($respose,422);
         }
@@ -1539,19 +1538,77 @@ class UserApiController extends Controller
         if($data['vendor']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfull.",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  'Somthing Went Wrong!'
+                'message'    =>  'Somthing Went Wrong!'
             ];
             return response()->json($respose,422);
         }
 
+    }
+
+
+    public function top_vendors(){
+        $data['top_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
+                                ->join('categories','categories.id','=','vendor_details.category_id')
+                                ->join('cities','cities.id','=','vendor_details.city_id')
+                                ->where('users.user_type','vendor')
+                                ->where('users.status','1')
+                                ->where('vendor_details.is_top','1')
+                                ->where('vendor_details.featured_image','!=', NULL)
+                                ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.featured_image','categories.category_name','categories.icon','cities.name as city_name'])
+                                ->limit(8)
+                                ->orderBy('users.id','asc')
+                                ->get();
+
+        if($data){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Get Data Successfull",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
+
+    public function featured_vendors(){
+        $data['featured_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
+                                ->join('categories','categories.id','=','vendor_details.category_id')
+                                ->join('cities','cities.id','=','vendor_details.city_id')
+                                ->where('users.user_type','vendor')
+                                ->where('users.status','1')
+                                ->where('vendor_details.is_featured','1')
+                                ->where('vendor_details.featured_image','!=', NULL)
+                                ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','cities.name as city_name','vendor_details.featured_image','categories.category_name','categories.icon'])
+                                ->orderBy('users.id','desc')
+                                ->get();
+
+        if($data){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Get Data Successfull",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,422);
+        }
     }
 
     public function city(Request $request){
@@ -1560,15 +1617,14 @@ class UserApiController extends Controller
         if($data['city']){
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfull",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  'Somthing Went Wrong!'
+                'message'    =>  'Somthing Went Wrong!'
             ];
             return response()->json($respose,422);
         }
@@ -1582,15 +1638,14 @@ class UserApiController extends Controller
             
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfull",
                 'data'      =>  $data,
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  'Somthing Went Wrong!'
+                'message'    =>  'Somthing Went Wrong!'
             ];
             return response()->json($respose,422);
         }
@@ -1604,8 +1659,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -1628,8 +1682,7 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -1643,8 +1696,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -1666,16 +1718,14 @@ class UserApiController extends Controller
             }
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Invalid',
-                'errors'    =>  'Somthing Went Wrong!'
+                'message'    =>  'Somthing Went Wrong!'
             ];
             return response()->json($respose,422);
 
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -1703,15 +1753,14 @@ class UserApiController extends Controller
 
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfull",
                 'data'      =>  $data
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
@@ -1733,22 +1782,21 @@ class UserApiController extends Controller
 
             $respose = [
                 'status'    =>  true,
-                'message'   =>  "Success",
+                'message'   =>  "Get Data Successfull.",
                 'data'      =>  $data
             ];
             return response()->json($respose,200);
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
     }
 
     public function edit_review(Request $request){
-        $request->validate([
+        $validator = Validator::make($request->all(),[
             'review_id' =>  'required',
             'star'      =>  'required',
             'comment'   =>  'required',
@@ -1757,8 +1805,7 @@ class UserApiController extends Controller
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -1786,23 +1833,21 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
     }
 
     public function remove_review(Request $request){
-        $request->validate([
+        $validator = Validator::make($request->all(),[
             'review_id' =>  'required',
         ]);
 
         if($validator->fails()){
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Failed',
-                'errors'    =>  $validator->errors()->first()
+                'message'    =>  $validator->errors()->first()
             ];
             return response()->json($respose,422);
         }
@@ -1825,11 +1870,13 @@ class UserApiController extends Controller
         }else{
             $respose = [
                 'status'    =>  false,
-                'message'   =>  'Unauthorized',
-                'errors'    =>  'Token Expired or unauthorized User!'
+                'message'    =>  'Token Expired or Unauthorized User!'
             ];
             return response()->json($respose,422);
         }
     }
+
+
+
 
 }

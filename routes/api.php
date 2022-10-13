@@ -32,8 +32,9 @@ Route::get('city/{id}',[UserApiController::class,'city']);
 Route::post('vendor_list',[UserApiController::class,'vendor_list']);
 Route::get('vendor_list/{id}',[UserApiController::class,'vendor_details']);
 Route::get('vendor_list_by_category/{category}',[UserApiController::class,'vendor_list_by_category']);
-
-
+Route::get('top_vendors',[UserApiController::class,'top_vendors']);
+Route::get('featured_vendors',[UserApiController::class,'featured_vendors']);
+Route::get('delete_account',[UserApiController::class,'delete_account']);
 
 // vendor routes 
 Route::post('vendor_register', [VendorApiController::class, 'vendor_register']);
@@ -97,8 +98,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('add_wishlist',[UserApiController::class, 'add_wishlist']);
     Route::post('remove_wishlist',[UserApiController::class, 'remove_wishlist']);
 
-    Route::get('/review',[ReviewController::class,'reviews']);
-    Route::post('/review/edit',[ReviewController::class,'edit_review']);
-    Route::post('/review/remove',[ReviewController::class,'remove_review']);
+    Route::get('/review',[UserApiController::class,'reviews']);
+    Route::post('/review/add',[UserApiController::class,'add_review']);
+    Route::post('/review/edit',[UserApiController::class,'edit_review']);
+    Route::post('/review/remove',[UserApiController::class,'remove_review']);
 
 });

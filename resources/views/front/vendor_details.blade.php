@@ -556,7 +556,7 @@
                                     <?php
                                         $image_path = vendor_helper::vendor_image_path($vendor->id);       
                                         $url = vendor_helper::vendor_profile_url($vendor->id);
-
+                                        $rating = vendor_helper::get_rating_of_vendor($vendor->id);
                                         $verified = vendor_helper::check_verified_vendor($vendor->id);
 
                                     ?>
@@ -594,13 +594,10 @@
                                                 </div>
                                                 <div class="reviews">
                                                     <span class="stars">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-half-o"></i>
-                                                        <i class="fa fa-star-o"></i>                                    
+                                                        {!! str_repeat('<span><i class="fa fa-star"></i></span>', round($rating['avg']) ) !!}
+                                                        {!! str_repeat('<span><i class="fa fa-star-o"></i></span>', 5 - round($rating['avg']) ) !!}                                    
                                                     </span>
-                                                    (6 review)
+                                                    ({{ $rating['count'] }} review)
                                                 </div>
                                             </div>
                                         </div>
