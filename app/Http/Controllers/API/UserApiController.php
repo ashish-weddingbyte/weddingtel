@@ -44,7 +44,7 @@ class UserApiController extends Controller
             'password'  =>'required|min:6',
             'mobile' => 'required|max:10|min:10|unique:users,mobile',
             'city'  =>  'required',
-            'event' =>  'required|date',
+            'event' =>  'required|date|after:today',
         ]);
 
         if($validator->fails()){
@@ -1312,7 +1312,9 @@ class UserApiController extends Controller
 
         if($user_id){
             $details = UserDetail::where('user_id',$user_id)->first();
-            Storage::delete('public/upload/user/profile/'.$details->profile);
+            if($details->profile !== NULL){
+                Storage::delete('public/upload/user/profile/'.$details->profile);
+            }
             $details->delete();
             Budget::where('user_id',$user_id)->delete();
             BudgetCategory::where('user_id',$user_id)->delete();
@@ -1321,7 +1323,9 @@ class UserApiController extends Controller
             Checklist::where('user_id',$user_id)->delete();
             Guest::where('user_id',$user_id)->delete();
             $realwedd =  RealWedding::where('user_id',$user_id)->first();
-            Storage::delete('public/upload/realwedding/profile/'.$realwedd->featured_image);
+            if($realwedd->featured_image !== NULL ){
+                Storage::delete('public/upload/realwedding/profile/'.$realwedd->featured_image);
+            }
             $realwedd->delete();
             Review::where('user_id',$user_id)->delete();
             Wishlist::where('user_id',$user_id)->delete();

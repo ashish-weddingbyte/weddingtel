@@ -34,7 +34,6 @@ Route::get('vendor_list/{id}',[UserApiController::class,'vendor_details']);
 Route::get('vendor_list_by_category/{category}',[UserApiController::class,'vendor_list_by_category']);
 Route::get('top_vendors',[UserApiController::class,'top_vendors']);
 Route::get('featured_vendors',[UserApiController::class,'featured_vendors']);
-Route::get('delete_account',[UserApiController::class,'delete_account']);
 
 // vendor routes 
 Route::post('vendor_register', [VendorApiController::class, 'vendor_register']);
