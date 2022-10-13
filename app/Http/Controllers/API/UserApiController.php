@@ -1311,8 +1311,8 @@ class UserApiController extends Controller
         $user_id = Auth::id();
 
         if($user_id){
-            $detals = UserDetail::where('user_id',$user_id)->first();
-            Storage::delete('public/upload/user/profile/'.$detals->profile);
+            $details = UserDetail::where('user_id',$user_id)->first();
+            Storage::delete('public/upload/user/profile/'.$details->profile);
             $details->delete();
             Budget::where('user_id',$user_id)->delete();
             BudgetCategory::where('user_id',$user_id)->delete();

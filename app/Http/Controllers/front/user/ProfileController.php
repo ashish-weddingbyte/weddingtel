@@ -81,31 +81,31 @@ class ProfileController extends Controller
             $user->save();
         }
 
-        $detals = UserDetail::where('user_id',$user_id)->first();
+        $details = UserDetail::where('user_id',$user_id)->first();
 
         if($request->filled('city')){
-            $detals->city_id = $request->city;
-            $detals->save();
+            $details->city_id = $request->city;
+            $details->save();
         }
 
         if ($request->hasFile('profile')) {
 
-            Storage::delete('public/upload/user/profile/'.$detals->profile);
+            Storage::delete('public/upload/user/profile/'.$details->profile);
             $image_name  =  $request->file('profile')->getClientOriginalName();
-            $detals->profile = $image_name;
+            $details->profile = $image_name;
             $request->file('profile')->storeAs('public/upload/user/profile',$image_name);
-            $detals->save();
+            $details->save();
         }
 
         if($request->filled('type')){
-            $detals->type = $request->type;
-            $detals->save();
+            $details->type = $request->type;
+            $details->save();
         }
 
 
         if($request->filled('partner_name')){
-            $detals->partner_name = $request->partner_name;
-            $detals->save();
+            $details->partner_name = $request->partner_name;
+            $details->save();
         }
 
         
@@ -126,33 +126,33 @@ class ProfileController extends Controller
         $user_id = Session::get('user_id');
 
 
-        $detals = UserDetail::where('user_id',$user_id)->first();
+        $details = UserDetail::where('user_id',$user_id)->first();
 
         if($request->filled('event')){
-            $detals->event = date('Y-m-d',strtotime($request->event));
-            $detals->save();
+            $details->event = date('Y-m-d',strtotime($request->event));
+            $details->save();
         }
 
         if ($request->hasFile('profile')) {
 
             $image_name  =  $request->file('profile')->getClientOriginalName();
-            $detals->profile = $image_name;
+            $details->profile = $image_name;
             $request->file('profile')->storeAs('public/upload/user/profile',$image_name);
-            $detals->save();
+            $details->save();
         }
 
         if ($request->hasFile('partner_profile')) {
 
             $image_name  =  $request->file('partner_profile')->getClientOriginalName();
-            $detals->partner_profile = $image_name;
+            $details->partner_profile = $image_name;
             $request->file('partner_profile')->storeAs('public/upload/user/profile',$image_name);
-            $detals->save();
+            $details->save();
         }
 
 
         if($request->filled('wedding_address')){
-            $detals->wedding_address = $request->wedding_address;
-            $detals->save();
+            $details->wedding_address = $request->wedding_address;
+            $details->save();
         }
 
         
