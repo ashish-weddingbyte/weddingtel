@@ -1,7 +1,7 @@
 
 @extends('back.layouts.admin_layout')
 
-@section('title', 'All In-Active Vendors')
+@section('title', 'All Un-Paid Vendors')
 
 
 @section('main-container')
@@ -13,13 +13,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>All In-Active Vendors</h1>
+            <h1>All Un-Paid Vendors</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ url('byte/dashboard') }}">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="{{ url('byte/vendors/') }}">Vendors</a></li>
-              <li class="breadcrumb-item active">All In-Active Vendors</li>
+              <li class="breadcrumb-item active">All Un-Paid Vendors</li>
             </ol>
           </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="col-12">
             <div class="card card-warning">
             <div class="card-header">
-                <h3 class="card-title">All In-Active Vendor</h3>
+                <h3 class="card-title">All Un-Paid Vendor</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -62,15 +62,12 @@
                                     <th>Category</th>
                                     <th>Status</th>
                                     <th>Is Photo Uploaded</th>
-                                    <th>Is Paid</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($all_vendors as $vendor)
                                 <?php
                                     $gallery = admin_helper::is_gallery($vendor->id);
-                                    $lead = admin_helper::is_lead_plan_active($vendor->id);
-                                    $position = admin_helper::is_position_plan_active($vendor->id);
                                 ?>
                                 <tr>
                                     <td><input type="checkbox" class="sub_chk" data-id="{{ $vendor->id }}"></td>
@@ -107,21 +104,6 @@
                                             @endif
                                         </p>
                                     </td>
-                                    <td>
-                                        <p>Lead Plan: 
-                                            @if($lead == true)
-                                                <span class="text-success font-weight-bold">Yes</span>
-                                            @else
-                                                <span class="text-danger font-weight-bold">No</span></p>
-                                            @endif
-                                        </p>
-                                        <p>Position Plan: 
-                                            @if($position == true)
-                                                <span class="text-success font-weight-bold">Yes</span>
-                                            @else
-                                                <span class="text-danger font-weight-bold">No</span></p>
-                                            @endif</p>
-                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -130,6 +112,8 @@
                     </div>
                     <hr />
                     <input type="button" data-action-type="activate" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-info submit" value="Activate Vendor" >
+
+                    <input type="button" data-action-type="deactivate" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-danger submit" value="De-Activate Vendor" >
 
                     <input type="button" data-action-type="delete" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Vendor" >
 

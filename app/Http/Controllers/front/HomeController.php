@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
+use App\Models\BlogCategory;
 use App\Models\User;
 use App\Models\VendorDetail;
 use App\Models\UserDetail;
@@ -56,8 +57,8 @@ class HomeController extends Controller
                                     ->get();
 
         $data['blogs']      =   Blog::limit(3)
-                                ->join('categories','categories.id','=','blogs.category_id')
-                                ->select(['blogs.*','categories.category_name','categories.category_url'])
+                                ->join('blog_categories','blog_categories.id','=','blogs.category_id')
+                                ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
                                 ->orderBy('id','desc')
                                 ->get();
         return view('front.index',$data);
@@ -137,7 +138,7 @@ class HomeController extends Controller
                 $review->comment = $comment;
                 $review->rating = $rating;
                 $review->user_type = 'user';
-                $review->status = '1';
+                $review->status = '0';
             }
         }else{
             $review = new Review;
@@ -273,22 +274,22 @@ class HomeController extends Controller
 
 
     public function all_blogs(){
-        $data['blogs'] = Blog::join('categories','categories.id','=','blogs.category_id')
-                        ->select(['blogs.*','categories.category_name','categories.category_url'])
+        $data['blogs'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
+                        ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
                         ->orderBy('id','desc')
                         ->paginate(20);
         $data['popular_blogs'] = Blog::orderBy('id','asc')
                                 ->limit(3)
                                 ->get();
-        $data['categories'] =   Category::all();
+        $data['categories'] =   BlogCategory::all();
         return view('front.blogs',$data);
     }
 
     public function blog_details(Request $request){
         $title = str_replace('-',' ',$request->title);
         
-        $data['blog'] = Blog::join('categories','categories.id','=','blogs.category_id')
-                            ->select(['blogs.*','categories.category_name','categories.category_url'])
+        $data['blog'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
+                            ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
                             ->where('title', 'like', "%$title%")
                             ->first();
         $id =  $data['blog']->id; 
@@ -310,18 +311,18 @@ class HomeController extends Controller
     public function blogs_by_category(Request $request){
         $category_url = $request->category;
 
-        $category_data = Category::where('category_url',$category_url)->first();
+        $category_data = BlogCategory::where('category_url',$category_url)->first();
 
         if($category_data){
-            $data['blogs'] = Blog::join('categories','categories.id','=','blogs.category_id')
-                        ->where('categories.category_url',$category_url)
-                        ->select(['blogs.*','categories.category_name','categories.category_url'])
+            $data['blogs'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
+                        ->where('blog_categories.category_url',$category_url)
+                        ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
                         ->orderBy('id','desc')
                         ->paginate(20);
             $data['popular_blogs'] = Blog::orderBy('id','asc')
                                     ->limit(3)
                                     ->get();
-            $data['categories'] =   Category::all();
+            $data['categories'] =   BlogCategory::all();
             $data['category'] = $category_data->category_name;
             return view('front.blogs',$data);
             

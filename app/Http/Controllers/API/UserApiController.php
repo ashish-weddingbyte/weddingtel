@@ -1312,10 +1312,13 @@ class UserApiController extends Controller
 
         if($user_id){
             $details = UserDetail::where('user_id',$user_id)->first();
-            if($details->profile !== NULL){
-                Storage::delete('public/upload/user/profile/'.$details->profile);
+            if($details){
+                if(!empty($details->profile)){
+                    Storage::delete('public/upload/user/profile/'.$details->profile);
+                }
+                $details->delete();
             }
-            $details->delete();
+            
             Budget::where('user_id',$user_id)->delete();
             BudgetCategory::where('user_id',$user_id)->delete();
             BudgetCategoryExpense::where('user_id',$user_id)->delete();
@@ -1323,12 +1326,14 @@ class UserApiController extends Controller
             Checklist::where('user_id',$user_id)->delete();
             Guest::where('user_id',$user_id)->delete();
             $realwedd =  RealWedding::where('user_id',$user_id)->first();
-            if($realwedd->featured_image !== NULL ){
-                Storage::delete('public/upload/realwedding/profile/'.$realwedd->featured_image);
+            if($realwedd){
+                if($realwedd->featured_image !== NULL ){
+                    Storage::delete('public/upload/realwedding/profile/'.$realwedd->featured_image);
+                }
+                $realwedd->delete();
             }
-            $realwedd->delete();
             Review::where('user_id',$user_id)->delete();
-            Wishlist::where('user_id',$user_id)->delete();
+            Wishlist::where('from_id',$user_id)->delete();
             MediaGallery::where('user_id',$user_id)->delete();
             User::find($user_id)->delete();
             Auth::user()->tokens()->delete();
@@ -1797,6 +1802,61 @@ class UserApiController extends Controller
         }
     }
 
+    public function add_review(Request $request){
+        $validator = Validator::make($request->all(),[
+            'star'  =>  'required',
+            'vendor_id' => 'required',
+            'comment' => 'required',
+        ]);
+
+        if($validator->fails()){
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  $validator->errors()->first()
+            ];
+            return response()->json($respose,422);
+        }
+
+        $user_id = Auth::id();
+        $star = $request->star;
+        $comment = $request->comment;
+        $vendor_id = $request->vendor_id;
+        
+        if($user_id){
+            $review = Review::where('user_id',$user_id)->where('vendor_id',$vendor_id)->first();
+            if(!empty($review)){
+                $review->comment = $comment;
+                $review->rating = $rating;
+            }else{
+                $review = new Review;
+                $review->vendor_id = $vendor_id;
+                $review->user_id = $user_id;
+                $review->name = $name;
+                $review->email = $email;
+                $review->comment = $comment;
+                $review->rating = $rating;
+                $review->user_type = 'user';
+                $review->status = '0';
+            }
+            $review->save();
+
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Review & Rating Added Successfully!",
+            ];
+            return response()->json($respose,200);
+
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  'Token Expired or Unauthorized User!'
+            ];
+            return response()->json($respose,422);
+        }
+
+        
+    }
+
     public function edit_review(Request $request){
         $validator = Validator::make($request->all(),[
             'review_id' =>  'required',
@@ -1816,7 +1876,6 @@ class UserApiController extends Controller
 
         if($user_id){
 
-            $user_id = Session::get('user_id');
             $id = $request->review_id;
             $star = $request->star;
             $comment = $request->comment;
@@ -1879,6 +1938,112 @@ class UserApiController extends Controller
     }
 
 
+    // blogs
+
+    public function all_blogs(){
+        $data['blogs'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
+                        ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
+                        ->orderBy('id','desc')
+                        ->paginate(20);
+        $data['popular_blogs'] = Blog::orderBy('id','asc')
+                                ->limit(3)
+                                ->get();
+        $data['categories'] =   BlogCategory::all();
+        
+        if($data){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Get Data Successfully!",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
+    public function blog_details(Request $request){
+        $title = $request->id;
+        
+        $data['blog'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
+                            ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
+                            ->where('id', $id)
+                            ->first();
+        $id =  $data['blog']->id; 
+        $previous_id = $id-1;
+        $next_id = $id+1;
+
+        $data['previous'] = Blog::where('id',"$previous_id")->first();
+        $data['next'] = Blog::where('id',"$next_id")->first();
+
+        $data['popular_blogs'] = Blog::orderBy('id','asc')
+                                ->limit(3)
+                                ->get();
+        $data['categories'] =   Category::all();
+
+        if($data){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Get Data Successfully!",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,422);
+        }
+
+    }
+
+    public function blogs_by_category(Request $request){
+        $category_url = $request->category_url;
+
+        $category_data = BlogCategory::where('category_url',$category_url)->first();
+
+        if($category_data){
+            $data['blogs'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
+                        ->where('blog_categories.category_url',$category_url)
+                        ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
+                        ->orderBy('id','desc')
+                        ->paginate(20);
+            $data['popular_blogs'] = Blog::orderBy('id','asc')
+                                    ->limit(3)
+                                    ->get();
+            $data['categories'] =   BlogCategory::all();
+            $data['category'] = $category_data->category_name;
+            
+            if($data){
+                $respose = [
+                    'status'    =>  true,
+                    'message'   =>  "Get Data Successfully!",
+                    'data'      =>  $data,
+                ];
+                return response()->json($respose,200);
+            }else{
+                $respose = [
+                    'status'    =>  false,
+                    'message'    =>  'Somthing Went Wrong!'
+                ];
+                return response()->json($respose,422);
+            }
+            
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,422);
+        }
+
+        
+    }
 
 
 }

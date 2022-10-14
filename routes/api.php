@@ -41,6 +41,10 @@ Route::post('vendor_login_with_email', [VendorApiController::class, 'vendor_logi
 Route::post('vendor_login_with_otp', [VendorApiController::class, 'vendor_login_with_otp_api']);
 Route::post('vendor_verify_otp', [VendorApiController::class, 'vendor_verify_otp_api']);
 
+Route::get('blogs',[HomeController::class,'all_blogs']);
+Route::get('blogs/{category_url}',[HomeController::class,'blogs_by_category']);
+Route::get('blog/{id}',[HomeController::class,'blog_details']);
+
 
 // procted route with ap token.
 Route::group(['middleware' => ['auth:sanctum']], function () {

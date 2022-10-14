@@ -36,11 +36,26 @@ class Users extends Controller
     }
 
     public function unpaid_vendors(){
-        $data['all_vendors']    =   LeadPaidVendor::join('users','users.id','lead_paid_vendors.user_id')
-                                    ->join('vendor_details','vendor_details.user_id','=','users.id')
+        
+        $paid_lead_vendor =  LeadPaidVendor::select('user_id')
+                                            ->distinct()
+                                            ->get()
+                                            ->pluck('user_id')
+                                            ->toArray();
+
+        $paid_position_vendor = PositionPaidVendor::select('user_id')
+                                                    ->distinct()
+                                                    ->get()
+                                                    ->pluck('user_id')
+                                                    ->toArray();    
+        
+        $data = array_unique( array_merge($paid_lead_vendor,$paid_position_vendor) );
+        
+        $data['all_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
                                     ->join('categories','categories.id','=','vendor_details.category_id')
                                     ->join('cities','cities.id','=','vendor_details.city_id')
                                     ->where('users.user_type','vendor')
+                                    ->whereNotIn('users.id',$data)
                                     ->select(['users.id','users.name','users.email','users.mobile','users.status','vendor_details.brandname','vendor_details.is_email_verified','vendor_details.is_mobile_verified','cities.name as city_name','vendor_details.featured_image','categories.category_name','vendor_details.is_featured','vendor_details.is_top',])
                                     ->orderBy('users.id','desc')
                                     ->get();
@@ -314,7 +329,8 @@ class Users extends Controller
 
 
     public function new_request(){
-        $data['all_users'] =  User::whereDate('created_at', date('Y-m-d'))->get();
+        $date = Carbon::today()->subDays(30);
+        $data['all_users'] =  User::where('created_at', '>=' ,$date)->orderBy('id','desc')->get();
         return view('back.new_request',$data);
     }
 
