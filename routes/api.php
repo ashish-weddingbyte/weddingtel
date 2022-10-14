@@ -31,9 +31,10 @@ Route::get('cities',[UserApiController::class,'all_cities']);
 Route::get('city/{id}',[UserApiController::class,'city']);
 Route::post('vendor_list',[UserApiController::class,'vendor_list']);
 Route::get('vendor_list/{id}',[UserApiController::class,'vendor_details']);
-Route::get('vendor_list_by_category/{category}',[UserApiController::class,'vendor_list_by_category']);
 Route::get('top_vendors',[UserApiController::class,'top_vendors']);
 Route::get('featured_vendors',[UserApiController::class,'featured_vendors']);
+
+Route::post('blogs',[UserApiController::class,'blog_list']);
 
 // vendor routes 
 Route::post('vendor_register', [VendorApiController::class, 'vendor_register']);
@@ -41,9 +42,6 @@ Route::post('vendor_login_with_email', [VendorApiController::class, 'vendor_logi
 Route::post('vendor_login_with_otp', [VendorApiController::class, 'vendor_login_with_otp_api']);
 Route::post('vendor_verify_otp', [VendorApiController::class, 'vendor_verify_otp_api']);
 
-Route::get('blogs',[HomeController::class,'all_blogs']);
-Route::get('blogs/{category_url}',[HomeController::class,'blogs_by_category']);
-Route::get('blog/{id}',[HomeController::class,'blog_details']);
 
 
 // procted route with ap token.

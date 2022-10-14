@@ -28,7 +28,8 @@ use App\Models\MediaGallery;
 use App\Models\Wishlist;
 use App\Models\Review;
 use App\Models\RealWedding;
-
+use App\Models\Blog;
+use App\Models\BlogCategory;
 use otp_helper;
 use user_helper;
 use Validator;
@@ -1480,33 +1481,34 @@ class UserApiController extends Controller
         
     }
 
-    public function vendor_list_by_category(Request $request){
-
-        $category_url = $request->category;
+    public function blog_list(Request $request){
+        $blog_id = $request->id;
+        $category_url = $request->category_url;
 
         $conditions = [
-            ['users.user_type','vendor'],
-            ['users.status','1'],
-            ['vendor_details.featured_image','!=', NULL],
+            ['blogs.status','1'],
+            ['blogs.featured_image','!=', NULL],
         ];
         if($category_url !== NULL){
-            $category = Category::where('category_url',$category_url)->first();
-            array_push($conditions,['vendor_details.category_id',$category->id]);
+            $category = BlogCategory::where('category_url',$category_url)->first();
+            array_push($conditions,['blogs.category_id',$category->id]);
         }
-        
-        $data['all_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
-                                    ->join('categories','categories.id','=','vendor_details.category_id')
-                                    ->join('cities','cities.id','=','vendor_details.city_id')
-                                    ->where('vendor_details.listing_order', '=', NULL)
-                                    ->where($conditions)
-                                    ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','cities.name as city_name','vendor_details.featured_image','categories.category_name','vendor_details.is_featured','vendor_details.is_top',])
-                                    ->orderBy('users.id','desc')
-                                    ->orderBy('vendor_details.listing_order','asc')
-                                    ->orderBy('vendor_details.is_top','desc')
-                                    ->orderBy('vendor_details.is_featured','desc')
-                                    ->get();
+        if($blog_id !== NULL){
+            array_push($conditions,['blogs.id',$blog_id]);
+        }
 
-        if($data['all_vendors']){
+
+        $data['blogs'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
+                        ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
+                        ->where($conditions)
+                        ->orderBy('id','desc')
+                        ->get();
+        $data['popular_blogs'] = Blog::orderBy('id','asc')
+                                ->limit(3)
+                                ->get();
+        $data['categories'] =   BlogCategory::all();
+        
+        if($data){
             $respose = [
                 'status'    =>  true,
                 'message'   =>  "Get Data Successfully!",
@@ -1520,8 +1522,8 @@ class UserApiController extends Controller
             ];
             return response()->json($respose,422);
         }
-        
     }
+
 
     public function vendor_details(Request $request){
         $vendor_id = $request->id;
@@ -1529,7 +1531,6 @@ class UserApiController extends Controller
             ['users.user_type','vendor'],
             ['users.status','1'],
             ['users.id',$vendor_id],
-            ['vendor_details.featured_image','!=', NULL],
         ];
 
         $data['vendor'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
@@ -1541,8 +1542,8 @@ class UserApiController extends Controller
                                     ->first();
         $data['social_media'] = SocialLink::where('user_id',$vendor_id)->first();
         $data['gallery']    =   MediaGallery::where('user_id',$vendor_id)->where('user_type','vendor')->get();
-        $data['ratings']    =   Review::where('vendor_id', $vendor_data['id'])->orderBy('id','desc')->get();
-        if($data['vendor']){
+        $data['ratings']    =   Review::where('vendor_id', $vendor_id)->orderBy('id','desc')->get();
+        if($data){
             $respose = [
                 'status'    =>  true,
                 'message'   =>  "Get Data Successfully!",
@@ -1804,7 +1805,7 @@ class UserApiController extends Controller
 
     public function add_review(Request $request){
         $validator = Validator::make($request->all(),[
-            'star'  =>  'required',
+            'rating'  =>  'required',
             'vendor_id' => 'required',
             'comment' => 'required',
         ]);
@@ -1818,10 +1819,13 @@ class UserApiController extends Controller
         }
 
         $user_id = Auth::id();
-        $star = $request->star;
+        $rating = $request->rating;
         $comment = $request->comment;
         $vendor_id = $request->vendor_id;
         
+        $user = User::find($user_id);
+
+
         if($user_id){
             $review = Review::where('user_id',$user_id)->where('vendor_id',$vendor_id)->first();
             if(!empty($review)){
@@ -1831,8 +1835,8 @@ class UserApiController extends Controller
                 $review = new Review;
                 $review->vendor_id = $vendor_id;
                 $review->user_id = $user_id;
-                $review->name = $name;
-                $review->email = $email;
+                $review->name = $user->name;
+                $review->email = $user->email;
                 $review->comment = $comment;
                 $review->rating = $rating;
                 $review->user_type = 'user';
@@ -1860,7 +1864,7 @@ class UserApiController extends Controller
     public function edit_review(Request $request){
         $validator = Validator::make($request->all(),[
             'review_id' =>  'required',
-            'star'      =>  'required',
+            'rating'      =>  'required',
             'comment'   =>  'required',
         ]);
 
@@ -1877,13 +1881,13 @@ class UserApiController extends Controller
         if($user_id){
 
             $id = $request->review_id;
-            $star = $request->star;
+            $rating = $request->rating;
             $comment = $request->comment;
-            $rating = Review::where('id',$id)->where('user_id',$user_id)->first();
+            $review = Review::where('id',$id)->where('user_id',$user_id)->first();
 
-            $rating->comment = $comment;
-            $rating->rating   =   $star;
-            $rating->save();
+            $review->comment = $comment;
+            $review->rating   =   $rating;
+            $review->save();
 
             $respose = [
                 'status'    =>  true,
@@ -1938,112 +1942,12 @@ class UserApiController extends Controller
     }
 
 
-    // blogs
-
-    public function all_blogs(){
-        $data['blogs'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
-                        ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
-                        ->orderBy('id','desc')
-                        ->paginate(20);
-        $data['popular_blogs'] = Blog::orderBy('id','asc')
-                                ->limit(3)
-                                ->get();
-        $data['categories'] =   BlogCategory::all();
-        
-        if($data){
-            $respose = [
-                'status'    =>  true,
-                'message'   =>  "Get Data Successfully!",
-                'data'      =>  $data,
-            ];
-            return response()->json($respose,200);
-        }else{
-            $respose = [
-                'status'    =>  false,
-                'message'    =>  'Somthing Went Wrong!'
-            ];
-            return response()->json($respose,422);
-        }
-    }
-
-    public function blog_details(Request $request){
-        $title = $request->id;
-        
-        $data['blog'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
-                            ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
-                            ->where('id', $id)
-                            ->first();
-        $id =  $data['blog']->id; 
-        $previous_id = $id-1;
-        $next_id = $id+1;
-
-        $data['previous'] = Blog::where('id',"$previous_id")->first();
-        $data['next'] = Blog::where('id',"$next_id")->first();
-
-        $data['popular_blogs'] = Blog::orderBy('id','asc')
-                                ->limit(3)
-                                ->get();
-        $data['categories'] =   Category::all();
-
-        if($data){
-            $respose = [
-                'status'    =>  true,
-                'message'   =>  "Get Data Successfully!",
-                'data'      =>  $data,
-            ];
-            return response()->json($respose,200);
-        }else{
-            $respose = [
-                'status'    =>  false,
-                'message'    =>  'Somthing Went Wrong!'
-            ];
-            return response()->json($respose,422);
-        }
-
-    }
-
-    public function blogs_by_category(Request $request){
-        $category_url = $request->category_url;
-
-        $category_data = BlogCategory::where('category_url',$category_url)->first();
-
-        if($category_data){
-            $data['blogs'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
-                        ->where('blog_categories.category_url',$category_url)
-                        ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
-                        ->orderBy('id','desc')
-                        ->paginate(20);
-            $data['popular_blogs'] = Blog::orderBy('id','asc')
-                                    ->limit(3)
-                                    ->get();
-            $data['categories'] =   BlogCategory::all();
-            $data['category'] = $category_data->category_name;
-            
-            if($data){
-                $respose = [
-                    'status'    =>  true,
-                    'message'   =>  "Get Data Successfully!",
-                    'data'      =>  $data,
-                ];
-                return response()->json($respose,200);
-            }else{
-                $respose = [
-                    'status'    =>  false,
-                    'message'    =>  'Somthing Went Wrong!'
-                ];
-                return response()->json($respose,422);
-            }
-            
-        }else{
-            $respose = [
-                'status'    =>  false,
-                'message'    =>  'Somthing Went Wrong!'
-            ];
-            return response()->json($respose,422);
-        }
+    // public function blogs(Request $request){
 
         
-    }
+        
+    // }
+
 
 
 }
