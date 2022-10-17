@@ -193,6 +193,7 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::get('/dashboard', [AdminDashboard::class,'dashboard']);
 
     Route::get('/new-request',[Users::class,'new_request']);
+    Route::post('/new-request/action',[Users::class,'action']);
 
     Route::get('/vendors',[Users::class,'active_vendors']);
     Route::get('/vendors/all-vendors',[Users::class,'all_vendors']);
@@ -210,10 +211,15 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
 
     Route::get('/leads',[LeadController::class,'all_approved_leads']);
     Route::get('/leads/approved',[LeadController::class,'all_approved_leads']);
+    Route::get('/leads/approved/vendors/{id}',[LeadController::class,'open_lead_vendors']);
+    Route::get('/leads/approved/edit/{id}',[LeadController::class,'edit_leads']);
+    Route::post('/leads/update',[LeadController::class,'update_leads']);
     Route::get('/leads/unapproved',[LeadController::class,'all_unapproved_leads']);
     Route::get('/leads/archive',[LeadController::class,'all_archive_leads']);
     Route::post('/leads/action',[LeadController::class,'action']);
-
+    Route::get('/leads/add_lead',[LeadController::class,'add_lead']);
+    Route::post('/leads/save_lead',[LeadController::class,'save_lead']);
+    Route::post('/leads/upload_leads',[LeadController::class,'upload_leads']);
 });
 
 // logout route

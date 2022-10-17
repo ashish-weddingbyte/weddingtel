@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use App\Models\MediaGallery;
 use App\Models\PositionPaidVendor;
 use App\Models\LeadPaidVendor;
+use App\Models\User;
+use App\Models\UserDetail;
+use App\Models\VendorDetail;
 use Carbon\Carbon;
 
 class admin_helper {
@@ -99,6 +102,15 @@ class admin_helper {
             return 0 ;
         }
 
+    }
+
+    public static function  vendor_details($id){
+        $details = VendorDetail::join('categories','categories.id','=','vendor_details.category_id')
+                                    ->join('cities','cities.id','=','vendor_details.city_id')
+                                    ->where('vendor_details.user_id',$id)
+                                    ->select(['vendor_details.brandname','vendor_details.is_email_verified','vendor_details.is_mobile_verified','cities.name as city_name','vendor_details.featured_image','categories.category_name'])
+                                    ->first();
+        return $details;
     }
 
     

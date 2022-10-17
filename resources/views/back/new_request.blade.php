@@ -92,11 +92,11 @@
                         </table>
                     </div>
                     <hr />
-                    <input type="button" data-action-type="activate" data-action="{{ url('byte/vendors/all-vendors/action') }}" class="btn btn-outline-info submit" value="Activate Vendor" >
+                    <input type="button" data-action-type="activate" data-action="{{ url('byte/new-request/action') }}" class="btn btn-outline-info submit" value="Activate Vendor" >
 
-                    <input type="button" data-action-type="deactivate" data-action="{{ url('byte/vendors/all-vendors/action') }}" class="btn btn-outline-danger submit" value="De-Activate Vendor" >
+                    <input type="button" data-action-type="deactivate" data-action="{{ url('byte/new-request/action') }}" class="btn btn-outline-danger submit" value="De-Activate Vendor" >
 
-                    <input type="button" data-action-type="delete" data-action="{{ url('byte/vendors/all-vendors/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Vendor" >
+                    <input type="button" data-action-type="delete" data-action="{{ url('byte/new-request/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Vendor" >
 
                 </form>
             </div>

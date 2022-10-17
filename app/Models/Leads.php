@@ -10,4 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Leads extends Model
 {
     use HasApiTokens, HasFactory, SoftDeletes;
+
+    protected $guarded = [];
 }

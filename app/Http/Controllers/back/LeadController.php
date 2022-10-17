@@ -5,7 +5,12 @@ namespace App\Http\Controllers\back;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\LeadsImport;
 use App\Models\Leads;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\LeadViewStatus;
 use admin_helper;
 use Carbon\Carbon;
 
@@ -149,4 +154,118 @@ class LeadController extends Controller
         }
         
     }
+
+
+    public function add_lead(Request $request){
+        $data['categories'] = Category::where('status','1')->get();
+        return view('back.add_lead',$data);
+    }
+
+
+    public function save_lead(Request $request){
+        $request->validate([
+            'name'  =>'required',
+            'mobile'  =>'required|max:10|min:10',
+            'budget'=>'required|not_in:0',
+            'category'  =>'required|not_in:0',
+            'event_date'  =>'required|date|after:today',
+            'city'=>'required'
+        ]);
+
+        $lead = new Leads();
+
+        $lead->name = $request->name;
+        $lead->mobile = $request->mobile;
+        $lead->budget = $request->budget;
+        $lead->details = $request->details;
+        $lead->category_id = $request->category;
+        $lead->event_date = $request->event_date;
+        $lead->city = $request->city;
+        $lead->type = 'new';
+        $lead->status = '1';
+        $lead->approved_status = '1';
+        $lead->view_count = '0';
+        $lead->apply_tags = '0';
+        
+        
+        if($lead->save()){
+            Session::flash('message', 'Lead Added Successfully!');
+            Session::flash('class', 'alert-success');
+            return redirect("/byte/leads/add_lead");
+        }else{
+            Session::flash('message', 'Somthing Went Wrong!');
+            Session::flash('class', 'alert-danger');
+            return redirect('/byte/leads/add_lead');
+        }
+    }
+
+    public function upload_leads(Request $request){
+        $request->validate([
+            'excel' => 'required'
+        ]);
+
+        if( Excel::import(new LeadsImport,$request->file('excel'))){
+            Session::flash('message', 'Lead Uploaded Successfully!');
+            Session::flash('class', 'alert-success');
+            return redirect("/byte/leads/add_lead");
+        }else{
+            Session::flash('message', 'Somthing Went Wrong!');
+            Session::flash('class', 'alert-danger');
+            return redirect('/byte/leads/add_lead');
+        }
+    }
+
+
+    public function edit_leads(Request $request){
+        $lead_id =  $request->id;
+        $data['lead'] = Leads::find($lead_id);
+        $data['categories'] = Category::where('status','1')->get();
+        return view('back.edit_lead',$data);
+    }
+
+    public function update_leads(Request $request){
+        $request->validate([
+            'name'  =>'required',
+            'mobile'  =>'required|max:10|min:10',
+            'budget'=>'required',
+            'category'  =>'required|not_in:0',
+            'event_date'  =>'required|date|after:today',
+            'city'=>'required'
+        ]);
+        $lead_id = $request->lead_id;
+        $lead = Leads::find($lead_id);
+
+        if($lead){
+            $lead->name = $request->name;
+            $lead->mobile = $request->mobile;
+            $lead->budget = $request->budget;
+            $lead->details = $request->details;
+            $lead->category_id = $request->category;
+            $lead->event_date = $request->event_date;
+            $lead->city = $request->city;
+            $lead->save();
+            Session::flash('message', 'Lead Update Successfully!');
+            Session::flash('class', 'alert-success');
+            return back();
+        }else{
+            Session::flash('message', 'Somthing Went Wrong!');
+            Session::flash('class', 'alert-danger');
+            return back();
+        }
+    }
+
+    public function open_lead_vendors(Request $request){
+
+        $lead_id = $request->id;
+        
+        $data['lead'] = Leads::find($lead_id);
+
+        $data['vendors'] = LeadViewStatus::join('users','users.id','=','lead_view_status.user_id')
+                                            ->where('lead_view_status.lead_id',$lead_id)
+                                            ->orderBy('lead_view_status.id','desc')
+                                            ->select(['lead_view_status.*','users.id','users.name','users.email','users.mobile',])
+                                            ->get();
+        return view('back.open_lead_vendors',$data);
+    }
+    
 }
