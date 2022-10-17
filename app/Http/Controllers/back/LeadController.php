@@ -54,9 +54,6 @@ class LeadController extends Controller
         return view('back.archive_leads',$data);
     }
 
-
-
-
     public function action(Request $request){
         $ids = explode(',', $request->ids);
         $action_type = $request->action;

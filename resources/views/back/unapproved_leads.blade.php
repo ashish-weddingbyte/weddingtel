@@ -59,11 +59,13 @@
                                 <tr>
                                     <th><input type="checkbox" name="checkAll" id="checkAll"></th>
                                     <th>Lead Details</th>
+                                    <th>Other Details</th>
                                     <th>Category</th>
                                     <th>Budget</th>
                                     <th>Event Date</th>
                                     <th>Status</th>
                                     <th>Tags Details</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,6 +80,7 @@
                                         <span class="font-weight-bold">{{ ucwords($lead->type) }}</span>
 
                                     </td>
+                                    <td>{{ ucwords($lead->details) }}</td>
                                     <td>{{ $lead->category_name }}</td>
                                     <th><span class="font-weight-bold">{{ $lead->budget }}</span></th>
                                     <td><span class="text-success">{{ date('M d, Y', strtotime($lead->event_date) ) }}</td>
@@ -120,7 +123,11 @@
                                             <p>Tag :<span class="text-success font-weight-bold">{{ ucwords($lead->tags) }}</span></p>
                                         @endif
                                     </td>
-                                    
+                                    <td>
+                                        <a href="{{ url('/byte/leads/unapproved/edit/'.$lead->id) }}" class="btn btn-block btn-warning btn-sm">Edit</a>
+
+                                        <a href="{{ url('/byte/leads/unapproved/vendors/'.$lead->id) }}" class="btn btn-block btn-info btn-sm">View Vendors</a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('status', ['0', '1'])->nullable()->default('1');
             $table->enum('is_top', ['0', '1'])->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

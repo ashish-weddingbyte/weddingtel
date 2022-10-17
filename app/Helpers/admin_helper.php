@@ -105,10 +105,11 @@ class admin_helper {
     }
 
     public static function  vendor_details($id){
-        $details = VendorDetail::join('categories','categories.id','=','vendor_details.category_id')
+        $details = VendorDetail::join('categories','categories.id','=','vendor_details.category_id')                
+                                    ->join('users','users.id','=','vendor_details.user_id')
                                     ->join('cities','cities.id','=','vendor_details.city_id')
                                     ->where('vendor_details.user_id',$id)
-                                    ->select(['vendor_details.brandname','vendor_details.is_email_verified','vendor_details.is_mobile_verified','cities.name as city_name','vendor_details.featured_image','categories.category_name'])
+                                    ->select(['vendor_details.brandname','vendor_details.is_email_verified','vendor_details.is_mobile_verified','cities.name as city_name','vendor_details.featured_image','categories.category_name','users.name','users.mobile'])
                                     ->first();
         return $details;
     }

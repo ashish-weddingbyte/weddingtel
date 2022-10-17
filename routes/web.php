@@ -33,6 +33,9 @@ use App\Http\Controllers\back\Users;
 use App\Http\Controllers\back\AdminDashboard;
 use App\Http\Controllers\back\Plans;
 use App\Http\Controllers\back\LeadController;
+use App\Http\Controllers\back\QueryController;
+use App\Http\Controllers\back\CityController;
+use App\Http\Controllers\back\CategoryController;
 
 /**====================================================================================== */
 
@@ -216,10 +219,39 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::post('/leads/update',[LeadController::class,'update_leads']);
     Route::get('/leads/unapproved',[LeadController::class,'all_unapproved_leads']);
     Route::get('/leads/archive',[LeadController::class,'all_archive_leads']);
+    Route::get('/leads/unapproved/vendors/{id}',[LeadController::class,'open_lead_vendors']);
+    Route::get('/leads/unapproved/edit/{id}',[LeadController::class,'edit_leads']);
     Route::post('/leads/action',[LeadController::class,'action']);
     Route::get('/leads/add_lead',[LeadController::class,'add_lead']);
     Route::post('/leads/save_lead',[LeadController::class,'save_lead']);
     Route::post('/leads/upload_leads',[LeadController::class,'upload_leads']);
+
+
+    Route::get('query',[QueryController::class,'view_contact']);
+    Route::get('query/view-contact',[QueryController::class,'view_contact']);
+    Route::get('query/send-message',[QueryController::class,'send_message']);
+    Route::post('/query/action',[QueryController::class,'action']);
+
+
+    Route::get('city',[CityController::class,'all_cities']);
+    Route::get('city/all-cities',[CityController::class,'all_cities']);
+    Route::get('city/archive',[CityController::class,'all_archive_cities']);
+    Route::get('city/add',[CityController::class,'add_city']);
+    Route::get('city/all-cities/edit/{id}',[CityController::class,'edit_city']);
+    Route::post('/city/update',[CityController::class,'update_city']);
+    Route::post('/city/save_city',[CityController::class,'save_city']);
+    Route::post('/city/action',[CityController::class,'action']);
+
+
+    Route::get('category',[CategoryController::class,'all_categories']);
+    Route::get('category/all-categories',[CategoryController::class,'all_categories']);
+    Route::post('/category/action',[CategoryController::class,'action']);
+    Route::get('category/archive',[CategoryController::class,'all_archive_categories']);
+    Route::get('category/add',[CategoryController::class,'add_category']);
+    Route::get('category/all-categories/edit/{id}',[CategoryController::class,'edit_category']);
+    Route::post('category/save_category',[CategoryController::class,'save_category']);
+    Route::post('category/update',[CategoryController::class,'update_category']);
+
 });
 
 // logout route

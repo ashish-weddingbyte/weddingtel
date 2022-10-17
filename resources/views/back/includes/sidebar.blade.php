@@ -195,12 +195,6 @@
                     <li class="nav-item">
                         <a href="" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Bulk Upload Leads</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
                             <p>Addon Leads</p>
                         </a>
                     </li>
@@ -248,8 +242,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {{ admin_helper::is_open_menu('query') }}">
+                <a href="{{ url('/byte/query') }}" class="nav-link {{ admin_helper::active_menu('query') }}">
                     <i class="nav-icon fas fa-paper-plane"></i>
                     <p>
                         Query
@@ -258,13 +252,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/query/send-message') }}" class="nav-link {{ admin_helper::active_sub_menu('send-message') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Message Query</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/query/view-contact') }}" class="nav-link {{ admin_helper::active_sub_menu('view-contact') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>View Contact Query</p>
                         </a>
@@ -272,8 +266,8 @@
                 </ul>
             </li>
 
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+             <li class="nav-item {{ admin_helper::is_open_menu('category') }}">
+                <a href="{{ url('/byte/category') }}" class="nav-link {{ admin_helper::active_menu('category') }}">
                     <i class="nav-icon far fa-dot-circle"></i>
                     <p>
                         Category
@@ -282,21 +276,27 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/category/all-categories') }}" class="nav-link {{ admin_helper::active_sub_menu('all-categories') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Categories</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/category/archive') }}" class="nav-link {{ admin_helper::active_sub_menu('archive') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>All Archive Categories</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/byte/category/add') }}" class="nav-link {{ admin_helper::active_sub_menu('add') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Category</p>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {{ admin_helper::is_open_menu('city') }}">
+                <a href="{{ url('/byte/city') }}" class="nav-link {{ admin_helper::active_menu('city') }}">
                     <i class="nav-icon fas fa-city"></i>
                     <p>
                         Cities
@@ -305,13 +305,19 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/city/all-cities') }}" class="nav-link {{ admin_helper::active_sub_menu('all-cities') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Cities</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/city/archive') }}" class="nav-link {{ admin_helper::active_sub_menu('archive') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>All Archive City</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/byte/city/add') }}" class="nav-link {{ admin_helper::active_sub_menu('add') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add City</p>
                         </a>
