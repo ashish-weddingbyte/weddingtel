@@ -79,7 +79,7 @@
 
                                     </td>
                                     <td>{{ $lead->category_name }}</td>
-                                    <th><span class="font-weight-bold">{{ $lead->budget }}</span></th>
+                                    <td><span class="font-weight-bold">{{ $lead->budget }}</span></td>
                                     <td><span class="text-success">{{ date('M d, Y', strtotime($lead->event_date) ) }}</td>
                                     <td>
                                         <p>Is Active : 

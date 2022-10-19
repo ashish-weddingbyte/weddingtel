@@ -63,6 +63,7 @@
                                     <th>Status</th>
                                     <th>Is Photo Uploaded</th>
                                     <th>Is Paid</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -115,13 +116,13 @@
                                             @if(!empty( $vendor->featured_image))
                                                 <span class="text-success font-weight-bold">Yes</span>
                                             @else
-                                                <span class="text-danger font-weight-bold">No</span></p>
+                                                <span class="text-danger font-weight-bold">No</span>
                                             @endif
                                         <p>Gallery Photo : 
                                             @if($gallery == true)
                                                 <span class="text-success font-weight-bold">Yes</span>
                                             @else
-                                                <span class="text-danger font-weight-bold">No</span></p>
+                                                <span class="text-danger font-weight-bold">No</span>
                                             @endif
                                         </p>
                                     </td>
@@ -130,15 +131,26 @@
                                             @if($lead == true)
                                                 <span class="text-success font-weight-bold">Yes</span>
                                             @else
-                                                <span class="text-danger font-weight-bold">No</span></p>
+                                                <span class="text-danger font-weight-bold">No</span>
                                             @endif
                                         </p>
                                         <p>Position Plan: 
                                             @if($position == true)
                                                 <span class="text-success font-weight-bold">Yes</span>
                                             @else
-                                                <span class="text-danger font-weight-bold">No</span></p>
-                                            @endif</p>
+                                                <span class="text-danger font-weight-bold">No</span>
+                                            @endif
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('/byte/vendors/all_vendors/leads/'.$vendor->id) }}" class="btn btn-block btn-warning btn-sm">Open Leads</a>
+                                        @if($lead == false)
+                                            <a href="{{ url('/byte/vendors/all_vendors/buy_lead_plan/'.$vendor->id) }}" class="btn btn-block btn-primary btn-sm">Buy Lead Plan</a>
+                                        @endif
+
+                                        @if($position == false)
+                                            <a href="{{ url('/byte/vendors/all_vendors/buy_position_plan/'.$vendor->id) }}" class="btn btn-block btn-secondary btn-sm">Buy Position Plan</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

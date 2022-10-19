@@ -82,8 +82,11 @@
                                     </td>
                                     <td>{{ ucwords($lead->details) }}</td>
                                     <td>{{ $lead->category_name }}</td>
-                                    <th><span class="font-weight-bold">{{ $lead->budget }}</span></th>
-                                    <td><span class="text-success">{{ date('M d, Y', strtotime($lead->event_date) ) }}</td>
+                                    <td><span class="font-weight-bold">{{ $lead->budget }}</span></td>
+                                    <td>
+                                        <p>Event Date : <span class="text-success">{{ date('M d, Y', strtotime($lead->event_date) ) }}</span></p>
+
+                                    </td>
                                     <td>
                                         <p>Is Active : 
                                             @if($lead->status == '1')

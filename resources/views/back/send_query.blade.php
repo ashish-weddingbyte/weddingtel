@@ -90,7 +90,9 @@
                                         <p>Event Date : <span class="text-success">{{ date('M d, Y', strtotime($query->event_date) ) }}</span></p>
                                     </td>
                                     <td>{{ $query->details }}</td>
-                                    <td><span class="text-success">{{ date('M d, Y h:i A ', strtotime($query->created_at) ) }}</span></td>
+                                    <td>
+                                        <span class="text-success">{{ date('M d, Y h:i A ', strtotime($query->created_at) ) }}</span>
+                                    </td>
                                     <td>
                                         <p>Is Active : 
                                             @if($query->status == '1')

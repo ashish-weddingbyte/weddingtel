@@ -65,6 +65,7 @@
                                     <th>Plan Details</th>
                                     <th>Lead Details</th>
                                     <th>Addon Details</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -139,6 +140,9 @@
                                     </td>
                                     <td>
                                         <p>Is Addon : <span class="text-success font-weight-bold">{{ ucwords($vendor->is_addon) }}</span></p>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('/byte/vendors/paid_vendors/leads/'.$vendor->id) }}" class="btn btn-block btn-warning btn-sm">Open Leads</a>
                                     </td>
                                 </tr>
                                 @endforeach

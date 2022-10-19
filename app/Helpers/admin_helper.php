@@ -8,6 +8,18 @@ use App\Models\LeadPaidVendor;
 use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\VendorDetail;
+
+use App\Models\Wishlist;
+use App\Models\Budget;
+use App\Models\Review;
+use App\Models\Checklist;
+use App\Models\RealWedding;
+use App\Models\Guest;
+
+use App\Models\BudgetCategory;
+use App\Models\BudgetExpense;
+use App\Models\BudgetCategoryExpense;
+
 use Carbon\Carbon;
 
 class admin_helper {
@@ -109,11 +121,42 @@ class admin_helper {
                                     ->join('users','users.id','=','vendor_details.user_id')
                                     ->join('cities','cities.id','=','vendor_details.city_id')
                                     ->where('vendor_details.user_id',$id)
-                                    ->select(['vendor_details.brandname','vendor_details.is_email_verified','vendor_details.is_mobile_verified','cities.name as city_name','vendor_details.featured_image','categories.category_name','users.name','users.mobile'])
+                                    ->select(['vendor_details.brandname','vendor_details.is_email_verified','vendor_details.is_mobile_verified','cities.name as city_name','vendor_details.featured_image','vendor_details.category_id','categories.category_name','users.name','users.mobile','users.id'])
                                     ->first();
         return $details;
     }
 
+
+    public static function  user_details($id){
+        $details = User::join('user_details','user_details.user_id','=','users.id')
+                            ->join('cities','cities.id','=','user_details.city_id')
+                            ->where('users.user_type','user')
+                            ->select(['users.id','users.name','users.email','users.mobile','users.status','user_details.event','user_details.is_email_verified','user_details.is_mobile_verified','cities.name as city_name','user_details.profile','user_details.type','user_details.partner_name','user_details.partner_profile','user_details.wedding_address','user_details.partner_profile'])
+                            ->orderBy('users.id','desc')
+                            ->first();
+        return $details;
+    }
+
     
+
+    public static function tools_status($id){
+        $wishlist = Wishlist::where('from_id',$id)->first();
+        $checklist = Checklist::where('user_id',$id)->first();
+        $guestlist = Guest::where('user_id',$id)->first();
+        $budget = Budget::where('user_id',$id)->first();
+        $realwedding = RealWedding::where('user_id',$id)->first();
+        $review = Review::where('user_id',$id)->first();
+
+        $data['wishlist'] = (!empty($wishlist))? 'Yes' : 'No' ;
+        $data['checklist'] = (!empty($checklist))? 'Yes' : 'No' ;
+        $data['guestlist'] = (!empty($guestlist))? 'Yes' : 'No' ;
+        $data['budget'] = (!empty($budget))? 'Yes' : 'No' ;
+        $data['realwedding'] = (!empty($realwedding))? 'Yes' : 'No' ;
+        $data['review'] = (!empty($review))? 'Yes' : 'No' ;
+
+        return $data;
+    } 
+
+
 }
 ?>

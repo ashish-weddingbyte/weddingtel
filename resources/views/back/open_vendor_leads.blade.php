@@ -1,7 +1,7 @@
 
 @extends('back.layouts.admin_layout')
 
-@section('title', 'Vendor List')
+@section('title', 'Lead List')
 
 
 @section('main-container')
@@ -13,13 +13,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Vendor List</h1>
+            <h1>Lead List</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ url('byte/dashboard') }}">Dashboard</a></li> 
               <li class="breadcrumb-item"><a href="{{ url('byte/leads/') }}">Leads</a></li>             
-              <li class="breadcrumb-item active">Vendor List</li>
+              <li class="breadcrumb-item active">Lead List</li>
             </ol>
           </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="col-12">
             <div class="card card-success">
             <div class="card-header">
-                <h3 class="card-title">Vendor List</h3>
+                <h3 class="card-title">Lead List</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -55,13 +55,12 @@
                 <div class="my-2">
                     <div class="position-relative p-3 bg-gray">
                         <div class="ribbon-wrapper">
-                            <div class="ribbon bg-warning">{{ ucwords( $lead->type ) }}</div>
+                            <div class="ribbon bg-warning">Vendor</div>
                         </div>
-                        <h3>{{ $lead->name }}</h3>
-                        <span>{{ $lead->mobile }}</span> | 
-                        <span>{{ $lead->budget }}</span> | 
-                        <span>{{ $lead->city }}</span> | 
-                        <span>{{ $lead->view_count }}</span>
+                        <h3>{{ $vendor->name }}</h3>
+                        <span>{{ $vendor->brandname }}</span> |
+                        <span>{{ $vendor->mobile }}</span> | 
+                        <span>{{ $vendor->city_name }}</span>
                     </div>
                 </div>
                 <hr>
@@ -70,30 +69,39 @@
                         <table  class="table table-bordered table-striped dataTable">
                             <thead>
                                 <tr>
-                                    <th>Vendor Details</th>
-                                    <th>Date</th>
+                                    <th>Lead Details</th>
+                                    <th>Other Details</th>
+                                    <th>Lead Open Date</th>
                                     <th>City</th>
-                                    <th>Category</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if($vendors)
-                                    @foreach($vendors as $vendor)
-                                    <?php
-                                        $details = admin_helper::vendor_details($vendor->user_id);
-                                    ?>
+                                @if($leads)
+                                    @foreach($leads as $lead)
                                         <tr>
                                             <td>
-                                                <span class="font-weight-bold">{{ ucwords($vendor->name) }}</span> ( <span class="text-success">{{ $details->brandname }}</span> ) <br />
-                                                <span class="text-info">{{ $vendor->mobile }}</span> @if($details->is_mobile_verified == '1') <i class="fas fa-check"></i>@endif <br />
-                                                <span class="text-muted">{{ $vendor->email }}</span> @if($details->is_email_verified == '1') <i class="fas fa-check"></i>@endif  <br />
-                                                
+                                                <span class="font-weight-bold">{{ ucwords($lead->name) }}</span> <br />
+                                                <span class="font-weight-bold">{{ ucwords($lead->mobile) }}</span> <br />
                                             </td>
-                                            <td><span class="text-success">{{ date('M d, Y h:i A ', strtotime($vendor->created_at) ) }}</span></td>
                                             <td>
-                                                <span class="font-weight-bold">{{ ucwords($details->city_name) }}</span>
+                                                <p>Event Date : <span class="text-success">{{ date('M d, Y', strtotime($lead->event_date) ) }}</span></p>
+                                                
+                                                <p>Lead Type : 
+                                                    @if($lead->type == 'new')
+                                                        <span class="text-success font-weight-bold">New</span>
+                                                    @endif
+                                                    @if($lead->type == 'used')
+                                                        <span class="text-danger font-weight-bold">Relaunch</span>
+                                                    @endif
+                                                </p>
+                                                <p>Budget : <span class="font-weight-bold">{{ $lead->budget }}</span></p>
                                             </td>
-                                            <td>{{ $details->category_name }}</td>
+                                            <td>
+                                                <p><span class="text-success">{{ date('M d, Y h:i A ', strtotime($lead->created_at) ) }}</span></p>
+                                            </td>
+                                            <td>
+                                                <span class="text-weight-bold">{{ $lead->city }}</span>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 @endif

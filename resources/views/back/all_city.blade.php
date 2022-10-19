@@ -95,7 +95,7 @@
                                         </p>
                                     </td>
                                     <td>
-                                        <a href="{{ url('/byte/city/all-cities/edit/'.$city->id) }}" class="btn btn-block btn-warning btn-sm">Edit</a>
+                                        <a href="{{ url('/byte/city/all_cities/edit/'.$city->id) }}" class="btn btn-block btn-warning btn-sm">Edit</a>
                                     </td>
                                 </tr>
                                 @endforeach

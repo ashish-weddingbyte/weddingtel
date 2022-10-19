@@ -115,13 +115,14 @@
                                             @if(!empty( $vendor->featured_image))
                                                 <span class="text-success font-weight-bold">Yes</span>
                                             @else
-                                                <span class="text-danger font-weight-bold">No</span></p>
+                                                <span class="text-danger font-weight-bold">No</span>
                                             @endif
+                                        </p>
                                         <p>Gallery Photo : 
                                             @if($gallery == true)
                                                 <span class="text-success font-weight-bold">Yes</span>
                                             @else
-                                                <span class="text-danger font-weight-bold">No</span></p>
+                                                <span class="text-danger font-weight-bold">No</span>
                                             @endif
                                         </p>
                                     </td>
@@ -130,15 +131,16 @@
                                             @if($lead == true)
                                                 <span class="text-success font-weight-bold">Yes</span>
                                             @else
-                                                <span class="text-danger font-weight-bold">No</span></p>
+                                                <span class="text-danger font-weight-bold">No</span>
                                             @endif
                                         </p>
                                         <p>Position Plan: 
                                             @if($position == true)
                                                 <span class="text-success font-weight-bold">Yes</span>
                                             @else
-                                                <span class="text-danger font-weight-bold">No</span></p>
-                                            @endif</p>
+                                                <span class="text-danger font-weight-bold">No</span>
+                                            @endif
+                                        </p>
                                     </td>
                                 </tr>
                                 @endforeach

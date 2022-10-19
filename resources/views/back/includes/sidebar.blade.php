@@ -11,8 +11,8 @@
                 </a>
             </li>
 
-            <li class="nav-item {{ admin_helper::is_open_menu('new-request') }}">
-                <a href="{{ url('byte/new-request') }}" class="nav-link {{ admin_helper::active_menu('new-request') }}">
+            <li class="nav-item {{ admin_helper::is_open_menu('new_request') }}">
+                <a href="{{ url('byte/new_request') }}" class="nav-link {{ admin_helper::active_menu('new_request') }}">
                     <i class="nav-icon fas fa-user"></i>
                     <p>New Request <span class="right badge badge-danger">New</span></p>
                 </a>
@@ -28,7 +28,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ url('/byte/vendors/all-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('all-vendors') }}">
+                        <a href="{{ url('/byte/vendors/all_vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('all_vendors') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Vendors</p>
                         </a>
@@ -40,38 +40,38 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/byte/vendors/paid-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('paid-vendors') }}">
+                        <a href="{{ url('/byte/vendors/paid_vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('paid_vendors') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Paid Vendors</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/byte/vendors/expire-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('expire-vendors') }}">
+                        <a href="{{ url('/byte/vendors/expire_vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('expire_vendors') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Expired Paid Vendors</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/byte/vendors/unpaid-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('unpaid-vendors') }}">
+                        <a href="{{ url('/byte/vendors/unpaid_vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('unpaid_vendors') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Un-Paid Vendors</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ url('/byte/vendors/top-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('top-vendors') }}">
+                        <a href="{{ url('/byte/vendors/top_vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('top_vendors') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Top Vendors</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/byte/vendors/featured-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('featured-vendors') }}">
+                        <a href="{{ url('/byte/vendors/featured_vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('featured_vendors') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Featured Vendors</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/byte/vendors/archive-vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('archive-vendors') }}">
+                        <a href="{{ url('/byte/vendors/archive_vendors') }}" class="nav-link {{ admin_helper::active_sub_menu('archive_vendors') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Archive Vendors</p>
                         </a>
@@ -79,8 +79,8 @@
                 </ul>
             </li>
 
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {{ admin_helper::is_open_menu('users') }}">
+                <a href="{{ url('/byte/users') }}" class="nav-link {{ admin_helper::active_menu('users') }}">
                     <i class="fas fa-users nav-icon"></i>
                     <p>
                         Bride/Groom
@@ -89,13 +89,19 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/users/bride_groom') }}" class="nav-link {{ admin_helper::active_sub_menu('bride_groom') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Bride/Groom</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/users/archive_user') }}" class="nav-link {{ admin_helper::active_sub_menu('archive_user') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>All Archive Bride/Groom</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/byte/users/reviews') }}" class="nav-link {{ admin_helper::active_sub_menu('reviews') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Bride/Groom Review</p>
                         </a>
@@ -109,7 +115,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ url('/byte/plans/all-plans') }}" class="nav-link {{ admin_helper::active_sub_menu('all-plans') }}">
+                        <a href="{{ url('/byte/plans/all_plans') }}" class="nav-link {{ admin_helper::active_sub_menu('all_plans') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Plans</p>
                         </a>
@@ -180,7 +186,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/byte/leads/archive') }}" class="nav-link {{ admin_helper::active_sub_menu('archive') }}">
+                        <a href="{{ url('/byte/leads/archive_leads') }}" class="nav-link {{ admin_helper::active_sub_menu('archive_leads') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Archive Leads</p>
                         </a>
@@ -252,13 +258,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ url('/byte/query/send-message') }}" class="nav-link {{ admin_helper::active_sub_menu('send-message') }}">
+                        <a href="{{ url('/byte/query/send_message') }}" class="nav-link {{ admin_helper::active_sub_menu('send_message') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Message Query</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/byte/query/view-contact') }}" class="nav-link {{ admin_helper::active_sub_menu('view-contact') }}">
+                        <a href="{{ url('/byte/query/view_contact') }}" class="nav-link {{ admin_helper::active_sub_menu('view_contact') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>View Contact Query</p>
                         </a>
@@ -276,13 +282,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ url('/byte/category/all-categories') }}" class="nav-link {{ admin_helper::active_sub_menu('all-categories') }}">
+                        <a href="{{ url('/byte/category/all_categories') }}" class="nav-link {{ admin_helper::active_sub_menu('all_categories') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Categories</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/byte/category/archive') }}" class="nav-link {{ admin_helper::active_sub_menu('archive') }}">
+                        <a href="{{ url('/byte/category/archive_category') }}" class="nav-link {{ admin_helper::active_sub_menu('archive_category') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Archive Categories</p>
                         </a>
@@ -305,13 +311,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ url('/byte/city/all-cities') }}" class="nav-link {{ admin_helper::active_sub_menu('all-cities') }}">
+                        <a href="{{ url('/byte/city/all_cities') }}" class="nav-link {{ admin_helper::active_sub_menu('all_cities') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Cities</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/byte/city/archive') }}" class="nav-link {{ admin_helper::active_sub_menu('archive') }}">
+                        <a href="{{ url('/byte/city/archive_city') }}" class="nav-link {{ admin_helper::active_sub_menu('archive_city') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Archive City</p>
                         </a>

@@ -86,7 +86,7 @@
 
                                     </td>
                                     <td>
-                                        <a href="{{ url('/byte/category/all-categories/edit/'.$category->id) }}" class="btn btn-block btn-warning btn-sm">Edit</a>
+                                        <a href="{{ url('/byte/category/all_categories/edit/'.$category->id) }}" class="btn btn-block btn-warning btn-sm">Edit</a>
                                     </td>
                                 </tr>
                                 @endforeach

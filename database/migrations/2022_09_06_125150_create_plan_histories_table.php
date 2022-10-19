@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('plan_id');
             $table->enum('plan_type', ['lead', 'position', 'query'])->nullable();
             $table->enum('payment_mode', ['online', 'offline'])->nullable();
+            $table->text('remark')->nullable();
             $table->integer('price');
             $table->timestamps();
         });

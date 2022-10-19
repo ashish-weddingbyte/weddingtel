@@ -14,6 +14,22 @@ use App\Models\MediaGallery;
 use App\Models\City;
 use App\Models\PositionPaidVendor;
 use App\Models\LeadPaidVendor;
+use App\Models\LeadViewStatus;
+use App\Models\LeadPlan;
+use App\Models\PaymentHistory;
+
+
+use App\Models\Wishlist;
+use App\Models\Budget;
+use App\Models\Review;
+use App\Models\Checklist;
+use App\Models\RealWedding;
+use App\Models\Guest;
+
+use App\Models\BudgetCategory;
+use App\Models\BudgetExpense;
+use App\Models\BudgetCategoryExpense;
+
 use admin_helper;
 use Carbon\Carbon;
 
@@ -131,9 +147,22 @@ class Users extends Controller
         if($action_type == 'deactivate'){
             $data = User::whereIn('id', $ids)->update(['status'=>'0']);
             if($data){
-                Session::flash('message', 'Vendors Deactivate Successfully!');
+                Session::flash('message', 'Deactivate Successfully!');
                 Session::flash('class', 'alert-success');
-                return response()->json(['status' => 'Vendors Deactivate Successfully!']);
+                return response()->json(['status' => 'Deactivate Successfully!']);
+            }else{
+                Session::flash('message', 'Somthing Went Wrong!');
+                Session::flash('class', 'alert-danger');
+                return response()->json(['status' => 'Somthing Went Wrong!']);
+            }
+        }
+
+        if($action_type == 'deactivate_review'){
+            $data = Review::whereIn('id', $ids)->update(['status'=>'0']);
+            if($data){
+                Session::flash('message', 'Deactivate Successfully!');
+                Session::flash('class', 'alert-success');
+                return response()->json(['status' => 'Deactivate Successfully!']);
             }else{
                 Session::flash('message', 'Somthing Went Wrong!');
                 Session::flash('class', 'alert-danger');
@@ -144,9 +173,22 @@ class Users extends Controller
         if($action_type == 'activate'){
             $data = User::whereIn('id', $ids)->update(['status'=>'1']);
             if($data){
-                Session::flash('message', 'Vendors Activate Successfully!');
+                Session::flash('message', 'Activate Successfully!');
                 Session::flash('class', 'alert-success');
-                return response()->json(['status' => 'Vendors Activate Successfully!']);
+                return response()->json(['status' => 'Activate Successfully!']);
+            }else{
+                Session::flash('message', 'Somthing Went Wrong!');
+                Session::flash('class', 'alert-danger');
+                return response()->json(['status' => 'Somthing Went Wrong!']);
+            }
+        }
+
+        if($action_type == 'activate_review'){
+            $data = Review::whereIn('id', $ids)->update(['status'=>'1']);
+            if($data){
+                Session::flash('message', 'Activate Successfully!');
+                Session::flash('class', 'alert-success');
+                return response()->json(['status' => 'Activate Successfully!']);
             }else{
                 Session::flash('message', 'Somthing Went Wrong!');
                 Session::flash('class', 'alert-danger');
@@ -157,9 +199,22 @@ class Users extends Controller
         if($action_type == 'delete'){
             $data = User::whereIn('id', $ids)->delete();
             if($data){
-                Session::flash('message', 'Vendors Added in Trash Successfully!');
+                Session::flash('message', 'Added in Trash Successfully!');
                 Session::flash('class', 'alert-success');
-                return response()->json(['status' => 'Vendors Added in Trash Successfully!']);
+                return response()->json(['status' => 'Added in Trash Successfully!']);
+            }else{
+                Session::flash('message', 'Somthing Went Wrong!');
+                Session::flash('class', 'alert-danger');
+                return response()->json(['status' => 'Somthing Went Wrong!']);
+            }
+        }
+
+        if($action_type == 'delete_review'){
+            $data = Review::whereIn('id', $ids)->delete();
+            if($data){
+                Session::flash('message', 'Review Delete Successfully!');
+                Session::flash('class', 'alert-success');
+                return response()->json(['status' => 'Review Delete Successfully!']);
             }else{
                 Session::flash('message', 'Somthing Went Wrong!');
                 Session::flash('class', 'alert-danger');
@@ -274,9 +329,9 @@ class Users extends Controller
         if($action_type == 'restore'){
             $data = User::whereIn('id', $ids)->withTrashed()->restore();
             if($data){
-                Session::flash('message', 'Vendor Restore Successfully!');
+                Session::flash('message', 'Restore Successfully!');
                 Session::flash('class', 'alert-success');
-                return response()->json(['status' => 'Vendor Restore Successfully!']);
+                return response()->json(['status' => 'Restore Successfully!']);
             }else{
                 Session::flash('message', 'Somthing Went Wrong!');
                 Session::flash('class', 'alert-danger');
@@ -293,6 +348,32 @@ class Users extends Controller
                 Session::flash('message', 'Vendor Permanent Delete Successfully!');
                 Session::flash('class', 'alert-success');
                 return response()->json(['status' => 'Vendor Permanent Delete Successfully!']);
+            }else{
+                Session::flash('message', 'Somthing Went Wrong!');
+                Session::flash('class', 'alert-danger');
+                return response()->json(['status' => 'Somthing Went Wrong!']);
+            }
+        }
+
+        if($action_type == 'force_delete_user'){
+            $data = User::whereIn('id', $ids)->withTrashed()->withTrashed()->get();
+            if($data){
+                UserDetail::whereIn('user_id',$ids)->delete();
+                Wishlist::whereIn('from_id',$ids)->delete();
+                Checklist::whereIn('user_id',$ids)->delete();
+                Guest::whereIn('user_id',$ids)->delete();
+                Budget::whereIn('user_id',$ids)->delete();
+                RealWedding::whereIn('user_id',$ids)->delete();
+                Review::whereIn('user_id',$ids)->delete();
+                BudgetCategory::whereIn('user_id',$ids)->delete();
+                BudgetExpense::whereIn('user_id',$ids)->delete();
+                BudgetCategoryExpense::whereIn('user_id',$ids)->delete();
+
+                User::whereIn('id', $ids)->withTrashed()->forceDelete();
+
+                Session::flash('message', 'User Permanent Delete Successfully!');
+                Session::flash('class', 'alert-success');
+                return response()->json(['status' => 'User Permanent Delete Successfully!']);
             }else{
                 Session::flash('message', 'Somthing Went Wrong!');
                 Session::flash('class', 'alert-danger');
@@ -332,6 +413,115 @@ class Users extends Controller
         $date = Carbon::today()->subDays(30);
         $data['all_users'] =  User::where('created_at', '>=' ,$date)->orderBy('id','desc')->get();
         return view('back.new_request',$data);
+    }
+
+
+    public function all_bride_groom(){
+        $data['all_users'] =  User::join('user_details','user_details.user_id','=','users.id')
+                                    ->join('cities','cities.id','=','user_details.city_id')
+                                    ->where('users.user_type','user')
+                                    ->select(['users.id','users.name','users.email','users.mobile','users.status','user_details.event','user_details.is_email_verified','user_details.is_mobile_verified','cities.name as city_name','user_details.profile','user_details.type','user_details.partner_name','user_details.partner_profile','user_details.wedding_address','user_details.partner_profile'])
+                                    ->orderBy('users.id','desc')
+                                    ->get();
+
+        return view('back.all_users',$data);
+    }
+
+
+    public function all_archive_user(){
+        $data['all_users'] =  User::join('user_details','user_details.user_id','=','users.id')
+                                    ->join('cities','cities.id','=','user_details.city_id')
+                                    ->where('users.user_type','user')
+                                    ->select(['users.id','users.name','users.email','users.mobile','users.status','user_details.event','user_details.is_email_verified','user_details.is_mobile_verified','cities.name as city_name','user_details.profile','user_details.type','user_details.partner_name','user_details.partner_profile','user_details.wedding_address','user_details.partner_profile'])
+                                    ->orderBy('users.id','desc')
+                                    ->onlyTrashed()->get();
+
+        return view('back.archive_users',$data);
+    }
+
+
+    public function all_reviews(){
+        $data['all_review'] = Review::orderBy('id','desc')->get();
+        return view('back.all_reviews',$data);
+    }
+
+
+    public function vendors_open_leads(Request $request){
+        $id = $request->id;
+        $data['vendor'] = admin_helper::vendor_details($id);
+        $data['leads'] = LeadViewStatus::join('leads','leads.id','=','lead_view_status.lead_id')
+                                        ->where('lead_view_status.user_id',$id)
+                                        ->select(['lead_view_status.created_at','leads.*'])
+                                        ->orderBy('lead_view_status.created_at','desc')
+                                        ->orderBy('lead_view_status.id','desc')
+                                        ->get();
+        return view('back.open_vendor_leads',$data);
+    }
+    
+
+
+    public function buy_lead_plan(Request $request){
+        $vendor_id = $request->id;
+        $data['vendor'] = admin_helper::vendor_details($vendor_id);
+        $category_id = $data['vendor']->category_id;
+        $data['plans'] = LeadPlan::where('category_id',$category_id)->get();
+        return view('back.buy_lead_plan',$data);
+
+    }
+
+
+    public function save_lead_plan(Request $request){
+        $request->validate([
+            'plan'  =>'required|not_in:0',
+        ]);
+
+        $vendor_id = $request->vendor_id;
+        $plan = $request->plan; 
+        $remark  = $request->remark;
+        $paid_lead_vendor = LeadPaidVendor::where('user_id',$vendor_id)
+                                            ->where('is_active','1')
+                                            ->where('available_leads','>','0')
+                                            ->orderBy('id','desc')
+                                            ->first();
+        if(!empty($paid_lead_vendor)){
+            Session::flash('message', 'Vendor has another Activated Plan!');
+            Session::flash('class', 'alert-warning');
+            return back();
+        }else{
+
+            $plan_details = LeadPlan::find($plan);
+
+            $start = Carbon::now()->format('Y-m-d');
+            $end = Carbon::now()->addDays($plan_details->days)->format("Y-m-d");
+
+            
+            $paid_vendor = new LeadPaidVendor();
+            $paid_vendor->user_id = $vendor_id;
+            $paid_vendor->plan_id = $plan_details->id;
+            $paid_vendor->plan_name = $plan_details->name;
+            $paid_vendor->lead = $plan_details->leads;
+            $paid_vendor->total_lead = $plan_details->leads;
+            $paid_vendor->available_leads = $plan_details->leads;
+            $paid_vendor->start_at = $start;
+            $paid_vendor->end_at = $end;
+            $paid_vendor->is_active = '1';
+            $paid_vendor->is_addon = "no";
+            $paid_vendor->save();
+
+            $history = new PaymentHistory();
+            $history->user_id = $vendor_id;
+            $history->plan_id = $plan_details->id;
+            $history->plan_type = 'lead';
+            $history->payment_mode = 'offline';
+            $history->remark = $remark;
+            $history->price = $plan_details->price;
+            $history->save();
+
+
+            Session::flash('message', 'Vendor Plan Activated Successfull!');
+            Session::flash('class', 'alert-success');
+            return back();
+        }                               
     }
 
 }

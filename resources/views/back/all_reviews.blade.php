@@ -1,7 +1,7 @@
 
 @extends('back.layouts.admin_layout')
 
-@section('title', 'All Top Vendors')
+@section('title', 'All Reviews')
 
 
 @section('main-container')
@@ -13,13 +13,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>All Top Vendors</h1>
+            <h1>All Reviews</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ url('byte/dashboard') }}">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="{{ url('byte/vendors/') }}">Vendors</a></li>
-              <li class="breadcrumb-item active">All Top Vendors</li>
+              <li class="breadcrumb-item"><a href="{{ url('byte/users/') }}">Users</a></li>
+              <li class="breadcrumb-item active">All Reviews</li>
             </ol>
           </div>
         </div>
@@ -38,9 +38,9 @@
     <div class="container-fluid">
         <div class="row">
         <div class="col-12">
-            <div class="card card-primary">
+            <div class="card card-success">
             <div class="card-header">
-                <h3 class="card-title">All Top Vendor</h3>
+                <h3 class="card-title">All Reviews</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -54,72 +54,52 @@
             <div class="card-body">
                 <form action="" method="post">
                     <div class="table-responsive">
-                        <table  class="table table-bordered table-striped dataTable">
+                        <table class="table table-bordered table-striped dataTable">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" name="checkAll" id="checkAll"></th>
-                                    <th>Vendor Details</th>
-                                    <th>Category</th>
+                                    <th>User Details <small>(from)</small></th>
+                                    <th>Vendor Details <small>(to)</small></th>
+                                    <th>Rating & Review Details</th>
+                                    <th>Comment</th>
                                     <th>Status</th>
-                                    <th>Is Photo Uploaded</th>
-                                    <th>Is Paid</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($all_vendors as $vendor)
+                                @foreach($all_review as $review)
                                 <?php
-                                    $gallery = admin_helper::is_gallery($vendor->id);
-                                    $lead = admin_helper::is_lead_plan_active($vendor->id);
-                                    $position = admin_helper::is_position_plan_active($vendor->id);
+                                    $vendor = admin_helper::vendor_details($review->vendor_id);
                                 ?>
                                 <tr>
-                                    <td><input type="checkbox" class="sub_chk" data-id="{{ $vendor->id }}"></td>
+                                    <td><input type="checkbox" class="sub_chk" data-id="{{ $review->id }}"></td>
+                                    <td>
+                                        <span class="font-weight-bold">{{ ucwords($review->name) }}</span> <br />
+                                        <span class="text-muted">{{ $review->email }}</span><br />
+                                        <span class="font-weight-bold">{{ ucwords($review->user_type) }}</span>
+                                    </td>
                                     <td>
                                         <span class="font-weight-bold">{{ ucwords($vendor->name) }}</span> ( <span class="text-success">{{ $vendor->brandname }}</span> ) <br />
                                         <span class="text-info">{{ $vendor->mobile }}</span> @if($vendor->is_mobile_verified == '1') <i class="fas fa-check"></i>@endif <br />
-                                        <span class="text-muted">{{ $vendor->email }}</span> @if($vendor->is_email_verified == '1') <i class="fas fa-check"></i>@endif  <br />
                                         <span class="font-weight-bold">{{ ucwords($vendor->city_name) }}</span>
                                     </td>
-                                    <td>{{ $vendor->category_name }}</td>
+                                    <td>
+                                        <p>Time : <span class="text-success">{{ date('M d, Y', strtotime($review->created_at) ) }}</span></p>
+                                        <p>
+                                            <span class="stars">
+                                                {!! str_repeat(' <i class="fa fa-star"></i> ', $review->rating ) !!}                                  
+                                            </span>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>{{ ucwords($review->comment) }}</p>
+                                    </td>
+                                    
                                     <td>
                                         <p>Is Active : 
-                                            @if($vendor->status == '1')
+                                            @if($review->status == '1')
                                                 <span class="text-success font-weight-bold">Yes</span>
                                             @endif
-                                            @if($vendor->status == '0')
-                                                <span class="text-danger font-weight-bold">No</span>
-                                            @endif
-                                        </p>
-                                        
-                                    </td>
-                                    <td>
-                                        <p>Profile Photo :
-                                            @if(!empty( $vendor->featured_image))
-                                                <span class="text-success font-weight-bold">Yes</span>
-                                            @else
-                                                <span class="text-danger font-weight-bold">No</span>
-                                            @endif
-                                        </p>
-                                        <p>Gallery Photo : 
-                                            @if($gallery == true)
-                                                <span class="text-success font-weight-bold">Yes</span>
-                                            @else
-                                                <span class="text-danger font-weight-bold">No</span>
-                                            @endif
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>Lead Plan: 
-                                            @if($lead == true)
-                                                <span class="text-success font-weight-bold">Yes</span>
-                                            @else
-                                                <span class="text-danger font-weight-bold">No</span>
-                                            @endif
-                                        </p>
-                                        <p>Position Plan: 
-                                            @if($position == true)
-                                                <span class="text-success font-weight-bold">Yes</span>
-                                            @else
+                                            @if($review->status == '0')
                                                 <span class="text-danger font-weight-bold">No</span>
                                             @endif
                                         </p>
@@ -131,7 +111,12 @@
                         </table>
                     </div>
                     <hr />
-                    <input type="button" data-action-type="remove_top" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-info submit" value="Remove Top Vendors">
+                    
+                    <input type="button" data-action-type="activate_review" data-action="{{ url('byte/users/action') }}" class="btn btn-outline-info submit" value="Activate Review" >
+
+                    <input type="button" data-action-type="deactivate_review" data-action="{{ url('byte/users/action') }}" class="btn btn-outline-danger submit" value="De-Activate Review" >
+
+                    <input type="button" data-action-type="delete_review" data-action="{{ url('byte/users/action') }}" class="btn btn-outline-danger submit" value="Delete" >
 
                 </form>
             </div>

@@ -195,21 +195,33 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
 
     Route::get('/dashboard', [AdminDashboard::class,'dashboard']);
 
-    Route::get('/new-request',[Users::class,'new_request']);
-    Route::post('/new-request/action',[Users::class,'action']);
+    Route::get('/new_request',[Users::class,'new_request']);
+    Route::post('/new_request/action',[Users::class,'action']);
 
     Route::get('/vendors',[Users::class,'active_vendors']);
-    Route::get('/vendors/all-vendors',[Users::class,'all_vendors']);
-    Route::get('/vendors/archive-vendors',[Users::class,'archive_vendors']);
+    Route::get('/vendors/all_vendors',[Users::class,'all_vendors']);
+    Route::get('/vendors/all_vendors/leads/{id}',[Users::class,'vendors_open_leads']);
+    Route::get('/vendors/all_vendors/buy_lead_plan/{id}',[Users::class,'buy_lead_plan']);
+    Route::post('/vendors/save_lead_plan',[Users::class,'save_lead_plan']);
+    Route::get('/vendors/all_vendors/buy_position_plan/{id}',[Users::class,'buy_position_plan']);
+    Route::get('/vendors/archive_vendors',[Users::class,'archive_vendors']);
     Route::post('/vendors/action',[Users::class,'action']);
-    Route::get('/vendors/unpaid-vendors',[Users::class,'unpaid_vendors']);
-    Route::get('/vendors/top-vendors',[Users::class,'top_vendors']);
-    Route::get('/vendors/featured-vendors',[Users::class,'featured_vendors']);
-    Route::get('/vendors/paid-vendors',[Users::class,'paid_vendors']);
-    Route::get('/vendors/expire-vendors',[Users::class,'expire_vendors']);
+    Route::get('/vendors/unpaid_vendors',[Users::class,'unpaid_vendors']);
+    Route::get('/vendors/top_vendors',[Users::class,'top_vendors']);
+    Route::get('/vendors/featured_vendors',[Users::class,'featured_vendors']);
+    Route::get('/vendors/paid_vendors',[Users::class,'paid_vendors']);
+    Route::get('/vendors/paid_vendors/leads/{id}',[Users::class,'vendors_open_leads']);
+    Route::get('/vendors/expire_vendors',[Users::class,'expire_vendors']);
+
+
+    Route::get('users',[Users::class,'all_bride_groom']);
+    Route::get('users/bride_groom',[Users::class,'all_bride_groom']);
+    Route::post('/users/action',[Users::class,'action']);
+    Route::get('/users/archive_user',[Users::class,'all_archive_user']);
+    Route::get('/users/reviews',[Users::class,'all_reviews']);
 
     Route::get('/plans',[Plans::class,'all_plans']);
-    Route::get('/plans/all-plans',[Plans::class,'all_plans']);
+    Route::get('/plans/all_plans',[Plans::class,'all_plans']);
     Route::post('/plans/action',[Plans::class,'action']);
 
     Route::get('/leads',[LeadController::class,'all_approved_leads']);
@@ -218,7 +230,7 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::get('/leads/approved/edit/{id}',[LeadController::class,'edit_leads']);
     Route::post('/leads/update',[LeadController::class,'update_leads']);
     Route::get('/leads/unapproved',[LeadController::class,'all_unapproved_leads']);
-    Route::get('/leads/archive',[LeadController::class,'all_archive_leads']);
+    Route::get('/leads/archive_leads',[LeadController::class,'all_archive_leads']);
     Route::get('/leads/unapproved/vendors/{id}',[LeadController::class,'open_lead_vendors']);
     Route::get('/leads/unapproved/edit/{id}',[LeadController::class,'edit_leads']);
     Route::post('/leads/action',[LeadController::class,'action']);
@@ -228,27 +240,27 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
 
 
     Route::get('query',[QueryController::class,'view_contact']);
-    Route::get('query/view-contact',[QueryController::class,'view_contact']);
-    Route::get('query/send-message',[QueryController::class,'send_message']);
+    Route::get('query/view_contact',[QueryController::class,'view_contact']);
+    Route::get('query/send_message',[QueryController::class,'send_message']);
     Route::post('/query/action',[QueryController::class,'action']);
 
 
     Route::get('city',[CityController::class,'all_cities']);
-    Route::get('city/all-cities',[CityController::class,'all_cities']);
-    Route::get('city/archive',[CityController::class,'all_archive_cities']);
+    Route::get('city/all_cities',[CityController::class,'all_cities']);
+    Route::get('city/archive_city',[CityController::class,'all_archive_cities']);
     Route::get('city/add',[CityController::class,'add_city']);
-    Route::get('city/all-cities/edit/{id}',[CityController::class,'edit_city']);
+    Route::get('city/all_cities/edit/{id}',[CityController::class,'edit_city']);
     Route::post('/city/update',[CityController::class,'update_city']);
     Route::post('/city/save_city',[CityController::class,'save_city']);
     Route::post('/city/action',[CityController::class,'action']);
 
 
     Route::get('category',[CategoryController::class,'all_categories']);
-    Route::get('category/all-categories',[CategoryController::class,'all_categories']);
+    Route::get('category/all_categories',[CategoryController::class,'all_categories']);
     Route::post('/category/action',[CategoryController::class,'action']);
-    Route::get('category/archive',[CategoryController::class,'all_archive_categories']);
+    Route::get('category/archive_category',[CategoryController::class,'all_archive_categories']);
     Route::get('category/add',[CategoryController::class,'add_category']);
-    Route::get('category/all-categories/edit/{id}',[CategoryController::class,'edit_category']);
+    Route::get('category/all_categories/edit/{id}',[CategoryController::class,'edit_category']);
     Route::post('category/save_category',[CategoryController::class,'save_category']);
     Route::post('category/update',[CategoryController::class,'update_category']);
 

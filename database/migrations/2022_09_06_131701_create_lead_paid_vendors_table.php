@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('plan_id');
             $table->string('plan_name');
             $table->integer('lead');
+            $table->integer('total_lead')->nullable();
             $table->integer('available_leads');
             $table->date('start_at');
             $table->date('end_at');
