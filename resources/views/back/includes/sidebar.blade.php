@@ -121,13 +121,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/plans/archive_plan') }}" class="nav-link {{ admin_helper::active_sub_menu('archive_plan') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Archive Plans</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/plans/add_plan') }}" class="nav-link {{ admin_helper::active_sub_menu('add_plan') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Plans</p>
                         </a>

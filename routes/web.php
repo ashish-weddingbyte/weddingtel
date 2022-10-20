@@ -222,7 +222,14 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
 
     Route::get('/plans',[Plans::class,'all_plans']);
     Route::get('/plans/all_plans',[Plans::class,'all_plans']);
+    Route::get('/plans/all_plans/edit_lead_plan/{id}',[Plans::class,'edit_plan']);
+    Route::get('/plans/all_plans/edit_position_plan/{id}',[Plans::class,'edit_plan']);
+    Route::post('/plans/update_plan',[Plans::class,'update_plan']);
     Route::post('/plans/action',[Plans::class,'action']);
+    Route::get('plans/add_plan',[Plans::class,'add_plan']);
+    Route::get('plans/archive_plan',[Plans::class,'archive_plan']);
+    Route::post('/plans/save_lead_plan',[Plans::class,'save_lead_plan']);
+    Route::post('/plans/save_position_plan',[Plans::class,'save_position_plan']);
 
     Route::get('/leads',[LeadController::class,'all_approved_leads']);
     Route::get('/leads/approved',[LeadController::class,'all_approved_leads']);

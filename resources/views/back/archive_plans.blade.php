@@ -1,7 +1,7 @@
 
 @extends('back.layouts.admin_layout')
 
-@section('title', 'All Plans')
+@section('title', 'Archive Plans')
 
 
 @section('main-container')
@@ -13,13 +13,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>All Plans</h1>
+            <h1>Archive Plans</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ url('byte/dashboard') }}">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="{{ url('byte/plans/') }}">Plans</a></li>
-              <li class="breadcrumb-item active">All Plans</li>
+              <li class="breadcrumb-item active">Archive Plans</li>
             </ol>
           </div>
         </div>
@@ -38,7 +38,7 @@
     <div class="container-fluid">
         <div class="row">
         <div class="col-12">
-            <div class="card card-default">
+            <div class="card card-danger">
             <div class="card-header">
                 <h3 class="card-title">All Leads Plans</h3>
                 <div class="card-tools">
@@ -62,7 +62,6 @@
                                     <th>Other Details</th>
                                     <th>Description</th>
                                     <th>Leads & Time</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -102,9 +101,6 @@
                                         <p>Days : <span class=" font-weight-bold text-success">{{ $lead->days }} Days</span></p>
                                         <p>Support : <span class=" font-weight-bold text-success">{{ $lead->support }}</span></p>
                                     </td>
-                                    <td>
-                                        <a href="{{ url('byte/plans/all_plans/edit_lead_plan/'.$lead->id) }}" class="btn btn-block btn-warning btn-sm">Edit</a>
-                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -112,11 +108,9 @@
                         </table>
                     </div>
                     <hr />
-                    <input type="button" data-action-type="activate_lead_plan" data-action="{{ url('byte/plans/action') }}" class="btn btn-outline-info submit" value="Activate Plan" >
+                    <input type="button" data-action-type="restore_lead_paln" data-action="{{ url('byte/plans/action') }}" class="btn btn-outline-success submit" value="Restore Plan" >
 
-                    <input type="button" data-action-type="deactivate_lead_plan" data-action="{{ url('byte/plans/action') }}" class="btn btn-outline-danger submit" value="De-Activate Plan" >
-
-                    <input type="button" data-action-type="delete_lead_plan" data-action="{{ url('byte/plans/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Plan" >
+                    <input type="button" data-action-type="force_delete_lead_plan" data-action="{{ url('byte/plans/action') }}" class="btn btn-outline-danger submit" value="Hard Delete Plan" >
 
                 </form>
             </div>
@@ -131,7 +125,7 @@
 
         <div class="row">
         <div class="col-12">
-            <div class="card card-default">
+            <div class="card card-danger">
             <div class="card-header">
                 <h3 class="card-title">All Position Plan List</h3>
                 <div class="card-tools">
@@ -155,7 +149,6 @@
                                     <th>Other Details</th>
                                     <th>Description</th>
                                     <th>Positions & Time</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -193,9 +186,6 @@
                                         <p>Leads : <span class=" font-weight-bold text-success">{{ $plan->position }}</span></p>
                                         <p>Days : <span class=" font-weight-bold text-success">{{ $plan->days }} Days</span></p>
                                     </td>
-                                    <td>
-                                        <a href="{{ url('byte/plans/all_plans/edit_position_plan/'.$plan->id) }}" class="btn btn-block btn-warning btn-sm">Edit</a>
-                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -203,11 +193,9 @@
                         </table>
                     </div>
                     <hr />
-                    <input type="button" data-action-type="activate_position_plan" data-action="{{ url('byte/plans/action') }}" class="btn btn-outline-info submit" value="Activate Plan" >
+                    <input type="button" data-action-type="restore_position_paln" data-action="{{ url('byte/plans/action') }}" class="btn btn-outline-success submit" value="Restore Plan" >
 
-                    <input type="button" data-action-type="deactivate_position_plan" data-action="{{ url('byte/plans/action') }}" class="btn btn-outline-danger submit" value="De-Activate Plan" >
-
-                    <input type="button" data-action-type="delete_position_plan" data-action="{{ url('byte/plans/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Plan" >
+                    <input type="button" data-action-type="force_delete_position_plan" data-action="{{ url('byte/plans/action') }}" class="btn btn-outline-danger submit" value="Hard Delete Plan" >
 
                 </form>
             </div>
