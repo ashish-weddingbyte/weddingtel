@@ -198,7 +198,7 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::get('/new_request',[Users::class,'new_request']);
     Route::post('/new_request/action',[Users::class,'action']);
 
-    Route::get('/vendors',[Users::class,'active_vendors']);
+    Route::get('/vendors',[Users::class,'all_vendors']);
     Route::get('/vendors/all_vendors',[Users::class,'all_vendors']);
     Route::get('/vendors/all_vendors/leads/{id}',[Users::class,'vendors_open_leads']);
     Route::get('/vendors/all_vendors/buy_lead_plan/{id}',[Users::class,'buy_lead_plan']);
@@ -230,6 +230,7 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::get('plans/archive_plan',[Plans::class,'archive_plan']);
     Route::post('/plans/save_lead_plan',[Plans::class,'save_lead_plan']);
     Route::post('/plans/save_position_plan',[Plans::class,'save_position_plan']);
+    Route::get('/plans/check_positions',[Plans::class],'check_positions');
 
     Route::get('/leads',[LeadController::class,'all_approved_leads']);
     Route::get('/leads/approved',[LeadController::class,'all_approved_leads']);

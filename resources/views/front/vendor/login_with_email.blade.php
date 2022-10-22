@@ -78,7 +78,7 @@
                                 <div class="form-group">
                                     <input type="hidden" name="login-type" id="login-type" value="{{ $from }}">
                                     
-                                    <button type="submit" class="btn btn-default btn-block">Login</button>
+                                    <button type="submit" class="btn btn-default btn-block btn-rounded">Login</button>
                                 </div>
                             </form>
                         </div>
@@ -90,7 +90,7 @@
 
                         <div class="mt-4 text-center">
                             <h3>Are you a Bride/Groom</h3>
-                            <a href="{{ url('/login') }}" class="btn btn-primary btn-rounded ">User Login</a>                     
+                            <a href="{{ url('/login') }}" class="btn btn-success btn-rounded">User Login</a>                     
                         </div>
                     </div>
                 </div>

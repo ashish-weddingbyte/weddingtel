@@ -13,6 +13,9 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('back/plugins/datatables/jquery.dataTables.css') }}">
   
+  <!-- select2 -->
+  <link rel="stylesheet" href="{{ asset('back/plugins/select2/css/select2.min.css') }}" >
+
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('back/css/adminlte.min.css') }}">
 </head>
@@ -84,6 +87,10 @@
 
 <!-- Custom JS -->
 <script src="{{ asset('back/js/custom.js') }}"></script>
+
+<!-- select 2 -->
+<script src="{{ asset('back/plugins/select2/js/select2.full.min.js') }}"></script>
+
 
 </body>
 </html>

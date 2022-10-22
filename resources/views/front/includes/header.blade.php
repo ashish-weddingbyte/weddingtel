@@ -28,7 +28,7 @@
                 </a>
             </div>
             <!-- Topbar Request Quote Start -->
-            <span class="order-lg-last d-inline-flex ml-3">
+            <span class="order-lg-last d-inline-flex">
             @if( Session::has('user_id') )
                 @if(Session::get('user_type') == 'user')
                     <a class="btn btn-primary btn-rounded" href="{{ url('tools/dashboard') }}"> {{ Session::get('name') }}</a>
@@ -39,7 +39,9 @@
                 @endif
 
             @else
-                <a class="btn btn-primary btn-rounded" href="{{url('/login')}}"> Login</a>
+                <a class="btn btn-primary btn-rounded" href="{{url('/login')}}">Bride Login</a>
+                &nbsp;
+                <a class="btn btn-success btn-rounded" href="{{url('/vendor-login')}}">Vendor Login</a>
             @endif
             </span>
 
@@ -62,7 +64,7 @@
                         <a class="nav-link" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item dropdown megamenu-li">
-                        <a class="nav-link dropdown-toggle-mob" href="" id="megamenu-list-vendors" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vendors<i class="fa fa-chevron-down"></i></a>
+                        <a class="nav-link dropdown-toggle-mob" href="javascript:void(0)" id="megamenu-list-vendors" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vendors<i class="fa fa-chevron-down"></i></a>
                         <div class="dropdown-menu megamenu dropdownhover-bottom"  aria-labelledby="megamenu-list-vendors">
                             <?php
                                 $category = App\Models\Category::where('status','1')->limit(12)->get()->toArray();
@@ -83,33 +85,21 @@
 
 
                     <li class="nav-item dropdown megamenu-li">
-                        <a class="nav-link dropdown-toggle-mob" href="" id="megamenu-list-city" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Venues<i class="fa fa-chevron-down"></i></a>
+                        <a class="nav-link dropdown-toggle-mob" href="javascript:void(0)" id="megamenu-list-city" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Venues<i class="fa fa-chevron-down"></i></a>
                         <div class="dropdown-menu megamenu dropdownhover-bottom"  aria-labelledby="megamenu-list-city">
+                            <?php
+                                $city = App\Models\City::where('status','1')->where('is_top','1')->limit(16)->get()->toArray();
+                                $cities = array_chunk($city,4);
+                            ?>
                             <div class="row">
+
+                                @foreach($cities as $city)
                                 <div class="col-sm-6 col-lg-3 col-md-4">
-                                    <a class="dropdown-item" href="{{ url('vendors/mumbai') }}">Mumbai</a>
-                                    <a class="dropdown-item" href="{{ url('vendors/pune') }}">Pune</a>
-                                    <a class="dropdown-item" href="{{ url('vendors/hyderabad') }}">Hyderabad</a>
-                                    <a class="dropdown-item" href="{{ url('vendors/panchkula') }}">Panchkula</a>
+                                    @foreach($city as $c)
+                                        <a class="dropdown-item" href="{{ url('/vendors/all/'.$c['name']) }}">{{ $c['name'] }}</a>
+                                    @endforeach
                                 </div>
-                                <div class="col-sm-6 col-lg-3 col-md-4">
-                                    <a class="dropdown-item" href="{{ url('vendors/amritsar') }}">Amritsar</a>
-                                    <a class="dropdown-item" href="{{ url('vendors/noida') }}">Noida</a>
-                                    <a class="dropdown-item" href="{{ url('vendors/delhi') }}">Delhi</a>
-                                    <a class="dropdown-item" href="{{ url('vendors/chandigarh') }}">Chandigarh</a>
-                                </div>
-                                <div class="col-sm-6 col-lg-3 col-md-4">
-                                    <a class="dropdown-item" href="{{ url('vendors/jaipur') }}">Jaipur</a>
-                                    <a class="dropdown-item" href="{{ url('vendors/lucknow') }}">Lucknow</a>
-                                    <a class="dropdown-item" href="{{ url('vendors/kanpur') }}">Kanpur</a>
-                                    <a class="dropdown-item" href="{{ url('vendors/bhopal') }}">Bhopal</a>
-                                </div>
-                                <div class="col-sm-6 col-lg-3 col-md-4">
-                                    <a class="dropdown-item" href="{{ url('vendors/meerut') }}">Meerut</a>
-                                    <a class="dropdown-item" href="{{ url('vendors/bareilly') }}">Bareilly</a>
-                                    <a class="dropdown-item" href="{{ url('vendors/surat') }}">Surat</a>
-                                    <a class="dropdown-item" href="{{ url('vendors/ghaziabad') }}">Ghaziabad</a>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </li>

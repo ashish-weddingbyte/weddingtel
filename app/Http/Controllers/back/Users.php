@@ -16,6 +16,7 @@ use App\Models\PositionPaidVendor;
 use App\Models\LeadPaidVendor;
 use App\Models\LeadViewStatus;
 use App\Models\LeadPlan;
+use App\Models\PositionPlan;
 use App\Models\PaymentHistory;
 
 
@@ -464,11 +465,18 @@ class Users extends Controller
         $vendor_id = $request->id;
         $data['vendor'] = admin_helper::vendor_details($vendor_id);
         $category_id = $data['vendor']->category_id;
-        $data['plans'] = LeadPlan::where('category_id',$category_id)->get();
+        $data['plans'] = LeadPlan::where('category_id',$category_id)->where('status','1')->get();
         return view('back.buy_lead_plan',$data);
 
     }
 
+    public function buy_position_plan(Request $request){
+        $vendor_id = $request->id;
+        $data['vendor'] = admin_helper::vendor_details($vendor_id);
+        $data['cities'] = City::orderBy('id','desc')->get();
+        $data['plans'] = PositionPlan::where('status','1')->get();
+        return view('back.buy_position_plan',$data);
+    }
 
     public function save_lead_plan(Request $request){
         $request->validate([

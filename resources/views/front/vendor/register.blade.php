@@ -112,14 +112,14 @@
                                     <p>By clicking 'Sign up', I agree to WeddingByte’s Privacy Policy and Terms of Use</p>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-default btn-block">Sign Up</button>
+                                    <button type="submit" class="btn btn-default btn-block btn-rounded">Sign Up</button>
                                 </div>
                             </form>
                         </div>
 
                         <div class="mt-4 text-center">
                             <h3>Are you a Bride/Groom</h3>
-                            <a href="{{ url('/login') }}" class="btn btn-primary btn-rounded ">User Login</a>                     
+                            <a href="{{ url('/login') }}" class="btn btn-success btn-rounded ">User Login</a>                     
                         </div>
                     </div>
                 </div>

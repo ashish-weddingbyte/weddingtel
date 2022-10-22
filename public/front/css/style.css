@@ -5510,6 +5510,7 @@ header .btn {
     border: 1px solid lightgray;
     margin-left: 50px;
     margin-right: 50px;
+    box-shadow: 2px 6px 20px 5px rgb(0 0 0 / 40%);
 }
 
 .password-eye {

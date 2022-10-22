@@ -69,7 +69,7 @@
                                 <div class="form-group">
                                     <input type="hidden" name="from" value="{{ $from }}">
                                     <input type="hidden" name="user_id" value="{{ $id }}">
-                                    <button type="submit" class="btn btn-default btn-block">Login</button>
+                                    <button type="submit" class="btn btn-default btn-block btn-rounded">Login</button>
                                 </div>
                             </form>
                         </div>
@@ -80,9 +80,9 @@
                         </div> 
                         <hr>
 
-                        <div class="section-title mt-4 text-center">
+                        <div class="mt-4 text-center">
                             <h3>Are you a vendor?</h3>
-                            <a href="{{ url('vendor-login') }}" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
+                            <a href="{{ url('vendor-login') }}" class="btn btn-success btn-rounded ">Vendor Login</a>                       
                         </div>
                     </div>
                 </div>

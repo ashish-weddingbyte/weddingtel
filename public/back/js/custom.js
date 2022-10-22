@@ -51,4 +51,27 @@ jQuery(document).ready(function () {
             });
         }
     });
+
+    //Initialize Select2 Elements
+    $(".select2").select2();
+
+    $(".select2").on("change", function () {
+        var data = $(".select2 option:selected").val();
+        if (data.length <= 0) {
+            alert("Select City for Check Available Positions!");
+        } else {
+            // var join_selected_values = ids.join(",");
+            $.ajax({
+                url: url,
+                method: "post",
+                data: { id: data, url: url },
+                success: function (response) {
+                    // console.log(response);
+                    // alert(response);
+                    location.reload();
+                },
+                error: function (response) {},
+            });
+        }
+    });
 });

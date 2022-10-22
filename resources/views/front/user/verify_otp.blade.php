@@ -71,14 +71,14 @@
                                 <div class="form-group">
                                     <input type="hidden" name="from" value="{{ $from }}">
                                     <input type="hidden" name="user_id" value="{{ $id }}">
-                                    <button type="submit" class="btn btn-default btn-block">Verify OTP</button>
+                                    <button type="submit" class="btn btn-default btn-block btn-rounded">Verify OTP</button>
                                 </div>
                             </form>
                         </div>
 
-                        <div class="section-title mt-5 text-center">
+                        <div class="mt-5 text-center">
                             <h3>Are you a vendor?</h3>
-                            <a href="#" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
+                            <a href="#" class="btn btn-success btn-rounded ">Vendor Login</a>                       
                         </div>
                     </div>
                 </div>

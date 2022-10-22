@@ -39,7 +39,7 @@
             @if($type == 'edit_lead_plan')
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-info">
+                    <div class="card card-warning">
                     <div class="card-header">
                         <h3 class="card-title">Edit Lead Plan</h3>
                         <div class="card-tools">
@@ -178,7 +178,7 @@
                         <div class="card-footer">
                             <input type="hidden" name="id" value="{{ $plan->id }}">
                             <input type="hidden" name="plan_type" value="lead_plan">
-                            <input type="submit" value="Edit Plan" class="btn btn-primary">
+                            <input type="submit" value="Edit Plan" class="btn btn-warning">
                             <input type="reset" value="Cancel" class="btn btn-secondary float-right" />
                         </div>
                         <!-- /.card-footer -->
@@ -196,7 +196,7 @@
             @if($type == 'edit_position_plan')
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-info">
+                    <div class="card card-warning">
                         <div class="card-header">
                             <h3 class="card-title">Edit Position Plan</h3>
                             <div class="card-tools">
@@ -210,7 +210,7 @@
                         </div>
                         <!-- /.card-header -->
                         @if($plan)
-                        <form class="form-horizontal" method="post" action="{{ url('/byte/plans/save_position_plan') }}"  enctype="multipart/form-data">
+                        <form class="form-horizontal" method="post" action="{{ url('/byte/plans/update_plan') }}"  enctype="multipart/form-data">
                             @csrf
 
                             <?php
@@ -297,7 +297,9 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <input type="submit" value="Add Plan" class="btn btn-primary">
+                                <input type="hidden" name="id" value="{{ $plan->id }}">
+                                <input type="hidden" name="plan_type" value="position_plan">
+                                <input type="submit" value="Edit Plan" class="btn btn-warning">
                                 <input type="reset" value="Cancel" class="btn btn-secondary float-right" />
                             </div>
                             <!-- /.card-footer -->

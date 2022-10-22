@@ -261,4 +261,51 @@ $("document").ready(function () {
             },
         });
     });
+
+    // multistep form
+    var current = 1,
+        current_step,
+        next_step,
+        steps;
+    steps = $("fieldset").length;
+    $(".next").click(function () {
+        current_step = $(this).parent();
+        next_step = $(this).parent().next();
+        next_step.show();
+        current_step.hide();
+        setProgressBar(++current);
+    });
+    $(".previous").click(function () {
+        current_step = $(this).parent();
+        next_step = $(this).parent().prev();
+        next_step.show();
+        current_step.hide();
+        setProgressBar(--current);
+    });
+    setProgressBar(current);
+    // Change progress bar action
+    function setProgressBar(curStep) {
+        var percent = parseFloat(100 / steps) * curStep;
+        percent = percent.toFixed() - 10;
+        $(".progress-bar")
+            .css("width", percent + "%")
+            .html(percent + "%");
+    }
+
+    $("#mobile").focusout(function () {
+        var phone = $(this).val();
+        var values = $(this).serialize();
+        if (phone.length < 10) {
+            alert("Please Enter Correct Moile Number.");
+        } else {
+            $.ajax({
+                url: "savedata.php",
+                type: "post",
+                data: values,
+                success: function (data) {
+                    $(".id").append(data);
+                },
+            });
+        }
+    });
 });

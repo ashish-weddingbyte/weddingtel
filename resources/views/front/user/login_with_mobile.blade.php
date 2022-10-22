@@ -65,7 +65,7 @@
                                 
                                 <div class="form-group">
                                     <input type="hidden" name="login-type" id="login-type" value="{{ $from ? $from : 'o' }}">
-                                    <button type="submit" class="btn btn-default btn-block">Login</button>
+                                    <button type="submit" class="btn btn-default btn-block btn-rounded">Login</button>
                                 </div>
                             </form>
                         </div>
@@ -74,9 +74,9 @@
                             <a href="{{ url('/forget-password') }}">Forgot your password?</a>
                         </div>
                         <hr>
-                        <div class="section-title mt-4 text-center">
+                        <div class="mt-4 text-center">
                             <h3>Are you a vendor?</h3>
-                            <a href="{{ url('/vendor-login') }}" class="btn btn-outline-default btn-rounded ">Vendor Login</a>                       
+                            <a href="{{ url('/vendor-login') }}" class="btn btn-success btn-rounded ">Vendor Login</a>                       
                         </div>
                     </div>
                 </div>

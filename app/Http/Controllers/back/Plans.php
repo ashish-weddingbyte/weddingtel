@@ -329,7 +329,47 @@ class Plans extends Controller
         }
 
         if($plan_type = 'position_plan'){
+            $request->validate([
+                'plan_name'  =>'required',
+                'from'  =>'required',
+                'to'  =>'required',
+                'plan_price'  =>'required',
+                'plan_days'  =>'required',
+                'position_plan_image'  =>'image|mimes:jpg,png,jpeg|max:512',
+            ]);
 
+            $range = $request->from.'-'.$request->to;
+            $position = PositionPlan::find($id);
+            if($position){
+                $position->name = $request->plan_name;
+                $position->position = $range;
+                $position->price    = $request->plan_price;
+                $position->days     =   $request->plan_days;
+                $position->desc     =   $request->details;
+                $position->save();
+
+                if ($request->hasFile('position_plan_image')) {
+
+                    Storage::delete('public/upload/plans/'.$position->image);
+                    $image_name  =  $request->file('position_plan_image')->getClientOriginalName();
+                    $position->image = $image_name;
+                    $request->file('position_plan_image')->storeAs('public/upload/plans',$image_name);
+                    $position->save();
+                }
+
+                Session::flash('message', 'Plan Update Successfully!');
+                Session::flash('class', 'alert-success');
+                return back();
+
+            }else{
+                Session::flash('message', 'Somthing Went Wrong!');
+                Session::flash('class', 'alert-danger');
+                return back();
+            }
         }
+    }
+
+    public function check_positions($id){
+
     }
 }
