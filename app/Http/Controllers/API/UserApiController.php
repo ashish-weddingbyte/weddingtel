@@ -108,7 +108,14 @@ class UserApiController extends Controller
             ];
             return response()->json($respose,422);
         }
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        $attempt = Auth::attempt([
+            'email' =>  $request->email,
+            'password'  =>  $request->password,
+            'user_type' =>  'user',
+            // 'status'    =>  '1'
+        ]);
+
+        if (!$attempt) {
             $respose = [
                 'status'    =>  false,
                 'message'   =>   'Invalid login details!'

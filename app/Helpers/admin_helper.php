@@ -131,8 +131,8 @@ class admin_helper {
         $details = User::join('user_details','user_details.user_id','=','users.id')
                             ->join('cities','cities.id','=','user_details.city_id')
                             ->where('users.user_type','user')
+                            ->where('users.id',$id)
                             ->select(['users.id','users.name','users.email','users.mobile','users.status','user_details.event','user_details.is_email_verified','user_details.is_mobile_verified','cities.name as city_name','user_details.profile','user_details.type','user_details.partner_name','user_details.partner_profile','user_details.wedding_address','user_details.partner_profile'])
-                            ->orderBy('users.id','desc')
                             ->first();
         return $details;
     }

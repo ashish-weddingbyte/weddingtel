@@ -66,16 +66,15 @@
                                 </div> 
                                 
                                 <div class="login-form mb-4">
-                                    <form action="" method="post" >
+                                    <form action="{{ url('/contact/update') }}" data-action="{{ url('/contact/save') }}" method="post" id="contact-form" >
+                                        @csrf
                                         <fieldset>
                                             <h2>Step 1</h2>
                                             <div class="form-group mt-3">
                                                 <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Mobile">
                                             </div>
                                         
-                                            <div class="id">
-
-                                            </div>
+                                            <div class="contact_id"></div>
                                             <input type="button" name="next" class="next btn btn-primary btn-rounded" value="Next" />
                                         </fieldset>
                                         <fieldset style="display:none">
@@ -88,7 +87,7 @@
                                                     $categories = App\Models\Category::all();
                                                 ?>
 
-                                                <select  name="services" id="services" class="form-control form-light-select theme-combo">
+                                                <select  name="service" id="service" class="form-control form-light-select theme-combo">
                                                     <option value="0">Select Service</option>
                                                     @foreach($categories as $category)
                                                         <option value="{{$category->category_name}}">{{ $category->category_name }}</option>
@@ -110,10 +109,10 @@
                                                     $cities = App\Models\City::orderBy('name','asc')->get();
                                                 ?>
                                                 <select class="form-light-select theme-combo" name="city">
-                                                    <option value='0'>Choose Location</option>
+                                                    <option value='NULL'>Choose Location</option>
                                                     @if($cities)   
                                                         @foreach($cities as $city)
-                                                            <option value="{{ $city->id }}">{{ $city->name }} ( {{ $city->state }} )</option>
+                                                            <option value="{{ $city->name }}">{{ $city->name }} ( {{ $city->state }} )</option>
                                                         @endforeach
                                                     @endif
                                                 </select>

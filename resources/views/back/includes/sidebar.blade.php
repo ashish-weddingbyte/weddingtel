@@ -207,26 +207,26 @@
                 </ul>
             </li>
 
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {{ admin_helper::is_open_menu('contact') }}">
+                <a href="{{ url('/byte/contact') }}" class="nav-link {{ admin_helper::active_menu('contact') }}">
                     <i class="far fa-list-alt nav-icon"></i>
                     <p>
-                        Contact Form Leads
+                        Contact Form Enquiry
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/contact/view_enquiry') }}" class="nav-link {{ admin_helper::active_sub_menu('view_enquiry') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>View Leads</p>
+                            <p>View Enquiries</p>
                         </a>
                     </li>
                 </ul>
             </li>
 
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {{ admin_helper::is_open_menu('premium_leads') }}">
+                <a href="{{ url('/byte/premium_leads') }}" class="nav-link {{ admin_helper::active_menu('premium_leads') }}">
                     <i class="far fa-list-alt nav-icon"></i>
                     <p>
                         Ultra Premium Leads
@@ -235,13 +235,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/premium_leads/all_premium_lead') }}" class="nav-link {{ admin_helper::active_sub_menu('all_premium_lead') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>View Leads</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/premium_leads/add_lead') }}" class="nav-link {{ admin_helper::active_sub_menu('add_lead') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Lead</p>
                         </a>

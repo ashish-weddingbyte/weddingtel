@@ -432,76 +432,28 @@
         <div class="container">
             <div class="section-title text-center">
                 <h1>Celebrity wedding</h1>
-            </div>            
-            <div class="row">
-                
-                <div class="col-md-6 col-lg-3">
-                    <div class="team-style-default">
-                        <div class="social-wrap">
-                            <img src="{{ asset('front/images/about/team/team_img_1.jpg')}}" alt="">
+            </div>           
+            @if($celebrity) 
+                <div class="row">
+                    @foreach($celebrity as $wedding)
+                    <?php
+                        $wedding_url = url('/blog').'/'.str_replace(' ','-',trim($wedding->title));
+                    ?>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="team-style-default">
+                            <div class="social-wrap">
+                                <img src="{{ asset('storage/upload/blog/'.$wedding->featured_image)}}" alt="">
+                                
+                            </div>
+                            <div class="content">
+                                <h3 class="fw-7"><a href="{{ $wedding_url }}">{{ $wedding->title }}</a></h3>
+                            </div>
                             
                         </div>
-                        <div class="content">
-                            <h3 class="fw-7">David William</h3>
-                            <div>CEO And Founder</div>
-                        </div>
-                        
                     </div>
+                    @endforeach
                 </div>
-                
-
-                
-                <div class="col-md-6 col-lg-3">
-                    <div class="team-style-default">
-                        <div class="social-wrap">
-                            <img src="{{ asset('front/images/about/team/team_img_2.jpg')}}" alt="">
-                            
-                        </div>
-                        <div class="content">
-                            <h3 class="fw-7">Hendry Cavill</h3>
-                            <div>Co-Founder</div>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-
-                <!-- Spacer For Medium -->
-                <div class="w-100 d-none d-md-block d-lg-none spacer-60"></div>
-                <!-- Spacer For Medium -->
-
-                
-                <div class="col-md-6 col-lg-3">
-                    <div class="team-style-default">
-                        <div class="social-wrap">
-                            <img src="{{ asset('front/images/about/team/team_img_3.jpg')}}" alt="">
-                            
-                        </div>
-                        <div class="content">
-                            <h3 class="fw-7">Ford Hunter</h3>
-                            <div>Chief Manager</div>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-
-                
-                <div class="col-md-6 col-lg-3">
-                    <div class="team-style-default">
-                        <div class="social-wrap">
-                            <img src="{{ asset('front/images/about/team/team_img_6.jpg')}}" alt="">
-                            
-                        </div>
-                        <div class="content">
-                            <h3 class="fw-7">Dane Johnson</h3>
-                            <div>Dane Johnson</div>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-            </div>
+            @endif
         </div>
     </section>
     <!-- Celebraty Wedding End -->
@@ -587,7 +539,7 @@
                     <div class="popular-locations-alternate">
                         <div class="overlay-box">
                             <div class="mt-auto">
-                                <h3><a href="{{ url('/vendors/kerala') }}">Kerala</a> </h3>
+                                <h3><a href="{{ url('/vendors/chandigarh') }}">Chandigarh</a> </h3>
                             </div>
                         </div>
                         <img src="{{ asset('front/images/locations/location_img_11.jpg') }}" alt="">
@@ -606,140 +558,62 @@
             <div class="section-title text-center">
                 <h1>Real Wedding</h1>
             </div>
+            @if($real_wedding)
             <div class="row">
+                @foreach($real_wedding as $real)
+                <?php
+                    $media = user_helper::real_wedding_media($real->user_id);
+                    $user = user_helper::user_real_wedding_data($real->user_id);
+                ?>
                 <!-- Real Wedding Stories -->
                 <div class="col-lg-4 col-md-6">
                     <div class="real-wedding-wrap top-heading">
                         
                         <div class="real-wedding">
-                            <div class="head">
-                                <h3><a href="real-wedding-details.html">Karen Weds Raymond</a></h3>
-                                <p><i class="fa fa-map-marker"></i> Vadodara, Gujarat, India</p>
+                            <div class="text-center">
+                                <h3><a href="{{ url('real-wedds/'.$real->id) }}">{{ ucwords($user->name) }} Weds {{ ucwords($real->partner_name) }}</a></h3>
+                                <p><i class="fa fa-map-marker"></i> {{ $user->city_name }}</p>
                             </div>
-                            <div class="img">
+                            <div class="img real-wedd-long-img">
                                 <div class="overlay">
                                     <i class="weddingdir_heart_double_alt"></i>
                                     Our Story
                                 </div>
-                                <a href="real-wedding-details.html"><img src="{{ asset('front/images/realwedding/real_wedding_1.jpg')}}" alt=""></a>
+                                <a href="{{ url('real-wedds/'.$real->id) }}">
+                                    <img src="{{ asset('storage/upload/realwedding/profile/'.$real->featured_image)}}" alt="">
+                                </a>
                                 <div class="date">
-                                    June 26, 2020
+                                    {{ date('M d, Y ', strtotime($user->event) ) }}
                                 </div>
                             </div>
                             <ul class="list-unstyled gallery">
+                                @foreach($media as $key => $value)
                                 <li>
-                                    <a href="real-wedding-details.html">
-                                        <img src="{{ asset('front/images/realwedding/gallery_1.jpg')}}" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="real-wedding-details.html">
-                                        <img src="{{ asset('front/images/realwedding/gallery_2.jpg')}}" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="real-wedding-details.html">
-                                        <div class="load-more">
-                                            Load <br>More
+                                    <a href="{{ url('real-wedds/'.$real->id) }}">
+                                        @if($key == 2)
+                                            <div class="load-more">
+                                                Load <br>More
+                                            </div>
+                                        @endif
+                                        <div class="real-wedd-short-img">
+                                            <img src="{{ asset('storage/upload/realwedding/gallery/'.$value->name)}}" alt="">
                                         </div>
-                                        <img src="{{ asset('front/images/realwedding/gallery_3.jpg')}}" alt="">
                                     </a>
                                 </li>
+                                @endforeach
+                               
                             </ul>
                         </div>                            
                     </div>
                 </div>
                 <!-- Real Wedding Stories -->                    
-
-                <!-- Real Wedding Stories -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="real-wedding-wrap top-heading">                            
-                        <div class="real-wedding">
-                            <div class="head">
-                                <h3><a href="real-wedding-details.html">Karen Weds Raymond</a></h3>
-                                <p><i class="fa fa-map-marker"></i> Vadodara, Gujarat, India</p>
-                            </div>
-                            <div class="img">
-                                <div class="overlay">
-                                    <i class="weddingdir_heart_double_alt"></i>
-                                    Our Story
-                                </div>
-                                <a href="real-wedding-details.html"><img src="{{ asset('front/images/realwedding/real_wedding_2.jpg')}}" alt=""></a>
-                                <div class="date">
-                                    June 26, 2020
-                                </div>
-                            </div>
-                            <ul class="list-unstyled gallery">
-                                <li>
-                                    <a href="real-wedding-details.html">
-                                        <img src="{{ asset('front/images/realwedding/gallery_4.jpg')}}" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="real-wedding-details.html">
-                                        <img src="{{ asset('front/images/realwedding/gallery_5.jpg')}}" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="real-wedding-details.html">
-                                        <div class="load-more">
-                                            Load <br>More
-                                        </div>
-                                        <img src="{{ asset('front/images/realwedding/gallery_6.jpg')}}" alt="">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>                            
-                    </div>
-                </div>
-                <!-- Real Wedding Stories -->
-
-                <!-- Real Wedding Stories -->
-                <div class="col-lg-4 col-md-6 mx-auto">
-                    <div class="real-wedding-wrap top-heading">                            
-                        <div class="real-wedding">
-                            <div class="head">
-                                <h3><a href="real-wedding-details.html">Karen Weds Raymond</a></h3>
-                                <p><i class="fa fa-map-marker"></i> Vadodara, Gujarat, India</p>
-                            </div>
-                            <div class="img">
-                                <div class="overlay">
-                                    <i class="weddingdir_heart_double_alt"></i>
-                                    Our Story
-                                </div>
-                                <a href="real-wedding-details.html"><img src="{{ asset('front/images/realwedding/real_wedding_3.jpg')}}" alt=""></a>
-                                <div class="date">
-                                    June 26, 2020
-                                </div>
-                            </div>
-                            <ul class="list-unstyled gallery">
-                                <li>
-                                    <a href="real-wedding-details.html">
-                                        <img src="{{ asset('front/images/realwedding/gallery_7.jpg')}}" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="real-wedding-details.html">
-                                        <img src="{{ asset('front/images/realwedding/gallery_8.jpg')}}" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="real-wedding-details.html">
-                                        <div class="load-more">
-                                            Load <br>More
-                                        </div>
-                                        <img src="{{ asset('front/images/realwedding/gallery_9.jpg')}}" alt="">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>                            
-                    </div>
-                </div>
-                <!-- Real Wedding Stories -->
+                @endforeach
             </div>
+            
             <div class="text-center">
-                <a href="javascript:" class="btn btn-default btn-rounded btn-lg">More Real Weddings</a>
+                <a href="{{ url('/real-wedds') }}" class="btn btn-default btn-rounded btn-lg">More Real Weddings</a>
             </div>
+            @endif
         </div>
     </section>
     <!-- Real Wedding End -->

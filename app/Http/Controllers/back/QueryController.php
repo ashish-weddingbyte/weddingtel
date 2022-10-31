@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\VendorDetail;
 use App\Models\Query;
+use App\Models\Contact;
 
 class QueryController extends Controller
 {
@@ -58,7 +59,25 @@ class QueryController extends Controller
             }
         }
 
-        
-        
+        if($action_type == 'delete_contact_enquiry'){
+            $data = Contact::whereIn('id', $ids)->delete();
+            if($data){
+                Session::flash('message', 'Enquiry Delete Successfully!');
+                Session::flash('class', 'alert-success');
+                return response()->json(['status' => 'Enquiry Delete Successfully!']);
+            }else{
+                Session::flash('message', 'Somthing Went Wrong!');
+                Session::flash('class', 'alert-danger');
+                return response()->json(['status' => 'Somthing Went Wrong!']);
+            }
+        }
+ 
     }
+
+    public function view_contact_enquiry(){
+        $data['queries'] = Contact::orderBy('id','desc')->get();
+        return view('back.view_contact_query',$data);
+    }
+
+
 }

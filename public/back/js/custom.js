@@ -55,7 +55,7 @@ jQuery(document).ready(function () {
     //Initialize Select2 Elements
     $(".select2").select2();
 
-    $(".select2").on("change", function () {
+    $("#city").on("change", function () {
         var data = $(".select2 option:selected").val();
         if (data.length <= 0) {
             alert("Select City for Check Available Positions!");

@@ -96,7 +96,7 @@
                                 @foreach($cities as $city)
                                 <div class="col-sm-6 col-lg-3 col-md-4">
                                     @foreach($city as $c)
-                                        <a class="dropdown-item" href="{{ url('/vendors/all/'.$c['name']) }}">{{ $c['name'] }}</a>
+                                        <a class="dropdown-item" href="{{ url('/vendors/'.$c['name']) }}">{{ $c['name'] }}</a>
                                     @endforeach
                                 </div>
                                 @endforeach

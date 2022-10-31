@@ -294,16 +294,18 @@ $("document").ready(function () {
 
     $("#mobile").focusout(function () {
         var phone = $(this).val();
-        var values = $(this).serialize();
+        var url = $("#contact-form").attr("data-action");
+
         if (phone.length < 10) {
             alert("Please Enter Correct Moile Number.");
         } else {
             $.ajax({
-                url: "savedata.php",
-                type: "post",
-                data: values,
+                url: url,
+                type: "POST",
+                data: { mobile: phone },
                 success: function (data) {
-                    $(".id").append(data);
+                    // alert(data.id);
+                    $(".contact_id").append(data.id);
                 },
             });
         }

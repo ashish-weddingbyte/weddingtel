@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('real_weddings', function (Blueprint $table) {
+        Schema::create('premium_leads', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable();
-            $table->string('partner_name')->nullable();
-            $table->string('featured_image')->nullable();
-            $table->text('description')->nullable();
-            $table->string('tag_vendors')->nullable();
-            $table->enum('is_gallery', ['0', '1'])->default('0');
+            $table->string('name');
+            $table->string('mobile');
+            $table->string('budget');
+            $table->text('details');
+            $table->foreignId('category_id');
+            $table->date('event_date');
+            $table->string('city');
             $table->enum('status', ['0', '1'])->default('1');
+            $table->enum('booking_status', ['booked', 'open'])->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('real_weddings');
+        Schema::dropIfExists('premium_leads');
     }
 };

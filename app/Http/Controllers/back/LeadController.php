@@ -11,6 +11,10 @@ use App\Models\Leads;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\LeadViewStatus;
+use App\Models\PremiumLead;
+use App\Models\PremiumLeadVendor;
+use App\Models\LeadPlan;
+use App\Models\LeadPaidVendor;
 use admin_helper;
 use Carbon\Carbon;
 
@@ -264,5 +268,29 @@ class LeadController extends Controller
                                             ->get();
         return view('back.open_lead_vendors',$data);
     }
-    
+
+
+    public function add_premium_lead(Request $request){
+        $data['categories'] = Category::where('status','1')->get();
+        $palns  =  LeadPlan::where('plan_type','exclusive')->select('name')->get()->toArray();
+
+        $data['leads_paid_vendor'] =  LeadPaidVendor::join('users','users.id','lead_paid_vendors.user_id')
+                                    ->join('vendor_details','vendor_details.user_id','=','users.id')
+                                    ->where('users.user_type','vendor')
+                                    ->where('lead_paid_vendors.plan_name','Clasic Platinum')
+                                    ->where('lead_paid_vendors.is_active','1')
+                                    ->select(['users.name','users.mobile','vendor_details.brandname'])
+                                    ->orderBy('users.id','desc')
+                                    ->get();
+        return view('back.add_premium_lead',$data);
+    }
+
+    public function save_premium_lead(Request $request){
+        // return $request;
+    }
+
+    public function all_premium_lead(){
+        $data['leads']  =  PremiumLead::all();
+        return view('back.all_premium_lead',$data);
+    }
 }

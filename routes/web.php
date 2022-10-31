@@ -45,6 +45,8 @@ Route::view('/contact','front.contact');
 Route::post('/query/send-message',[HomeController::class,'send_message']);
 Route::post('/query/view-contact',[HomeController::class,'view_contact']);
 Route::post('/query/otp/',[HomeController::class,'verify_otp']);
+Route::post('/contact/save',[HomeController::class,'contact_save']);
+Route::post('/contact/update',[HomeController::class,'contact_update']);
 
 // vendor pages
 // Route::get('vendors_data', [UserController::class,'test']);
@@ -59,6 +61,8 @@ Route::get('blogs',[HomeController::class,'all_blogs']);
 Route::get('blogs/{category}',[HomeController::class,'blogs_by_category']);
 Route::get('blog/{title}',[HomeController::class,'blog_details']);
 
+Route::get('/real-wedds',[HomeController::class,'real_wedds']);
+Route::get('/real-wedds/{id}',[HomeController::class,'real_wedd_details']);
 
 Route::post('/byte/login',[login::class,'admin_login']);
 
@@ -246,12 +250,20 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::post('/leads/save_lead',[LeadController::class,'save_lead']);
     Route::post('/leads/upload_leads',[LeadController::class,'upload_leads']);
 
+    Route::get('/premium_leads',[LeadController::class,'all_premium_lead']);
+    Route::get('/premium_leads/all_premium_lead',[LeadController::class,'all_premium_lead']);
+    Route::get('/premium_leads/add_lead',[LeadController::class,'add_premium_lead']);
+    Route::post('/premium_leads/save_lead',[LeadController::class,'save_premium_lead']);
+
 
     Route::get('query',[QueryController::class,'view_contact']);
     Route::get('query/view_contact',[QueryController::class,'view_contact']);
     Route::get('query/send_message',[QueryController::class,'send_message']);
     Route::post('/query/action',[QueryController::class,'action']);
 
+    Route::get('/contact',[QueryController::class,'view_contact_enquiry']);
+    Route::get('/contact/view_enquiry',[QueryController::class,'view_contact_enquiry']);
+    Route::post('/contact/action',[QueryController::class,'action']);
 
     Route::get('city',[CityController::class,'all_cities']);
     Route::get('city/all_cities',[CityController::class,'all_cities']);

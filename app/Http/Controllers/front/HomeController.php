@@ -12,12 +12,14 @@ use App\Models\VendorDetail;
 use App\Models\UserDetail;
 use App\Models\SocialLink;
 use App\Models\MediaGallery;
+use App\Models\RealWedding;
 use App\Models\Blog;
 use App\Models\City;
 use App\Models\Leads;
 use App\Models\Query;
 use App\Models\Otp;
 use App\Models\Review;
+use App\Models\Contact;
 use vendor_helper;
 use otp_helper;
 use File;
@@ -61,6 +63,22 @@ class HomeController extends Controller
                                 ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
                                 ->orderBy('id','desc')
                                 ->get();
+                                
+        $data['celebrity']  =   Blog::limit(4)
+                                ->join('blog_categories','blog_categories.id','=','blogs.category_id')
+                                ->where('blogs.category_id','9')
+                                ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
+                                ->orderBy('id','desc')
+                                ->get();
+
+        $data['real_wedding']   =  RealWedding::where('status','1')
+                                    ->where('is_gallery','1')
+                                    ->whereNotNull('featured_image')
+                                    ->whereNotNull('partner_name')
+                                    ->orderBy('id','desc')
+                                    ->limit(3)
+                                    ->get();
+                                    
         return view('front.index',$data);
     }
 
@@ -727,6 +745,88 @@ class HomeController extends Controller
 
     }
 
+
+    public function contact_save(Request $request){
+        $request->validate([
+            'mobile' => 'required',
+        ]);
+
+        $today = date('Y-m-d');
+
+        $check = Contact::where('mobile',$request->mobile)->whereDay('created_at', now()->day)->orderBy('id','desc')->first();
+        if(empty($check)){
+            $contact = new Contact();
+            $contact->mobile = $request->mobile;
+            $contact->save();
+            $id = $contact->id;
+        }else{
+            $id = $check->id;
+        }
+        return response()->json(['id'=>'<input type="hidden" value="'.$id.'" name="id" />']);
+    }
+
+
+    public function contact_update(Request $request){
+        $id = $request->id;
+        if(!empty($id)){
+            $contact = Contact::find($id);
+            
+            if($request->filled('name')){
+                $contact->name = $request->name;
+                $contact->save();
+            }
+
+            if($request->filled('services')){
+                $contact->service = $request->services;
+                $contact->save();
+            }
+
+            if($request->filled('date')){
+                $contact->event_date = $request->date;
+                $contact->save();
+            }
+
+            if($request->filled('city')){
+                $contact->city = $request->city;
+                $contact->save();
+            }
+
+            Session::flash('message', 'Thanks for contact us, we will contact you back soon.');
+            Session::flash('class', 'alert-success');
+            return redirect("contact");
+
+        }else{
+            Session::flash('message', 'Somthing Went Wrong!');
+            Session::flash('class', 'alert-danger');
+            return redirect("contact");
+        }
+    }
+
+    public function real_wedds(){
+        $data['real_wedding']   =  RealWedding::where('status','1')
+                                    ->where('is_gallery','1')
+                                    ->whereNotNull('featured_image')
+                                    ->whereNotNull('partner_name')
+                                    ->orderBy('id','desc')
+                                    ->paginate(51);
+        return view('front.real_wedd',$data);
+        
+    }
+
+    public function real_wedd_details($id){
+        $data['real_wedding']  = $realwedd =  RealWedding::find($id);
+        $data['gallery']    =   MediaGallery::where('user_id',$realwedd->user_id)->where('user_type','user')->where('tags','realwedding')->get();
+
+        $data['similar_real_wedd'] = RealWedding::where('status','1')
+                                    ->whereNotIn('id',[$id])
+                                    ->where('is_gallery','1')
+                                    ->whereNotNull('featured_image')
+                                    ->whereNotNull('partner_name')
+                                    ->orderBy('id','desc')
+                                    ->limit(3)
+                                    ->get();
+        return view('front.real_wedd_details',$data);
+    }
 
     // public function add_leads(){
         

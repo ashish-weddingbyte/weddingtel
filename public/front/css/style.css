@@ -4717,13 +4717,15 @@ header .btn {
     height: 600px;
     margin-top: 129px;
 }
-.real-wedding-single-img {
-    background: url(../images/realwedding/real_wedding_single.jpg) no-repeat
-        center center;
+.real-wedding-single-img img {
+    /* background: url(../images/realwedding/real_wedding_single.jpg) no-repeat
+        center center; */
     background-size: cover;
     position: absolute;
     height: 100%;
     width: 100%;
+    object-fit: cover;
+    object-position: top;
 }
 .real-wedding-single-img::after {
     opacity: 0.702;
@@ -4788,21 +4790,9 @@ header .btn {
     border-width: 2px;
     border-color: rgb(255, 255, 255);
     border-radius: 5px;
-    background-image: -moz-linear-gradient(
-        90deg,
-        rgb(255, 175, 63) 0%,
-        rgba(243, 145, 8, 0.99608) 100%
-    );
-    background-image: -webkit-linear-gradient(
-        90deg,
-        rgb(255, 175, 63) 0%,
-        rgba(243, 145, 8, 0.99608) 100%
-    );
-    background-image: -ms-linear-gradient(
-        90deg,
-        rgb(255, 175, 63) 0%,
-        rgba(243, 145, 8, 0.99608) 100%
-    );
+    background-image: -moz-linear-gradient(90deg, #fc2779 0%, #dc3545 100%);
+    background-image: -webkit-linear-gradient(90deg, #fc2779 0%, #dc3545 100%);
+    background-image: -ms-linear-gradient(90deg, #fc2779 0%, #dc3545 100%);
     box-shadow: 0px 0px 70px 0px rgba(0, 0, 0, 0.26);
     padding: 2rem;
     display: inline-flex;
@@ -4883,6 +4873,18 @@ header .btn {
 .wedding-info-details a:hover {
     color: #fc2779;
 }
+
+.real-wedding .real-wedd-short-img img {
+    height: 120px;
+    object-fit: fill;
+}
+
+.real-wedding .real-wedd-long-img img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+}
+
 /*----  9.9  Real Wedding End ---*/
 
 /*----  9.10  Search Result Start ---*/
@@ -5545,9 +5547,12 @@ header .btn {
 }
 .team-style-default .social-wrap img {
     width: 100%;
+    height: 350px;
+    object-fit: cover;
 }
 .team-style-default .content {
     padding: 0 0.7rem 0.6rem;
+    height: 85px;
 }
 .share-menu {
     z-index: 99;

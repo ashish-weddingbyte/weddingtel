@@ -177,11 +177,11 @@
                     </div>
                     @if(!empty( $realwedd->description) )
                     <div class="card-shadow-body p-3">
-                        <textarea name="description" id="summernote" cols="5" rows="2">{{ $realwedd->description }}</textarea>
+                        <textarea name="description" class="summernote" cols="5" rows="2">{{ $realwedd->description }}</textarea>
                     </div>
                     @else
                     <div class="card-shadow-body p-3">
-                        <textarea name="description" id="summernote" cols="5" rows="2"></textarea>
+                        <textarea name="description" class="summernote" cols="5" rows="2"></textarea>
                     </div>
                     @endif
                 </div>

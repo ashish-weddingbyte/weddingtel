@@ -3,11 +3,13 @@ namespace App\Helpers;
 use Illuminate\Support\Facades\Session;
 use App\Models\Checklist;
 use App\Models\UserDetail;
+use App\Models\User;
 use App\Models\Budget;
 use App\Models\BudgetCategory;
 use App\Models\BudgetExpense;
 use App\Models\BudgetCategoryExpense;
 use App\Models\Wishlist;
+use App\Models\MediaGallery;
 
 use Carbon\Carbon;
 
@@ -180,6 +182,23 @@ class user_helper {
         }
         return $active;
     }
+
+    public static function real_wedding_media($id){
+        $data = MediaGallery::where('user_id',$id)->where('user_type','user')->where('tags','realwedding')->limit(3)->get();
+        return $data;
+    }
+
+    public static function user_real_wedding_data($id){
+        $data = User::join('user_details','user_details.user_id','=','users.id')
+                        ->join('cities','cities.id','=','user_details.city_id')
+                        ->where('users.user_type','user')
+                        ->where('users.id',$id)
+                        ->select(['users.name','user_details.event','cities.name as city_name','user_details.profile','user_details.partner_name','user_details.partner_profile','user_details.wedding_address','user_details.partner_profile'])
+                        ->first();
+        return $data;
+    }
+
+
 
 }
 

@@ -14,7 +14,7 @@ use Validator;
 
 class login extends Controller
 {
-    /**====================== Bride/Groom code start here =================================== */
+    /**====================== Bride/Groom code start here ============================ */
     public function user_login(Request $request){
         $login_type = $request->input('login-type');
 
@@ -78,16 +78,25 @@ class login extends Controller
             $user = User::where('email',$email)->where('user_type','user')->first();
 
             if(isset($user->id)){
-
+  
                 if(Hash::check($password, $user->password)){
-                    Session::put('name', $user->name);
-                    Session::put('email', $user->email);
-                    Session::put('user_id', $user->id);
-                    Session::put('user_type', $user->user_type);
 
-                    Session::flash('message', 'Login to Dashboard Successful!');
-                    Session::flash('class', 'alert-danger');
-                    return redirect("/tools/dashboard");
+                    if($user->status == "1"){
+                        Session::put('name', $user->name);
+                        Session::put('email', $user->email);
+                        Session::put('user_id', $user->id);
+                        Session::put('user_type', $user->user_type);
+
+                        Session::flash('message', 'Login to Dashboard Successful!');
+                        Session::flash('class', 'alert-danger');
+                        return redirect("/tools/dashboard");
+                    }else{
+                        Session::flash('message', 'Your Account Is Not Active!');
+                        Session::flash('class', 'alert-danger');
+                        return redirect('/login/e');
+                    }
+
+                    
                 }else{
                     Session::flash('message', 'Incorrect Password!');
                     Session::flash('class', 'alert-danger');
@@ -160,10 +169,10 @@ class login extends Controller
         }
     }
 
-/**============================ Bride/Groom code ends here =================================== */
+/**============================ Bride/Groom code ends here ============================== */
 
 
-/**============================== Vendor code start here =================================== */
+/**============================== Vendor code start here =============================== */
 
     public function show_vendor_login($from){
         if($from == 'o'){
@@ -240,15 +249,23 @@ class login extends Controller
             if(isset($user->id)){
 
                 if(Hash::check($password, $user->password)){
-                    Session::put('name', $user->name);
-                    Session::put('email', $user->email);
-                    Session::put('user_id', $user->id);
-                    Session::put('user_type', $user->user_type);
-                    Session::put('category_id', $user->category_id);
 
-                    Session::flash('message', 'Login to Dashboard Successful!');
-                    Session::flash('class', 'alert-danger');
-                    return redirect("/vendor/dashboard");
+                    if($user->status == '1'){
+                        Session::put('name', $user->name);
+                        Session::put('email', $user->email);
+                        Session::put('user_id', $user->id);
+                        Session::put('user_type', $user->user_type);
+                        Session::put('category_id', $user->category_id);
+
+                        Session::flash('message', 'Login to Dashboard Successful!');
+                        Session::flash('class', 'alert-danger');
+                        return redirect("/vendor/dashboard");
+                    }else{
+                        Session::flash('message', 'Your Account Is Not Active!');
+                        Session::flash('class', 'alert-danger');
+                        return redirect('/vendor-login/e');
+                    }
+                    
                 }else{
                     Session::flash('message', 'Incorrect Password!');
                     Session::flash('class', 'alert-danger');
