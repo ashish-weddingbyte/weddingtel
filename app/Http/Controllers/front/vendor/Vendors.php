@@ -41,9 +41,7 @@ class Vendors extends Controller
         return view('front.vendor.dashboard',$data);
     }
     
-    public function plans(){
-        return view('front.vendor.plans');
-    }
+    
 
     public function review(){
         $user_id = Session::get('user_id');

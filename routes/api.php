@@ -48,6 +48,9 @@ Route::post('vendor_verify_otp', [VendorApiController::class, 'vendor_verify_otp
 Route::group(['middleware' => ['auth:sanctum']], function () {
     
     Route::post('logout', [UserApiController::class, 'logout']);
+
+    /*======================Bride/Groom============================= */
+
     Route::get('delete_account',[UserApiController::class,'delete_account']);
     Route::get('/user_data',[UserApiController::class, 'user_data']);
 
@@ -104,6 +107,34 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/review/edit',[UserApiController::class,'edit_review']);
     Route::post('/review/remove',[UserApiController::class,'remove_review']);
 
+    /*====================Bride Groom end========================== */
 
+
+    /*=======================Vendor start ============================ */
+
+    Route::get('/vendor_dashboard',[VendorApiController::class,'vendor_dashboard']);
+    Route::get('/vendor_plans',[VendorApiController::class,'plans']);
+    Route::get('/vendor_queries',[VendorApiController::class,'queries']);
+    Route::get('/vendor_wishlist',[VendorApiController::class,'wishlist']);
+    Route::get('/vendor_payments',[VendorApiController::class,'payments']);
+    Route::get('/vendor_review',[VendorApiController::class,'review']);
+    Route::get('/leads',[VendorApiController::class,'leads']);
+    Route::get('/unlock_leads',[VendorApiController::class,'unlock_leads']);
+    Route::post('/view_lead',[VendorApiController::class,'view_lead']);
+    Route::post('/lead_details',[VendorApiController::class,'lead_details']);
+
+
+    Route::get('/vendor_profile',[VendorApiController::class,'vendor_profile']);
+    Route::post('/vendor_profile/change_password',[VendorApiController::class,'vendor_change_password']);
+    Route::post('/vendor_profile/social_media',[VendorApiController::class,'social_media']);
+    Route::post('/vendor_profile/update_details',[VendorApiController::class,'update_details']);
+
+    Route::post('/vendor_profile/update_business_details',[VendorApiController::class,'update_business_details']);
+
+    Route::post('/vendor_profile/gallery',[VendorApiController::class,'gallery']);
+
+    Route::post('/vendor_profile/delete_gallery_image',[VendorApiController::class,'delete_gallery_image']);
+
+    /*=====================vendor End=========================== */
 
 });

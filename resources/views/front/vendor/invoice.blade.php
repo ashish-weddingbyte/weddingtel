@@ -33,7 +33,7 @@
                                 <td>{{ $pay->plan_type }}</td>
                                 <td>PREMIUM</td>
                                 <td>{{ $pay->payment_mode }}</td>
-                                <td>{{ date('M d, Y', strtotime($lead->created_at) ) }}</td>
+                                <td>{{ date('M d, Y', strtotime($pay->created_at) ) }}</td>
                                 <td>INR {{ $pay->price }}</td>
                                 <td><a href="#" class="action-links"><i class="fa fa-eye"></i></a> </td>
                             </tr>

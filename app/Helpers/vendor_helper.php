@@ -127,7 +127,11 @@ class vendor_helper {
         $data['avg'] = Review::where('vendor_id',$user_id)->where('rating',$rating)->where('status','1')->avg('rating');
         $data['count'] = Review::where('vendor_id',$user_id)->where('rating',$rating)->where('status','1')->count();
         $data['all_count'] = Review::where('vendor_id',$user_id)->count();
-        $data['percentage'] = round(($data['count']/$data['all_count'])*100);
+        if($data['all_count']>0){
+            $data['percentage'] = round(($data['count']/$data['all_count'])*100);    
+        }else{
+            $data['percentage'] = 0;
+        }
         return $data;
     }
 
