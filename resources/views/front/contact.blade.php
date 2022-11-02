@@ -71,7 +71,7 @@
                                         <fieldset>
                                             <h2>Step 1</h2>
                                             <div class="form-group mt-3">
-                                                <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Mobile">
+                                                <input type="number" class="form-control" id="contact_mobile" name="mobile" placeholder="Mobile">
                                             </div>
                                         
                                             <div class="contact_id"></div>

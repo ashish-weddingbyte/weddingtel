@@ -27,34 +27,41 @@ class login extends Controller
             $user = User::where('mobile',$request->mobile)->first();
 
             if(isset($user->id)){
-                $user_id = $user->id;
 
-                $otp = rand(111111,999999);
-                $message = "Your One Time Password for WeddingByte.com account is $otp. Plase do not share this OTP with anyone.\nThanks";
-                $otp_send_status = otp_helper::send_otp($user->mobile,$message);
+                if($user->user_type == 'user'){
+                    $user_id = $user->id;
 
-                $otp_model = Otp::where('user_id',$user_id)->first();
+                    $otp = rand(111111,999999);
+                    $message = "Your One Time Password for WeddingByte.com account is $otp. Plase do not share this OTP with anyone.\nThanks";
+                    $otp_send_status = otp_helper::send_otp($user->mobile,$message);
 
-                if(isset($otp_model->id)){
-                    $otp_model->otp = $otp;
-                    $otp_model->status = '1';   
-                    $otp_model->save();
+                    $otp_model = Otp::where('user_id',$user_id)->first();
+
+                    if(isset($otp_model->id)){
+                        $otp_model->otp = $otp;
+                        $otp_model->status = '1';   
+                        $otp_model->save();
+                    }else{
+                        $otp_model = new Otp;
+                        $otp_model->user_id = $user_id;
+                        $otp_model->otp = $otp;
+                        $otp_model->status = '1';
+                        $otp_model->save();
+                    }
+
+                    if($otp_send_status){
+                        Session::flash('message', 'OTP Send Successful to Your Mobile Number!');
+                        Session::flash('class', 'alert-success');
+                        return redirect('otp/l/'.$user_id);
+                    }else{
+                        Session::flash('message', 'OTP Send Fail! Somthing Went Wrong!');
+                        Session::flash('class', 'alert-danger');
+                        return redirect('otp/l/'.$user_id);
+                    }
                 }else{
-                    $otp_model = new Otp;
-                    $otp_model->user_id = $user_id;
-                    $otp_model->otp = $otp;
-                    $otp_model->status = '1';
-                    $otp_model->save();
-                }
-
-                if($otp_send_status){
-                    Session::flash('message', 'OTP Send Successful to Your Mobile Number!');
-                    Session::flash('class', 'alert-success');
-                    return redirect('otp/l/'.$user_id);
-                }else{
-                    Session::flash('message', 'OTP Send Fail! Somthing Went Wrong!');
+                    Session::flash('message', 'Mobile Number Register as a Vendor, Please login as a Vendor!');
                     Session::flash('class', 'alert-danger');
-                    return redirect('otp/l/'.$user_id);
+                    return redirect('vendor-login');
                 }
 
             }else{
@@ -195,34 +202,42 @@ class login extends Controller
             $user = User::where('mobile',$request->mobile)->first();
 
             if(isset($user->id)){
-                $user_id = $user->id;
 
-                $otp = rand(111111,999999);
-                $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Plase do not share this OTP with anyone.\nThanks";
-                $otp_send_status = otp_helper::send_otp($user->mobile,$message);
+                if($user->user_type == 'vendor'){
 
-                $otp_model = Otp::where('user_id',$user_id)->first();
+                    $user_id = $user->id;
 
-                if(isset($otp_model->id)){
-                    $otp_model->otp = $otp;
-                    $otp_model->status = '1';   
-                    $otp_model->save();
+                    $otp = rand(111111,999999);
+                    $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Plase do not share this OTP with anyone.\nThanks";
+                    $otp_send_status = otp_helper::send_otp($user->mobile,$message);
+
+                    $otp_model = Otp::where('user_id',$user_id)->first();
+
+                    if(isset($otp_model->id)){
+                        $otp_model->otp = $otp;
+                        $otp_model->status = '1';   
+                        $otp_model->save();
+                    }else{
+                        $otp_model = new Otp;
+                        $otp_model->user_id = $user_id;
+                        $otp_model->otp = $otp;
+                        $otp_model->status = '1';
+                        $otp_model->save();
+                    }
+
+                    if($otp_send_status){
+                        Session::flash('message', 'OTP Send Successful to Your Mobile Number!');
+                        Session::flash('class', 'alert-success');
+                        return redirect('vendor-otp/l/'.$user_id);
+                    }else{
+                        Session::flash('message', 'OTP Send Fail! Somthing Went Wrong!');
+                        Session::flash('class', 'alert-danger');
+                        return redirect('vendor-otp/l/'.$user_id);
+                    }
                 }else{
-                    $otp_model = new Otp;
-                    $otp_model->user_id = $user_id;
-                    $otp_model->otp = $otp;
-                    $otp_model->status = '1';
-                    $otp_model->save();
-                }
-
-                if($otp_send_status){
-                    Session::flash('message', 'OTP Send Successful to Your Mobile Number!');
-                    Session::flash('class', 'alert-success');
-                    return redirect('vendor-otp/l/'.$user_id);
-                }else{
-                    Session::flash('message', 'OTP Send Fail! Somthing Went Wrong!');
+                    Session::flash('message', 'Mobile Number Register as a Bride/Groom, Please login as a Bride/Groom.');
                     Session::flash('class', 'alert-danger');
-                    return redirect('vendor-otp/l/'.$user_id);
+                    return redirect('login');
                 }
 
             }else{

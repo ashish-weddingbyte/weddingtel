@@ -298,3 +298,7 @@ Route::get('/add_city',[VendorProfileController::class,'add_city']);
 Route::get('/add_leads',[HomeController::class,'add_leads']);
 Route::get('/move_profile',[HomeController::class,'move_profile']);
 Route::get('/move_gallery',[HomeController::class,'move_gallery']);
+Route::get('/lead_view',[HomeController::class,'lead_view']);
+Route::get('/paid_vendor',[HomeController::class,'paid_vendor']);
+
+

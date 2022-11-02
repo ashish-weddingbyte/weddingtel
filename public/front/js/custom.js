@@ -292,7 +292,7 @@ $("document").ready(function () {
             .html(percent + "%");
     }
 
-    $("#mobile").focusout(function () {
+    $("#contact_mobile").focusout(function () {
         var phone = $(this).val();
         var url = $("#contact-form").attr("data-action");
 

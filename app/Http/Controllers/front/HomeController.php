@@ -20,6 +20,8 @@ use App\Models\Query;
 use App\Models\Otp;
 use App\Models\Review;
 use App\Models\Contact;
+use App\Models\LeadViewStatus;
+use App\Models\LeadPaidVendor;
 use vendor_helper;
 use otp_helper;
 use File;
@@ -883,6 +885,40 @@ class HomeController extends Controller
     //         $l->status  = $lead->status;
     //         $l->apply_tags = '0';
     //         $l->save();
+    //     }
+
+    // }
+    
+    // public function lead_view(){
+    //     $view = DB::table('lead_view_status_2')->get();
+
+    //     foreach($view as $v){
+    //         $d = new LeadViewStatus();
+    //         $d->lead_id = $v->lead_id;
+    //         $d->user_id = $v->vendor_id;
+    //         $d->created_at =  ( $v->date == NULL )? NULL : date("Y-m-d H:i:s", strtotime($v->date)) ;
+    //         $d->save();
+            
+    //     }
+    // }
+
+
+    // public function paid_vendor(){
+    //     $paid = DB::table('vendor_leads')->get();
+        
+    //     foreach($paid as $p ){
+    //         $n = new LeadPaidVendor();
+    //         $n->user_id = $p->vendor_id;
+    //         $n->plan_id = $p->plane_id;
+    //         $n->plan_name = $p->plane;
+    //         $n->lead = $p->total_leads;
+    //         $n->total_lead = $p->total_leads;
+    //         $n->available_leads = $p->available_leads+2;
+    //         $n->start_at = $p->purchase_time;
+    //         $n->end_at = $p->expire_time;
+    //         $n->is_active = "$p->is_subscribed"; 
+    //         $n->is_addon = 'no';
+    //         $n->save();
     //     }
 
     // }

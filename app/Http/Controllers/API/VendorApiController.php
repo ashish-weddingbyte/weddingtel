@@ -22,8 +22,12 @@ use App\Models\Review;
 use App\Models\Leads;
 use App\Models\LeadViewStatus;
 use App\Models\Query;
-
+use App\Models\LeadPlan;
+use App\Models\SocialLink;
+use App\Models\MediaGallery;
+use Carbon\Carbon;
 use otp_helper;
+use vendor_helper;
 use Validator;
 
 class VendorApiController extends Controller
@@ -379,18 +383,16 @@ class VendorApiController extends Controller
 
         if($user_id){
 
-            $user_id = Session::get('user_id');
-
             $data['vendor_plan'] = $paid = LeadPaidVendor::where('user_id',$user_id)
                                             ->where('is_active','1')
                                             ->orderBy('id','desc')
                                             ->first();
 
-            $category = VendorDetail::where('user_id',$user_id)->first();
+            $vendor = VendorDetail::where('user_id',$user_id)->first();
 
-            $data['plans']  = LeadPlan::where('category_id',$category->category_id)->get();
+            $data['plans']  = LeadPlan::where('category_id',$vendor->category_id)->get();
 
-            $data['cities'] = City::orderBy('name','asc')->get();
+            // $data['cities'] = City::orderBy('name','asc')->get();
 
             $respose = [
                 'status'    =>  true,
@@ -600,6 +602,7 @@ class VendorApiController extends Controller
 
         if($user_id){
 
+            $lead_id = $request->lead_id;
             $paid_status = vendor_helper::is_lead_paid_vendor($user_id);
 
             $paid = LeadPaidVendor::where('user_id',$user_id)
@@ -673,7 +676,7 @@ class VendorApiController extends Controller
         }
     }
 
-    public function lead_details(){
+    public function lead_details(Request $request){
         $validator = Validator::make($request->all(),[
             'lead_id' => 'required',
         ]);
@@ -689,13 +692,13 @@ class VendorApiController extends Controller
         $user_id = Auth::id();
 
         if($user_id){
-
+            $lead_id = $request->lead_id;
             $check_view_lead = LeadViewStatus::where('user_id',$user_id)->where('lead_id',$lead_id)->first();
 
             if(!empty($check_view_lead)){
 
                 $data['leads'] = Leads::where('id',$lead_id)->first();
-                $data['view_status'] = LeadViewStatus::where('user_id',$user_id)->where('lead_id',$lead_id)->first();
+                // $data['view_status'] = LeadViewStatus::where('user_id',$user_id)->where('lead_id',$lead_id)->first();
 
                $respose = [
                     'status'    =>  true,
@@ -773,7 +776,7 @@ class VendorApiController extends Controller
 
             if($new_password === $confirm_pasword){
 
-                $user_id = Session::get('user_id');
+                
                 $user = User::find($user_id);
 
                 if(Hash::check($old_password, $user->password)){
