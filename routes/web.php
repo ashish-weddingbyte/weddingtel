@@ -254,7 +254,9 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::get('/premium_leads/all_premium_lead',[LeadController::class,'all_premium_lead']);
     Route::get('/premium_leads/add_lead',[LeadController::class,'add_premium_lead']);
     Route::post('/premium_leads/save_lead',[LeadController::class,'save_premium_lead']);
-
+    Route::get('/premium_leads/edit_lead',[LeadController::class,'edit_premium_lead']);
+    Route::post('/premium_leads/update_lead',[LeadController::class,'update_premium_lead']);
+    Route::post('/premium_leads/action',[LeadController::class,'action']);
 
     Route::get('query',[QueryController::class,'view_contact']);
     Route::get('query/view_contact',[QueryController::class,'view_contact']);
@@ -290,7 +292,7 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
 Route::get('/logout', function(){
     Session::flush();
     return Redirect::to('/');
- });
+});
 
 
 

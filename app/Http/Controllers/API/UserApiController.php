@@ -1949,12 +1949,229 @@ class UserApiController extends Controller
     }
 
 
-    // public function blogs(Request $request){
+    public function real_wedding_list(Request $request){
+        $realwedd_id = $request->id;
 
-        
-        
-    // }
+        $conditions = [];
 
+        if($realwedd_id !== NULL){
+            array_push($conditions,['real_weddings.id',$realwedd_id]);
+        }
+
+        $data['real_wedding']   =  RealWedding::where('status','1')
+                                    ->where('is_gallery','1')
+                                    ->where($conditions)
+                                    ->whereNotNull('featured_image')
+                                    ->whereNotNull('partner_name')
+                                    ->orderBy('id','desc')
+                                    ->limit(3)
+                                    ->get();
+        if($data){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Get Data Successfully!",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
+    public function gallery(Request $request){
+        $validator = Validator::make($request->all(),[
+            'realwedd_id' =>  'required',
+        ]);
+
+        if($validator->fails()){
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  $validator->errors()->first()
+            ];
+            return response()->json($respose,422);
+        }
+        $id = $request->realwedd_id;
+        $realwedd = RealWedding::find($id);
+        $vendor_id = $realwedd->user_id;
+
+        $data['gallery'] =  MediaGallery::where('user_id',$vendor_id)->where('tags','realwedding')->get();
+
+        if($data){
+            $respose = [
+                'status'    =>  true,
+                'message'   =>  "Get Data Successfully!",
+                'data'      =>  $data,
+            ];
+            return response()->json($respose,200);
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  'Somthing Went Wrong!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
+    public function send_message(Request $request){
+        $validator = Validator::make($request->all(),[
+            'name' => 'required',
+            'number' => 'required|max:10|min:10',
+            'budget'  =>  'required',
+            'event' =>  'required|date|after:today',
+            'vendor_id' =>  'required'
+        ]);
+
+        if($validator->fails()){
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  $validator->errors()->first()
+            ];
+            return response()->json($respose,422);
+        }
+
+        $user_id = Auth::id();
+
+        if($user_id){
+            
+            $name = $request->name;
+            $mobile = $request->number;
+            $budget = $request->budget;
+            $event = date('Y-m-d',strtotime($request->event));
+            $details = $request->details;
+            $type = 'send_message';
+            $vendor_id = $request->vendor_id;
+            
+            $conditions = [
+                ['query_type',$type],
+                ['mobile',$mobile],
+                ['event_date',$event],
+                ['vendor_id',$vendor_id]
+            ];
+
+            $query = Query::where($conditions)->where('vendor_id',$vendor_id)->first();
+
+            if(!empty($query)){
+
+                $respose = [
+                    'status'    =>  false,
+                    'message'   =>  'You Already Send Message!',
+                    'query_type'    =>  $type,
+                ];
+                return response()->json($respose,422);
+
+            }else{
+
+                $query = new Query;
+                $query->user_id = $user_id;
+                $query->vendor_id = $vendor_id;
+                $query->user_type = 'user';
+                $query->query_type = $type;
+                $query->name = $name;
+                $query->mobile = $mobile;
+                $query->budget = $buvent;
+                $query->details = $detadget;
+                $query->event_date = $eils;
+                $query->is_mobile_verified = '1';
+                $query->save();
+
+                $respose = [
+                    'status'    =>  true,
+                    'message'   =>  "Message Send Successfully!",
+                    'query_type'    =>  $type,
+                ];
+                return response()->json($respose,200);
+            }
+
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  'Token Expired or Unauthorized User!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
+    public function view_contact(Request $request){
+        $validator = Validator::make($request->all(),[
+            'vendor_id' =>  'required',
+            'full_name' => 'required',
+            'mobile' => 'required|max:10|min:10',
+        ]);
+
+        if($validator->fails()){
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  $validator->errors()->first()
+            ];
+            return response()->json($respose,422);
+        }
+
+        $user_id = Auth::id();
+
+        if($user_id){
+
+            $name = $request->full_name;
+            $mobile = $request->mobile;
+            $type = 'view_contact';
+            $vendor_id = $request->vendor_id;
+            $today = date('Y-m-d');
+
+            $vendor_data = User::where('id',$vendor_id)->first();
+
+            $conditions = [
+                ['query_type',$type],
+                ['mobile',$mobile],
+                ['vendor_id',$vendor_id]
+            ];
+            
+            $query = Query::where($conditions)->whereDate('created_at', $today)->first();
+
+            if(!empty($query)){
+                $respose = [
+                    'status'    =>  true,
+                    'verify'    =>  'yes',
+                    'message'   =>  "Here are the contact details of vendor:- $vendor_data->mobile",
+                    'data'      =>  $vendor_data->mobile,
+                    'query_type'    =>  $type,
+                ];
+                return response()->json($respose,200);
+            }else{
+
+                $query = new Query;
+                $query->user_id = $user_id;
+                $query->vendor_id = $vendor_id;
+                $query->user_type = 'user';
+                $query->query_type = $type;
+                $query->name = $name;
+                $query->mobile = $mobile;
+
+                $query->is_mobile_verified = '1';
+                $query->save();
+
+                $respose = [
+                    'status'    =>  true,
+                    'verify'    =>  'yes',
+                    'message'   =>  "Here are the contact details of vendor:- $vendor_data->mobile",
+                    'data'      =>  $vendor_data->mobile,
+                    'query_type'    =>  $type,
+                ];
+                return response()->json($respose,200);
+            }
+
+            
+
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  'Token Expired or Unauthorized User!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
 
 
 }

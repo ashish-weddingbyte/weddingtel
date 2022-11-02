@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <!-- /.card-header -->  
-                    <form class="form-horizontal" method="post" action="{{ url('/byte//premium_leads/save_lead') }}">
+                    <form class="form-horizontal" method="post" action="{{ url('/byte/premium_leads/save_lead') }}">
                         @csrf
                         <div class="card-body">
                         <div class="form-group row">
@@ -144,9 +144,9 @@
                         <div class="form-group row">
                             <label for="category" class="col-sm-2 col-form-label">Vendor</label>
                             <div class="col-sm-10">
-                                <select name="vendor" id="vendor" class="form-control select2" multiple="multiple" >
+                                <select name="vendor[]" id="vendor" class="form-control select2" multiple="multiple" >
                                     @foreach($leads_paid_vendor as $vendor)
-                                        <option value="{{$vendor->id}}">{{ $vendor->name }}</option>
+                                        <option value="{{$vendor->id}}">{{ $vendor->name }} ({{ $vendor->available_leads }})</option>
                                     @endforeach
                                 </select>
                                 @error('vendor')

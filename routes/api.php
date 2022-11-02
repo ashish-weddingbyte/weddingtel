@@ -35,6 +35,8 @@ Route::get('top_vendors',[UserApiController::class,'top_vendors']);
 Route::get('featured_vendors',[UserApiController::class,'featured_vendors']);
 
 Route::post('blogs',[UserApiController::class,'blog_list']);
+Route::post('real_wedding',[UserApiController::class,'real_wedding_list']);
+Route::post('/real_wedd_gallery',[UserApiController::class,'gallery']);
 
 // vendor routes 
 Route::post('vendor_register', [VendorApiController::class, 'vendor_register']);
@@ -106,6 +108,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/review/add',[UserApiController::class,'add_review']);
     Route::post('/review/edit',[UserApiController::class,'edit_review']);
     Route::post('/review/remove',[UserApiController::class,'remove_review']);
+
+    Route::post('view_contact',[UserApiController::class, 'view_contact']);
+    Route::post('send_message',[UserApiController::class, 'send_message']);
+
 
     /*====================Bride Groom end========================== */
 

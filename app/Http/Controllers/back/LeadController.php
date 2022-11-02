@@ -63,6 +63,19 @@ class LeadController extends Controller
         $action_type = $request->action;
         $url = $request->url;
 
+        if($action_type == 'deactivate_premium_lead'){
+            $data = PremiumLead::whereIn('id', $ids)->update(['status'=>'0']);
+            if($data){
+                Session::flash('message', 'Premium Leads Deactivate Successfully!');
+                Session::flash('class', 'alert-success');
+                return response()->json(['status' => 'Premium Leads Deactivate Successfully!']);
+            }else{
+                Session::flash('message', 'Somthing Went Wrong!');
+                Session::flash('class', 'alert-danger');
+                return response()->json(['status' => 'Somthing Went Wrong!']);
+            }
+        }
+
         if($action_type == 'deactivate'){
             $data = Leads::whereIn('id', $ids)->update(['status'=>'0']);
             if($data){
@@ -82,6 +95,19 @@ class LeadController extends Controller
                 Session::flash('message', 'Leads Activate Successfully!');
                 Session::flash('class', 'alert-success');
                 return response()->json(['status' => 'Leads Activate Successfully!']);
+            }else{
+                Session::flash('message', 'Somthing Went Wrong!');
+                Session::flash('class', 'alert-danger');
+                return response()->json(['status' => 'Somthing Went Wrong!']);
+            }
+        }
+
+        if($action_type == 'activate_premium_lead'){
+            $data = PremiumLead::whereIn('id', $ids)->update(['status'=>'1']);
+            if($data){
+                Session::flash('message', 'Premium Leads Activate Successfully!');
+                Session::flash('class', 'alert-success');
+                return response()->json(['status' => 'Premium Leads Activate Successfully!']);
             }else{
                 Session::flash('message', 'Somthing Went Wrong!');
                 Session::flash('class', 'alert-danger');
@@ -190,13 +216,13 @@ class LeadController extends Controller
         
         
         if($lead->save()){
-            Session::flash('message', 'Lead Added Successfully!');
+            Session::flash('message', 'Premium Lead Added Successfully!');
             Session::flash('class', 'alert-success');
-            return redirect("/byte/leads/add_lead");
+            return back();
         }else{
             Session::flash('message', 'Somthing Went Wrong!');
             Session::flash('class', 'alert-danger');
-            return redirect('/byte/leads/add_lead');
+            return back();
         }
     }
 
@@ -272,25 +298,70 @@ class LeadController extends Controller
 
     public function add_premium_lead(Request $request){
         $data['categories'] = Category::where('status','1')->get();
-        $palns  =  LeadPlan::where('plan_type','exclusive')->select('name')->get()->toArray();
+        // $palns  =  LeadPlan::where('plan_type','exclusive')->select('name')->get()->toArray();
 
         $data['leads_paid_vendor'] =  LeadPaidVendor::join('users','users.id','lead_paid_vendors.user_id')
-                                    ->join('vendor_details','vendor_details.user_id','=','users.id')
                                     ->where('users.user_type','vendor')
-                                    ->where('lead_paid_vendors.plan_name','Clasic Platinum')
+                                    ->whereIn('lead_paid_vendors.plan_name',['Clasic Platinum'])
                                     ->where('lead_paid_vendors.is_active','1')
-                                    ->select(['users.name','users.mobile','vendor_details.brandname'])
+                                    ->select(['users.name','users.id','users.mobile','lead_paid_vendors.available_leads'])
                                     ->orderBy('users.id','desc')
                                     ->get();
         return view('back.add_premium_lead',$data);
     }
 
     public function save_premium_lead(Request $request){
-        // return $request;
+        $request->validate([
+            'name'  =>'required',
+            'mobile'  =>'required|max:10|min:10',
+            'budget'=>'required|not_in:0',
+            'category'  =>'required|not_in:0',
+            'event_date'  =>'required|date|after:today',
+            'city'=>'required',
+            'vendor'    =>  'required'
+        ]);
+
+        $lead = new PremiumLead();
+        $lead->name = $request->name;
+        $lead->mobile = $request->mobile;
+        $lead->budget = $request->budget;
+        $lead->details = $request->details;
+        $lead->category_id = $request->category;
+        $lead->event_date = $request->event_date;
+        $lead->city = $request->city;
+        $lead->status = '1';
+        
+        $vendor_id = $request->vendor;
+        if($lead->save()){
+
+            foreach($vendor_id as $value){
+                $vendor = new PremiumLeadVendor();
+                $vendor->lead_id = $lead->id;
+                $vendor->user_id = $value;
+                if($vendor->save()){
+                    $paid = LeadPaidVendor::where('user_id',$value)->where('is_active','1')->first();
+                    $paid->available_leads = $paid->available_leads - 1;
+                    $paid->save();
+                }
+            }
+
+            Session::flash('message', 'Lead Added Successfully!');
+            Session::flash('class', 'alert-success');
+            return back();
+        }else{
+            Session::flash('message', 'Somthing Went Wrong!');
+            Session::flash('class', 'alert-danger');
+            return back();
+        }
+        
     }
 
     public function all_premium_lead(){
-        $data['leads']  =  PremiumLead::all();
+        $data['leads']  =  PremiumLead::join('categories','categories.id','=','premium_leads.category_id')
+                                        ->orderBy('premium_leads.id','desc')
+                                        ->orderBy('premium_leads.event_date','desc')
+                                        ->select(['premium_leads.*','categories.category_name'])
+                                        ->get();
         return view('back.all_premium_lead',$data);
     }
 }

@@ -64,8 +64,7 @@
                                     <th>Budget</th>
                                     <th>Event Date</th>
                                     <th>Status</th>
-                                    <th>Tags Details</th>
-                                    <th>Action</th>
+                                    <!-- <th>Action</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -108,29 +107,12 @@
                                                 <span class="text-danger font-weight-bold">NA</span>
                                             @endif
                                         </p>
-                                        <p>View Count :
-                                            <span class="font-weight-bold">{{ $lead->view_count }}</span>
-                                        </p>
                                     </td>
-                                    <td>
-                                        <p>Applied Tag :
-                                            @if($lead->apply_tags == '1')
-                                                <span class="text-success font-weight-bold">Yes</span>
-                                            @endif
-                                            @if($lead->apply_tags == '0')
-                                                <span class="text-danger font-weight-bold">No</span>
-                                            @endif
-                                        </p>
-
-                                        @if($lead->apply_tags == '1')
-                                            <p>Tag :<span class="text-success font-weight-bold">{{ ucwords($lead->tags) }}</span></p>
-                                        @endif
-                                    </td>
-                                    <td>
+                                    <!-- <td>
                                         <a href="{{ url('/byte/leads/approved/edit/'.$lead->id) }}" class="btn btn-block btn-warning btn-sm">Edit</a>
 
                                         <a href="{{ url('/byte/leads/approved/vendors/'.$lead->id) }}" class="btn btn-block btn-info btn-sm">View Vendors</a>
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -138,13 +120,11 @@
                         </table>
                     </div>
                     <hr />
-                    <input type="button" data-action-type="activate" data-action="{{ url('byte/leads/action') }}" class="btn btn-outline-info submit" value="Activate Leads" >
+                    <input type="button" data-action-type="activate_premium_lead" data-action="{{ url('byte/premium_leads/action') }}" class="btn btn-outline-info submit" value="Activate Leads" >
 
-                    <input type="button" data-action-type="deactivate" data-action="{{ url('byte/leads/action') }}" class="btn btn-outline-danger submit" value="De-Activate Leads" >
+                    <input type="button" data-action-type="deactivate_premium_lead" data-action="{{ url('byte/premium_leads/action') }}" class="btn btn-outline-danger submit" value="De-Activate Leads" >
 
-                    <input type="button" data-action-type="delete" data-action="{{ url('byte/leads/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Leads" >
-
-                    <input type="button" data-action-type="unapproved" data-action="{{ url('byte/leads/action') }}" class="btn btn-outline-secondary submit" value="Un-Approve Leads" >
+                    <!-- <input type="button" data-action-type="delete" data-action="{{ url('byte/premium_leads/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Leads" > -->
 
                 </form>
             </div>
