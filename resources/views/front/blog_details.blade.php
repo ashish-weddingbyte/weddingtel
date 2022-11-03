@@ -40,7 +40,7 @@
 
                         <!-- Post Blog Content -->
                         <h3 class="blog-title">{{ $blog->title }}</h3>
-                        <span class="meta-date">{{ date('M d, Y', strtotime($blog->created_at) ) }}</span>
+                        <!-- <span class="meta-date">{{ date('M d, Y', strtotime($blog->created_at) ) }}</span> -->
                         <span class="post-category">
                             <a href="{{ url('/blogs/'.$blog->category_url ) }}">{{ $blog->category_name }}</a>
                         </span>
@@ -102,16 +102,16 @@
                             <!-- Next/Previous Post -->
 
                             <!-- Author Section -->
-                            <div class="author-wrap">
+                            <!-- <div class="author-wrap">
                                 <div class="thumb">
                                     <img src="{{ asset('front/images/author_img.png')}}" alt="">
                                 </div>
                                 <div class="content">
                                     <h3>Admin <small>(AUTHOR)</small></h3>
-                                    <!-- <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p> -->
+                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
                                     <a href="{{ url('/blogs') }}" class="btn btn-default btn-rounded btn-md">View All Post</a>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Author Section -->  
                                 
                         </div>

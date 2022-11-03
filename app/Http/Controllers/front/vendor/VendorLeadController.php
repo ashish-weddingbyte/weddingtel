@@ -13,6 +13,8 @@ use App\Models\LeadPaidVendor;
 use App\Models\PositionPaidVendor;
 use App\Models\LeadViewStatus;
 use App\Models\Query;
+use App\Models\PremiumLead;
+use App\Models\PremiumLeadVendor;
 use vendor_helper;
 
 
@@ -147,6 +149,33 @@ class VendorLeadController extends Controller
             
         return view('front.vendor.query',$data);
     }
+
+
+    public function exclusive_leads(){
+        
+        $user_id = Session::get('user_id');
+
+
+        $data['leads'] = PremiumLeadVendor::join('premium_leads','premium_leads.id','=','premium_lead_vendors.lead_id')
+                                        ->orderBy('premium_lead_vendors.id','desc')
+                                        ->get();
+        return view('front.vendor.premium_leads',$data);
+    }
+
+    public function view_exclusive_leads(Request $request){
+        $user_id = Session::get('user_id');
+        $lead_id = $request->id;
+
+        $lead_view_status = PremiumLeadVendor::where('lead_id',$lead_id)->where('user_id',$user_id)->first();
+
+        if($lead_view_status){
+            $data['leads'] = PremiumLead::find($lead_id);
+            return view('front.vendor.premium_lead_details',$data);
+        }else{
+            return back();
+        }
+    }
+
 }
 
 

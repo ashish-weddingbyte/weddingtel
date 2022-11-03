@@ -9,6 +9,7 @@ use App\Models\MediaGallery;
 use App\Models\Review;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\LeadPlan;
 
 class vendor_helper {
     public static function vendor_profile_url($id){
@@ -151,6 +152,22 @@ class vendor_helper {
         $vendor = VendorDetail::join('cities','cities.id','=','vendor_details.city_id')
                             ->where('category_id',$category_id)->select('cities.name')->distinct()->get();
         return $vendor;
+    }
+
+    public static function check_exclusive($user_id){
+        $palns  =  LeadPlan::where('plan_type','exclusive')->pluck('id')->toArray();
+
+        $data = LeadPaidVendor::where('user_id',$user_id)
+                            ->where('is_active','1')
+                            ->whereIn('plan_id',$palns)
+                            ->orderBy('id','desc')
+                            ->first();
+        if(!empty($data)){
+            return true;
+        }else{
+            return false;
+        }  
+        
     }
 
 }

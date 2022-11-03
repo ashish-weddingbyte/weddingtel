@@ -11,6 +11,7 @@ use App\Models\PositionPaidVendor;
 use App\Models\VendorDetail;
 use App\Models\Wishlist;
 use App\Models\Review;
+use App\Models\Query;
 use Carbon\Carbon;
 
 class Vendors extends Controller
@@ -32,6 +33,10 @@ class Vendors extends Controller
         $data['position'] = PositionPaidVendor::where('user_id',$user_id)
                                         ->where('is_active','1')
                                         ->first();
+
+        $data['all_query_count'] = Query::where('vendor_id',$user_id)->count();
+        $data['new_query_count'] = Query::where('vendor_id',$user_id)->where('view_status','0')->count();
+        $data['viewed_query_count'] = Query::where('vendor_id',$user_id)->where('view_status','1')->count();
 
         if(!empty($paid)){                                
             $end_date = new Carbon($paid->end_at);

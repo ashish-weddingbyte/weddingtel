@@ -376,7 +376,7 @@
                             <!-- Post Blog Image -->
                             <!-- Post Blog Content -->
                             <div class="home-content">                                    
-                                <span class="meta-date">{{ date('M d, Y', strtotime($blog->created_at) ) }}</span>
+                                <!-- <span class="meta-date">{{ date('M d, Y', strtotime($blog->created_at) ) }}</span> -->
 
                                 <div class="mt-auto">
                                     <span class="post-category">

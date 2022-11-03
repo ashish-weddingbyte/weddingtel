@@ -51,7 +51,7 @@
                             <div class="col-md-6">
                                 <!-- Post Blog Content -->
                                 <h3 class="blog-title"><a href="{{ $blog_url }}" class="post-title">{{ $blog->title }}</a></h3>
-                                <span class="meta-date">{{ date('M d, Y', strtotime($blog->created_at) ) }}</span>
+                                <!-- <span class="meta-date">{{ date('M d, Y', strtotime($blog->created_at) ) }}</span> -->
                                 <span class="post-category">
                                     <a href="{{ url('/blogs/'.$blog->category_url ) }}">{{ $blog->category_name }}</a>
                                 </span>

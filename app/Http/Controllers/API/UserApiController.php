@@ -30,6 +30,7 @@ use App\Models\Review;
 use App\Models\RealWedding;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Query;
 use otp_helper;
 use user_helper;
 use Validator;
@@ -2072,9 +2073,9 @@ class UserApiController extends Controller
                 $query->query_type = $type;
                 $query->name = $name;
                 $query->mobile = $mobile;
-                $query->budget = $buvent;
-                $query->details = $detadget;
-                $query->event_date = $eils;
+                $query->budget = $budget;
+                $query->details = $details;
+                $query->event_date = $event;
                 $query->is_mobile_verified = '1';
                 $query->save();
 

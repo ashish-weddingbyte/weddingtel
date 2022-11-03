@@ -102,7 +102,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Total Leads</strong></div>
-                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                            <a href="{{ url('vendor/leads') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +120,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>All Addons</strong></div>
-                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                            <a href="{{ url('vendor/addons') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +137,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Available Leads</strong></div>
-                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                            <a href="{{ url('vendor/leads') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Used Leads</strong></div>
-                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                            <a href="{{ url('vendor/leads') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +173,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Expire Days</strong></div>
-                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                            <a href="javascript:void(0)" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
@@ -219,7 +219,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Plan Details</strong></div>
-                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                            <a href="javascript:void(0)" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
@@ -237,7 +237,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Plan Start Date</strong></div>
-                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                            <a href="javascript:void(0)" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
@@ -255,7 +255,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Plan End Date</strong></div>
-                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
+                                            <a href="javascript:void(0)" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
@@ -270,11 +270,11 @@
                                 <div class="couple-info vendor-stats">
                                     <div class="couple-status-item">
                                         <div class="counter">
-                                            0
+                                            {{$new_query_count}}
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>New Query</strong></div>
-                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All (Plan Complimentary un-verified)</a>
+                                            <a href="{{ url('vendor/query') }}" class="btn-veiw-all">View All (Plan Complimentary un-verified)</a>
                                         </div>
                                     </div>
                                 </div>
@@ -288,11 +288,11 @@
                                 <div class="couple-info vendor-stats">
                                     <div class="couple-status-item">
                                         <div class="counter">
-                                            0
+                                            {{$all_query_count}}
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Total Queries</strong></div>
-                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All (Plan Complimentary un-verified)</a>
+                                            <a href="{{ url('vendor/query') }}" class="btn-veiw-all">View All (Plan Complimentary un-verified)</a>
                                         </div>
                                     </div>
                                 </div>
@@ -306,11 +306,11 @@
                                 <div class="couple-info vendor-stats">
                                     <div class="couple-status-item">
                                         <div class="counter">
-                                            0
+                                            {{$viewed_query_count}}
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Viewed Queries</strong></div>
-                                            <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All (Plan Complimentary un-verified)</a>
+                                            <a href="{{ url('vendor/query') }}" class="btn-veiw-all">View All (Plan Complimentary un-verified)</a>
                                         </div>
                                     </div>
                                 </div>

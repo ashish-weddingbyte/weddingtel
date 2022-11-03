@@ -298,11 +298,10 @@ class LeadController extends Controller
 
     public function add_premium_lead(Request $request){
         $data['categories'] = Category::where('status','1')->get();
-        // $palns  =  LeadPlan::where('plan_type','exclusive')->select('name')->get()->toArray();
-
+        $palns  =  LeadPlan::where('plan_type','exclusive')->pluck('id')->toArray();
         $data['leads_paid_vendor'] =  LeadPaidVendor::join('users','users.id','lead_paid_vendors.user_id')
                                     ->where('users.user_type','vendor')
-                                    ->whereIn('lead_paid_vendors.plan_name',['Clasic Platinum'])
+                                    ->whereIn('lead_paid_vendors.id',$palns)
                                     ->where('lead_paid_vendors.is_active','1')
                                     ->select(['users.name','users.id','users.mobile','lead_paid_vendors.available_leads'])
                                     ->orderBy('users.id','desc')

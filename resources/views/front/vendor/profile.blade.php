@@ -132,7 +132,7 @@
                                                     @if($cities)   
                                                         @foreach($cities as $city)
                                                             
-                                                            @if($city->id === $details->city_id)  
+                                                            @if($city->id == $details->city_id)  
                                                                 <option value="{{ $city->id }}" selected>{{ $city->name }}</option>
                                                             @else
                                                                 <option value="{{ $city->id }}">{{ $city->name }}</option>

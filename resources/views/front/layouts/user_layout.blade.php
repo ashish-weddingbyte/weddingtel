@@ -138,6 +138,8 @@
                     $user_id = Session::get('user_id');
                     $user = App\Models\User::find($user_id);
                     $details = App\Models\VendorDetail::where('user_id',$user_id)->first();
+
+                    $exclusive = vendor_helper::check_exclusive($user_id);
                 ?>
                 @if($details->profile_image)
                     <img src="{{ asset('storage/upload/vendor/profile/'.$details->profile_image) }}" alt="">
@@ -158,9 +160,15 @@
                     <li class="{{ user_helper::active_menu('plans') }}">
                         <a href="{{ url('/vendor/plans') }}"><i class="fa fa-money" aria-hidden="true"></i> Plans</a>
                     </li>
-                    <li class="{{ user_helper::active_menu('leads') }}">
-                        <a href="{{ url('/vendor/leads') }}"><i class="weddingdir_pricing_plans"></i> Leads</a>
-                    </li>
+                    @if($exclusive == true)
+                        <li class="{{ user_helper::active_menu('exclusive-leads') }}">
+                            <a href="{{ url('/vendor/exclusive-leads') }}"><i class="weddingdir_pricing_plans"></i>Exclusive Leads</a>
+                        </li>
+                    @else
+                        <li class="{{ user_helper::active_menu('leads') }}">
+                            <a href="{{ url('/vendor/leads') }}"><i class="weddingdir_pricing_plans"></i> Leads</a>
+                        </li>
+                    @endif
                     <li class="{{ user_helper::active_menu('query') }}">
                         <a href="{{ url('/vendor/query') }}"><i class="weddingdir_request_quote"></i> Query</a>
                     </li>

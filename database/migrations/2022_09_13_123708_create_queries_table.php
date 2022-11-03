@@ -25,7 +25,7 @@ return new class extends Migration
             $table->date('event_date')->nullable();
             $table->text('details')->nullable();
             $table->enum('is_mobile_verified', ['0', '1'])->default('0');
-            $table->enum('status', ['0', '1'])->default('1');
+            $table->enum('view_status', ['0', '1'])->default('0');
             $table->timestamps();
         });
     }

@@ -190,6 +190,9 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
     Route::get('/leads/view/details/{id}',[VendorLeadController::class,'view_lead_details']);
     Route::get('/leads/unlock-leads',[VendorLeadController::class,'unlock_leads']);
 
+    Route::get('/exclusive-leads',[VendorLeadController::class, 'exclusive_leads']);
+    Route::get('/exclusive-leads/{id}',[VendorLeadController::class,'view_exclusive_leads']);
+
     Route::get('/query',[VendorLeadController::class, 'all_query']);
 });
 
@@ -302,5 +305,6 @@ Route::get('/move_profile',[HomeController::class,'move_profile']);
 Route::get('/move_gallery',[HomeController::class,'move_gallery']);
 Route::get('/lead_view',[HomeController::class,'lead_view']);
 Route::get('/paid_vendor',[HomeController::class,'paid_vendor']);
+Route::get('/blog_data',[HomeController::class,'blog_data']);
 
 

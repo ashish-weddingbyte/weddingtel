@@ -62,6 +62,7 @@ class HomeController extends Controller
 
         $data['blogs']      =   Blog::limit(3)
                                 ->join('blog_categories','blog_categories.id','=','blogs.category_id')
+                                ->where('blogs.category_id','1')
                                 ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
                                 ->orderBy('id','desc')
                                 ->get();
@@ -922,6 +923,24 @@ class HomeController extends Controller
     //     }
 
     // }
+
+    public function blog_data(){
+        $paid = DB::table('posts')->get();
+        
+        foreach($paid as $p ){
+            $n = new Blog();
+            $n->title = $p->title;
+            $n->category_id = '1';
+            $n->short_desc = "";
+            $n->desc = $p->body;
+            $n->featured_image = $p->image;
+            $n->status = '1';
+            $n->tags = "";
+            $n->added_by = 'admin';
+            $n->save();
+        }
+
+    }
 
 
     // public function  move_profile(){
