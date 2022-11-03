@@ -12,6 +12,7 @@ use App\Models\VendorDetail;
 use App\Models\Wishlist;
 use App\Models\Review;
 use App\Models\Query;
+use App\Models\AddonLead;
 use Carbon\Carbon;
 
 class Vendors extends Controller
@@ -90,5 +91,25 @@ class Vendors extends Controller
                                 ->orderBy('wishlists.id','desc')
                                 ->get();
         return view('front.vendor.wishlist',$data);
+    }
+
+
+    public function addons(){
+        $user_id = Session::get('user_id');
+
+        $paid = LeadPaidVendor::where('user_id',$user_id)
+                                        ->where('is_active','1')
+                                        ->orderBy('id','desc')
+                                        ->first();
+
+        if( !empty( $paid) ){
+            $from_date = $paid->start_at;
+            $data['addons'] = AddonLead::where('user_id',$user_id)->whereDate('created_at','>=', $from_date)->get();
+            return view('front.vendor.addons',$data);
+
+        }else{
+            return back();
+        }
+
     }
 }

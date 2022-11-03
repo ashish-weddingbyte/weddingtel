@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('addon_leads', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->integer('Leads');
-            $table->integer('Days');
+            $table->integer('leads');
+            $table->integer('days');
             $table->timestamps();
         });
     }

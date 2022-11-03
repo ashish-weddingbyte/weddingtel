@@ -162,7 +162,7 @@ Route::middleware(['CheckUser'])->group(function () {
 Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], function(){
 
     Route::get('/dashboard',[Vendors::class, 'dashboard']);
-    
+    Route::get('/dashboard/addons',[Vendors::class, 'addons']);
     
     Route::get('/review',[Vendors::class, 'review']);
     Route::get('/leads',[Vendors::class, 'leads']);

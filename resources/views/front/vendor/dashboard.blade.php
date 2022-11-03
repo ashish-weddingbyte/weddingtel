@@ -98,7 +98,7 @@
                                 <div class="couple-info vendor-stats">
                                     <div class="couple-status-item">
                                         <div class="counter">
-                                            {{ $leads->lead }}
+                                            {{ $leads->total_lead }}
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Total Leads</strong></div>
@@ -120,7 +120,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>All Addons</strong></div>
-                                            <a href="{{ url('vendor/addons') }}" class="btn-veiw-all">View All</a>
+                                            <a href="{{ url('vendor/dashboard/addons') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@
                                 <div class="couple-info vendor-stats">
                                     <div class="couple-status-item">
                                         <div class="counter">
-                                            {{ ($leads->lead - $leads->available_leads) }}
+                                            {{ ($leads->total_lead - $leads->available_leads) }}
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Used Leads</strong></div>
