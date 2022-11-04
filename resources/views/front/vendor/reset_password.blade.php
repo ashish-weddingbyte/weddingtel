@@ -78,12 +78,12 @@
                             <h3>Log in to your account</h3>
                             <p><a href="{{url('/vendor-login') }}">Login</a></p>                       
                         </div> 
-                        <hr>
+                        <!-- <hr>
 
                         <div class="mt-4 text-center">
                             <h3>Are you a Bride/Groom</h3>
                             <a href="{{ url('/login') }}" class="btn btn-success btn-rounded ">User Login</a>                     
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

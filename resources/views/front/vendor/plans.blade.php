@@ -108,12 +108,44 @@
                             </div>
                         @endif
                     </div>
-                    <div class="tab-pane fade" id="query-plans" role="tabpanel" aria-labelledby="query-plans-tab">
+                    <!-- <div class="tab-pane fade" id="query-plans" role="tabpanel" aria-labelledby="query-plans-tab">
                         <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
-                    </div>
+                    </div> -->
 
                     <div class="tab-pane fade" id="location-plans" role="tabpanel" aria-labelledby="location-plans-tab">
-                        <div class="card-shadow">
+                         @if($position_plans->count() > 0 ) 
+                        <div class="row">
+                            @foreach($position_plans as $plan)
+                            <!-- Pricing Plan Wrap -->
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-13 py-3">
+                                <div class="pricing-table-wrap premium">
+                                    <h3>{{ ucwords($plan->name) }}</h3>
+                                    <div class="vendor-img-gallery">
+                                        <a href="{{asset('storage/upload/plans/'.$plan->image)}}" ><img src="{{asset('storage/upload/plans/'.$plan->image)}}" class="rounded" alt="{{ $plan->name }}"></a>               
+                                    </div>
+                                    
+                                    <div class="plan-price">
+                                        <sup>INR </sup>{{ $plan->price }}
+                                    </div>
+                                    <ul class="list-unstyled">
+                                        <li>Position : {{ $plan->position }}</li>
+                                        <li>Validity : {{ $plan->days }} Days</li>
+                                        <li>Desc : {{ $plan->desc }}</li>
+                                    </ul>
+                                    <a href="javascript:" class="btn btn-primary btn-rounded">Buy</a>
+                                </div>
+                            </div>
+                            <!-- Pricing Plan Wrap -->
+                            @endforeach
+                        </div>
+                        @else
+                            <div class="row my-5">
+                                <div class="col-md-12 text-center">
+                                    <h3>Plans Not Available!</h3>
+                                </div>
+                            </div>
+                        @endif
+                        <!-- <div class="card-shadow">
                             <div class="card-shadow-header">
                                 <div class="head-simple">
                                     Location Plan
@@ -146,7 +178,7 @@
                                 </form>
                                                                             
                             </div> 
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

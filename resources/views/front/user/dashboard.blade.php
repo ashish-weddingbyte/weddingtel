@@ -59,7 +59,7 @@
 
                             <div class="couple-status">
                                 <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: {{ $checklist_done_perentage }}%"></div>
+                                    <div class="progress-bar bg-info" role="progressbar" style="width:{{ $checklist_done_perentage }}%"></div>
                                 </div>
                                 <div class="small-text">
                                     <span>Status</span>

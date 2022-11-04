@@ -76,7 +76,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <input type="hidden" name="login-type" id="login-type" value="{{ $from }}">
+                                    <input type="hidden" name="login-type" id="login-type" value="{{ $from ? $from : 'e' }}">
                                     
                                     <button type="submit" class="btn btn-default btn-block btn-rounded">Login</button>
                                 </div>
@@ -86,12 +86,12 @@
                         <div class=" section-title text-center">
                             <a href="{{ url('/vendor-forget-password') }}">Forgot your password?</a>
                         </div>
-                        <hr>
+                        <!-- <hr>
 
                         <div class="mt-4 text-center">
                             <h3>Are you a Bride/Groom</h3>
                             <a href="{{ url('/login') }}" class="btn btn-success btn-rounded">User Login</a>                     
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

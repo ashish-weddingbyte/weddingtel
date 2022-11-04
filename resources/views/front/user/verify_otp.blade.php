@@ -76,10 +76,10 @@
                             </form>
                         </div>
 
-                        <div class="mt-5 text-center">
+                        <!-- <div class="mt-5 text-center">
                             <h3>Are you a vendor?</h3>
                             <a href="#" class="btn btn-success btn-rounded ">Vendor Login</a>                       
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

@@ -61,7 +61,7 @@
                                     <h3>WeddingByte</h3>
                                     <p><a href="javascript:void(0)">The right way of wedding planning.</a></p> 
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-contact progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>                      
                                 </div> 
                                 

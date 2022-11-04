@@ -73,11 +73,11 @@
                         <div class=" section-title text-center">
                             <a href="{{ url('/forget-password') }}">Forgot your password?</a>
                         </div>
-                        <hr>
+                        <!-- <hr>
                         <div class="mt-4 text-center">
                             <h3>Are you a vendor?</h3>
                             <a href="{{ url('/vendor-login') }}" class="btn btn-success btn-rounded ">Vendor Login</a>                       
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

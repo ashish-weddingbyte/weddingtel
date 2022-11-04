@@ -29,14 +29,13 @@
                     @foreach($real_wedding as $real)
                         <?php
                             $media = user_helper::real_wedding_media($real->user_id);
-                            $user = user_helper::user_real_wedding_data($real->user_id);
                         ?>
                         <div class="col-lg-4 col-md-6">
                             <div class="real-wedding-wrap top-heading">
                                 <div class="real-wedding">
                                     <div class="text-center">
-                                        <h3><a href="real-wedding-details.html">{{ ucwords($user->name) }} Weds {{ ucwords($real->partner_name) }}</a></h3>
-                                        <p><i class="fa fa-map-marker"></i> {{ $user->city_name }}</p>
+                                        <h3><a href="real-wedding-details.html">{{ ucwords($real->name) }} Weds {{ ucwords($real->partner_name) }}</a></h3>
+                                        <p><i class="fa fa-map-marker"></i> {{ $real->city }}</p>
                                     </div>
                                     <div class="img real-wedd-long-img">
                                         <div class="overlay">
@@ -45,7 +44,7 @@
                                         </div>
                                         <a href="{{ url('real-wedds/'.$real->id) }}"><img src="{{ asset('storage/upload/realwedding/profile/'.$real->featured_image)}}" alt=""></a>
                                         <div class="date">
-                                            {{ date('M d, Y ', strtotime($user->event) ) }}
+                                            {{ date('M d, Y ', strtotime($real->date) ) }}
                                         </div>
                                     </div>
                                     <ul class="list-unstyled gallery">

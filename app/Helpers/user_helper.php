@@ -188,16 +188,6 @@ class user_helper {
         return $data;
     }
 
-    public static function user_real_wedding_data($id){
-        $data = User::join('user_details','user_details.user_id','=','users.id')
-                        ->join('cities','cities.id','=','user_details.city_id')
-                        ->where('users.user_type','user')
-                        ->where('users.id',$id)
-                        ->select(['users.name','user_details.event','cities.name as city_name','user_details.profile','user_details.partner_name','user_details.partner_profile','user_details.wedding_address','user_details.partner_profile'])
-                        ->first();
-        return $data;
-    }
-
 
 
 }

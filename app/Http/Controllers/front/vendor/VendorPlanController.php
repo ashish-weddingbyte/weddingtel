@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\VendorDetail;
 use App\Models\LeadPlan;
+use App\Models\PositionPlan;
 use App\Models\City;
 use App\Models\LeadPaidVendor;
 use App\Models\PositionPaidVendor;
@@ -29,6 +30,8 @@ class VendorPlanController extends Controller
         $category = VendorDetail::where('user_id',$user_id)->first();
 
         $data['plans']  = LeadPlan::where('category_id',$category->category_id)->get();
+
+        $data['position_plans'] = PositionPlan::all();
 
         $data['cities'] = City::orderBy('name','asc')->get();
 

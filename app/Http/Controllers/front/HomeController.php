@@ -75,7 +75,7 @@ class HomeController extends Controller
                                 ->get();
 
         $data['real_wedding']   =  RealWedding::where('status','1')
-                                    ->where('is_gallery','1')
+                                    // ->where('is_gallery','1')
                                     ->whereNotNull('featured_image')
                                     ->whereNotNull('partner_name')
                                     ->orderBy('id','desc')
@@ -924,23 +924,43 @@ class HomeController extends Controller
 
     // }
 
-    public function blog_data(){
-        $paid = DB::table('posts')->get();
+    // public function blog_data(){
+    //     $paid = DB::table('posts')->get();
         
-        foreach($paid as $p ){
-            $n = new Blog();
-            $n->title = $p->title;
-            $n->category_id = '1';
-            $n->short_desc = "";
-            $n->desc = $p->body;
-            $n->featured_image = $p->image;
-            $n->status = '1';
-            $n->tags = "";
-            $n->added_by = 'admin';
-            $n->save();
-        }
+    //     foreach($paid as $p ){
+    //         $n = new Blog();
+    //         $n->title = $p->title;
+    //         $n->category_id = '1';
+    //         $n->short_desc = "";
+    //         $n->desc = $p->body;
+    //         $n->featured_image = $p->image;
+    //         $n->status = '1';
+    //         $n->tags = "";
+    //         $n->added_by = 'admin';
+    //         $n->save();
+    //     }
 
-    }
+    // }
+
+
+    // public function real(){
+    //     $paid = DB::table('realwedding')->get();
+        
+    //     foreach($paid as $p ){
+    //         $n = new RealWedding();
+    //         $n->title = $p->title;
+    //         $n->name = $p->bride_name;
+    //         $n->partner_name = $p->groom_name;
+    //         $n->description = $p->details;
+    //         $n->featured_image = $p->image;
+    //         $n->tag_vendors = $p->vendor_credit;
+    //         $n->is_gallery = '0';
+    //         $n->status  =   '1';
+    //         $n->date    =   $p->date;
+    //         $n->added_by = 'admin';
+    //         $n->save();
+    //     }
+    // }
 
 
     // public function  move_profile(){

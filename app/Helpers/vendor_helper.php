@@ -166,9 +166,9 @@ class vendor_helper {
             return true;
         }else{
             return false;
-        }  
-        
+        }        
     }
+    
 
 }
 ?>

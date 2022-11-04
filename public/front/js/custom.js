@@ -287,7 +287,7 @@ $("document").ready(function () {
     function setProgressBar(curStep) {
         var percent = parseFloat(100 / steps) * curStep;
         percent = percent.toFixed() - 10;
-        $(".progress-bar")
+        $(".progress-bar-contact")
             .css("width", percent + "%")
             .html(percent + "%");
     }

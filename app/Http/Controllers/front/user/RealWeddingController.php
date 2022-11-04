@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\RealWedding;
 use App\Models\MediaGallery;
+use App\Models\City;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class RealWeddingController extends Controller
@@ -41,6 +42,9 @@ class RealWeddingController extends Controller
 
         $realwedd_id = $request->realwedd_id;
         $user_id = Session::get('user_id');
+
+        $details = UserDetail::where('user_id',$user_id);
+        $city = City::find($request->city_id);
         
         if(isset($realwedd_id)){
             $realwedd = RealWedding::find($realwedd_id);
@@ -49,6 +53,7 @@ class RealWeddingController extends Controller
         }
 
         $realwedd->user_id = $user_id;
+        $realwedd->city = $city->name;
 
         if($request->hasFile('feature_image')) {
 
@@ -88,6 +93,11 @@ class RealWeddingController extends Controller
                 Session::flash('class', 'alert-danger');
                 return redirect("/tools/real-wedding");
             }
+        }
+
+        if($request->filled('my_name')){
+            $realwedd->name = $request->my_name;
+            $realwedd->save();
         }
 
         if($request->filled('partner_name')){

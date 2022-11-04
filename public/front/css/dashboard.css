@@ -3051,14 +3051,14 @@ a.ui-button:active,
     border-radius: 4px;
     margin-right: 20px;
     padding: 0 1rem;
-    height: 60px;
+    height: 65px;
     font-weight: bold;
     text-align: center;
     align-items: center;
     display: flex;
     justify-content: center;
     color: #fc2779;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 .couple-info .couple-status-item .text small {
     display: block;
@@ -4021,7 +4021,7 @@ a.ui-button:active,
     color: #fc2779;
 }
 .mt-dashboard {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .my-listing li {
@@ -4781,7 +4781,7 @@ button.close:focus {
     }
 
     .mt-dashboard {
-        margin-top: 0px;
+        margin-top: 20px;
     }
 
     .footer-widget {
@@ -4978,6 +4978,21 @@ button.close:focus {
     }
     .megamenu {
         width: 100% !important;
+    }
+
+    .couple-info .couple-status-item {
+        display: block;
+    }
+    .couple-info .couple-status-item .counter {
+        margin-right: 0px;
+        font-size: 15px;
+    }
+    .couple-info .couple-status-item .text {
+        padding-top: 0.4rem;
+    }
+
+    .card-shadow-body {
+        padding: 0.5rem;
     }
 }
 @media (max-width: 430px) {

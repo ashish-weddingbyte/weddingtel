@@ -40,7 +40,11 @@
                                 <div class="w-100">
                                     <h3 class="mb-4">My Info</h3>
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-dark" name="my_name" placeholder="Full Name" value="{{ $user->name }}">
+                                        @if(!empty( $realwedd->name) )
+                                            <input type="text" class="form-control form-dark" name="my_name" placeholder="Full Name" value="{{ $realwedd->name }}">
+                                        @else
+                                            <input type="text" class="form-control form-dark" name="my_name" placeholder="Full Name" value="{{ $user->name }}">
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -53,15 +57,17 @@
                                 <div class="w-100">
                                     <h3 class="mb-4">Partner Info</h3>
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-dark" name="partner_name" placeholder="Full Name" value="{{ $details->partner_name }}">
+                                        @if(!empty( $realwedd->partner_name) )
+                                            <input type="text" class="form-control form-dark" name="partner_name" placeholder="Full Name" value="{{ $realwedd->partner_name }}">
+                                        @else
+                                            <input type="text" class="form-control form-dark" name="partner_name" placeholder="Full Name" value="{{ $details->partner_name }}">
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             
                         </div>
 
-                        
-                                
                     </div>                                                  
                 </div>                                        
             </div>
@@ -191,6 +197,8 @@
                     @if(!empty($realwedd))
                         <input type="hidden" name="realwedd_id" value="{{ $realwedd->id }}">
                     @endif
+                    <input type="hidden" name="vendor_id" value="{{ $details->user_id }}">
+                    <input type="hidden" name="city_id" value="{{ $details->city_id }}">
                     <input type="submit" class="btn btn-primary btn-rounded" name="submit" value="@if(!empty($realwedd)) Update @else Save @endif Real-Wedding">
                 </div>
             </form>

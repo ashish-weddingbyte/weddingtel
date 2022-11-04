@@ -196,6 +196,7 @@
                 @yield('main-container')
             <!-- page content end -->
             <footer class="bg-light-gray">
+                @if(Session::get('user_type') == 'user')
                 <div class="container">
                      <div class="row no-gutters">
                         <div class="col-lg-12 col-md-12">
@@ -233,6 +234,7 @@
                         
                     </div>
                 </div>
+                @endif
         
                 <div class="copyrights">
                     <div class="container">

@@ -128,7 +128,7 @@ Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], functio
 Route::middleware(['CheckUser'])->group(function () {
 
     // Bride/Groom login/register/otp route.
-    Route::view('/login','front.user.login_with_mobile');
+    Route::view('/login','front.user.login_with_email');
     Route::view('/register','front.user.register');
     Route::view('/forget-password','front.user.forget_password');
     Route::post('/forget-password',[login::class,'forget_password']);
@@ -141,7 +141,7 @@ Route::middleware(['CheckUser'])->group(function () {
     Route::post('/register',[UserController::class,'register']);
 
     // vendor login/register/otp routes
-    Route::view('/vendor-login','front.vendor.login_with_mobile');
+    Route::view('/vendor-login','front.vendor.login_with_email');
     Route::view('/vendor-register','front.vendor.register');
     Route::get('/vendor-login/{from}',[Login::class,'show_vendor_login']);
     Route::post('/vendor-login',[login::class,'vendor_login']);
@@ -306,5 +306,6 @@ Route::get('/move_gallery',[HomeController::class,'move_gallery']);
 Route::get('/lead_view',[HomeController::class,'lead_view']);
 Route::get('/paid_vendor',[HomeController::class,'paid_vendor']);
 Route::get('/blog_data',[HomeController::class,'blog_data']);
+Route::get('/real',[HomeController::class,'real']);
 
 

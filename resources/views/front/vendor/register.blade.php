@@ -117,10 +117,10 @@
                             </form>
                         </div>
 
-                        <div class="mt-4 text-center">
+                        <!-- <div class="mt-4 text-center">
                             <h3>Are you a Bride/Groom</h3>
                             <a href="{{ url('/login') }}" class="btn btn-success btn-rounded ">User Login</a>                     
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

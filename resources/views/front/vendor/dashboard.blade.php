@@ -59,7 +59,7 @@
         </div>
         <!-- Vendor Cover Images Section -->
 
-        <div class="card-shadow mt-5">
+        <div class="card-shadow mt-5 ">
             <div class="card-shadow-header">
                 <div class="dashboard-head">
                     <h3>
@@ -73,8 +73,8 @@
 
             <div class="card-shadow-body">
                 @if($leads)
-                <div class="row my-2">
-                    <div class="col-lg-4 col-md-4 mb-lg-0">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 mt-dashboard ">
                         <div class="card-shadow">
                             <div class="card-shadow-body">
                                 <div class="couple-info vendor-stats">
@@ -92,7 +92,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-4 mb-lg-0">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 mt-dashboard ">
                         <div class="card-shadow">
                             <div class="card-shadow-body">
                                 <div class="couple-info vendor-stats">
@@ -110,7 +110,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-4 mb-lg-0 ">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 mt-dashboard ">
                         <div class="card-shadow">
                             <div class="card-shadow-body">
                                 <div class="couple-info vendor-stats">
@@ -127,7 +127,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-md-4  mb-lg-0 mt-dashboard">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 mt-dashboard ">
                         <div class="card-shadow">
                             <div class="card-shadow-body">
                                 <div class="couple-info vendor-stats">
@@ -145,7 +145,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-md-4 mb-lg-0 mt-dashboard">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 mt-dashboard ">
                         <div class="card-shadow">
                             <div class="card-shadow-body">
                                 <div class="couple-info vendor-stats">
@@ -163,7 +163,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-md-4 mb-lg-0 mt-dashboard">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 mt-dashboard ">
                         <div class="card-shadow">
                             <div class="card-shadow-body">
                                 <div class="couple-info vendor-stats">
@@ -182,11 +182,11 @@
                     </div>
                 </div>
                 @else
-                <div class="row my-5">
-                    <div class="col-md-12 text-center">
-                        <h3>You have not purchased Lead Plan!</h3>
+                    <div class="row my-5">
+                        <div class="col-md-12 text-center">
+                            <h3>You have not purchased Lead Plan!</h3>
+                        </div>
                     </div>
-                </div>
                 @endif
             </div>
         </div>
@@ -208,8 +208,8 @@
 
             <div class="card-shadow-body">
                 @if($position)
-                <div class="row my-2">
-                    <div class="col-md-4 col-md-4 mb-lg-0">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 mt-dashboard">
                         <div class="card-shadow">
                             <div class="card-shadow-body">
                                 <div class="couple-info vendor-stats">
@@ -227,7 +227,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-md-4 mb-lg-0">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 mt-dashboard ">
                         <div class="card-shadow">
                             <div class="card-shadow-body">
                                 <div class="couple-info vendor-stats">
@@ -245,7 +245,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-md-4 mb-lg-0">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 mt-dashboard ">
                         <div class="card-shadow">
                             <div class="card-shadow-body">
                                 <div class="couple-info vendor-stats">
@@ -264,7 +264,7 @@
                     </div>
                     
                 
-                    <div class="col-md-4 col-md-4 mb-lg-0 mt-dashboard">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 mt-dashboard ">
                         <div class="card-shadow">
                             <div class="card-shadow-body">
                                 <div class="couple-info vendor-stats">
@@ -274,7 +274,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>New Query</strong></div>
-                                            <a href="{{ url('vendor/query') }}" class="btn-veiw-all">View All (Plan Complimentary un-verified)</a>
+                                            <a href="{{ url('vendor/query') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
@@ -282,7 +282,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-md-4 mb-lg-0 mt-dashboard">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 mt-dashboard ">
                         <div class="card-shadow">
                             <div class="card-shadow-body">
                                 <div class="couple-info vendor-stats">
@@ -292,7 +292,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Total Queries</strong></div>
-                                            <a href="{{ url('vendor/query') }}" class="btn-veiw-all">View All (Plan Complimentary un-verified)</a>
+                                            <a href="{{ url('vendor/query') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
@@ -300,7 +300,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-md-4 mb-lg-0 mt-dashboard">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6 mt-dashboard ">
                         <div class="card-shadow">
                             <div class="card-shadow-body">
                                 <div class="couple-info vendor-stats">
@@ -310,7 +310,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Viewed Queries</strong></div>
-                                            <a href="{{ url('vendor/query') }}" class="btn-veiw-all">View All (Plan Complimentary un-verified)</a>
+                                            <a href="{{ url('vendor/query') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>

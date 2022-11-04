@@ -21,12 +21,12 @@
                                 <i class="weddingdir_heart_ring"></i>
                             </div>
                             <?php
-                                $user = user_helper::user_real_wedding_data($real_wedding->user_id);
+                                // $user = user_helper::user_real_wedding_data($real_wedding->user_id);
                             ?>
                             <div>
-                                <h2>{{ ucwords($user->name) }} Weds {{ ucwords($real_wedding->partner_name) }}</h2>
-                                <span><i class="fa fa-map-marker"></i> {{ $user->city_name }}</span>
-                                <span><i class="fa fa-calendar"></i> {{ date('M d, Y ', strtotime($user->event) ) }}</span>
+                                <h2>{{ ucwords($real_wedding->name) }} Weds {{ ucwords($real_wedding->partner_name) }}</h2>
+                                <span><i class="fa fa-map-marker"></i> {{ $real_wedding->city_name }}</span>
+                                <span><i class="fa fa-calendar"></i> {{ date('M d, Y ', strtotime($real_wedding->date) ) }}</span>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,6 @@
                         @foreach($similar_real_wedd as $real)
                         <?php
                             $media = user_helper::real_wedding_media($real->user_id);
-                            $user = user_helper::user_real_wedding_data($real->user_id);
                         ?>
                         <!-- Real Wedding Stories -->
                         <div class="col-lg-4 col-md-6">
@@ -93,8 +92,8 @@
                                 
                                 <div class="real-wedding">
                                     <div class="text-center">
-                                        <h3><a href="{{ url('real-wedds/'.$real->id) }}">{{ ucwords($user->name) }} Weds {{ ucwords($real->partner_name) }}</a></h3>
-                                        <p><i class="fa fa-map-marker"></i> {{ $user->city_name }}</p>
+                                        <h3><a href="{{ url('real-wedds/'.$real->id) }}">{{ ucwords($real->name) }} Weds {{ ucwords($real->partner_name) }}</a></h3>
+                                        <p><i class="fa fa-map-marker"></i> {{ $real->city }}</p>
                                     </div>
                                     <div class="img real-wedd-long-img">
                                         <div class="overlay">
@@ -105,7 +104,7 @@
                                             <img src="{{ asset('storage/upload/realwedding/profile/'.$real->featured_image)}}" alt="">
                                         </a>
                                         <div class="date">
-                                            {{ date('M d, Y ', strtotime($user->event) ) }}
+                                            {{ date('M d, Y ', strtotime($real->date) ) }}
                                         </div>
                                     </div>
                                     <ul class="list-unstyled gallery">
