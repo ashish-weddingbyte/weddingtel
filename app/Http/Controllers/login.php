@@ -32,7 +32,7 @@ class login extends Controller
                     $user_id = $user->id;
 
                     $otp = rand(111111,999999);
-                    $message = "Your One Time Password for WeddingByte.com account is $otp. Plase do not share this OTP with anyone.\nThanks";
+                    $message = "Your One Time Password for WeddingByte.com account is $otp. Please do not share this OTP with anyone.\nThanks";
                     $otp_send_status = otp_helper::send_otp($user->mobile,$message);
 
                     $otp_model = Otp::where('user_id',$user_id)->first();
@@ -142,7 +142,7 @@ class login extends Controller
             $user_id = $user->id;
 
             $otp = rand(111111,999999);
-            $message = "Your One Time Password for WeddingByte.com Account is $otp. Plase do not share this OTP with anyone.\nThanks";
+            $message = "Your One Time Password for WeddingByte.com Account is $otp. Please do not share this OTP with anyone.\nThanks";
             
             $otp_send_status = otp_helper::send_otp($user->mobile,$message);
 
@@ -208,7 +208,7 @@ class login extends Controller
                     $user_id = $user->id;
 
                     $otp = rand(111111,999999);
-                    $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Plase do not share this OTP with anyone.\nThanks";
+                    $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Please do not share this OTP with anyone.\nThanks";
                     $otp_send_status = otp_helper::send_otp($user->mobile,$message);
 
                     $otp_model = Otp::where('user_id',$user_id)->first();
@@ -307,7 +307,7 @@ class login extends Controller
             $user_id = $user->id;
 
             $otp = rand(111111,999999);
-            $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Plase do not share this OTP with anyone.\nThanks";
+            $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Please do not share this OTP with anyone.\nThanks";
             
             $otp_send_status = otp_helper::send_otp($user->mobile,$message);
 

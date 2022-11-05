@@ -199,6 +199,7 @@
                     @endif
                     <input type="hidden" name="vendor_id" value="{{ $details->user_id }}">
                     <input type="hidden" name="city_id" value="{{ $details->city_id }}">
+                    <input type="hidden" name="date" value="{{ $details->event }}">
                     <input type="submit" class="btn btn-primary btn-rounded" name="submit" value="@if(!empty($realwedd)) Update @else Save @endif Real-Wedding">
                 </div>
             </form>

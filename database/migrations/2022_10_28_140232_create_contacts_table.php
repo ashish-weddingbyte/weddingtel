@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('service')->nullable();
             $table->date('event_date')->nullable();
             $table->string('city')->nullable();
+            $table->text('message')->nullable();
+            $table->enum('type', ['quick_service', 'contact'])->nullable();
             $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();
         });

@@ -31,6 +31,7 @@ use App\Models\RealWedding;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Query;
+use App\Models\Contact;
 use otp_helper;
 use user_helper;
 use Validator;
@@ -2164,6 +2165,56 @@ class UserApiController extends Controller
             }
 
             
+
+        }else{
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  'Token Expired or Unauthorized User!'
+            ];
+            return response()->json($respose,422);
+        }
+    }
+
+
+
+    public function contact(Request $request){
+        $validator = Validator::make($request->all(),[
+            'message' =>  'required',
+        ]);
+
+        if($validator->fails()){
+            $respose = [
+                'status'    =>  false,
+                'message'    =>  $validator->errors()->first()
+            ];
+            return response()->json($respose,422);
+        }
+
+        $user_id = Auth::id();
+
+        if($user_id){
+
+            $type = "contact";
+            $details = User::find($user_id);
+            
+            $contact = new Contact();
+            $contact->mobile = $details->mobile;
+            $contact->name = $details->name;
+            $contact->type = $type;
+            if($contact->save()){
+                $respose = [
+                    'status'    =>  true,
+                    'message'    =>  'Thanks for Contact US, We Will Contact You Soon!'
+                ];
+                return response()->json($respose,422);
+    
+            }else{
+                $respose = [
+                    'status'    =>  false,
+                    'message'    =>  'Somthing Went Wrong!'
+                ];
+                return response()->json($respose,422);
+            }
 
         }else{
             $respose = [

@@ -421,7 +421,7 @@ class HomeController extends Controller
             $query = Query::where($conditions)->first();
 
             $otp_code = rand(111111,999999);
-            $message = "Your One Time Password for WeddingByte.com Verification is $otp_code. Plase do not share this OTP with anyone.Thanks";
+            $message = "Your One Time Password for WeddingByte.com Verification is $otp_code. Please do not share this OTP with anyone.Thanks";
 
             $otp_model = Otp::where('mobile',$mobile)->where('otp_from','query')->first();
 
@@ -567,7 +567,7 @@ class HomeController extends Controller
             $query = Query::where($conditions)->whereDate('created_at', $today)->first();
 
             $otp_code = rand(111111,999999);
-            $message = "Your One Time Password for WeddingByte.com Verification is $otp_code. Plase do not share this OTP with anyone.Thanks";
+            $message = "Your One Time Password for WeddingByte.com Verification is $otp_code. Please do not share this OTP with anyone.Thanks";
 
             $otp_model = Otp::where('mobile',$mobile)->where('otp_from','query')->first();
 
@@ -755,11 +755,13 @@ class HomeController extends Controller
         ]);
 
         $today = date('Y-m-d');
+        $type = "contact";
 
         $check = Contact::where('mobile',$request->mobile)->whereDay('created_at', now()->day)->orderBy('id','desc')->first();
         if(empty($check)){
             $contact = new Contact();
             $contact->mobile = $request->mobile;
+            $contact->type = $type;
             $contact->save();
             $id = $contact->id;
         }else{

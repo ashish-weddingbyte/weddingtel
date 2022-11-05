@@ -112,6 +112,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('view_contact',[UserApiController::class, 'view_contact']);
     Route::post('send_message',[UserApiController::class, 'send_message']);
 
+    Route::post('contact',[UserApiController::class,'contact']);
+
 
     /*====================Bride Groom end========================== */
 

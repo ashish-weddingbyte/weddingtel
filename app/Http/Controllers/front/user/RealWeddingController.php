@@ -54,6 +54,7 @@ class RealWeddingController extends Controller
 
         $realwedd->user_id = $user_id;
         $realwedd->city = $city->name;
+        $realwedd->date = date('Y-m-d',strtotime($request->date));
 
         if($request->hasFile('feature_image')) {
 

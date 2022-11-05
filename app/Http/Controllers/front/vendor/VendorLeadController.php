@@ -32,10 +32,9 @@ class VendorLeadController extends Controller
 
         $data['leads'] = Leads::where('approved_status','1')
                                 ->where('category_id',$vendor_details->category_id)
-                                ->whereDate('event_date','>', date('Y-m-d') )
+                                ->where('event_date','>', date('Y-m-d') )
                                 ->orderBy('id','desc')
-                                ->orderBy('updated_at','desc')
-                                ->limit(400)
+                                ->limit(500)
                                 ->get();
         return view('front.vendor.leads',$data);
     }
