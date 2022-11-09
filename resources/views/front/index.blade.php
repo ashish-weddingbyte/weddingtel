@@ -416,7 +416,9 @@
                         <div class="section-title">
                             <h1>The Best Wedding Vendor Service</h1>                        
                         </div> 
-                        <p class="lead">Trusted Wedding Services for every Indian Wedding</p>
+                        <p class="lead">Tell us more about your requirements</p>
+                        <p class="lead">We connect with right service provider</p>
+                        <p class="lead">Happy with our service</p>
                         <a href="{{ url('/contact') }}" class="btn btn-default btn-rounded btn-lg">Contact Us</a>
                     </div>
                 </div>
@@ -487,7 +489,7 @@
                     <div class="popular-locations-alternate">
                         <div class="overlay-box">
                             <div class="mt-auto">
-                                <h3><a href="{{ url('/vendors/ahmedabad') }}">Ahmedabad</a></h3>
+                                <h3><a href="{{ url('/vendors/delhi') }}">Delhi</a></h3>
                             </div>
                         </div>
                         <img src="{{ asset('front/images/locations/location_img_7.jpg')}}" alt="">
@@ -500,7 +502,7 @@
                     <div class="popular-locations-alternate">
                         <div class="overlay-box">
                             <div class="mt-auto">
-                                <h3><a href="{{ url('/vendors/kolkata') }}">Kolkata</a> </h3>
+                                <h3><a href="{{ url('/vendors/chandigarh') }}">Chandigarh</a> </h3>
                             </div>
                         </div>
                         <img src="{{ asset('front/images/locations/location_img_8.jpg')}}" alt="">
@@ -513,7 +515,7 @@
                     <div class="popular-locations-alternate">
                         <div class="overlay-box">
                             <div class="mt-auto">
-                                <h3><a href="{{ url('/vendors/noida') }}">Noida</a> </h3>
+                                <h3><a href="{{ url('/vendors/hyderabad') }}">Hyderabad</a> </h3>
                             </div>
                         </div>
                         <img src="{{ asset('front/images/locations/location_img_9.jpg') }}" alt="">
@@ -526,7 +528,7 @@
                     <div class="popular-locations-alternate">
                         <div class="overlay-box">
                             <div class="mt-auto">
-                                <h3><a href="{{ url('/vendors/delhi') }}">Delhi</a> </h3>
+                                <h3><a href="{{ url('/vendors/pune') }}">Pune</a> </h3>
                             </div>
                         </div>
                         <img src="{{ asset('front/images/locations/location_img_10.jpg') }}" alt="">
@@ -539,7 +541,7 @@
                     <div class="popular-locations-alternate">
                         <div class="overlay-box">
                             <div class="mt-auto">
-                                <h3><a href="{{ url('/vendors/chandigarh') }}">Chandigarh</a> </h3>
+                                <h3><a href="{{ url('/vendors/luckhnow') }}">Luckhnow</a> </h3>
                             </div>
                         </div>
                         <img src="{{ asset('front/images/locations/location_img_11.jpg') }}" alt="">
@@ -706,6 +708,7 @@
     </section>
     <!-- Customer Feedback End -->
 
+    <?php /*
     <!-- Wedding Fashion Gallery Start -->
     <section class="wide-tb-50 bg-light-gray">
         <div class="container">
@@ -714,7 +717,6 @@
             </div>         
             
             <div class="row">
-                <!-- Fashion Gallery -->
                 <div class="col-lg-3 col-md-6">
                     <div class="fashion-gallery">
                         <div class="img">
@@ -737,9 +739,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fashion Gallery -->
 
-                <!-- Fashion Gallery -->
                 <div class="col-lg-3 col-md-6">
                     <div class="fashion-gallery">
                         <div class="img">
@@ -762,9 +762,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fashion Gallery -->
 
-                <!-- Fashion Gallery -->
                 <div class="col-lg-3 col-md-6">
                     <div class="fashion-gallery">
                         <div class="img">
@@ -787,9 +785,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fashion Gallery -->
 
-                <!-- Fashion Gallery -->
                 <div class="col-lg-3 col-md-6">
                     <div class="fashion-gallery">
                         <div class="img">
@@ -811,8 +807,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Fashion Gallery -->                    
+                </div>                    
 
             </div>
 
@@ -823,7 +818,7 @@
         </div>
     </section>
     <!-- Wedding Fashion Gallery End -->
-
+    */ ?>
 
     <!-- Callout Style Main Start -->
     <section class="call-out-bg">

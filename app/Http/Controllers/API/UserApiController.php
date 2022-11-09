@@ -2201,6 +2201,7 @@ class UserApiController extends Controller
             $contact->mobile = $details->mobile;
             $contact->name = $details->name;
             $contact->type = $type;
+            $contact->message = $request->message;
             if($contact->save()){
                 $respose = [
                     'status'    =>  true,

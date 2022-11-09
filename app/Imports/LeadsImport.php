@@ -21,7 +21,7 @@ class LeadsImport implements ToModel, WithHeadingRow
             'budget'    => $row['budget'],
             'details'    => $row['details'],
             'category_id'    => $row['category_id'],
-            'event_date'    => $row['event_date'],
+            'event_date'    => date('Y-m-d',strtolower($row['event_date'])),
             'city'    => $row['city'],
             'view_count'    =>  '0',
             'status'    =>  '1',

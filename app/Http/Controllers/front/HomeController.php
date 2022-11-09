@@ -184,7 +184,9 @@ class HomeController extends Controller
     public function vendor_list(Request $request){
         $city = $request->city;
         $category_url = $request->category;
-        $data['city']   = $city;
+        $keyword = $request->keyword;
+        
+        $data['search_city']   = $city;
         $data['category'] = "";
 
 
@@ -250,6 +252,10 @@ class HomeController extends Controller
                 ];
             }
         }
+
+        if(!empty($keyword)){
+            array_push($conditions,['users.name','like',"%$keyword%"]);
+        }
         
         $data['position_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
                                     ->join('categories','categories.id','=','vendor_details.category_id')
@@ -291,6 +297,22 @@ class HomeController extends Controller
 
 
         return redirect("vendors/$city/$category");
+    }
+
+    public function search_keyword(Request $request){
+        $city = $request->city;
+        $category = $request->category;
+        $keyword = $request->keyword;
+
+        if(empty($city)){
+            return redirect('/');
+        }elseif(!empty($city) && !empty($category) && empty($keyword)){
+            return redirect("vendors/$city/$category");
+        }elseif(!empty($city) && !empty($category) && !empty($keyword)){
+            return redirect("vendors/$city/$category/$keyword");
+        }else{
+            return redirect('/');
+        }
     }
 
 
@@ -781,8 +803,8 @@ class HomeController extends Controller
                 $contact->save();
             }
 
-            if($request->filled('services')){
-                $contact->service = $request->services;
+            if($request->filled('service')){
+                $contact->service = $request->service;
                 $contact->save();
             }
 

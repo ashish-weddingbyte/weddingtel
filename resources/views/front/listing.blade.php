@@ -6,22 +6,79 @@
 @section('main-container')
 
 
-<!--  Page Breadcrumbs Start -->
-<section class="breadcrumbs-page">
+<section class="search-result-header">
     <div class="container">
-        <h1>Vendors</h1>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
-                <li class="breadcrumb-item " aria-current="page">{{ ucwords( $city ) }}</li>
-                @if($category)
-                    <li class="breadcrumb-item " aria-current="page">{{ ucwords( $category ) }}</li>
-                @endif
-            </ol>
-        </nav>
+        <div class="row">
+            <div class="col-lg-9 mx-auto">
+                <h1>Find the Perfect Wedding Vendor</h1>
+                <?php
+                    $categories = App\Models\Category::where('status','1')->get();
+                    $cities = App\Models\City::where('status','1')->get();
+
+                    $city_from_url = request()->segment(2);
+                    $category_form_url = request()->segment(3);
+                    $keyword_form_url = request()->segment(4);
+
+                ?>
+                <form action="{{ url('search-keyword') }}" method="post">
+                    @csrf
+                    <div class="form-bg row no-gutters align-items-center">
+                        <div class="col-12 col-md-3">
+                            <select class="form-light-select theme-combo" name="category" >
+                                <option value='0'>Choose Vendor Type</option>
+                                <option value="all" {{ ($city_from_url == 'all')?'selected':''}}>All Categories</option>
+                                @if($categories)
+                                    @foreach($categories as $category)
+                                        @if($category->category_url == $category_form_url)
+                                            <option value="{{ $category->category_url }}" selected>{{ $category->category_name }}</option>
+                                        @else
+                                            <option value="{{ $category->category_url }}">{{ $category->category_name }}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <select class="form-light-select theme-combo" name="city">
+                                <option value='0'>Choose Location</option> 
+                                <option value="all" {{ ($city_from_url == 'all')?'selected':''}}>All Cities</option>
+                                @if($cities)   
+                                    @foreach($cities as $city)
+                                        @if($city->name == $city_from_url)
+                                            <option value="{{ $city->name }}" selected>{{ $city->name }}</option>
+                                        @else
+                                            <option value="{{ $city->name }}">{{ $city->name }}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <input type="text" class="form-control" name="keyword" placeholder="Keyword" value="{{ $keyword_form_url }}">
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <input type="submit" value="Search Now" class="btn btn-default text-nowrap btn-block" name="search" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="view-by">
+            <strong>View By</strong> 
+            @if(!empty($city_from_url))
+                <a href="javascript:void(0)" class="selected-tags btn-link-primary">{{ $city_from_url }}</a>
+            @endif
+            @if(!empty($category_form_url))
+                <a href="javascript:void(0)" class="selected-tags btn-link-primary">{{$category_form_url }}</a>
+            @endif
+            &nbsp; &nbsp;
+            @if(!empty($keyword_form_url))
+                <a href="javascript:void(0)" class="selected-tags btn-link-primary">{{ $keyword_form_url }}</a>
+            @endif
+        </div>            
     </div>
 </section>
-<!--  Page Breadcrumbs End -->
+
 
 <main id="body-content">
  
@@ -183,7 +240,7 @@
             
                 <div class="col-md-12">
                     <div class="text-center">
-                        <h3>Vendors Not Available in {{ ucwords ($city) }} City.</h3>
+                        <h3>Vendors Not Available in {{ ucwords ($search_city) }} City.</h3>
                     </div>
                 </div>
                 

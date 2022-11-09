@@ -51,9 +51,11 @@ Route::post('/contact/update',[HomeController::class,'contact_update']);
 // vendor pages
 // Route::get('vendors_data', [UserController::class,'test']);
 Route::get('profile/{name}',[HomeController::class,'profile']);
+Route::get('vendors/{city}/{category}/{keyword}',[HomeController::class,'vendor_list']);
 Route::get('vendors/{city}/{category}',[HomeController::class,'vendor_list']);
 Route::get('vendors/{city}',[HomeController::class,'vendor_list']);
 Route::match(['get','post'],'vendors/',[HomeController::class,'search']);
+Route::match(['get','post'],'search-keyword',[HomeController::class,'search_keyword']);
 Route::post('write-review',[HomeController::class,'write_review']);
 
 

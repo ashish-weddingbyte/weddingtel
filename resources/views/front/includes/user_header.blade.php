@@ -72,7 +72,7 @@
 
 
                 <li class="nav-item dropdown megamenu-li">
-                    <a class="nav-link dropdown-toggle-mob" href="" id="megamenu-list-city" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Venues<i class="fa fa-chevron-down"></i></a>
+                    <a class="nav-link dropdown-toggle-mob" href="" id="megamenu-list-city" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Top Cities<i class="fa fa-chevron-down"></i></a>
                     <div class="dropdown-menu megamenu dropdownhover-bottom"  aria-labelledby="megamenu-list-city">
                         <div class="row">
                             <div class="col-sm-6 col-lg-3 col-md-4">

@@ -85,7 +85,7 @@
 
 
                     <li class="nav-item dropdown megamenu-li">
-                        <a class="nav-link dropdown-toggle-mob" href="javascript:void(0)" id="megamenu-list-city" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Venues<i class="fa fa-chevron-down"></i></a>
+                        <a class="nav-link dropdown-toggle-mob" href="javascript:void(0)" id="megamenu-list-city" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Top Cities<i class="fa fa-chevron-down"></i></a>
                         <div class="dropdown-menu megamenu dropdownhover-bottom"  aria-labelledby="megamenu-list-city">
                             <?php
                                 $city = App\Models\City::where('status','1')->where('is_top','1')->limit(16)->get()->toArray();
