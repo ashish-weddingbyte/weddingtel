@@ -3158,9 +3158,13 @@ header .btn {
 .post-content {
     margin-bottom: 4rem;
 }
+.blog-details{
+    padding-right: 10%;
+    padding-left:10%;
+}
 .post-content .blog-title {
     margin-bottom: 0.8rem;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
 }
 .post-content .blog-title a {
@@ -3191,6 +3195,16 @@ header .btn {
     margin: 1rem 0;
     line-height: 1.7;
 }
+
+.post-content .entry-content p { 
+    font-size: 20px;
+}
+.post-content .entry-content p img { 
+    width:80% !important;
+    height: 50% !important;
+    object-fit: cover !important;
+    object-position: top !important; 
+}
 .post-content .read-more a {
     font-family: "Lora", serif;
     padding: 0;
@@ -3210,6 +3224,10 @@ header .btn {
 .post-content .post-img img {
     position: relative;
     z-index: 1;
+    width: 80%;
+    height: 60%;
+    object-fit: cover;
+    object-position: top;
 }
 .blog-image {
     max-height: 400px;

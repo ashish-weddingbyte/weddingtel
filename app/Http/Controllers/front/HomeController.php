@@ -320,7 +320,7 @@ class HomeController extends Controller
         $data['blogs'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
                         ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
                         ->orderBy('id','desc')
-                        ->paginate(20);
+                        ->paginate(21);
         $data['popular_blogs'] = Blog::orderBy('id','asc')
                                 ->limit(3)
                                 ->get();
@@ -345,7 +345,7 @@ class HomeController extends Controller
         $data['popular_blogs'] = Blog::orderBy('id','asc')
                                 ->limit(3)
                                 ->get();
-        $data['categories'] =   Category::all();
+        $data['categories'] =   BlogCategory::all();
 
         return view('front.blog_details',$data);
 

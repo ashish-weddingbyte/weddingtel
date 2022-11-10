@@ -26,12 +26,12 @@
     <section class="wide-tb-90">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-12">
+                <div class="col-lg-12 col-md-12">
                     <!-- Post Blog -->
                     @if($blog)
-                    <div class="post-content mb-0">
+                    <div class="post-content mb-0 blog-details text-center">
                         <!-- Post Blog Image -->
-                        <div class="post-img">
+                        <div class="post-img ">
                             <div class="single-post-featured-image">
                                 <img src="{{ asset('storage/upload/blog/'.$blog->featured_image)}}" alt="">
                             </div>
@@ -123,6 +123,7 @@
                     <!-- Post Blog -->
                 </div>
 
+                <?php /*
                 <div class="col-lg-4 col-md-12">
                     <aside class="row sidebar-widgets">
                         <!-- Sidebar Primary Start -->
@@ -208,6 +209,7 @@
                         
                     </aside>
                 </div>
+                */ ?>
             </div>                
         </div>
     </section>
