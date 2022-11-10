@@ -57,7 +57,7 @@ Route::get('vendors/{city}',[HomeController::class,'vendor_list']);
 Route::match(['get','post'],'vendors/',[HomeController::class,'search']);
 Route::match(['get','post'],'search-keyword',[HomeController::class,'search_keyword']);
 Route::post('write-review',[HomeController::class,'write_review']);
-
+Route::view('wedding-website','front.user.rsvp.wedding_dir');
 
 Route::get('blogs',[HomeController::class,'all_blogs']);
 Route::get('blogs/{category}',[HomeController::class,'blogs_by_category']);

@@ -31,7 +31,7 @@
         <div class="card-shadow">
             <div class="card-shadow-body p-3">
                 <div class="table-responsive">
-                    <table class="table table-hover mb-0">
+                    <table class="table table-hover datatable mb-0">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Name</th>
