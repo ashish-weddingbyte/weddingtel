@@ -210,6 +210,7 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::get('/vendors',[Users::class,'all_vendors']);
     Route::get('/vendors/all_vendors',[Users::class,'all_vendors']);
     Route::get('/vendors/all_vendors/leads/{id}',[Users::class,'vendors_open_leads']);
+    Route::get('/vendors/all_vendors/addon/{id}',[Users::class,'add_addons']);
     Route::get('/vendors/all_vendors/buy_lead_plan/{id}',[Users::class,'buy_lead_plan']);
     Route::post('/vendors/save_lead_plan',[Users::class,'save_lead_plan']);
     Route::get('/vendors/all_vendors/buy_position_plan/{id}',[Users::class,'buy_position_plan']);
@@ -220,6 +221,7 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::get('/vendors/featured_vendors',[Users::class,'featured_vendors']);
     Route::get('/vendors/paid_vendors',[Users::class,'paid_vendors']);
     Route::get('/vendors/paid_vendors/leads/{id}',[Users::class,'vendors_open_leads']);
+    Route::get('/vendors/paid_vendors/addon/{id}',[Users::class,'add_addons']);
     Route::get('/vendors/expire_vendors',[Users::class,'expire_vendors']);
 
 
@@ -253,6 +255,8 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::post('/leads/action',[LeadController::class,'action']);
     Route::get('/leads/add_lead',[LeadController::class,'add_lead']);
     Route::post('/leads/save_lead',[LeadController::class,'save_lead']);
+    Route::post('/leads/save_addon',[LeadController::class,'save_addon']);
+    Route::get('/leads/all_addons',[LeadController::class,'all_addons']);
     Route::post('/leads/upload_leads',[LeadController::class,'upload_leads']);
 
     Route::get('/premium_leads',[LeadController::class,'all_premium_lead']);

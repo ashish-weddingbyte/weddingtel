@@ -10,6 +10,7 @@ use App\Models\Review;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\LeadPlan;
+use App\Models\LeadViewStatus;
 
 class vendor_helper {
     public static function vendor_profile_url($id){
@@ -167,6 +168,17 @@ class vendor_helper {
         }else{
             return false;
         }        
+    }
+
+    public static function view_lead_status($lead_id){
+        $user_id = Session::get('user_id');
+        $data = LeadViewStatus::where('user_id',$user_id)->where('lead_id',$lead_id)->first();
+        if(!empty($data)){
+            return true;
+        }else{
+            return false;
+        }
+        return $data;
     }
     
 

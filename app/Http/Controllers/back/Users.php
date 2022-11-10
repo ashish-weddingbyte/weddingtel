@@ -532,4 +532,11 @@ class Users extends Controller
         }                               
     }
 
+    public function add_addons(Request $request){
+        $vendor_id = $request->id;
+        $data['vendor'] = admin_helper::vendor_details($vendor_id);
+        $data['paid_plan'] = LeadPaidVendor::where('user_id',$vendor_id)->where('is_active','1')->orderBy('id','desc')->first();
+        return view('back.add_addon',$data);
+    }
+
 }

@@ -15,6 +15,7 @@ use App\Models\PremiumLead;
 use App\Models\PremiumLeadVendor;
 use App\Models\LeadPlan;
 use App\Models\LeadPaidVendor;
+use App\Models\AddonLead;
 use admin_helper;
 use Carbon\Carbon;
 
@@ -363,4 +364,69 @@ class LeadController extends Controller
                                         ->get();
         return view('back.all_premium_lead',$data);
     }
+
+
+    public function save_addon(Request $request){
+        $request->validate([
+            'leads'  =>'required',
+            'days'  =>'required',
+        ]);
+
+        $vendor_id = $request->vendor_id;
+        $leads = $request->leads;
+        $days = $request->days;
+
+        $paid_plan = LeadPaidVendor::where('user_id',$vendor_id)->orderBy('id','desc')->first();
+
+        if(!empty($paid_plan)){
+
+            $date = Carbon::createFromFormat('Y-m-d', $paid_plan->end_at);
+            $update_date = $date->addDays($days);
+
+            $paid_plan->available_leads = $paid_plan->available_leads + $leads;
+            $paid_plan->end_at = date('Y-m-d', strtotime($update_date));
+            $paid_plan->is_active = '1';
+            $paid_plan->is_addon = 'yes';
+            $paid_plan->save();
+        }else{
+            $plan = new LeadPaidVendor();
+            $plan->user_id = $vendor_id;
+            $plan->plan_id = NULL;
+            $plan->plan_name = 'Addon';
+            $plan->lead = $leads;
+            $plan->total_lead = $leads;
+            $plan->available_leads = $leads;
+            $plan->start_at = date('Y-m-d');
+            $plan->end_at = date('Y-m-d',strtotime("+$days day"));
+            $plan->is_active = '1';
+            $plan->is_addon = 'yes';
+            $plan->save();
+        }
+
+        $addon = new AddonLead();
+
+        $addon->user_id = $vendor_id;
+        $addon->leads = $leads;
+        $addon->days = $days;
+        if($addon->save()){
+            Session::flash('message', 'Addon Added Successfully!');
+            Session::flash('class', 'alert-success');
+            return back();
+        }else{
+            Session::flash('message', 'Somthing Went Wrong!');
+            Session::flash('class', 'alert-danger');
+            return back();
+        }
+
+
+    }
+
+    public function all_addons(){
+        $data['addons'] = AddonLead::join('users','users.id','=','addon_leads.user_id')
+                                    ->select(['addon_leads.*','users.name','users.mobile'])
+                                    ->orderBy('addon_leads.id','desc')
+                                    ->get();
+        return view('back.all_addons',$data);
+    }
+
 }

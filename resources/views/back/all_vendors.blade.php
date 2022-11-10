@@ -144,6 +144,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ url('/byte/vendors/all_vendors/leads/'.$vendor->id) }}" class="btn btn-block btn-warning btn-sm">Open Leads</a>
+                                        <a href="{{ url('/byte/vendors/all_vendors/addon/'.$vendor->id) }}" class="btn btn-block btn-info btn-sm">Add Addon</a>
                                         @if($lead == false)
                                             <a href="{{ url('/byte/vendors/all_vendors/buy_lead_plan/'.$vendor->id) }}" class="btn btn-block btn-primary btn-sm">Buy Lead Plan</a>
                                         @endif

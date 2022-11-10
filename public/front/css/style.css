@@ -730,7 +730,9 @@ Background Color / Color
 }
 .callout-text {
     padding: 5rem;
-    max-width: 70%;
+} 
+.callout-text p {
+    color: #fc2779;
 }
 .callout-text .section-title {
     margin-bottom: 1.5rem;

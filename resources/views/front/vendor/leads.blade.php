@@ -58,14 +58,15 @@
                                     @else
                                         <?php
                                             $user_id = Session::get('user_id');
-                                            $view_status = App\Models\LeadViewStatus::where('user_id',$user_id)->where('lead_id',$lead->id)->first();
-
-                                            if(!empty($view_status)):
+                                            $view_status = vendor_helper::view_lead_status($lead->id);
                                         ?>
+
+                                        @if($view_status == true)
                                             <a class="btn btn-default btn-rounded btn-sm view-button" href="{{ url('vendor/leads/view/details/'.$lead->id) }}" >Opened</a>
-                                            <?php else: ?>
-                                                <button class="btn btn-default btn-rounded btn-sm view-button" data-id="{{ $lead->id }}" data-action="{{ url('/vendor/leads/view/'.$lead->id) }}">View</button>
-                                            <?php endif; ?>
+                                        @else
+                                            <button class="btn btn-default btn-rounded btn-sm view-button" data-id="{{ $lead->id }}" data-action="{{ url('/vendor/leads/view/'.$lead->id) }}">View</button>
+                                        @endif
+
                                     @endif
                                 </td>
                             </tr>

@@ -199,7 +199,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/leads/all_addons') }}" class="nav-link {{ admin_helper::active_sub_menu('all_addons') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Addon Leads</p>
                         </a>

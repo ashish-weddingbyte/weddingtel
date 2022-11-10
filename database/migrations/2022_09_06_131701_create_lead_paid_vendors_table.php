@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('lead_paid_vendors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('plan_id');
-            $table->string('plan_name');
+            $table->foreignId('plan_id')->nullable();
+            $table->string('plan_name')->nullable();
             $table->integer('lead');
             $table->integer('total_lead')->nullable();
             $table->integer('available_leads');

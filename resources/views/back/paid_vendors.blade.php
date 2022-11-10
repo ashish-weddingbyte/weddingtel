@@ -143,6 +143,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ url('/byte/vendors/paid_vendors/leads/'.$vendor->id) }}" class="btn btn-block btn-warning btn-sm">Open Leads</a>
+                                        <a href="{{ url('/byte/vendors/paid_vendors/addon/'.$vendor->id) }}" class="btn btn-block btn-info btn-sm">Add Addon</a>
                                     </td>
                                 </tr>
                                 @endforeach
