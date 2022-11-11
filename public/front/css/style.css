@@ -6860,6 +6860,10 @@ footer .widget-listing li {
         margin-top: 20px;
         margin-bottom: 20px;
     }
+    .select2-container--open .select2-dropdown {
+        left: 8%;
+    }
+    
 }
 @media (max-width: 430px) {
     header .btn {

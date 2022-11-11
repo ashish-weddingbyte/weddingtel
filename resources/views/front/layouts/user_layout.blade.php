@@ -243,7 +243,7 @@
                                 © {{ date('Y') }} All rights reserved. Build with <i class="fa fa-heart" style="color:#fc2779;" aria-hidden="true"></i> in India.
                             </div>
                             <div class="col-md-auto col-12 copyrights-link ml-md-auto">
-                                <a href="{{ url('/') }}">Home</a> | <a href="{{ url('/') }}">About</a> | <a href="{{ url('/contact') }}">Contact Us</a> | <a href="{{ url('term-and-conditions') }}">Terms & Conditions</a> | <a href="{{ url('privacy-policy') }}">Privacy Policy</a> | <a href="{{ url('cancellation-policy') }}">Cancellation Policy</a>  
+                                <a href="{{ url('/') }}">Home</a> | <a href="{{ url('/about') }}">About</a> | <a href="{{ url('/contact') }}">Contact Us</a> | <a href="{{ url('term-and-conditions') }}">Terms & Conditions</a> | <a href="{{ url('privacy-policy') }}">Privacy Policy</a> | <a href="{{ url('cancellation-policy') }}">Cancellation Policy</a>  
                             </div>
                         </div>
                     </div>

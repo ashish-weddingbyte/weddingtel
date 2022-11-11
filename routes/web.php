@@ -48,7 +48,7 @@ Route::post('/query/view-contact',[HomeController::class,'view_contact']);
 Route::post('/query/otp/',[HomeController::class,'verify_otp']);
 Route::post('/contact/save',[HomeController::class,'contact_save']);
 Route::post('/contact/update',[HomeController::class,'contact_update']);
-
+Route::view('about','front.about');
 Route::view('term-and-conditions','front.term');
 Route::view('privacy-policy','front.privacy');
 Route::view('cancellation-policy','front.cancellation');
