@@ -34,7 +34,7 @@ class VendorLeadController extends Controller
                                 ->where('category_id',$vendor_details->category_id)
                                 ->where('event_date','>', date('Y-m-d') )
                                 ->orderBy('id','desc')
-                                ->limit(500)
+                                ->limit(100)
                                 ->get();
         return view('front.vendor.leads',$data);
     }
@@ -88,8 +88,6 @@ class VendorLeadController extends Controller
                     ];
                     return response()->json($data);
                 }
-
-
 
             }else{
                 $data = [

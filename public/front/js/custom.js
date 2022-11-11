@@ -127,7 +127,7 @@ $("document").ready(function () {
     $(".view-button", this).click(function () {
         var id = $(this).attr("data-id");
         var url = $(this).attr("data-action");
-
+        // alert(url);
         $.ajax({
             url: url,
             method: "POST",
@@ -154,7 +154,7 @@ $("document").ready(function () {
                         '<div class="alert alert-danger" >' + value + "</div>"; // build the list
                 });
                 $(".print-error-msg").append(str);
-                // console.log(response);
+                console.log(response);
             },
         });
     });

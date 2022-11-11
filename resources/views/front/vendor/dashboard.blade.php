@@ -155,7 +155,7 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Used Leads</strong></div>
-                                            <a href="{{ url('vendor/leads') }}" class="btn-veiw-all">View All</a>
+                                            <a href="{{ url('vendor/leads/unlock-leads') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>
                                 </div>
@@ -198,7 +198,7 @@
             <div class="card-shadow-header">
                 <div class="dashboard-head">
                     <h3>
-                        Position Plans
+                        Position Plan
                     </h3>
                     <div class="links">
                         <a href="{{ url('vendor/plans') }}">View All <i class="fa fa-angle-right"></i></a>

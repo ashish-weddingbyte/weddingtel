@@ -31,7 +31,7 @@
         <div class="card-shadow">
             <div class="card-shadow-body p-3">
                 <div class="table-responsive">
-                    <table class="table table-hover datatable mb-0">
+                    <table class="table table-hover mb-0">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Name</th>
@@ -64,7 +64,7 @@
                                         ?>
 
                                         @if($view_status == true)
-                                            <a class="btn btn-default btn-rounded btn-sm view-button" href="{{ url('vendor/leads/view/details/'.$lead->id) }}" >Opened</a>
+                                            <a class="btn btn-default btn-rounded btn-sm " href="{{ url('vendor/leads/view/details/'.$lead->id) }}" >Opened</a>
                                         @else
                                             <button class="btn btn-default btn-rounded btn-sm view-button" data-id="{{ $lead->id }}" data-action="{{ url('/vendor/leads/view/'.$lead->id) }}">View</button>
                                         @endif
