@@ -41,7 +41,7 @@ class HomeController extends Controller
                                 ->where('vendor_details.featured_image','!=', NULL)
                                 ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','vendor_details.featured_image','categories.category_name','categories.icon','cities.name as city_name'])
                                 ->limit(8)
-                                ->orderBy('users.id','asc')
+                                ->orderBy('vendor_details.is_top','asc')
                                 ->get();
 
         $data['featured_vendors'] =  User::join('vendor_details','vendor_details.user_id','=','users.id')
@@ -318,13 +318,27 @@ class HomeController extends Controller
 
     public function all_blogs(){
         $data['blogs'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
+                        ->whereNotIn('blogs.category_id',[9])
                         ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
                         ->orderBy('id','desc')
                         ->paginate(21);
-        $data['popular_blogs'] = Blog::orderBy('id','asc')
-                                ->limit(3)
-                                ->get();
-        $data['categories'] =   BlogCategory::all();
+        // $data['popular_blogs'] = Blog::orderBy('id','asc')
+        //                         ->limit(3)
+        //                         ->get();
+        // $data['categories'] =   BlogCategory::all();
+        return view('front.blogs',$data);
+    }
+
+    public function all_celebrity_weddings(){
+        $data['blogs'] = Blog::join('blog_categories','blog_categories.id','=','blogs.category_id')
+                        ->where('blogs.category_id',9)
+                        ->select(['blogs.*','blog_categories.category_name','blog_categories.category_url'])
+                        ->orderBy('id','desc')
+                        ->paginate(21);
+        // $data['popular_blogs'] = Blog::orderBy('id','asc')
+        //                         ->limit(3)
+        //                         ->get();
+        // $data['categories'] =   BlogCategory::all();
         return view('front.blogs',$data);
     }
 

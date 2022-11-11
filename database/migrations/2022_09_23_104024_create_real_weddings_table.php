@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('real_weddings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
+            $table->foreignId('real_wedding_id')->nullable();
             $table->string('city')->nullable();
             $table->string('name')->nullable();
             $table->string('partner_name')->nullable();

@@ -382,7 +382,7 @@ class LeadController extends Controller
 
             $date = Carbon::createFromFormat('Y-m-d', $paid_plan->end_at);
             $update_date = $date->addDays($days);
-
+            $paid_plan->total_lead =  $paid_plan->total_lead + $leads;
             $paid_plan->available_leads = $paid_plan->available_leads + $leads;
             $paid_plan->end_at = date('Y-m-d', strtotime($update_date));
             $paid_plan->is_active = '1';

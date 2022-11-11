@@ -308,7 +308,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->mobile = $request->input('mobile');
-        $user->status = '1';
+        $user->status = '0';
         $user->user_type = 'vendor';
 
         

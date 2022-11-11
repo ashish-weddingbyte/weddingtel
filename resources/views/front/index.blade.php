@@ -215,7 +215,7 @@
             <div class="section-title text-center">
                 <h1>Top Vendors</h1>
             </div>
-            <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-1">
+            <div class="row row-cols-2 row-cols-lg-4 row-cols-md-3 row-cols-sm-1">
 
                 @if($top_vendors)
 
@@ -399,6 +399,10 @@
                 @endforeach
 
             </div>
+
+            <div class="text-center mt-3">
+                <a href="{{ url('/blogs') }}" class="btn btn-default btn-rounded btn-lg">More Blogs</a>
+            </div>
             @endif
         </div>
     </section>
@@ -454,6 +458,9 @@
                         </div>
                     </div>
                     @endforeach
+                </div>
+                <div class="text-center mt-3">
+                    <a href="{{ url('/celebrity-weddings') }}" class="btn btn-default btn-rounded btn-lg">More Celebrity Weddings</a>
                 </div>
             @endif
         </div>

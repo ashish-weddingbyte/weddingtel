@@ -36,6 +36,7 @@ use App\Http\Controllers\back\LeadController;
 use App\Http\Controllers\back\QueryController;
 use App\Http\Controllers\back\CityController;
 use App\Http\Controllers\back\CategoryController;
+use App\Http\Controllers\back\BlogController;
 
 /**====================================================================================== */
 
@@ -47,6 +48,14 @@ Route::post('/query/view-contact',[HomeController::class,'view_contact']);
 Route::post('/query/otp/',[HomeController::class,'verify_otp']);
 Route::post('/contact/save',[HomeController::class,'contact_save']);
 Route::post('/contact/update',[HomeController::class,'contact_update']);
+
+Route::view('term-and-conditions','front.term');
+Route::view('privacy-policy','front.privacy');
+Route::view('cancellation-policy','front.cancellation');
+
+Route::get('e-card/{token_value}',[HomeController::class, 'home']);
+Route::get('wedding-website/{token_value}',[HomeController::class, 'home']);
+Route::get('real-wedding/{token_value}',[HomeController::class, 'home']);
 
 // vendor pages
 // Route::get('vendors_data', [UserController::class,'test']);
@@ -62,6 +71,8 @@ Route::view('wedding-website','front.user.rsvp.wedding_dir');
 Route::get('blogs',[HomeController::class,'all_blogs']);
 Route::get('blogs/{category}',[HomeController::class,'blogs_by_category']);
 Route::get('blog/{title}',[HomeController::class,'blog_details']);
+
+Route::get('celebrity-weddings',[HomeController::class,'all_celebrity_weddings']);
 
 Route::get('/real-wedds',[HomeController::class,'real_wedds']);
 Route::get('/real-wedds/{id}',[HomeController::class,'real_wedd_details']);
@@ -294,6 +305,9 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::get('category/all_categories/edit/{id}',[CategoryController::class,'edit_category']);
     Route::post('category/save_category',[CategoryController::class,'save_category']);
     Route::post('category/update',[CategoryController::class,'update_category']);
+
+    Route::get('/blogs/real_wedding',[BlogController::class,'real_wedding']);
+    Route::get('/blogs/real_wedding/add',[BlogController::class,'all_real_wedding']);
 
 });
 
