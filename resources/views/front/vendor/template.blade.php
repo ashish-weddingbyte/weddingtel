@@ -8,7 +8,7 @@
     <div class="container">
         <!-- Page Heading -->
         <div class="section-title">
-            <h2>Template Comming Soon</h2>
+            <h2>Template Coming Soon</h2>
         </div>
         <!-- Page Heading -->
 
