@@ -127,6 +127,7 @@ $("document").ready(function () {
     $(".view-button", this).click(function () {
         var id = $(this).attr("data-id");
         var url = $(this).attr("data-action");
+        $(this).prop('disabled',true);
         // alert(url);
         $.ajax({
             url: url,
@@ -134,6 +135,7 @@ $("document").ready(function () {
             data: { id: id },
             async: false,
             success: function (response) {
+                // alert(response);
                 if (response.status == "0") {
                     $(".print-error-msg").empty();
                     $(".print-error-msg").append(response.message);
@@ -143,9 +145,11 @@ $("document").ready(function () {
                         "http://localhost/weddingtel/vendor/leads/view/details/" +
                         id;
                 }
-                console.log(response);
+                // console.log(response);
+                // "http://weddingtel.com/vendor/leads/view/details/"+id;
             },
             error: function (response) {
+                // alert(response);
                 $(".print-error-msg").empty();
                 var errors = response.responseJSON.errors;
                 var str = "";
@@ -154,7 +158,7 @@ $("document").ready(function () {
                         '<div class="alert alert-danger" >' + value + "</div>"; // build the list
                 });
                 $(".print-error-msg").append(str);
-                console.log(response);
+                // console.log(response);
             },
         });
     });

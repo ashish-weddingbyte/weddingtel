@@ -28,7 +28,7 @@
                 <div class="row">
                     @foreach($real_wedding as $real)
                         <?php
-                            $media = user_helper::real_wedding_media($real->user_id);
+                            $media = user_helper::real_wedding_media($real->id);
                         ?>
                         <div class="col-lg-4 col-md-6">
                             <div class="real-wedding-wrap top-heading">

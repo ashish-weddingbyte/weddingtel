@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('lead_id');
             $table->foreignId('user_id');
-            $table->timestamps();
+            $table->date('created_at');
         });
     }
 

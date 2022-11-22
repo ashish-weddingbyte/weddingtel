@@ -61,6 +61,7 @@
                                     <th>Lead Details</th>
                                     <th>Category</th>
                                     <th>Budget</th>
+                                    <th>Publish Date</th>
                                     <th>Event Date</th>
                                     <th>Status</th>
                                     <th>Tags Details</th>
@@ -80,7 +81,12 @@
                                     </td>
                                     <td>{{ $lead->category_name }}</td>
                                     <td><span class="font-weight-bold">{{ $lead->budget }}</span></td>
-                                    <td><span class="text-success">{{ date('M d, Y', strtotime($lead->event_date) ) }}</td>
+                                    <td>
+                                        <span class="text-success">{{ date('M d, Y', strtotime($lead->created_at) ) }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-success">{{ date('M d, Y', strtotime($lead->event_date) ) }}</span>
+                                    </td>
                                     <td>
                                         <p>Is Active : 
                                             @if($lead->status == '1')

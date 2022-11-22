@@ -84,7 +84,7 @@ class admin_helper {
     public static function used_leads($id){
         $data = LeadPaidVendor::where('user_id',$id)->where('is_active','1')->first();
         if(!empty($data)){
-           return  ($data->lead - $data->available_leads);
+           return  ($data->total_lead - $data->available_leads);
         }else{
             return 0;
         }

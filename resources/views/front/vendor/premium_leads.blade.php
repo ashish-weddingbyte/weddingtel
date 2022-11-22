@@ -48,7 +48,7 @@
                                 <td>{{ $lead->details }}</td>
                                 <td><span class="{{ ($lead->status == '1') ? 'text-success' : 'text-danger' }}">{{ ($lead->status == '1') ? 'Active' : 'Deactive' }}</span></td>
                                 <td>
-                                    <a class="btn btn-default btn-rounded btn-sm view-button" href="{{ url('/vendor/exclusive-leads/'.$lead->lead_id) }}">View</a>
+                                    <a class="btn btn-default btn-rounded btn-sm " href="{{ url('/vendor/exclusive-leads/'.$lead->lead_id) }}">View</a>
                                 </td>
                             </tr>
                             @endforeach

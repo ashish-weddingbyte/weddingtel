@@ -95,7 +95,7 @@ class login extends Controller
                         Session::put('user_type', $user->user_type);
 
                         Session::flash('message', 'Login to Dashboard Successful!');
-                        Session::flash('class', 'alert-danger');
+                        Session::flash('class', 'alert-success');
                         return redirect("/tools/dashboard");
                     }else{
                         Session::flash('message', 'Your Account Is Not Active!');
@@ -208,8 +208,9 @@ class login extends Controller
                     $user_id = $user->id;
 
                     $otp = rand(111111,999999);
-                    $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp. Please do not share this OTP with anyone.\nThanks";
+                    $message = "Your One Time Password for WeddingByte.com Vendor Account is $otp";
                     $otp_send_status = otp_helper::send_otp($user->mobile,$message);
+
 
                     $otp_model = Otp::where('user_id',$user_id)->first();
 
@@ -273,7 +274,7 @@ class login extends Controller
                         Session::put('category_id', $user->category_id);
 
                         Session::flash('message', 'Login to Dashboard Successful!');
-                        Session::flash('class', 'alert-danger');
+                        Session::flash('class', 'alert-success');
                         return redirect("/vendor/dashboard");
                     }else{
                         Session::flash('message', 'Your Account Is Not Active!');

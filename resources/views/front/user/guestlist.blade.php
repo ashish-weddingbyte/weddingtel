@@ -106,8 +106,9 @@
                                         <option value="cancel" {{ ($value->status == 'cancel')?'selected':'' }}>Cancel</option>
                                     </select>
                                 </td>
-                                <td><span  class="text-truncate table-truncate d-inline-block">{{ $value->comment }}</span></td>
+                                
                                 <td><span class="text-truncate table-truncate d-inline-block">{{ $value->address }}</span></td>
+                                <td><span  class="text-truncate table-truncate d-inline-block">{{ $value->comment }}</span></td>
                                 <td class="text-nowrap">
                                     <a href="javascript:void(0);" role="button" data-toggle="modal" data-target="#edit_modal-{{ $value->id }}" class="action-links edit open-modal-check"><i class="fa fa-pencil"></i></a> 
                                     <a href="javascript:void(0);" role="button" data-toggle="modal" data-target="#delete_modal-{{ $value->id }}" class="action-links"><i class="fa fa-trash"></i></a> </td>

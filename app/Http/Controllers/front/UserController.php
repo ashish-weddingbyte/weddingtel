@@ -15,97 +15,16 @@ use App\Models\VendorDetail;
 use App\Models\SocialLink;
 use App\Models\Otp;
 use App\Models\Budget;
+
+use App\Models\City;
+use App\Models\LeadPaidVendor;
+use App\Models\AddonLead;
 use otp_helper;
 use user_helper;
 use Validator;
 
 class UserController extends Controller
 {
-
-
-    // public function test(){
-    //     $data = DB::table('entry')->get();
-    //     echo '<pre>';
-    //     foreach($data as $d){
-            
-    //         $phone = str_replace('+91','',$d->phone);
-
-    //         $user = new User;
-    //         $user->name = $d->name;
-    //         $user->email = $d->email;
-    //         $user->password = Hash::make($d->password);
-    //         $user->mobile = str_replace(' ','',$phone);
-    //         $user->user_type = 'vendor';
-    //         $user->save();
-             
-
-    //         $lastId = $user->id;
-
-    //         switch ($d->category) {
-    //             case 'Makeup Artist':
-    //                 $cat_id = '1';
-    //                 break;
-                
-    //                 case 'Wedding Photographers':
-    //                     $cat_id = '3';
-    //                     break;
-
-    //                     case 'Wedding Venues':
-    //                         $cat_id = '2';
-    //                         break;
-
-    //                         case 'Bridal Designers':
-    //                             $cat_id = '4';
-    //                             break;
-
-    //                             case 'Wedding Planner':
-    //                                 $cat_id = '7';
-    //                                 break;
-
-    //                                 case 'Mehndi Artist':
-    //                                     $cat_id = '6';
-    //                                     break;
-    //                                     case 'Choreographers':
-    //                                         $cat_id = '5';
-    //                                         break;
-
-    //                                         case 'Wedding Invitation':
-    //                                             $cat_id = '8';
-    //                                             break;
-    //                 default:
-    //                 $cat_id = NULL;
-    //                 break;
-    //         }
-
-    //         $vendor_details = new VendorDetail;
-    //         $vendor_details->user_id = $lastId;
-    //         $vendor_details->category_id = $cat_id;
-    //         $vendor_details->city  = $d->city;
-    //         $vendor_details->brandname  =   $d->brandname;
-    //         $vendor_details->featured_image  =   str_replace('uploads/','', $d->mphoto);
-    //         $vendor_details->address  =   $d->address;
-    //         $vendor_details->description  =   $d->business;
-    //         $vendor_details->cancel_policy  =   $d->cancel;
-    //         $vendor_details->is_travelable  =   '1';
-    //         $vendor_details->advance_payment  =   '30';
-    //         $vendor_details->youtube  =   '';
-    //         $vendor_details->service_offered  =   $d->services;
-            
-    //         $vendor_details->save();
-
-    //         $social = new SocialLink;
-    //         $social->user_id= $lastId;
-    //         $social->facebook=Null;
-    //         $social->youtube=NULL;
-    //         $social->instagram=Null;
-    //         $social->twitter=Null;
-    //         $social->save();
-            
-    //         // exit();
-    //     }
-
-    // }
-
 
     /**================================== Bride/Groom Code Start Here====================== */
     public function register(Request $request){

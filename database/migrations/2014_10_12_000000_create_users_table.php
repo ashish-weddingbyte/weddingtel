@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique()->index();
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->bigInteger('mobile')->unique();
@@ -25,6 +25,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index(['email', 'mobile','created_at']);
         });
     }
 

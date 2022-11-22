@@ -15,6 +15,7 @@ class LeadsImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+        
         return new Leads([
             'name'     => $row['name'],
             'mobile'    => $row['mobile'], 
@@ -27,7 +28,6 @@ class LeadsImport implements ToModel, WithHeadingRow
             'status'    =>  '1',
             'approved_status'   =>  '0',
             'apply_tags' => '0'
-            
         ]);
     }
 }

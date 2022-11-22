@@ -10,6 +10,9 @@ use App\Http\Controllers\login;
 use App\Http\Controllers\front\UserController;
 use App\Http\Controllers\front\HomeController;
 
+use App\Http\Controllers\front\RazorPayController;
+
+
 // user controllers
 use App\Http\Controllers\front\user\UserDashboard;
 use App\Http\Controllers\front\user\ChecklistController;
@@ -78,6 +81,12 @@ Route::get('/real-wedds',[HomeController::class,'real_wedds']);
 Route::get('/real-wedds/{id}',[HomeController::class,'real_wedd_details']);
 
 Route::post('/byte/login',[login::class,'admin_login']);
+
+
+Route::get('razorpay-payment', [RazorPayController::class, 'index']);
+Route::post('razorpay-order',[RazorPayController::class,'create_order']);
+Route::post('razorpay-payment', [RazorPayController::class, 'store'])->name('razorpay.payment.store');
+
 
 // Protected Route by Middleware for user(bride/groom).
 Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], function(){
@@ -207,6 +216,8 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
     Route::get('/exclusive-leads/{id}',[VendorLeadController::class,'view_exclusive_leads']);
 
     Route::get('/query',[VendorLeadController::class, 'all_query']);
+
+
 });
 
 
@@ -318,14 +329,20 @@ Route::get('/logout', function(){
 });
 
 
-
-Route::get('/add_city',[VendorProfileController::class,'add_city']);
+// Route::get('/add_vendors',[UserController::class,'add_vendors']);
+// Route::get('/add_city',[VendorProfileController::class,'add_city']);
 Route::get('/add_leads',[HomeController::class,'add_leads']);
-Route::get('/move_profile',[HomeController::class,'move_profile']);
-Route::get('/move_gallery',[HomeController::class,'move_gallery']);
-Route::get('/lead_view',[HomeController::class,'lead_view']);
-Route::get('/paid_vendor',[HomeController::class,'paid_vendor']);
-Route::get('/blog_data',[HomeController::class,'blog_data']);
-Route::get('/real',[HomeController::class,'real']);
+// Route::get('/move_profile',[HomeController::class,'move_profile']);
+// Route::get('/move_gallery',[HomeController::class,'move_gallery']);
+// Route::get('/lead_view',[HomeController::class,'lead_view']);
+// Route::get('/paid_vendor',[HomeController::class,'paid_vendor']);
+// Route::get('/blog_data',[HomeController::class,'blog_data']);
+// Route::get('/real',[HomeController::class,'real']);
+// Route::get('/add_plan',[HomeController::class,'add_plan']);
+// Route::get('/real',[HomeController::class,'real']);
+// Route::get('/gall',[HomeController::class,'real_wedd_gallery']);
+// Route::get('blog_url',[HomeController::class,'blog_url']);
+Route::get('check_gallery',[HomeController::class,'check_gallery']);
+
 
 

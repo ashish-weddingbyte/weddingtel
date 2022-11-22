@@ -89,7 +89,7 @@
                                                 <span class="text-muted">{{ $vendor->email }}</span> @if($details->is_email_verified == '1') <i class="fas fa-check"></i>@endif  <br />
                                                 
                                             </td>
-                                            <td><span class="text-success">{{ date('M d, Y h:i A ', strtotime($vendor->created_at) ) }}</span></td>
+                                            <td><span class="text-success">{{ date('M d, Y', strtotime($vendor->created_at) ) }}</span></td>
                                             <td>
                                                 <span class="font-weight-bold">{{ ucwords($details->city_name) }}</span>
                                             </td>

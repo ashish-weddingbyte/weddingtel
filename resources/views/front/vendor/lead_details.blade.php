@@ -10,7 +10,11 @@
         <div class="section-title">
             <h2>Leads Details</h2>
         </div>
-
+        <?php
+            $data =  vendor_helper::lead_time_counter($leads->id);
+            $order = $data[0];
+            $time = $data[1];
+        ?>
         <div class="card-shadow mt-dashboard">
             <div class="card-shadow-header">
                 <div class="dashboard-head">
@@ -40,9 +44,40 @@
                             <div class="col-md-3">
                                 <div class="title-listing">
                                     <div>Mobile</div>
-                                    <a href="tel:{{ $leads->mobile }}">
-                                        <div class="text-success">{{ $leads->mobile }}</div>
-                                    </a>
+                                    
+                                    <div class="text-success">
+                                        @if($order == 1 || $order == 2)
+                                            <a href="tel:{{ $leads->mobile }}">{{ $leads->mobile }}</a>
+                                        @elseif($order == 3 || $order == 4)
+                                            @if($time > 1800)
+                                                <a href="tel:{{ $leads->mobile }}">{{ $leads->mobile }}</a>
+                                            @else
+                                                <p>You are in Queue, Mobile no will show after 30 minutes.</p>
+                                            @endif
+                                        @elseif($order == 5 || $order == 6)
+                                            @if($time >3600)
+                                                <a href="tel:{{ $leads->mobile }}">{{ $leads->mobile }}</a>
+                                            @else
+                                                <p>You are in Queue, Mobile no will show after 60 minutes.</p>
+                                            @endif
+                                        @elseif($order == 7 || $order == 8)
+                                            @if($time >5400)
+                                                <a href="tel:{{ $leads->mobile }}">{{ $leads->mobile }}</a>
+                                            @else
+                                                <p>You are in Queue, Mobile no will show after 90 minutes.</p>
+                                            @endif
+
+                                        @elseif($order == 9 || $order == 10)
+
+                                            @if($time >6000)
+                                                <a href="tel:{{ $leads->mobile }}">{{ $leads->mobile }}</a>
+                                            @else
+                                                <p>You are in Queue, Mobile no will show after 90 minutes.</p>
+                                            @endif
+                                        @else
+
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
 

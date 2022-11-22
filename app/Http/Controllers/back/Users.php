@@ -452,8 +452,8 @@ class Users extends Controller
         $data['vendor'] = admin_helper::vendor_details($id);
         $data['leads'] = LeadViewStatus::join('leads','leads.id','=','lead_view_status.lead_id')
                                         ->where('lead_view_status.user_id',$id)
-                                        ->select(['lead_view_status.created_at','leads.*'])
-                                        ->orderBy('lead_view_status.created_at','desc')
+                                        ->select(['lead_view_status.*','leads.name','leads.mobile','leads.budget','leads.details','leads.event_date','leads.city','leads.type'])
+                                        // ->orderBy('lead_view_status.created_at','desc')
                                         ->orderBy('lead_view_status.id','desc')
                                         ->get();
         return view('back.open_vendor_leads',$data);

@@ -1,6 +1,6 @@
 @extends('front.layouts.user_layout')
 
-@section('title', 'Vendor Dashborad')
+@section('title', 'Vendor Dashboard')
 
 
 @section('main-container')
@@ -8,7 +8,14 @@
 <div class="main-contaner">
     <div class="container">
         <div class="section-title wide-tb-30">
-            <h2>Dashborad</h2>
+            <h2>Dashboard</h2>
+            <div class="mt-3">
+                @if(Session::has('message'))
+                    <div class="alert {{session('class')}}">
+                        <span>{{session('message')}}</sapn>
+                    </div>
+                @endif
+            </div>
             <div class="mt-1">
                 @if(empty($details->brandname))
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -83,7 +90,7 @@
                                             {{ $leads->plan_name }}
                                         </div>
                                         <div class="text">
-                                            <div class="div"><strong>Paln Details</strong></div>
+                                            <div class="div"><strong>Plan Details</strong></div>
                                             <a href="{{ url('vendor/plans') }}" class="btn-veiw-all">View All</a>
                                         </div>
                                     </div>

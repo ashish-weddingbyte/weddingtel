@@ -10,4 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 class VendorDetail extends Model
 {
     use HasFactory, HasApiTokens;
+
+    protected $fillable = [
+        'created_at'
+    ];
+
 }

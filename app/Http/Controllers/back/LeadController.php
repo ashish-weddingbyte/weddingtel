@@ -29,9 +29,8 @@ class LeadController extends Controller
     public function all_approved_leads(){
         $data['all_leads'] = Leads::join('categories','categories.id','=','leads.category_id')      
                             ->where('leads.approved_status','1')
+                            ->orderBy('created_at','desc')
                             ->orderBy('id','desc')
-                            ->orderBy('event_date','desc')
-                            ->orderBy('event_date','desc')
                             ->select(['leads.*','categories.category_name'])
                             ->get();
         return view('back.approved_leads',$data);
@@ -83,6 +82,25 @@ class LeadController extends Controller
                 Session::flash('message', 'Leads Deactivate Successfully!');
                 Session::flash('class', 'alert-success');
                 return response()->json(['status' => 'Leads Deactivate Successfully!']);
+            }else{
+                Session::flash('message', 'Somthing Went Wrong!');
+                Session::flash('class', 'alert-danger');
+                return response()->json(['status' => 'Somthing Went Wrong!']);
+            }
+        }
+        
+        if($action_type == 'relaunch'){
+            $data = Leads::whereIn('id', $ids)->update([
+                'status'=>'1',
+                'view_count'=>'0',
+                'type'=>'relaunch',
+                'created_at'=>date('Y-m-d H:m:s'),
+                'updated_at'=>date('Y-m-d H:m:s'),
+            ]);
+            if($data){
+                Session::flash('message', 'Re-launch Leads Successfully!');
+                Session::flash('class', 'alert-success');
+                return response()->json(['status' => 'Re-launch Leads Successfully!']);
             }else{
                 Session::flash('message', 'Somthing Went Wrong!');
                 Session::flash('class', 'alert-danger');
@@ -217,7 +235,7 @@ class LeadController extends Controller
         
         
         if($lead->save()){
-            Session::flash('message', 'Premium Lead Added Successfully!');
+            Session::flash('message', 'Lead Added Successfully!');
             Session::flash('class', 'alert-success');
             return back();
         }else{
@@ -299,10 +317,10 @@ class LeadController extends Controller
 
     public function add_premium_lead(Request $request){
         $data['categories'] = Category::where('status','1')->get();
-        $palns  =  LeadPlan::where('plan_type','exclusive')->pluck('id')->toArray();
+        $plans  =  LeadPlan::where('plan_type','exclusive')->pluck('id')->toArray();
         $data['leads_paid_vendor'] =  LeadPaidVendor::join('users','users.id','lead_paid_vendors.user_id')
                                     ->where('users.user_type','vendor')
-                                    ->whereIn('lead_paid_vendors.id',$palns)
+                                    ->whereIn('lead_paid_vendors.plan_id',$plans)
                                     ->where('lead_paid_vendors.is_active','1')
                                     ->select(['users.name','users.id','users.mobile','lead_paid_vendors.available_leads'])
                                     ->orderBy('users.id','desc')
@@ -345,7 +363,7 @@ class LeadController extends Controller
                 }
             }
 
-            Session::flash('message', 'Lead Added Successfully!');
+            Session::flash('message', 'Premium Lead Added Successfully!');
             Session::flash('class', 'alert-success');
             return back();
         }else{

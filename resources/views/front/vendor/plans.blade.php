@@ -94,7 +94,15 @@
                                         <li>Support : {{ $plan->support }}</li>
                                         <li>Validity : {{ $plan->days }} Days</li>
                                     </ul>
-                                    <a href="javascript:" class="btn btn-primary btn-rounded">Buy</a>
+                                    <!-- <a href="javascript:" class="btn btn-primary btn-rounded">Buy</a> -->
+
+                                    <form action="{{ url('razorpay-order') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="plan_id" value="{{ $plan->id }}">
+                                        <input type="hidden" name="amount" value="{{ $plan->price }}">
+                                        <input type="hidden" name="plan_type" value="$plan->plan_type">
+                                        <input type="submit" value="Buy" name="buy" class="btn btn-primary btn-rounded">
+                                    </form>
                                 </div>
                             </div>
                             <!-- Pricing Plan Wrap -->

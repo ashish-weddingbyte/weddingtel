@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\LeadPlan;
 use App\Models\LeadViewStatus;
+use Carbon\Carbon;
 
 class vendor_helper {
     public static function vendor_profile_url($id){
@@ -181,6 +182,36 @@ class vendor_helper {
         return $data;
     }
     
+    public static function lead_time_counter($lead_id){
+        $user_id = Session::get('user_id');
+        $data = LeadViewStatus::where('lead_id',$lead_id)->orderBy('time','asc')->get();
+
+        // dd($data);
+        $array = [];
+        $currnt_time = strtotime( date('Y-m-d H:i:s') );
+        $time = [];
+        foreach($data as $d){
+            $open_time = strtotime( $d->time);
+            $diff = abs($currnt_time - $open_time);
+            $array[ $d->user_id]  = $diff;
+            $time[] = $diff;
+        }
+
+        if($time[0] > 7200){
+            return [1,0];
+        }else{
+            $j = 1;
+            foreach($array as $key=>$value){
+                
+                if($key == $user_id){
+                    $time = $value;
+                    break;
+                }
+                $j++;
+            }
+            return [$j,$time];    
+        }
+    }
 
 }
 ?>

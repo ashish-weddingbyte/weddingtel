@@ -9,4 +9,10 @@ use Laravel\Sanctum\HasApiTokens;
 class AddonLead extends Model
 {
     use HasFactory,HasApiTokens;
+
+
+    protected $fillable = [
+        'created_at'
+    ];
+
 }

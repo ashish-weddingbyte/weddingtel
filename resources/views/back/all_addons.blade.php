@@ -61,6 +61,7 @@
                                     <th>Vendor</th>
                                     <th>Days</th>
                                     <th>Leads</th>
+                                    <th>Time</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,6 +72,9 @@
                                     <td><span>{{  $addon->name }}</span><br><span>{{  $addon->mobile }}</span></td>
                                     <td>{{  $addon->days }}</td>
                                     <td>{{ $addon->leads }}</td>
+                                    <td>
+                                        <span class="text-success">{{ date('M d, Y', strtotime($addon->created_at) ) }}</span>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

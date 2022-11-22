@@ -74,9 +74,11 @@
                                         <span class="text-info">{{ $query->mobile }}</span> 
                                     </td>
                                     <td>
-                                        <p>Date : 
-                                            <span class="text-success font-weight-bold">{{ date('M d, Y ', strtotime($query->event_date) ) }}</span>
-                                        </p>
+                                        @if(!empty($query->event))
+                                            <p>Date : 
+                                                <span class="text-success font-weight-bold">{{ date('M d, Y ', strtotime($query->event_date) ) }}</span>
+                                            </p>
+                                        @endif
                                         <p>City: 
                                             <span class="font-weight-bold">{{ $query->city }}</span>
                                         </p>

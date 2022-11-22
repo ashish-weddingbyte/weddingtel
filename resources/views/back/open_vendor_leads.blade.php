@@ -97,7 +97,7 @@
                                                     <p>Budget : <span class="font-weight-bold">{{ $lead->budget }}</span></p>
                                                 </td>
                                                 <td>
-                                                    <p><span class="text-success">{{ date('M d, Y h:i A ', strtotime($lead->created_at) ) }}</span></p>
+                                                    <p><span class="text-success">{{ date('M d, Y ', strtotime($lead->created_at) ) }}</span></p>
                                                 </td>
                                                 <td>
                                                     <span class="text-weight-bold">{{ $lead->city }}</span>

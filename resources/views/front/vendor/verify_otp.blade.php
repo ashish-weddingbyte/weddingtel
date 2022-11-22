@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row login-section">
                 <div class="col-lg-5  p-0" id="login-image">
-                    <img src="{{ asset('front/images/bg_vendor_login.jpg') }}" class="" alt="">                    
+                    <img src="{{ asset('front/images/bg_vendor_login.jpeg') }}" class="" alt="">                    
                 </div>
                 <div class="col-md-12 col-lg-7 ">
                     <div class="p-4">

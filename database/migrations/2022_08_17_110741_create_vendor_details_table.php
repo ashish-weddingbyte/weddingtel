@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('starting_price')->nullable();
             $table->integer('listing_order')->nullable();
             $table->enum('is_featured', ['0','1'])->nullable()->default('0');
-            $table->enum('is_top', ['0','1'])->nullable()->default('0');
+            $table->enum('is_top', ['0','1','2','3','4','5','6','7','8'])->nullable()->default('0');
             $table->timestamps();
         });
     }

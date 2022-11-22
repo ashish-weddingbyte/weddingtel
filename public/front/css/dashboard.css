@@ -5093,3 +5093,29 @@ label.star:before {
     content: "\f006";
     font-family: FontAwesome;
 }
+
+
+.razorpay-payment-button{
+    margin-bottom: -1rem;
+    margin-top: auto;
+    max-width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50px;
+    display: inline-block;
+    padding: 0.7rem 1.3rem 0.7rem;
+    font-family: "mulisemibold";
+    font-size: 1rem;
+    outline: none;
+    align-items: center;
+    position: relative;
+    border: none;
+    background-color: #fc2779;
+    color: #fff;
+}
+
+.razorpay-payment-button:hover {
+    color: #fc2779;
+    background-color: #fff;
+    border: 1px solid #fc2779;
+}

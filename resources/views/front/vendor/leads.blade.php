@@ -66,7 +66,7 @@
                                         @if($view_status == true)
                                             <a class="btn btn-default btn-rounded btn-sm " href="{{ url('vendor/leads/view/details/'.$lead->id) }}" >Opened</a>
                                         @else
-                                            <button class="btn btn-default btn-rounded btn-sm view-button" data-id="{{ $lead->id }}" data-action="{{ url('/vendor/leads/view/'.$lead->id) }}">View</button>
+                                            <button class="btn btn-default btn-rounded btn-sm view-button" id="id_{{$lead->id}}" data-id="{{ $lead->id }}" data-action="{{ url('/vendor/leads/view/'.$lead->id) }}">View</button>
                                         @endif
 
                                     @endif
@@ -75,6 +75,11 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="my-4 text-center">
+                    <div class="theme-pagination">
+                        {{ $leads->links() }}
+                    </div>
                 </div>
             </div>
         </div>

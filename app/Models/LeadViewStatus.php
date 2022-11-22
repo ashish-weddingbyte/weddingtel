@@ -12,5 +12,7 @@ class LeadViewStatus extends Model
 
     protected $table = 'lead_view_status';
 
-    protected $fillable = ['lead_id','user_id']; 
+    protected $fillable = ['lead_id','user_id','created_at','time']; 
+
+    public $timestamps = false;
 }

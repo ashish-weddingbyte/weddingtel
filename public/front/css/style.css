@@ -4904,6 +4904,7 @@ header .btn {
     height: 250px;
     width: 100%;
     object-fit: cover;
+    object-position: top;
 }
 
 /*----  9.9  Real Wedding End ---*/

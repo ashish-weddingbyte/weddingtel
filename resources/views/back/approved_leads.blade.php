@@ -62,6 +62,7 @@
                                     <th>Other Details</th>
                                     <th>Category</th>
                                     <th>Budget</th>
+                                    <th>Publish Date</th>
                                     <th>Event Date</th>
                                     <th>Status</th>
                                     <th>Tags Details</th>
@@ -84,8 +85,10 @@
                                     <td>{{ $lead->category_name }}</td>
                                     <td><span class="font-weight-bold">{{ $lead->budget }}</span></td>
                                     <td>
-                                        <p>Event Date : <span class="text-success">{{ date('M d, Y', strtotime($lead->event_date) ) }}</span></p>
-
+                                        <span class="text-success">{{ date('M d, Y', strtotime($lead->created_at) ) }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-success">{{ date('M d, Y', strtotime($lead->event_date) ) }}</span>
                                     </td>
                                     <td>
                                         <p>Is Active : 
@@ -142,6 +145,8 @@
 
                     <input type="button" data-action-type="deactivate" data-action="{{ url('byte/leads/action') }}" class="btn btn-outline-danger submit" value="De-Activate Leads" >
 
+                    <input type="button" data-action-type="relaunch" data-action="{{ url('byte/leads/action') }}" class="btn btn-outline-primary submit" value="Re-launch Leads" >
+                    
                     <input type="button" data-action-type="delete" data-action="{{ url('byte/leads/action') }}" class="btn btn-outline-danger submit" value="Soft Delete Leads" >
 
                     <input type="button" data-action-type="unapproved" data-action="{{ url('byte/leads/action') }}" class="btn btn-outline-secondary submit" value="Un-Approve Leads" >

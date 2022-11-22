@@ -6,6 +6,7 @@
 /public/uploads
 /public/uploads/*
 /vendor
+/public/front/js
 .env
 .env.backup
 .phpunit.result.cache

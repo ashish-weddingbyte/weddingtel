@@ -32,8 +32,8 @@
                                 <td>{{ ucwords($vendor->name) }}</td>
                                 <td>{{ $vendor->city_name }}</td>
                                 <td><span class="text-success">{{ date('M d, Y', strtotime($vendor->created_at) ) }}</span></td>
-                                <td><a class="action-links" href="tel:{{ $vendor->mobile }}">{{ $vendor->mobile }}</a></td>
-                                <!-- <td><a href="javascript:void(0);" class="action-links"><i class="fa fa-eye"></i></a> </td> -->
+                                <!--<td><a class="action-links" href="tel:{{ $vendor->mobile }}">{{ $vendor->mobile }}</a></td>-->
+                                <td>**********</td>
                             </tr>
                             @endforeach
                         </tbody>

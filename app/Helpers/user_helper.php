@@ -183,8 +183,8 @@ class user_helper {
         return $active;
     }
 
-    public static function real_wedding_media($id){
-        $data = MediaGallery::where('user_id',$id)->where('user_type','user')->where('tags','realwedding')->limit(3)->get();
+    public static function real_wedding_media($r_id){
+        $data = MediaGallery::where('real_wedding_id',$r_id)->where('tags','realwedding')->limit(3)->get();
         return $data;
     }
 

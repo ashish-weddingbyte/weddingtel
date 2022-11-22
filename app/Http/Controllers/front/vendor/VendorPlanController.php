@@ -29,7 +29,7 @@ class VendorPlanController extends Controller
 
         $category = VendorDetail::where('user_id',$user_id)->first();
 
-        $data['plans']  = LeadPlan::where('category_id',$category->category_id)->get();
+        $data['plans']  = LeadPlan::where('category_id',$category->category_id)->where('status','1')->orderBy('price','asc')->get();
 
         $data['position_plans'] = PositionPlan::all();
 

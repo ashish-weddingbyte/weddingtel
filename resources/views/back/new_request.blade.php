@@ -59,6 +59,7 @@
                                     <th><input type="checkbox" name="checkAll" id="checkAll"></th>
                                     <th>User Details</th>
                                     <th>User Type</th>
+                                    <th>Date</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -72,6 +73,7 @@
                                         <span class="text-info">{{ $user->mobile }}</span> <br />
                                         <span class="text-muted">{{ $user->email }}</span>  <br />
                                     </td>
+                                    <td><span class="text-success">{{ date('M d, Y', strtotime($user->created_at) ) }}</span></td>
                                     <td>{{ ucwords($user->user_type) }}</td>
                                     <td>
                                         <p>Is Active : 

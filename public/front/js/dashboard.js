@@ -19,7 +19,9 @@
         },
 
         data_table: function () {
-            $(".datatable").DataTable();
+            $(".datatable").DataTable({
+                "ordering": false
+            });
         },
 
         select_dark: function () {
@@ -356,3 +358,4 @@
         //wporganic.initializ();
     });
 })(jQuery);
+
