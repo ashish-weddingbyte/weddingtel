@@ -8,7 +8,19 @@
     <div class="container">
         <!-- Page Heading -->
         <div class="section-title">
-            <h2>Request List</h2>
+            <h2>Query List</h2>
+            <div class=" mt-3">
+                @if(Session::has('message'))
+                    <div class="alert {{session('class')}}">
+                        <span>{{session('message')}}</sapn>
+                    </div>
+                @endif
+            </div>
+            <div class="my-3">
+                <div class="print-error-msg">
+                    
+                </div>
+            </div>
         </div>
         <!-- Page Heading -->
 
@@ -42,8 +54,13 @@
                                 <td><span class="text-success">{{ date('M d, Y', strtotime($qry->created_at) ) }}</span></td>
                                 <td>{{ ucwords($qry->user_type) }}</td>
                                 <td><span class="{{ ($qry->is_mobile_verified == '1') ? 'text-success' : 'text-danger' }}">{{ ($qry->is_mobile_verified == '1') ? 'Verified' : 'Not Verified' }}</span></td>
-                                
-                                <td><button class="btn btn-default btn-rounded btn-sm view-button" data-id="{{ $qry->id }}" data-action="{{ url('/vendor/query/view/'.$qry->id) }}">View</button></td>
+                                <td>
+                                    @if($qry->view_status == 1)
+                                        <a class="btn btn-default btn-rounded btn-sm " href="{{ url('vendor/query/view/details/'.$qry->id) }}" >Opened</a>
+                                    @else
+                                    <a class="btn btn-default btn-rounded btn-sm " href="{{ url('vendor/query/view/'.$qry->id) }}" >Open</a>
+                                    @endif
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

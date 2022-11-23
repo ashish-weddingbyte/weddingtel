@@ -11,5 +11,17 @@ class Leads extends Model
 {
     use HasApiTokens, HasFactory, SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'mobile',
+        'budget',
+        'details',
+        'category_id',
+        'event_date',
+        'city',
+        'view_count',
+        'status',
+        'approved_status',
+        'apply_tags'
+    ];
 }

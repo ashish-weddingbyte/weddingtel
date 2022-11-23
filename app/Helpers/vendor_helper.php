@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\LeadPlan;
 use App\Models\LeadViewStatus;
+use App\Models\QueryViewStatus;
 use Carbon\Carbon;
 
 class vendor_helper {
@@ -46,6 +47,19 @@ class vendor_helper {
     
     public static function is_lead_paid_vendor($user_id){
         $data = LeadPaidVendor::where('user_id',$user_id)
+                            ->where('is_active','1')
+                            ->orderBy('id','desc')
+                            ->first();
+        if(!empty($data)){
+            return true;
+        }else{
+            return false;
+        }        
+    }
+
+
+    public static function is_position_paid_vendor($user_id){
+        $data = PositionPaidVendor::where('user_id',$user_id)
                             ->where('is_active','1')
                             ->orderBy('id','desc')
                             ->first();
@@ -212,6 +226,17 @@ class vendor_helper {
             return [$j,$time];    
         }
     }
+
+    // public static function view_query_status($query_id){
+    //     $user_id = Session::get('user_id');
+    //     $data = QueryViewStatus::where('user_id',$user_id)->where('query_id',$query_id)->first();
+    //     if(!empty($data)){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    //     return $data;
+    // }
 
 }
 ?>

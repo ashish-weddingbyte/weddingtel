@@ -15,6 +15,7 @@ use App\Models\LeadViewStatus;
 use App\Models\Query;
 use App\Models\PremiumLead;
 use App\Models\PremiumLeadVendor;
+use App\Models\QueryViewStatus;
 use vendor_helper;
 use Carbon\Carbon;
 
@@ -82,6 +83,7 @@ class VendorLeadController extends Controller
 
                         $data = [
                             'status'    =>  '1',
+                            'type'      =>  'lead',
                             'message'   =>  '<div class="alert alert-success">Lead is Open,You Can View in the unlock Lead Tab.</div>'
                         ];
                         return response()->json($data);
@@ -91,6 +93,7 @@ class VendorLeadController extends Controller
                         $leads->save();
                         $data = [
                             'status'    =>  '0',
+                            'type'      =>  'lead',
                             'message'   =>  '<div class="alert alert-danger">Lead is Deactive, You Can not open this Lead.</div>'
                         ];
                         return response()->json($data);
@@ -102,6 +105,7 @@ class VendorLeadController extends Controller
                 }else{
                     $data = [
                         'status'    =>  '0',
+                        'type'      =>  'lead',
                         'message'   =>  '<div class="alert alert-danger">All Leads are used, Please Purchase other plan to open lead.</div>'
                     ];
                     return response()->json($data);
@@ -110,6 +114,7 @@ class VendorLeadController extends Controller
             }else{
                 $data = [
                     'status'    =>  '0',
+                    'type'      =>  'lead',
                     'message'   =>  '<div class="alert alert-danger">Please Purchase Lead Plan For View this Lead.</div>'
                 ];
                 return response()->json($data);
@@ -118,6 +123,7 @@ class VendorLeadController extends Controller
            
             $data = [
                 'status'    =>  '0',
+                'type'      =>  'lead',
                 'message'   =>  '<div class="alert alert-danger">Your Daily Lead Limit is Exhausted.</div>'
             ];
             return response()->json($data);
@@ -125,6 +131,81 @@ class VendorLeadController extends Controller
 
 
     }
+
+
+    public function view_query(Request $request){
+
+        $query_id = $request->id;
+        $user_id = Session::get('user_id');
+
+        $paid_status = vendor_helper::is_position_paid_vendor($user_id);
+
+        $view_status = QueryViewStatus::where('user_id',$user_id)->where('query_id',$query_id)->first();
+    
+        $count = QueryViewStatus::where('user_id',$user_id)->count();
+
+        
+        if($paid_status == true){
+
+            if(empty($view_status)){
+                $view = new QueryViewStatus();
+                $view->query_id = $query_id;
+                $view->user_id = $user_id;
+                $view->save();
+
+                $qry = Query::find($query_id);
+                $qry->view_status = '1';
+                $qry->save();
+
+            }
+            
+            Session::flash('message', 'Query is Open Now!');
+            Session::flash('class', 'alert-success');
+            return redirect("/vendor/query/view/details/$query_id");
+
+        }else{
+
+            if($count <= 5){
+                if(empty($view_status)){
+                    $view = new QueryViewStatus();
+                    $view->query_id = $query_id;
+                    $view->user_id = $user_id;
+                    $view->save();
+
+                    $qry = Query::find($query_id);
+                    $qry->view_status = '1';
+                    $qry->save();
+                }
+                Session::flash('message', 'Query is Open Now!');
+                Session::flash('class', 'alert-success');
+                return redirect("/vendor/query/view/details/$query_id");
+            }else{
+                
+                Session::flash('message', 'All Free 5 Queries are used. Please Purchase Position Plan To View More Queries.');
+                Session::flash('class', 'alert-danger');
+                return back();
+            }
+        }
+
+    }
+
+    public function view_query_details(Request $request){
+        $query_id = $request->id;
+        $user_id = Session::get('user_id');
+
+        $check_view_query = QueryViewStatus::where('user_id',$user_id)->where('query_id',$query_id)->first();
+
+        if(!empty($check_view_query)){
+
+            $data['query'] = Query::where('id',$query_id)->first();
+            $data['view_status'] = QueryViewStatus::where('user_id',$user_id)->where('query_id',$query_id)->first();
+            return view('front.vendor.query_details',$data);
+        }else{
+            return redirect('vendor/query');
+        }
+
+    }
+
 
     public function view_lead_details(Request $request){
         $lead_id = $request->id;

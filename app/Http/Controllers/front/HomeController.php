@@ -121,6 +121,9 @@ class HomeController extends Controller
                                 ->limit(3)
                                 ->get();
         $data['ratings']    =   Review::where('vendor_id', $vendor_data['id'])->orderBy('id','desc')->get();
+
+        $data['avg_rating'] = vendor_helper::get_avg_rating_of_vendor($vendor_data['id']);
+        
         if(!empty($data['vendor'])){
 
             return view('front.vendor_details',$data);

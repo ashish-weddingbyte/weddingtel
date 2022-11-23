@@ -111,17 +111,17 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-md-6">
-                                    <div class="title-listing">
-                                        <div>Details</div>
-                                        <div>{{ $leads->details }}</div>
-                                    </div>
+                                <div class="title-listing">
+                                    <div>Details</div>
+                                    <div>{{ $leads->details }}</div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="title-listing">
-                                        <div>City</div>
-                                        <div class="text-info">{{ $leads->city }}</div>
-                                    </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="title-listing">
+                                    <div>City</div>
+                                    <div class="text-info">{{ $leads->city }}</div>
                                 </div>
+                            </div>
                         </div>
                     </li>
                 </ul>

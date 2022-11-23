@@ -28,7 +28,7 @@
                             <div class="content">
                                 <p><i class="fa fa-map-marker"></i>  {{ $vendor->city_name }} India</p>
                                 <div class="reviews">
-                                <span class="badge"><i class="fa fa-star-half-full"></i> 0.0</span> 0 Reviews
+                                <span class="badge"><i class="fa fa-star-half-full"></i> {{ round($avg_rating,1) }}</span> Reviews
                             </div>
                             </div>
                         </div>
@@ -488,7 +488,7 @@
                                     <div class="col-6 mb-0">
                                         <div class="icon-box-style-3 sided">
                                             <i class="fa fa-star-o"></i>
-                                            <span> 0 Rating</span>
+                                            <span> {{ round($avg_rating,1) }} Rating</span>
                                         </div>
                                     </div>
                                     <div class="col-6 mb-0">

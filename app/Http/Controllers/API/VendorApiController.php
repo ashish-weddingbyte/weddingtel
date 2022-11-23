@@ -608,64 +608,80 @@ class VendorApiController extends Controller
             $lead_id = $request->lead_id;
             $paid_status = vendor_helper::is_lead_paid_vendor($user_id);
 
+            $view_lead_check = LeadViewStatus::where('user_id',$user_id)->where('lead_id',$lead_id)->first();
+
+            $daily_count = LeadViewStatus::where('user_id',$user_id)->whereDate('created_at', date('Y-m-d'))->count();
+
             $paid = LeadPaidVendor::where('user_id',$user_id)
                                     ->where('is_active','1')
                                     ->orderBy('id','desc')
                                     ->first();
 
-            if($paid_status == '1'){
-            
-                if($paid->available_leads > 0){
+            if($daily_count < 2){                        
 
-                    $leads = Leads::where('id',$lead_id)->where('status','1')->first();
-                    
-                    if($leads->view_count < 8){
+                if($paid_status == '1'){
+                
+                    if($paid->available_leads > 0){
 
-                        $leads->view_count = $leads->view_count + 1;
-                        $leads->save();
-
+                        $leads = Leads::where('id',$lead_id)->where('status','1')->first();
                         
+                        if($leads->view_count < 8){
 
-                        $paid->available_leads = $paid->available_leads - 1;
-                        $paid->save();
+                            if(empty($view_lead_check)){
 
-                        $lead_view_status = new LeadViewStatus;
-                        $lead_view_status->lead_id = $lead_id;
-                        $lead_view_status->user_id = $user_id;
-                        $lead_view_status->save();
+                                $leads->view_count = $leads->view_count + 1;
+                                $leads->save();
 
-                        $respose = [
-                            'status'    =>  true,
-                            'message'   =>  'Lead is Open,You Can View in the unlock Lead Tab.',
-                            'lead_id'   =>  $lead_id
-                        ];
-                        return response()->json($respose,200);
+                                $paid->available_leads = $paid->available_leads - 1;
+                                $paid->save();
+
+                                $lead_view_status = new LeadViewStatus;
+                                $lead_view_status->lead_id = $lead_id;
+                                $lead_view_status->user_id = $user_id;
+                                $lead_view_status->created_at = date('Y-m-d');
+                                $lead_view_status->time = date('Y-m-d H:m:s');
+                                $lead_view_status->save();
+                            }
+
+                            $respose = [
+                                'status'    =>  true,
+                                'message'   =>  'Lead is Open,You Can View in the unlock Lead Tab.',
+                                'lead_id'   =>  $lead_id
+                            ];
+                            return response()->json($respose,200);
+
+                        }else{
+                            $leads->status = '0';
+                            $leads->save();
+
+                            $respose = [
+                                'status'    =>  false,
+                                'message'   =>  'Lead is Deactive, You Can not open this Lead.'
+                            ];
+                            return response()->json($respose,422);
+                        }
+
+
 
                     }else{
-                        $leads->status = '0';
-                        $leads->save();
-
                         $respose = [
                             'status'    =>  false,
-                            'message'   =>  'Lead is Deactive, You Can not open this Lead.'
+                            'message'   =>  'All Leads are used, Please Purchase other plan to open lead.'
                         ];
                         return response()->json($respose,422);
                     }
 
-
-
                 }else{
                     $respose = [
                         'status'    =>  false,
-                        'message'   =>  'All Leads are used, Please Purchase other plan to open lead.'
+                        'message'   =>  'Please Purchase Lead Plan For View this Lead'
                     ];
                     return response()->json($respose,422);
                 }
-
             }else{
                 $respose = [
                     'status'    =>  false,
-                    'message'   =>  'Please Purchase Lead Plan For View this Lead'
+                    'message'   =>  'Your Daily Lead Limit is Exhausted.'
                 ];
                 return response()->json($respose,422);
             }

@@ -216,7 +216,8 @@ Route::group(["middleware" => ["AuthVendor"] , "prefix" => '/vendor', '' ], func
     Route::get('/exclusive-leads/{id}',[VendorLeadController::class,'view_exclusive_leads']);
 
     Route::get('/query',[VendorLeadController::class, 'all_query']);
-
+    Route::get('/query/view/{id}',[VendorLeadController::class, 'view_query']);
+    Route::get('/query/view/details/{id}',[VendorLeadController::class,'view_query_details']);
 
 });
 
@@ -342,7 +343,10 @@ Route::get('/add_leads',[HomeController::class,'add_leads']);
 // Route::get('/real',[HomeController::class,'real']);
 // Route::get('/gall',[HomeController::class,'real_wedd_gallery']);
 // Route::get('blog_url',[HomeController::class,'blog_url']);
-Route::get('check_gallery',[HomeController::class,'check_gallery']);
+// Route::get('check_gallery',[HomeController::class,'check_gallery']);
 
+Route::get('time',function (){
+    echo date('Y-m-d H:i:s');
+});
 
 
