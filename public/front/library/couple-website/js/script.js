@@ -146,28 +146,8 @@
             }
         },
 
-        wedding_countdown : function(){
-
-            if( $('#wedding-countdown').length ){
-
-                var now = new Date();
-                var day = now.getDate();
-                var month = now.getMonth() + 1;
-                var year = now.getFullYear() + 1;
-
-                var nextyear = month + '/' + day + '/' + year + ' 07:07:07';
-
-                $('#wedding-countdown').countdown({
-                    date: nextyear, // TODO Date format: 07/27/2017 17:00:00
-                    offset: +2, // TODO Your Timezone Offset
-                    day: 'Day',
-                    days: 'Days',
-                    hideOnComplete: true
-                }, function (container) {
-                    alert('Done!');
-                });
-
-            }
+        wedding_countdown: function () {
+            loopcounter("counter-class");
         },
 
         slider_partners : function(){
@@ -223,72 +203,18 @@
         },
         
 
-        wedding_location : function(){
-
-            if( $('#map_extended').length ){
-
-                $("#map_extended").gMap({
-                    markers: [
-                        {
-                            html: '<div class="location-map"><i class="weddingdir_wine"></i><h5>Wedding Party:<br>Grand Royale Resort</h5></div>',
-                            latitude: -33.890542,
-                            longitude: 151.274856,
-                            icon: {
-                                image: "assets/library/couple-website/images/wine-icon.png",
-                                iconsize: [63, 63],
-                                iconanchor: [63, 63]
-                            }
-                            
-                        },
-                        {
-                            html: '<div class="location-map"><i class="weddingdir_heart_ring"></i><h5>Wedding Party:<br>Grand Royale Resort</h5></div>',
-                            latitude: -33.923036,
-                            longitude: 151.259052,
-                            icon: {
-                                image: "assets/library/couple-website/images/map-ring.png",
-                                iconsize: [63, 63],
-                                iconanchor: [63, 63]
-                            }
-                        }
-                    ],
-                    icon: {
-                        image: "assets/library/couple-website/images/wine-icon.png",
-                        iconsize: [63, 63],
-                        iconanchor: [63, 63]
-                    },
-                    // latitude: -33.87695388579145,
-                    // longitude: 151.22183918952942,
-                    zoom: 13
-                });
-
-            }
-        },
-
-        select_dark: function () {
-            if ($('select').length) {
-
-                $('select').select2({
-                    width: 'resolve',
-                    theme: "form-dark",
-                    placeholder: 'Select Number Of Quest',
-                    minimumResultsForSearch: -1
-                });
-            }
-        },
         
         
 
 
 
         initializ: function () {
-            this.select_dark();
             this.slider_testimonail();
             this.header_anim();
             this.isotope_gallery();
             this.captured_gallery();
             this.activate_scrollspy();
             this.wedding_countdown();
-            this.wedding_location();
             this.slider_partners();
         }
 

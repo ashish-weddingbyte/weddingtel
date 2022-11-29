@@ -81,8 +81,8 @@ class admin_helper {
     }
 
 
-    public static function used_leads($id){
-        $data = LeadPaidVendor::where('user_id',$id)->where('is_active','1')->first();
+    public static function used_leads_details($id){
+        $data = LeadPaidVendor::where('id',$id)->first();
         if(!empty($data)){
            return  ($data->total_lead - $data->available_leads);
         }else{
@@ -91,22 +91,21 @@ class admin_helper {
     }
 
     public static function expiry_days($id){
-        $data = LeadPaidVendor::where('user_id',$id)->where('is_active','1')->first();
+        $data = LeadPaidVendor::where('user_id',$id)->where('is_active','1')->orderBy('id','desc')->first();
         if(!empty( $data) ){
-            $toDate = Carbon::parse($data->start_at);
+            $toDate = Carbon::parse(Carbon::now());
             $fromDate = Carbon::parse($data->end_at);
             $days = $toDate->diffInDays($fromDate);
             return $days;
         }else{
             return 0 ;
         }
-
     }
 
     public static function expiry_days_position($id){
         $data = PositionPaidVendor::where('user_id',$id)->where('is_active','1')->first();
         if(!empty( $data) ){
-            $toDate = Carbon::parse($data->start_at);
+            $toDate = Carbon::parse(Carbon::now());
             $fromDate = Carbon::parse($data->end_at);
             $days = $toDate->diffInDays($fromDate);
             return $days;
@@ -156,6 +155,20 @@ class admin_helper {
 
         return $data;
     } 
+
+
+
+    public static function expiry_vendors(){
+        $today = date('Y-m-d');
+        $vendors = LeadPaidVendor::where('is_active','1')
+                                    ->whereDate('end_at','<',$today)
+                                    ->get();
+        if(!empty($vendors)){
+            foreach($vendors as $vendor){
+                LeadPaidVendor::where('id',$vendor->id)->update(['is_active' => '0']);
+            }
+        }
+    }
 
 
 }

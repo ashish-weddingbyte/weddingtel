@@ -18,6 +18,9 @@ use App\Models\LeadViewStatus;
 use App\Models\LeadPlan;
 use App\Models\PaymentHistory;
 
+use admin_helper;
+use Carbon\Carbon;
+
 class AdminDashboard extends Controller
 {
     public function __construct(){
@@ -25,6 +28,9 @@ class AdminDashboard extends Controller
     }
 
     public function dashboard(){
+
+        admin_helper::expiry_vendors();
+
         $data['lead_paid_vendor_count'] = LeadPaidVendor::where('is_active','1')->distinct('user_id')->count(); 
         $data['all_vendor_count'] = User::where('user_type','vendor')->count();
         $data['posotion_paid_vendor_count'] =  PositionPaidVendor::where('is_active','1')->distinct('user_id')->count();

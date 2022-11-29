@@ -12,14 +12,14 @@
     <!-- Specific Meta
         ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="WeddingDir - Wedding Directory HTML Template">
+    <meta name="description" content="Wedding Website | weddingbyte.com">
     <meta name="keywords" content="bride, business, couple, directory, groom, listing, login, map, marketing, realwedding, registration, rsvp, vendor, wedding, wedding planner">
-    <meta name="author" content="wp-organic">
+    <meta name="author" content="weddingbyte">
     <meta name="MobileOptimized" content="320" />
 
     <!-- Titles
         ================================================== -->
-    <title>weddingbyte.com</title>
+    <title>Wedding Website | weddingbyte.com</title>
 
     <!-- Favicons
         ================================================== -->
@@ -31,10 +31,12 @@
         ======================================================================================= -->
     <link href="{{ asset('front/library/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('front/library/fontawesome/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('front/library/select2/css/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('front/library/owlcarousel/css/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('front/library/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
     <link href="{{ asset('front/library/couple-website/css/style.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('front/css/admin.css') }}" rel="stylesheet">
+
 
 
 </head>
@@ -43,19 +45,27 @@
 
 <body id="page-top">
 
-    <!-- preloader -->
-    <div class="preloader">
-        <div class="status">
-            <img src="assets/images/logo_light.svg" alt="">
+    
+
+    <div class="container-fluid admin-bar">
+        <div class="row">
+            <div class="col-4 col-md-4 col-lg-4 text-center">
+                <a href="#" class="btn admin-button">Edit</a>
+            </div>
+            <div class="col-4 col-md-4 col-lg-4 text-center">
+                <a href="#" class="btn admin-button">Preview</a>
+            </div>
+            <div class="col-4 col-md-4 col-lg-4 text-center">
+                <a href="#" class="btn admin-button">Share</a>
+            </div>
         </div>
     </div>
-    <!-- end preloader -->
 
     <header>
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-md fixed-top header-anim" id="mainNav">
+        <nav class="navbar navbar-expand-md bg-dark header-anim" id="mainNav">
             <div class="logo-wrap">
-                <a class="navbar-brand js-scroll-trigger" href="index.html"><img src="assets/images/logo_light.svg" alt=""></a>
+
                 <!-- Toggle Button Start -->
                 <button class="navbar-toggler x collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="icon-bar"></span>
@@ -83,24 +93,23 @@
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#gallery">Gallery</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#latest-news">Latest News</a>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
+
+    
     <!--  Home Banner Start -->
-    <section class="home-background">
+    <section class="home-background" style="background: url({{ asset('front/library/couple-website/images/slider_img_1.jpg') }}) no-repeat">
         <div class="home-content">
             <div class="container">
                 <div class="name">
-                    <h1>Hitesh <i class="weddingdir_heart_ring"></i> Priyanka</h1>
+                    <h1>{{ $user->name }} <i class="weddingdir_heart_ring"></i> {{ $details->partner_name }}</h1>
                     <em>Are getting Married!</em>
                     <div class="date">
-                        <h3>Friday - 11 December 2020</h3>
+                        <h3>{{ date('D - d F Y',strtotime($details->event)) }}</h3>
                     </div>
                 </div>
             </div>
@@ -125,33 +134,19 @@
                     </div>
                     <div class="col-lg-3 col-md-6 order-lg-13">
                         <div class="couple-info">
-                            <span>Groom</span>
-                            <h3>Hitesh</h3>
+                            <!-- <span>Groom</span> -->
+                            <h3>{{ $user->name }}</h3>
                             <p>Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum me.</p>
-                            <div class="social-icons">
-                                <ul class="list-unstyled">
-                                    <li><a href="javascript:"><i class="fa fa-facebook-f"></i></a></li>
-                                    <li><a href="javascript:"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="javascript:"><i class="fa fa-instagram"></i></a>
-                                    </li><li><a href="javascript:"><i class="fa fa-linkedin"></i></a></li>
-                                </ul>
-                            </div>
+
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 order-lg-2">
                         <div class="couple-info">
-                            <span>Bride</span>
-                            <h3>Priyanka</h3>
+                            <!-- <span>Bride</span> -->
+                            <h3>{{ $details->partner_name }}</h3>
                             <p>Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum me.</p>
-                            <div class="social-icons">
-                                <ul class="list-unstyled">
-                                    <li><a href="javascript:"><i class="fa fa-facebook-f"></i></a></li>
-                                    <li><a href="javascript:"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="javascript:"><i class="fa fa-instagram"></i></a>
-                                    </li><li><a href="javascript:"><i class="fa fa-linkedin"></i></a></li>
-                                </ul>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -241,13 +236,13 @@
                 </div>
             </div>
 
-            <div class="bg-countdown bg-dark">
-                <div class="container">
-                    <ul id="wedding-countdown" class="list-unstyled list-inline">
-                        <li class="list-inline-item"><span class="days">00</span><div class="days_text">Days</div></li>
-                        <li class="list-inline-item"><span class="hours">00</span><div class="hours_text">Hours</div></li>
-                        <li class="list-inline-item"><span class="minutes">00</span><div class="minutes_text">Minutes</div></li>
-                        <li class="list-inline-item"><span class="seconds">00</span><div class="seconds_text">Seconds</div></li>
+            <div class="bg-countdown bg-dark ">
+                <div class="container counter-class">
+                    <ul id="wedding-countdown" class="counter-class list-unstyled list-inline" data-date="{{ date('Y-m-d H:i:s',strtotime($details->event)) }}">
+                        <li class="list-inline-item"><span class="counter-days"></span><div class="days_text">Days</div></li>
+                        <li class="list-inline-item"><span class="counter-hours"></span><div class="hours_text">Hours</div></li>
+                        <li class="list-inline-item"><span class="counter-minutes"></span><div class="minutes_text">Minutes</div></li>
+                        <li class="list-inline-item"><span class="counter-seconds"></span><div class="seconds_text">Seconds</div></li>
                     </ul>
                 </div>
             </div>
@@ -297,68 +292,9 @@
         </section>
         <!--  Wedding Place End -->
 
-        <!--  Wedding Location Start -->
-        <section>
-            <div id="map-holder">
-                <div id="map_extended" class="location-map-wrap">
-                    <p>This will be replaced with the Google Map.</p>
-                </div>
-            </div>
-        </section>
-        <!--  Wedding Location End -->
+        
 
-        <!--  Gift Registry Start -->
-        <section class="wide-tb-120">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h1>Gift Registry</h1>
-                    <p class="sub-head">We are so excited to celebrate our special day with our family and friends. <br>Thank you so much for visiting our wedding website!</p>
-                </div>    
-                <div class="owl-carousel owl-theme dots-black" id="slider-partners">                        
-                    <!-- Partners Slider Images -->
-                    <div class="item">
-                        <div class="partners-slider">
-                            <img src="{{ asset('front/images/partners/partners_img_1.png')}}" alt="">
-                        </div>
-                    </div>
-                    <!-- Partners Slider Images -->
-
-                    <!-- Partners Slider Images -->
-                    <div class="item">
-                        <div class="partners-slider">
-                            <img src="{{ asset('front/images/partners/partners_img_2.png')}}" alt="">
-                        </div>
-                    </div>
-                    <!-- Partners Slider Images -->
-
-                    <!-- Partners Slider Images -->
-                    <div class="item">
-                        <div class="partners-slider">
-                            <img src="{{ asset('front/images/partners/partners_img_3.png')}}" alt="">
-                        </div>
-                    </div>
-                    <!-- Partners Slider Images -->
-
-                    <!-- Partners Slider Images -->
-                    <div class="item">
-                        <div class="partners-slider">
-                            <img src="{{ asset('front/images/partners/partners_img_4.png')}}" alt="">
-                        </div>
-                    </div>
-                    <!-- Partners Slider Images -->
-
-                    <!-- Partners Slider Images -->
-                    <div class="item">
-                        <div class="partners-slider">
-                            <img src="{{ asset('front/images/partners/partners_img_5.png')}}" alt="">
-                        </div>
-                    </div>
-                    <!-- Partners Slider Images -->
-                    
-                </div>
-            </div>
-        </section>
-        <!--  Gift Registry End -->
+        
 
         <!--  Will You Attend Start -->
         <section class="will-you-attend">
@@ -384,7 +320,7 @@
                                 <input type="email" placeholder="Email" class="form-control">
                             </div>
                             <div class="form-group">
-                                <select class="theme-combo" name="state">
+                                <select class="form-control" name="state">
                                     <option>Select Option</option>
                                     <option value="AL">1</option>
                                     <option value="WY">2</option>
@@ -420,136 +356,11 @@
         </section>
         <!--  Will You Attend End -->
 
-        <!--  The Groomsmen Start -->
-        <section class="wide-tb-120">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h1>The Groomsmen</h1>
-                    <p class="sub-head">We are so excited to celebrate our special day with our family and friends. <br>Thank you so much for visiting our wedding website!</p>
-                </div>
+        
 
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="friends-members">
-                            <img src="{{ asset('front/library/couple-website/images/friends_img_1.jpg')}}" alt="">
-                            <h4>Donald Morrison</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="friends-members">
-                            <img src="{{ asset('front/library/couple-website/images/friends_img_2.jpg')}}" alt="">
-                            <h4>Donald Morrison</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-12 spacer-30 d-md-block d-lg-none d-none">&nbsp;</div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="friends-members">
-                            <img src="{{ asset('front/library/couple-website/images/friends_img_3.jpg')}}" alt="">
-                            <h4>Donald Morrison</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="friends-members">
-                            <img src="{{ asset('front/library/couple-website/images/friends_img_4.jpg')}}" alt="">
-                            <h4>Donald Morrison</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--  The Groomsmen End -->
+        
 
-        <!--  The Bridesmaids Start -->
-        <section class="wide-tb-120 pt-0">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h1>The Bridesmaids</h1>
-                    <p class="sub-head">We are so excited to celebrate our special day with our family and friends. <br>Thank you so much for visiting our wedding website!</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="friends-members">
-                            <img src="{{ asset('front/library/couple-website/images/friends_img_5.jpg')}}" alt="">
-                            <h4>Martha Pearson</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="friends-members">
-                            <img src="{{ asset('front/library/couple-website/images/friends_img_6.jpg')}}" alt="">
-                            <h4>Martha Pearson</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-12 spacer-30 d-md-block d-lg-none d-none">&nbsp;</div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="friends-members">
-                            <img src="{{ asset('front/library/couple-website/images/friends_img_7.jpg')}}" alt="">
-                            <h4>Martha Pearson</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="friends-members">
-                            <img src="{{ asset('front/library/couple-website/images/friends_img_8.jpg')}}" alt="">
-                            <h4>Martha Pearson</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--  The Bridesmaids End -->
-
-        <!--  What They Say Start -->
-        <section class="what-they-say">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h1>What THey Say</h1>
-                    <p class="sub-head">We are so excited to celebrate our special day with our family and friends. <br>Thank you so much for visiting our wedding website!</p>
-                </div>
-                <div class="row align-items-end">
-                    <div class="col-lg-8 col-md-12 mx-auto">
-                        <div class="testimonail-slider">
-                            <div class="owl-carousel owl-theme" id="slider-testimonail">                        
-                                <!-- Testimonail Quotes -->
-                                <div class="item">
-                                    <div class="testimonail-quotes">
-                                        <div class="text">
-                                            A man's got two shots for jewelry: a wedding ring and a watch. The watch is a lot easier to get on and off than a wedding ring.
-                                        </div>
-                                        <div class="name">~ John Mayer ~</div>
-                                    </div>
-                                </div>
-                                <!-- Testimonail Quotes -->
-                                
-                                <!-- Testimonail Quotes -->
-                                <div class="item">
-                                    <div class="testimonail-quotes">
-                                        <div class="text">
-                                            A man's got two shots for jewelry: a wedding ring and a watch. The watch is a lot easier to get on and off than a wedding ring.
-                                        </div>
-                                        <div class="name">~ John Mayer ~</div>
-                                    </div>
-                                </div>
-                                <!-- Testimonail Quotes -->
-                                
-                                <!-- Testimonail Quotes -->
-                                <div class="item">
-                                    <div class="testimonail-quotes">
-                                        <div class="text">
-                                            A man's got two shots for jewelry: a wedding ring and a watch. The watch is a lot easier to get on and off than a wedding ring.
-                                        </div>
-                                        <div class="name">~ John Mayer ~</div>
-                                    </div>
-                                </div>
-                                <!-- Testimonail Quotes -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </section>
-        <!--  What They Say End -->
-
+       
         <!--  Captured Moments Start -->
         <section class="wide-tb-120 captured-moments" id="gallery">
             <div class="container">
@@ -630,116 +441,7 @@
         </section>
         <!--  Captured Moments End -->
 
-        <!--  Latest News & Updates Start -->
-        <section class="wide-tb-120" id="latest-news">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h1>Latest News & Updates</h1>
-                    <p class="sub-head">We are so excited to celebrate our special day with our family and friends. <br>Thank you so much for visiting our wedding website!</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <!-- Post Blog -->
-                        <div class="blog-wrap-home">                            
-                            <div class="post-content">
-                                <!-- Post Blog Image -->
-                                <div class="post-img">
-                                    <img src="{{ asset('front/images/blogs/blog_home_1.jpg') }}" alt="">
-                                </div>
-                                <!-- Post Blog Image -->
-                                <!-- Post Blog Content -->
-                                <div class="home-content">                                    
-                                    <span class="meta-date">July 12, 2020</span>
-
-                                    <div class="mt-auto">
-                                        <span class="post-category">
-                                            <a href="javascript:">Wedding</a>
-                                        </span>
-                                        <h3 class="blog-title"><a href="blog-details.html" class="post-title">Wedding Tips For Fashion</a></h3>
-                                        <div class="entry-content">
-                                            <p>Quis autem vel eum prehenderit qui in ea voluptate velit esse quam nihil mole.</p>
-                                        </div>
-                                        <div class="read-more">
-                                            <a href="blog-details.html" class="btn btn-link btn-link-default">Read More</a>
-                                        </div>               
-                                    </div>                     
-                                </div>                   
-                                <!-- Post Blog Content -->
-                            </div>                            
-                        </div>
-                        <!-- Post Blog -->
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <!-- Post Blog -->
-                        <div class="blog-wrap-home">                            
-                            <div class="post-content">
-                                <!-- Post Blog Image -->
-                                <div class="post-img">
-                                    <img src="{{ asset('front/images/blogs/blog_home_2.jpg')}}" alt="">
-                                </div>
-                                <!-- Post Blog Image -->
-                                <!-- Post Blog Content -->
-                                <div class="home-content">                                    
-                                    <span class="meta-date">July 12, 2020</span>
-
-                                    <div class="mt-auto">
-                                        <span class="post-category">
-                                            <a href="javascript:">Photography</a>
-                                        </span>
-                                        <h3 class="blog-title"><a href="blog-details.html" class="post-title">Photography The Effects</a></h3>
-                                        <div class="entry-content">
-                                            <p>Quis autem vel eum prehenderit qui in ea voluptate velit esse quam nihil mole.</p>
-                                        </div>
-                                        <div class="read-more">
-                                            <a href="blog-details.html" class="btn btn-link btn-link-default">Read More</a>
-                                        </div>               
-                                    </div>                     
-                                </div>                   
-                                <!-- Post Blog Content -->
-                            </div>                            
-                        </div>
-                        <!-- Post Blog -->
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mx-auto mt-md-5 mt-lg-0">
-                        <!-- Post Blog -->
-                        <div class="blog-wrap-home">                            
-                            <div class="post-content">
-                                <!-- Post Blog Image -->
-                                <div class="post-img">
-                                    <img src="{{ asset('front/images/blogs/blog_home_3.jpg')}}" alt="">
-                                </div>
-                                <!-- Post Blog Image -->
-                                <!-- Post Blog Content -->
-                                <div class="home-content">                                    
-                                    <span class="meta-date">July 12, 2020</span>
-
-                                    <div class="mt-auto">
-                                        <span class="post-category">
-                                            <a href="javascript:">Fashion</a>
-                                        </span>
-                                        <h3 class="blog-title"><a href="blog-details.html" class="post-title">Apparels & Makeup Kits</a></h3>
-                                        <div class="entry-content">
-                                            <p>Quis autem vel eum prehenderit qui in ea voluptate velit esse quam nihil mole.</p>
-                                        </div>
-                                        <div class="read-more">
-                                            <a href="blog-details.html" class="btn btn-link btn-link-default">Read More</a>
-                                        </div>               
-                                    </div>                     
-                                </div>                   
-                                <!-- Post Blog Content -->
-                            </div>                            
-                        </div>
-                        <!-- Post Blog -->
-                    </div>
-                </div>
-                
-            </div>
-        </section>
-        <!--  Latest News & Updates End -->
-
+        
     </div>
 
     <!-- Footer -->
@@ -747,7 +449,7 @@
         <div class="container">
             <div class="text">
                 <h3>Just Get Married</h3>
-                <h1>Hitesh <i class="weddingdir_heart_ring"></i> Priyanka</h1>
+                <h1>{{ $user->name }} <i class="weddingdir_heart_ring"></i> {{ $details->partner_name }}</h1>
                 <img src="{{ asset('front/library/couple-website/images/flower_art_2.png')}}" alt="">
             </div>
             <div class="copyrights">
@@ -769,17 +471,15 @@
 
     <!-- Custom JavaScript for this theme -->
     <script src="{{ asset('front/library/owlcarousel/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('front/library/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('front/library/jquery-ui/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('front/library/jquery-ui/js/jquery.ui.touch-punch.min.js') }}"></script>
-    <script src="{{ asset('front/library/magnific-popup/jquery.magnific-popup.min.js') }}"></script>  
-    <script src="{{ asset('front/library/countdown/js/jquery.countdown.min.js') }}"></script>  
+    <script src="{{ asset('front/library/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('front/library/countdown/js/loopcounter.js') }}"></script> 
     <script src="{{ asset('front/library/isotope-layout/isotope.pkgd.min.js') }}"></script> 
     <script src="{{ asset('front/library/datepicker/js/datepicker.js') }}"></script> 
     <script src="{{ asset('front/library/couple-website/js/script.js') }}"></script>
 
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script type="text/javascript" src="{{ asset('front/library/maps/jquery.gmap.min.js') }}"></script> 
+    <script src="{{ asset('front/library/slide-reveal/jquery.slidereveal.min.js') }}"></script>
 
 </body>
 

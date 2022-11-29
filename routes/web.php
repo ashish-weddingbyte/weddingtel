@@ -11,7 +11,7 @@ use App\Http\Controllers\front\UserController;
 use App\Http\Controllers\front\HomeController;
 
 use App\Http\Controllers\front\RazorPayController;
-
+use App\Http\Controllers\front\WebsiteController;
 
 // user controllers
 use App\Http\Controllers\front\user\UserDashboard;
@@ -142,7 +142,9 @@ Route::group(["middleware" => ["AuthUser"] , "prefix" => '/tools', '' ], functio
     Route::post('/review/remove',[ReviewController::class,'remove_review']);
 
 
-    Route::view('/wedding-website','front.user.website');
+    Route::get('/wedding-website',[WebsiteController::class,'websites']);
+    Route::get('/wedding-website/{id}',[WebsiteController::class,'website_preview']);
+
 });
 
 

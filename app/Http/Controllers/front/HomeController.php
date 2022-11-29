@@ -118,7 +118,7 @@ class HomeController extends Controller
                                 ->where('vendor_details.featured_image','!=', NULL)
                                 ->select(['users.id','users.name','users.email','users.mobile','vendor_details.brandname','cities.name as city_name','vendor_details.featured_image','categories.category_name','categories.icon'])
                                 ->orderBy('users.id','desc')
-                                ->limit(3)
+                                // ->limit(3)
                                 ->get();
         $data['ratings']    =   Review::where('vendor_id', $vendor_data['id'])->orderBy('id','desc')->get();
 

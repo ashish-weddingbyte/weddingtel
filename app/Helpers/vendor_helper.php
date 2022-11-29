@@ -238,5 +238,19 @@ class vendor_helper {
     //     return $data;
     // }
 
+
+    public static function expiry_vendor(){
+        $user_id = Session::get('user_id');
+        $today = date('Y-m-d');
+        $vendors = LeadPaidVendor::where('is_active','1')
+                                    ->whereDate('end_at','<',$today)
+                                    ->where('user_id',$user_id)
+                                    ->get();
+        if(!empty($vendors)){
+            foreach($vendors as $vendor){
+                LeadPaidVendor::where('id',$vendor->id)->update(['is_active' => '0']);
+            }
+        }
+    }
 }
 ?>

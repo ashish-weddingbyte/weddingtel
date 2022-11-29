@@ -1,8 +1,6 @@
 @charset "UTF-8";
-/* CSS Document */
-/*------------------------------------------------------------------
-Template Name:      WeddingDir - Wedding Directory HTML Template
-------------------------------------------------------------------
+/* CSS Document
+
 [CSS Table of contents]
 
 1.  Body / Typography 
@@ -521,7 +519,7 @@ i[class*="weddingdir_"] {
     height: 14px;
     margin: 0px 4px;
     border-radius: 50%;
-    background: #f48f00;
+    background: #fc2779;
     -webkit-transition: all 0.15s linear;
     -moz-transition: all 0.15s linear;
     -o-transition: all 0.15s linear;
@@ -536,7 +534,7 @@ i[class*="weddingdir_"] {
 }
 
 .owl-carousel .owl-dot.active span {
-    background: #00aeaf;
+    background: #fc2779;
     opacity: 1;
 }
 .dots-black.owl-carousel .owl-dots {
@@ -561,10 +559,10 @@ Background Color / Color
 -------------------------*/
 
 .bg-default {
-    background-color: #f48f00 !important;
+    background-color: #fc2779 !important;
 }
 .bg-primary {
-    background-color: #00adae !important;
+    background-color: #fc2779 !important;
     color: #fff;
 }
 .bg-secondary {
@@ -594,10 +592,10 @@ Background Color / Color
 }
 
 .txt-default {
-    color: #f48f00 !important;
+    color: #fc2779 !important;
 }
 .txt-primary {
-    color: #00adae !important;
+    color: #fc2779 !important;
 }
 .txt-secondary {
     color: #383333 !important;
@@ -668,8 +666,8 @@ Background Color / Color
 .btn-default:disabled,
 .btn-default:hover:disabled {
     color: #fff;
-    background-color: #f48f00;
-    border-color: #f48f00;
+    background-color: #fc2779;
+    border-color: #fc2779;
 }
 .btn-default:hover,
 .btn-default:hover:enabled {
@@ -688,8 +686,8 @@ Background Color / Color
 .btn-default:not(:disabled):not(.disabled):active,
 .show > .btn-default.dropdown-toggle {
     color: #fff;
-    background-color: #f48f00;
-    border-color: #f48f00;
+    background-color: #fc2779;
+    border-color: #fc2779;
 }
 
 /*--- btn primary --*/
@@ -697,8 +695,8 @@ Background Color / Color
 .btn-primary:disabled,
 .btn-primary:hover:disabled {
     color: #fff;
-    background-color: #00aeaf;
-    border-color: #00aeaf;
+    background-color: #fc2779;
+    border-color: #fc2779;
 }
 .btn-primary:hover {
     color: #fff;
@@ -906,9 +904,9 @@ Background Color / Color
 .btn-outline-default,
 .btn-outline-default:disabled,
 .btn-outline-default:hover:disabled {
-    color: #f48f00;
+    color: #fc2779;
     background-color: transparent;
-    border-color: #f48f00;
+    border-color: #fc2779;
 }
 .btn-outline-default:hover {
     color: #d47c00;
@@ -927,9 +925,9 @@ Background Color / Color
 .btn-outline-primary,
 .btn-outline-primary:disabled,
 .btn-outline-primary:hover:disabled {
-    color: #00aeaf;
+    color: #fc2779;
     background-color: transparent;
-    border-color: #00aeaf;
+    border-color: #fc2779;
 }
 .btn-outline-primary:hover {
     color: #009091;
@@ -1101,20 +1099,20 @@ Background Color / Color
     box-shadow: 0 0 0 1px rgb(46, 47, 57);
 }
 .btn-outline-white {
-    color: #00adae;
+    color: #fc2779;
     background-color: #fff;
     border-color: #eeeeee;
 }
 .btn-outline-white:hover {
     color: #fff;
-    background-color: #00adae;
-    border-color: #00adae;
+    background-color: #fc2779;
+    border-color: #fc2779;
 }
 .btn-outline-white.focus,
 .btn-outline-white:focus {
     color: #fff;
-    background-color: #00adae;
-    border-color: #00adae;
+    background-color: #fc2779;
+    border-color: #fc2779;
 }
 
 /*--- btn size --*/
@@ -1136,13 +1134,13 @@ Background Color / Color
 
 /*--- btn links --*/
 .btn-link-default {
-    color: #f48f00;
+    color: #fc2779;
 }
 .btn-link-default:hover {
     color: #d47c00;
 }
 .btn-link-primary {
-    color: #00aeaf;
+    color: #fc2779;
 }
 .btn-link-primary:hover {
     color: #009091;
@@ -1170,7 +1168,7 @@ Background Color / Color
     color: #2f3985;
 }
 .txt-orange {
-    color: #f48f00;
+    color: #fc2779;
 }
 .txt-ligt-gray {
     color: #424242;
@@ -1184,13 +1182,13 @@ Background Color / Color
 
 /*---- 4.2 Background Color ---*/
 .bg-teal {
-    background: #00aeaf;
+    background: #fc2779;
 }
 .bg-teal-dark {
     background: #005b5c;
 }
 .bg-orange {
-    background: #f48f00;
+    background: #fc2779;
 }
 .bg-black {
     background: #000000;
@@ -1301,7 +1299,7 @@ Background Color / Color
 }
 .back-to-top:hover,
 .back-to-top:focus {
-    background: #f48f00;
+    background: #fc2779;
     color: #fff;
 }
 /*---- 4.5 Back To Top End ---*/
@@ -1329,7 +1327,7 @@ blockquote::before,
     width: 70px;
     height: 1px;
     color: #47bdcc;
-    background-color: #f48f00;
+    background-color: #fc2779;
 }
 blockquote footer,
 .blockquote footer {
@@ -1352,7 +1350,7 @@ blockquote footer cite,
     font-family: "Lora", serif;
     border-radius: 7px;
     font-style: italic;
-    color: #00aeaf;
+    color: #fc2779;
     box-shadow: 0px 0px 147px 0px rgba(0, 0, 0, 0.07);
 }
 .blockquote-3 {
@@ -1372,7 +1370,7 @@ blockquote footer cite,
     content: "\f10d";
     left: 30px;
     top: 10px;
-    color: #f48f00;
+    color: #fc2779;
     opacity: 0.2;
     font-weight: 900;
     background: transparent;
@@ -1537,7 +1535,7 @@ header .btn {
 .navbar-nav .active .nav-link,
 .navbar-nav .active .nav-link:hover,
 .navbar-nav .nav-link:hover {
-    color: #00aeaf;
+    color: #fc2779;
 }
 .navbar-nav .nav-link {
     color: #FFF;
@@ -1550,7 +1548,7 @@ header .btn {
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-item:hover > a,
 .navbar-nav .nav-item > a.active {
-    color: #00aeaf;
+    color: #fc2779;
 }
 .navbar-nav .nav-link i {
     font-size: 0.7rem;
@@ -1603,7 +1601,7 @@ header .btn {
 .dropdown-item:hover,
 .dropdown-item:active,
 .dropdown-menu > li.show > a {
-    color: #00aeaf;
+    color: #fc2779;
     text-decoration: none;
     background-color: #f6f6f6;
 }
@@ -2075,9 +2073,9 @@ header .btn {
  7.1 Home Background Section Start
 -------------------------------------------------------------------*/
 .home-background{
-    background: url(../images/slider_img_1.jpg) no-repeat top center;
+    /* background: url(../images/slider_img_1.jpg) no-repeat top center; */
     min-height: 768px;
-    background-size: cover;
+    background-size: cover !important;
     position: relative;
 }
 .home-background::after {
@@ -2106,7 +2104,7 @@ header .btn {
 }
 .home-background .home-content .name h1 i{
     padding: 0 0.5rem;
-    color: #f48f00;
+    color: #fc2779;
 }
 .home-background .home-content .name em{
     display: block;
@@ -2115,7 +2113,7 @@ header .btn {
     border-style: solid;
     border-width: 3px;
     border-color: #FFF;
-    background-color: #00adae;
+    background-color: #fc2779;
     box-shadow: 0px 0px 65px 0px rgba(0, 0, 0, 0.31);
     display: inline-block;
     border-radius: 50px;
@@ -2138,13 +2136,13 @@ header .btn {
     text-align: center;
 }
 .couple-info span{
-    color: #00adae;
+    color: #fc2779;
     font-size: 1.25rem;
     display: block;
     margin-bottom: 0.5rem;
 }
 .couple-info h3{
-    color: #f48f00;
+    color: #fc2779;
     font-size: 1.75rem;
     margin-bottom: 1.2rem;
 }
@@ -2161,7 +2159,7 @@ header .btn {
     margin-right: 7px;
 }
 .couple-info .social-icons ul li a:hover {
-    color: #f48f00;
+    color: #fc2779;
 }
 /*-------------------------------------------------------------------
  7.2 The Couple End
@@ -2220,7 +2218,7 @@ header .btn {
     align-items: center;
     line-height: 1;
     border-radius: 50%;
-    background: #f48f00;
+    background: #fc2779;
     color: #FFF;
     font-family: "Lora", serif;
     font-weight: 600;
@@ -2349,7 +2347,8 @@ header .btn {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 173, 174, 0.7);
+    background: #fc2779;
+    opacity: .5;
 }
 .bg-countdown .container{
     position: relative;
@@ -2406,7 +2405,7 @@ header .btn {
     opacity: 0.04;
 }
 .when-where-box h3{
-    color: #00adae;
+    color: #fc2779;
     font-style: italic;
     margin-bottom: 1.5rem;
 }
@@ -2420,7 +2419,7 @@ header .btn {
     left: 50%;
     transform: translateX(-50%);
     border-radius: 7px;
-    background-color: #f48f00;
+    background-color: #fc2779;
     font-family: "Lora", serif;
     font-size: 1rem;
     color: #FFF;
@@ -2456,7 +2455,7 @@ header .btn {
     display: flex !important;
     justify-content: center;
     align-items: center;
-    background: #f48f00 !important;
+    background: #fc2779 !important;
     border-radius: 50%;
     top: 10px !important;
     right: 10px !important;
@@ -2474,7 +2473,7 @@ header .btn {
 }
 .location-map h5{
     font-weight: bold;
-    color: #00aeaf;
+    color: #fc2779;
 }
 /*-------------------------------------------------------------------
  7.5 When & Where Start
@@ -2492,7 +2491,7 @@ header .btn {
     transition: all 400ms ease-in-out;
 }
 .partners-slider:hover {
-    border-color: #f48f00;
+    border-color: #fc2779;
     opacity: 1;
 }
 /*-------------------------------------------------------------------
@@ -2517,7 +2516,8 @@ header .btn {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 173, 174, 0.7);
+    background: #fc2779;
+    opacity: 0.5;
 }
 .will-you-attend .container {
     position: relative;
@@ -2542,10 +2542,10 @@ header .btn {
     border-radius: 7px;
     background-color: #FFF;
     box-shadow: 0px 0px 147px 0px rgba(0, 0, 0, 0.07);
-    margin-bottom: -3rem;
+    margin-bottom: 3rem;
 }
 .rsvp-form .head{
-    color: #00aeaf;
+    color: #fc2779;
     font-style: italic;
     font-weight: 600;
 }
@@ -2626,7 +2626,7 @@ header .btn {
     content: "";
     height: 1px;
     width: 70px;
-    background: #f48f00;
+    background: #fc2779;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
@@ -2670,7 +2670,7 @@ header .btn {
 }
 #portfolio-flters li a:hover,
 #portfolio-flters li.filter-active a {
-    background: #00aeaf;
+    background: #fc2779;
     color: #fff;
 }
 .captured-gallery-item{
@@ -2782,7 +2782,7 @@ header .btn {
     bottom: 1.5rem;
 }
 .blog-wrap-home .read-more a:hover {
-    color: #f48f00;
+    color: #fc2779;
 }
 .blog-wrap-home .post-content .home-content .meta-date {
     max-width: max-content;
@@ -2799,7 +2799,7 @@ header .btn {
     font-family: "Lora", serif;
 }
 .post-content .post-category a {
-    background-color: #f48f00;
+    background-color: #fc2779;
 }
 .post-content .read-more a {
     font-family: "Lora", serif;
@@ -2810,7 +2810,7 @@ header .btn {
 }
 
 .post-content .blog-title a:hover {
-    color: #f48f00;
+    color: #fc2779;
 }
 .blog-wrap-home .home-content h3 a {
     color: #fff;
@@ -2858,11 +2858,11 @@ footer .text{
     padding-bottom: 500px;
 }
 footer .text h1{
-    color: #00adae;
+    color: #fc2779;
     font-size: 4.5rem;
 }
 footer .text h1 i{
-    color: #f48f00;
+    color: #fc2779;
 }
 
 footer .text h3{

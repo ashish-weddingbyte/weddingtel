@@ -13,6 +13,7 @@ use App\Models\Wishlist;
 use App\Models\Review;
 use App\Models\Query;
 use App\Models\AddonLead;
+use vendor_helper;
 use Carbon\Carbon;
 
 class Vendors extends Controller
@@ -23,6 +24,7 @@ class Vendors extends Controller
     }
 
     public function dashboard(){
+        vendor_helper::expiry_vendor();
 
         $user_id = Session::get('user_id');
         $data['details'] = VendorDetail::where('user_id',$user_id)->first();

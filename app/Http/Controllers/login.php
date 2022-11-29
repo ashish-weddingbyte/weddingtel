@@ -136,7 +136,7 @@ class login extends Controller
             'mobile' => 'required|max:10|min:10',
         ]);
 
-        $user = User::where('mobile',$request->mobile)->first();
+        $user = User::where('mobile',$request->mobile)->where('user_type','user')->first();
 
         if(isset($user->id)){
             $user_id = $user->id;
@@ -302,7 +302,7 @@ class login extends Controller
             'mobile' => 'required|max:10|min:10',
         ]);
 
-        $user = User::where('mobile',$request->mobile)->first();
+        $user = User::where('mobile',$request->mobile)->where('user_type','vendor')->first();
 
         if(isset($user->id)){
             $user_id = $user->id;

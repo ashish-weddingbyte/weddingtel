@@ -71,9 +71,10 @@
                             <tbody>
                                 @foreach($leads_paid_vendor as $vendor)
                                 <?php
-                                    $gallery = admin_helper::is_gallery($vendor->id);
-                                    $expiry_days = admin_helper::expiry_days($vendor->id);
-                                    $user_leads = admin_helper::used_leads($vendor->id);
+
+                                    $gallery = admin_helper::is_gallery($vendor->user_id);
+                                    $expiry_days = admin_helper::expiry_days($vendor->user_id);
+                                    $used_leads = admin_helper::used_leads_details($vendor->id);
                                 ?>
                                 <tr>
                                     <td><input type="checkbox" class="sub_chk" data-id="{{ $vendor->id }}"></td>
@@ -134,16 +135,16 @@
                                         <p>Expiry Days : <span class="font-weight-bold">{{ $expiry_days }}</span></p>
                                     </td>
                                     <td>
-                                        <p>Total Leads : <span class="text-success font-weight-bold">{{ $vendor->lead }}</span></p>
+                                        <p>Total Leads : <span class="text-success font-weight-bold">{{ $vendor->total_lead }}</span></p>
                                         <p>Available Leads : <span class="text-success font-weight-bold">{{ $vendor->available_leads }}</span></p>
-                                        <p>Used Leads: <span class="text-success font-weight-bold">{{ ucwords($user_leads) }}</span></p>
+                                        <p>Used Leads: <span class="text-success font-weight-bold">{{ ucwords($used_leads) }}</span></p>
                                     </td>
                                     <td>
                                         <p>Is Addon : <span class="text-success font-weight-bold">{{ ucwords($vendor->is_addon) }}</span></p>
                                     </td>
                                     <td>
-                                        <a href="{{ url('/byte/vendors/paid_vendors/leads/'.$vendor->id) }}" class="btn btn-block btn-warning btn-sm">Open Leads</a>
-                                        <a href="{{ url('/byte/vendors/paid_vendors/addon/'.$vendor->id) }}" class="btn btn-block btn-info btn-sm">Add Addon</a>
+                                        <a href="{{ url('/byte/vendors/paid_vendors/leads/'.$vendor->user_id) }}" class="btn btn-block btn-warning btn-sm">Open Leads</a>
+                                        <a href="{{ url('/byte/vendors/paid_vendors/addon/'.$vendor->user_id) }}" class="btn btn-block btn-info btn-sm">Add Addon</a>
                                     </td>
                                 </tr>
                                 @endforeach

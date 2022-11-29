@@ -99,7 +99,7 @@ class Users extends Controller
                                     ->join('cities','cities.id','=','vendor_details.city_id')
                                     ->where('users.user_type','vendor')
                                     ->where('lead_paid_vendors.is_active','1')
-                                    ->select(['users.id','users.name','users.email','users.mobile','users.status','vendor_details.brandname','vendor_details.is_email_verified','vendor_details.is_mobile_verified','cities.name as city_name','vendor_details.featured_image','categories.category_name','vendor_details.is_featured','vendor_details.is_top','lead_paid_vendors.plan_name','lead_paid_vendors.lead','lead_paid_vendors.available_leads','lead_paid_vendors.start_at','lead_paid_vendors.end_at','lead_paid_vendors.is_addon'])
+                                    ->select(['lead_paid_vendors.*','users.name','users.email','users.mobile','users.status','vendor_details.brandname','vendor_details.is_email_verified','vendor_details.is_mobile_verified','cities.name as city_name','vendor_details.featured_image','categories.category_name','vendor_details.is_featured','vendor_details.is_top'])
                                     ->orderBy('users.id','desc')
                                     ->get();
 
@@ -124,7 +124,7 @@ class Users extends Controller
                                     ->join('cities','cities.id','=','vendor_details.city_id')
                                     ->where('users.user_type','vendor')
                                     ->where('lead_paid_vendors.is_active','0')
-                                    ->select(['users.id','users.name','users.email','users.mobile','users.status','vendor_details.brandname','vendor_details.is_email_verified','vendor_details.is_mobile_verified','cities.name as city_name','vendor_details.featured_image','categories.category_name','vendor_details.is_featured','vendor_details.is_top','lead_paid_vendors.plan_name','lead_paid_vendors.lead','lead_paid_vendors.available_leads','lead_paid_vendors.start_at','lead_paid_vendors.end_at','lead_paid_vendors.is_addon'])
+                                    ->select(['lead_paid_vendors.*','users.name','users.email','users.mobile','users.status','vendor_details.brandname','vendor_details.is_email_verified','vendor_details.is_mobile_verified','cities.name as city_name','vendor_details.featured_image','categories.category_name','vendor_details.is_featured','vendor_details.is_top'])
                                     ->orderBy('users.id','desc')
                                     ->get();
 
@@ -276,7 +276,7 @@ class Users extends Controller
         }
 
         if($action_type == 'expired_lead_plan'){
-            $data = LeadPaidVendor::whereIn('user_id', $ids)->update(['is_active'=>'0']);
+            $data = LeadPaidVendor::whereIn('id', $ids)->update(['is_active'=>'0']);
             if($data){
                 Session::flash('message', 'Vendors Lead Plan Expired Successfully!');
                 Session::flash('class', 'alert-success');
@@ -289,7 +289,7 @@ class Users extends Controller
         }
 
         if($action_type == 'active_lead_plan'){
-            $data = LeadPaidVendor::whereIn('user_id', $ids)->update(['is_active'=>'1']);
+            $data = LeadPaidVendor::whereIn('id', $ids)->update(['is_active'=>'1']);
             if($data){
                 Session::flash('message', 'Vendors Lead Plan Active Successfully!');
                 Session::flash('class', 'alert-success');

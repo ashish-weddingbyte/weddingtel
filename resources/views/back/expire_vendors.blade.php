@@ -70,9 +70,8 @@
                             <tbody>
                                 @foreach($leads_paid_vendor as $vendor)
                                 <?php
-                                    $gallery = admin_helper::is_gallery($vendor->id);
-                                    $expiry_days = admin_helper::expiry_days($vendor->id);
-                                    $user_leads = admin_helper::used_leads($vendor->id);
+                                    $gallery = admin_helper::is_gallery($vendor->user_id);
+                                    $used_leads = admin_helper::used_leads_details($vendor->id);
                                 ?>
                                 <tr>
                                     <td><input type="checkbox" class="sub_chk" data-id="{{ $vendor->id }}"></td>
@@ -130,12 +129,11 @@
                                         <p>Plan : <span class="text-success">{{ $vendor->plan_name }}</span></p>
                                         <p>Start : <span class="text-success">{{ date('M d, Y', strtotime($vendor->start_at) ) }}</span></p>
                                         <p>End : <span class="text-danger">{{ date('M d, Y', strtotime($vendor->end_at) ) }}</span></p>
-                                        <p>Expiry Days : <span class="font-weight-bold">{{ $expiry_days }}</span></p>
                                     </td>
                                     <td>
                                         <p>Total Leads : <span class="text-success font-weight-bold">{{ $vendor->lead }}</span></p>
                                         <p>Available Leads : <span class="text-success font-weight-bold">{{ $vendor->available_leads }}</span></p>
-                                        <p>Used Leads: <span class="text-success font-weight-bold">{{ ucwords($user_leads) }}</span></p>
+                                        <p>Used Leads: <span class="text-success font-weight-bold">{{ ucwords($used_leads) }}</span></p>
                                     </td>
                                     <td>
                                         <p>Is Addon : <span class="text-success font-weight-bold">{{ ucwords($vendor->is_addon) }}</span></p>
@@ -150,9 +148,9 @@
 
                     <input type="button" data-action-type="active_lead_plan" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-success submit" value="Mark Active Plan" >
 
-                    <input type="button" data-action-type="add_top" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-info submit" value="Add Top Vendor" >
+                    <!-- <input type="button" data-action-type="add_top" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-info submit" value="Add Top Vendor" > -->
 
-                    <input type="button" data-action-type="add_featured" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-secondary submit" value="Add Featured Vendor" >
+                    <!-- <input type="button" data-action-type="add_featured" data-action="{{ url('byte/vendors/action') }}" class="btn btn-outline-secondary submit" value="Add Featured Vendor" > -->
 
                 </form>
             </div>
