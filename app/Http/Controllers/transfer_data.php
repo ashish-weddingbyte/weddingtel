@@ -90,6 +90,85 @@ class transfer_data extends Controller
     //     }
 
     // }
+
+    // public function add_pre(){
+        
+    //     $old_leads = DB::table('premium_leads_old')->get();
+
+    //     foreach($old_leads as $lead){
+    //         $l = new PremiumLead;
+    //         $l->name = $lead->name;
+    //         $l->mobile = $lead->phone;
+    //         $l->budget = $lead->budget;
+    //         $l->details = $lead->message;
+
+    //         switch (ucwords($lead->category)) {
+    //             case 'Makeup Artist':
+    //                 $l->category_id = '1';
+    //                 break;
+
+    //                 case 'Wedding Photographers':
+    //                     $l->category_id = '3';
+    //                     break;
+
+    //                     case 'Wedding Venues':
+    //                         $l->category_id = '2';
+    //                         break;
+
+    //                         case 'Choreographers':
+    //                             $l->category_id = '5';
+    //                             break;
+
+    //                             case 'Bridal Designers':
+    //                                 $l->category_id = '4';
+    //                                 break;
+
+    //                                 case 'Wedding Planner':
+    //                                     $l->category_id = '7';
+    //                                     break;
+
+    //                                     case 'Wedding Invitation':
+    //                                         $l->category_id = '8';
+    //                                         break;
+
+    //                                         case 'Mehndi Artist':
+    //                                             $l->category_id = '6';
+    //                                             break;
+                                            
+    //             default:
+    //                 $l->category_id = 1;
+    //                 break;
+    //         }
+
+    //         $l->event_date = $lead->event_date;
+    //         $l->city = $lead->city;
+    //         $l->status  = $lead->status;
+    //         $l->created_at = date('Y-m-d',strtotime($lead->request_date));
+    //         $l->save();
+
+    //         $pre_id = $l->id;
+
+            
+    //         $vendor = DB::table('entry')->where('id',$lead->vendor_id)->first();
+
+    //         // dd($vendor);
+    //         if(!empty($vendor)){
+
+    //             $ved = User::where('mobile',$vendor->phone)->first();
+
+    //             if(!empty($ved)){
+    //                 $d = new PremiumLeadVendor();
+    //                 $d->lead_id = $pre_id;
+    //                 $d->user_id = $ved->id;
+    //                 $d->created_at =  date("Y-m-d H:i:s", strtotime($lead->request_date));
+    //                 $d->save();
+    //             }
+    //             // exit();
+    //         }
+                
+    //     }
+
+    // }
     
     // public function lead_view(){
     //     $view = DB::table('lead_view_status_2')->get();

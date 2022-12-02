@@ -355,8 +355,8 @@
                 </ul>
             </li>
 
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {{ admin_helper::is_open_menu('blog') }}">
+                <a href="{{ url('/byte/blog') }}" class="nav-link {{ admin_helper::active_menu('blog') }}">
                     <i class="nav-icon fab fa-blogger-b"></i>
                     <p>
                         Blog
@@ -365,9 +365,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/byte/blog/all_blogs') }}" class="nav-link {{ admin_helper::active_sub_menu('all_blogs') }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Blogs</p>
+                            <p>All Blogs</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/byte/blog/add') }}" class="nav-link {{ admin_helper::active_sub_menu('add') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Add Blogs</p>
                         </a>
                     </li>
                     <li class="nav-item">

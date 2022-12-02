@@ -37,7 +37,10 @@
                 @endif
             </div> 
         </div>
-
+        <?php
+            $is_exclusive = vendor_helper::check_exclusive($details->user_id);
+            // echo $is_exclusive;
+        ?>
         <!-- Vendor Cover Images Section -->
         <div class="card-shadow">
             <div class="card-shadow-body p-0">
@@ -109,7 +112,11 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Total Leads</strong></div>
-                                            <a href="{{ url('vendor/leads') }}" class="btn-veiw-all">View All</a>
+                                            @if($is_exclusive == 1)
+                                                <a href="{{ url('vendor/exclusive-leads') }}" class="btn-veiw-all">View All</a>
+                                            @else
+                                                <a href="{{ url('vendor/leads') }}" class="btn-veiw-all">View All</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +151,11 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Available Leads</strong></div>
-                                            <a href="{{ url('vendor/leads') }}" class="btn-veiw-all">View All</a>
+                                            @if($is_exclusive == 1)
+                                                <a href="{{ url('vendor/exclusive-leads') }}" class="btn-veiw-all">View All</a>
+                                            @else
+                                                <a href="{{ url('vendor/leads') }}" class="btn-veiw-all">View All</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +173,12 @@
                                         </div>
                                         <div class="text">
                                             <div class="div"><strong>Used Leads</strong></div>
-                                            <a href="{{ url('vendor/leads/unlock-leads') }}" class="btn-veiw-all">View All</a>
+                                            @if($is_exclusive == 1)
+                                                <a href="{{ url('vendor/exclusive-leads') }}" class="btn-veiw-all">View All</a>
+                                            @else
+                                                <a href="{{ url('vendor/leads/unlock-leads') }}" class="btn-veiw-all">View All</a>
+                                            @endif
+                                            
                                         </div>
                                     </div>
                                 </div>

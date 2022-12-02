@@ -74,4 +74,10 @@ jQuery(document).ready(function () {
             });
         }
     });
+
+    $('#desc').summernote({
+        tabsize: 2,
+        height: 250,
+    });
+
 });

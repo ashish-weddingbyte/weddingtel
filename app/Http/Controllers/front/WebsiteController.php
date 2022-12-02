@@ -11,6 +11,7 @@ use App\Models\ActivatedTemplate;
 use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\MediaGallery;
+use App\Models\TemplateField;
 
 class WebsiteController extends Controller
 {
@@ -35,7 +36,7 @@ class WebsiteController extends Controller
         $data['user'] = User::find($user_id);
         $data['details'] = UserDetail::where('user_id',$user_id)->first();
         $data['images'] =   MediaGallery::where('user_id',$user_id)->get();
-
+        $data['fields'] = TemplateField::where('tmp_id',$tmp_id)->get();
         $tmp = Template::where('id',$tmp_id)->where('status','1')->first();
         if(!empty($tmp)){
             return view('front.website.'.$tmp->name, $data);

@@ -37,29 +37,27 @@
 
     <link href="{{ asset('front/css/admin.css') }}" rel="stylesheet">
 
-
+    <style>
+        .pencil {
+            display:block;
+            position: absolute;
+            top:0;
+            right:0;
+            margin:5px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
 
 </head>
 <!-- end head -->
 <!--body start-->
 
 <body id="page-top">
-
-    
-
-    <div class="container-fluid admin-bar">
-        <div class="row">
-            <div class="col-4 col-md-4 col-lg-4 text-center">
-                <a href="#" class="btn admin-button">Edit</a>
-            </div>
-            <div class="col-4 col-md-4 col-lg-4 text-center">
-                <a href="#" class="btn admin-button">Preview</a>
-            </div>
-            <div class="col-4 col-md-4 col-lg-4 text-center">
-                <a href="#" class="btn admin-button">Share</a>
-            </div>
-        </div>
-    </div>
 
     <header>
         <!-- Navigation -->
@@ -100,13 +98,15 @@
     </header>
 
 
-    
     <!--  Home Banner Start -->
     <section class="home-background" style="background: url({{ asset('front/library/couple-website/images/slider_img_1.jpg') }}) no-repeat">
         <div class="home-content">
             <div class="container">
                 <div class="name">
                     <h1>{{ $user->name }} <i class="weddingdir_heart_ring"></i> {{ $details->partner_name }}</h1>
+                    @if($fields[0]->heading == 'basic_introduction')
+                        <a href="javascript:void(0);" data-id="{{ $fields[0]->id }}" data-url="{{ url('/') }}"  ><i class="fa fa-pencil"></i></a>
+                    @endif
                     <em>Are getting Married!</em>
                     <div class="date">
                         <h3>{{ date('D - d F Y',strtotime($details->event)) }}</h3>
@@ -125,6 +125,7 @@
                 <div class="section-title text-center">
                     <h1>The Couple</h1>
                     <p class="sub-head">We are so excited to celebrate our special day with our family and friends. <br>Thank you so much for visiting our wedding website!</p>
+                    <a class="open-modal-check" href="javascript:void(0);" data-toggle="modal" data-target="#add_modal" ><i class="fa fa-pencil"></i></a>
                 </div>
                 <div class="row align-items-center">
                     <div class="col-lg-6 order-lg-2">
@@ -173,6 +174,7 @@
                                 <div class="head-img">
                                     <img src="{{ asset('front/library/couple-website/images/timeline_img_1.png')}}" alt="">
                                     <h3>First meet</h3>
+                                    <a class="open-modal-check" href="javascript:void(0);" data-toggle="modal" data-target="#add_modal" ><i class="fa fa-pencil"></i></a>
                                 </div>
                                 <p>Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
                             </div>
@@ -193,6 +195,7 @@
                                 <div class="head-img">
                                     <img src="{{ asset('front/library/couple-website/images/timeline_img_2.png')}}" alt="">
                                     <h3>Ring Ceremoney</h3>
+                                    <a class="open-modal-check" href="javascript:void(0);" data-toggle="modal" data-target="#add_modal" ><i class="fa fa-pencil"></i></a>
                                 </div>
                                 <p>Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
                             </div>
@@ -213,6 +216,7 @@
                                 <div class="head-img">
                                     <img src="{{ asset('front/library/couple-website/images/timeline_img_3.png')}}" alt="">
                                     <h3>Wedding Party</h3>
+                                    <a class="open-modal-check" href="javascript:void(0);" data-toggle="modal" data-target="#add_modal" ><i class="fa fa-pencil"></i></a>
                                 </div>
                                 <p>Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
                             </div>
@@ -262,6 +266,7 @@
                             <div class="place-icon">
                                 <i class="weddingdir_hanging_heart"></i>
                             </div>
+                            <a class="open-modal-check" href="javascript:void(0);" data-toggle="modal" data-target="#add_modal" ><i class="fa fa-pencil"></i></a>
                             <h3>Wedding Ceremony</h3>
                             <p>Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
                             <div class="img">
@@ -277,6 +282,7 @@
                             <div class="place-icon">
                                 <i class="weddingdir_wine"></i>
                             </div>
+                            <a class="open-modal-check" href="javascript:void(0);" data-toggle="modal" data-target="#add_modal" ><i class="fa fa-pencil"></i></a>
                             <h3>Wedding Party</h3>
                             <p>Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
                             <div class="img">
@@ -310,7 +316,7 @@
                     <div class="col-md-6">
                         <div class="rsvp-form">
                             <div class="head">
-                                <h5>R.S.V.P.</h5>
+                                <h5>Are You Attending?</h5>
                                 <img src="{{ asset('front/library/couple-website/images/flower_art.png')}}" alt="">
                             </div>
                             <div class="form-group">
@@ -331,23 +337,8 @@
                             <div class="form-group">
                                 <textarea rows="6" placeholder="Your message" class="form-control"></textarea>
                             </div>
-                            <div class="form-group">
-                                <p><strong class="txt-orange">Meal preference</strong></p>
-
-                                <div class="custom-control custom-radio custom-control-inline mb-3">
-                                    <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadioInline1">Vegetarian</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline mb-3">
-                                    <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadioInline2">Non-Vegetarian</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline mb-3">
-                                    <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadioInline3">Both</label>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary btn-block">Sign your RSVP</button>
+                            
+                            <button type="button" class="btn btn-primary btn-block">Send Your Confirmation</button>
                         </div>
                     </div>
                 </div>
@@ -367,6 +358,7 @@
                 <div class="section-title text-center">
                     <h1>Captured Moments</h1>
                     <p class="sub-head">We are so excited to celebrate our special day with our family and friends. <br>Thank you so much for visiting our wedding website!</p>
+                    <a class="open-modal-check" href="javascript:void(0);" data-toggle="modal" data-target="#add_modal" ><i class="fa fa-pencil"></i></a>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -479,7 +471,49 @@
     <script src="{{ asset('front/library/datepicker/js/datepicker.js') }}"></script> 
     <script src="{{ asset('front/library/couple-website/js/script.js') }}"></script>
 
-    <script src="{{ asset('front/library/slide-reveal/jquery.slidereveal.min.js') }}"></script>
+    <script src="{{ asset('front/js/admin.js') }}"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="add_modal" tabindex="-1" aria-labelledby="login_form" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered register-tab">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="d-flex justify-content-between align-items-center p-3 px-4 bg-light-gray">
+                        <h2 class="m-0" >Add</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="card-shadow-body">
+                        <form data-action="" method="post" class="submit">
+                            <div class="row">
+                                <div class="col-md-12 text-danger print-error-msg"></div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                    <div class="form-group">
+                                        <input id="title" name="title" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <input id="file" name="file" type="file" class="form-control" data-toggle="datepicker" >
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-default">Add Checklist</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 

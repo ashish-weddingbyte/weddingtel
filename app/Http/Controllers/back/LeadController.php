@@ -398,12 +398,27 @@ class LeadController extends Controller
 
         if(!empty($paid_plan)){
 
-            $date = Carbon::createFromFormat('Y-m-d', $paid_plan->end_at);
-            $update_date = $date->addDays($days);
-            $paid_plan->total_lead =  $paid_plan->total_lead + $leads;
-            $paid_plan->available_leads = $paid_plan->available_leads + $leads;
-            $paid_plan->end_at = date('Y-m-d', strtotime($update_date));
-            $paid_plan->is_active = '1';
+            if( $paid_plan->is_active == '1'){
+                // already active
+                $date = Carbon::createFromFormat('Y-m-d', $paid_plan->end_at);
+                $update_date = $date->addDays($days);
+
+                $paid_plan->total_lead =  $paid_plan->total_lead + $leads;
+                $paid_plan->available_leads = $paid_plan->available_leads + $leads;
+                $paid_plan->end_at = date('Y-m-d', strtotime($update_date));
+                
+            }else{
+                // expire
+                $date = Carbon::createFromFormat('Y-m-d', date('Y-m-d'));
+                $update_date = $date->addDays($days);
+
+                $paid_plan->total_lead =  $paid_plan->total_lead + $leads;
+                $paid_plan->available_leads = $leads;
+                $paid_plan->end_at = date('Y-m-d', strtotime($update_date));
+                $paid_plan->is_active = '1';
+            }
+        
+            
             $paid_plan->is_addon = 'yes';
             $paid_plan->save();
         }else{

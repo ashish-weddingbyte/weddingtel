@@ -254,9 +254,10 @@ class VendorLeadController extends Controller
 
 
         $data['leads'] = PremiumLeadVendor::join('premium_leads','premium_leads.id','=','premium_lead_vendors.lead_id')
-                                        ->orderBy('premium_lead_vendors.id','desc')
+                                        ->orderBy('premium_lead_vendors.created_at','desc')
                                         ->where('premium_lead_vendors.user_id',$user_id)
                                         ->get();
+                                        // dd($data);
         return view('front.vendor.premium_leads',$data);
     }
 

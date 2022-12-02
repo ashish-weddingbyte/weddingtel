@@ -21,25 +21,6 @@
 
     <main id="body-content">
 
-        <!-- Contact Details Start -->
-        <!-- <section class="wide-tb-100">
-            <div class="container">
-                <div class="row contact-broken">
-                    
-                    <div class="offset-md-2 col-md-8">
-                        <div class="contact-details-wrap">
-                            <i class="weddingdir_location"></i>
-                            <h3 class="txt-primary">Our Address</h3>
-                            <p class="my-4">Our offices are located in the Georgia.</p>
-                            <div>Address: 4998 Elk Creek Road <br>Canton, GA 30114</div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section> -->
-
-
         <section class="wide-tb-60">
             <div class="container">
                 <div class="row login-section">
@@ -130,6 +111,47 @@
             </div>
         </section>
         <!-- Contact Details End -->
+
+        <!-- Contact Details Start -->
+        <section class="wide-tb-50">
+            <div class="container">
+                <div class="row contact-broken">
+                    <!-- Contact Details Wrap -->
+                    <div class="col-md-6">
+                        <div class="contact-details-wrap">
+                            <i class="weddingdir_support"></i>
+                            <h3 class="txt-primary">Customer Support</h3>
+                            <p class="my-4">Call our helpline.</p>
+                            <div>Phone number: <a href="tel:9888629762" class="btn-link btn-link-default">9888629762</a></div>
+                            
+                        </div>
+                    </div>
+                    <!-- Contact Details Wrap -->
+
+                    <!-- Contact Details Wrap -->
+                    <!-- <div class="col-md-4">
+                        <div class="contact-details-wrap">
+                            <i class="weddingdir_location"></i>
+                            <h3 class="txt-primary">Our Address</h3>
+                            <p class="my-4">Our offices are located in the Georgia.</p>
+                            <div>Address: 4998 Elk Creek Road <br>Canton, GA 30114</div>
+                        </div>
+                    </div> -->
+                    <!-- Contact Details Wrap -->
+
+                    <!-- Contact Details Wrap -->
+                    <div class="col-md-6">
+                        <div class="contact-details-wrap">
+                            <i class="weddingdir_mail"></i>
+                            <h3 class="txt-primary">Other Enquiries</h3>
+                            <p class="my-4">Please contact us at the email below for all other inquiries.</p>
+                            <div>Email Us: <a href="mailto:customercare@weddingbyte.com" class="btn-link btn-link-primary">customercare@weddingbyte.com</a> </div>
+                        </div>
+                    </div>
+                    <!-- Contact Details Wrap -->
+                </div>
+            </div>
+        </section>
     </main>
     
 @endsection

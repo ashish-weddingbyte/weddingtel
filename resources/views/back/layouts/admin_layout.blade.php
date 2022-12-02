@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="{{ asset('back/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('back/plugins/datatables/jquery.dataTables.css') }}">
+
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{ asset('back/plugins/summernote/summernote-bs4.min.css') }}">
   
   <!-- select2 -->
   <link rel="stylesheet" href="{{ asset('back/plugins/select2/css/select2.min.css') }}" >
@@ -81,6 +84,9 @@
 
 <!-- DataTables  & Plugins -->
 <script src="{{ asset('back/plugins/datatables/jquery.dataTables.js') }}"></script>
+
+<!-- Summernote -->
+<script src="{{ asset('back/plugins/summernote/summernote-bs4.min.js') }}"></script>
 
 <!-- AdminLTE App -->
 <script src="{{ asset('back/js/adminlte.min.js') }}"></script>

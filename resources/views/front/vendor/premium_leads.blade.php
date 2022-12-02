@@ -30,6 +30,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Name</th>
+                                <th scope="col">Publish Date</th>
                                 <th scope="col">Event Date</th>
                                 <th scope="col">City</th>
                                 <th scope="col">Budget</th>
@@ -42,6 +43,7 @@
                             @foreach($leads as $lead)
                             <tr>
                                 <th>{{ ucwords($lead->name) }}</th>
+                                <td><span class="text-success">{{ date('M d, Y', strtotime($lead->created_at) ) }}</span></td>
                                 <td><span class="text-success">{{ date('M d, Y', strtotime($lead->event_date) ) }}</span></td>
                                 <td>{{ ucwords($lead->city) }}</td>
                                 <td><span class="btn-link-primary">{{ $lead->budget }} INR</span></td>

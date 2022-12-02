@@ -320,6 +320,12 @@ Route::group(["middleware" => ["AuthAdmin"] , "prefix" => '/byte', '' ], functio
     Route::post('category/save_category',[CategoryController::class,'save_category']);
     Route::post('category/update',[CategoryController::class,'update_category']);
 
+    Route::get('/blog',[BlogController::class,'all_blogs']);
+    Route::get('/blog/all_blogs',[BlogController::class,'all_blogs']);
+    Route::get('/blog/add',[BlogController::class,'add_blog']);
+    Route::get('/blog/edit/{id}',[BlogController::class,'edit_blog']);
+    Route::post('blog/save_blog',[BlogController::class,'save_blog']);
+    Route::post('/blog/action',[BlogController::class,'action']);
     Route::get('/blogs/real_wedding',[BlogController::class,'real_wedding']);
     Route::get('/blogs/real_wedding/add',[BlogController::class,'all_real_wedding']);
 
@@ -334,7 +340,7 @@ Route::get('/logout', function(){
 
 // Route::get('/add_vendors',[UserController::class,'add_vendors']);
 // Route::get('/add_city',[VendorProfileController::class,'add_city']);
-Route::get('/add_leads',[HomeController::class,'add_leads']);
+// Route::get('/add_leads',[HomeController::class,'add_leads']);
 // Route::get('/move_profile',[HomeController::class,'move_profile']);
 // Route::get('/move_gallery',[HomeController::class,'move_gallery']);
 // Route::get('/lead_view',[HomeController::class,'lead_view']);
@@ -346,9 +352,7 @@ Route::get('/add_leads',[HomeController::class,'add_leads']);
 // Route::get('/gall',[HomeController::class,'real_wedd_gallery']);
 // Route::get('blog_url',[HomeController::class,'blog_url']);
 // Route::get('check_gallery',[HomeController::class,'check_gallery']);
+// Route::get('pre',[HomeController::class,'add_pre']);
 
-Route::get('time',function (){
-    echo date('Y-m-d H:i:s');
-});
 
 

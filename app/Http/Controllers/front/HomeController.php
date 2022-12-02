@@ -20,9 +20,6 @@ use App\Models\Query;
 use App\Models\Otp;
 use App\Models\Review;
 use App\Models\Contact;
-use App\Models\LeadViewStatus;
-use App\Models\LeadPaidVendor;
-use App\Models\LeadPlan;
 use vendor_helper;
 use otp_helper;
 use File;
@@ -872,6 +869,5 @@ class HomeController extends Controller
                                     ->get();
         return view('front.real_wedd_details',$data);
     }
-
     
 }
